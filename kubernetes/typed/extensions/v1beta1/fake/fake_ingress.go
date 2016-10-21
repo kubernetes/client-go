@@ -17,12 +17,13 @@ limitations under the License.
 package fake
 
 import (
-	api "k8s.io/client-go/1.5/pkg/api"
-	unversioned "k8s.io/client-go/1.5/pkg/api/unversioned"
-	v1beta1 "k8s.io/client-go/1.5/pkg/apis/extensions/v1beta1"
-	labels "k8s.io/client-go/1.5/pkg/labels"
-	watch "k8s.io/client-go/1.5/pkg/watch"
-	testing "k8s.io/client-go/1.5/testing"
+	api "k8s.io/client-go/pkg/api"
+	unversioned "k8s.io/client-go/pkg/api/unversioned"
+	v1 "k8s.io/client-go/pkg/api/v1"
+	v1beta1 "k8s.io/client-go/pkg/apis/extensions/v1beta1"
+	labels "k8s.io/client-go/pkg/labels"
+	watch "k8s.io/client-go/pkg/watch"
+	testing "k8s.io/client-go/testing"
 )
 
 // FakeIngresses implements IngressInterface
@@ -63,14 +64,14 @@ func (c *FakeIngresses) UpdateStatus(ingress *v1beta1.Ingress) (*v1beta1.Ingress
 	return obj.(*v1beta1.Ingress), err
 }
 
-func (c *FakeIngresses) Delete(name string, options *api.DeleteOptions) error {
+func (c *FakeIngresses) Delete(name string, options *v1.DeleteOptions) error {
 	_, err := c.Fake.
 		Invokes(testing.NewDeleteAction(ingressesResource, c.ns, name), &v1beta1.Ingress{})
 
 	return err
 }
 
-func (c *FakeIngresses) DeleteCollection(options *api.DeleteOptions, listOptions api.ListOptions) error {
+func (c *FakeIngresses) DeleteCollection(options *v1.DeleteOptions, listOptions v1.ListOptions) error {
 	action := testing.NewDeleteCollectionAction(ingressesResource, c.ns, listOptions)
 
 	_, err := c.Fake.Invokes(action, &v1beta1.IngressList{})
@@ -87,7 +88,7 @@ func (c *FakeIngresses) Get(name string) (result *v1beta1.Ingress, err error) {
 	return obj.(*v1beta1.Ingress), err
 }
 
-func (c *FakeIngresses) List(opts api.ListOptions) (result *v1beta1.IngressList, err error) {
+func (c *FakeIngresses) List(opts v1.ListOptions) (result *v1beta1.IngressList, err error) {
 	obj, err := c.Fake.
 		Invokes(testing.NewListAction(ingressesResource, c.ns, opts), &v1beta1.IngressList{})
 
@@ -95,7 +96,7 @@ func (c *FakeIngresses) List(opts api.ListOptions) (result *v1beta1.IngressList,
 		return nil, err
 	}
 
-	label := opts.LabelSelector
+	label, _, _ := testing.ExtractFromListOptions(opts)
 	if label == nil {
 		label = labels.Everything()
 	}
@@ -109,7 +110,7 @@ func (c *FakeIngresses) List(opts api.ListOptions) (result *v1beta1.IngressList,
 }
 
 // Watch returns a watch.Interface that watches the requested ingresses.
-func (c *FakeIngresses) Watch(opts api.ListOptions) (watch.Interface, error) {
+func (c *FakeIngresses) Watch(opts v1.ListOptions) (watch.Interface, error) {
 	return c.Fake.
 		InvokesWatch(testing.NewWatchAction(ingressesResource, c.ns, opts))
 

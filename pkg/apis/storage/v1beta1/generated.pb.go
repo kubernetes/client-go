@@ -58,8 +58,8 @@ func (*StorageClassList) ProtoMessage()               {}
 func (*StorageClassList) Descriptor() ([]byte, []int) { return fileDescriptorGenerated, []int{1} }
 
 func init() {
-	proto.RegisterType((*StorageClass)(nil), "k8s.io.client-go.1.5.pkg.apis.storage.v1beta1.StorageClass")
-	proto.RegisterType((*StorageClassList)(nil), "k8s.io.client-go.1.5.pkg.apis.storage.v1beta1.StorageClassList")
+	proto.RegisterType((*StorageClass)(nil), "k8s.io.client-go.pkg.apis.storage.v1beta1.StorageClass")
+	proto.RegisterType((*StorageClassList)(nil), "k8s.io.client-go.pkg.apis.storage.v1beta1.StorageClassList")
 }
 func (m *StorageClass) Marshal() (data []byte, err error) {
 	size := m.Size()

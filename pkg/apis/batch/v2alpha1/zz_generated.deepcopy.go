@@ -21,10 +21,10 @@ limitations under the License.
 package v2alpha1
 
 import (
-	unversioned "k8s.io/client-go/1.5/pkg/api/unversioned"
-	v1 "k8s.io/client-go/1.5/pkg/api/v1"
-	conversion "k8s.io/client-go/1.5/pkg/conversion"
-	runtime "k8s.io/client-go/1.5/pkg/runtime"
+	unversioned "k8s.io/client-go/pkg/api/unversioned"
+	v1 "k8s.io/client-go/pkg/api/v1"
+	conversion "k8s.io/client-go/pkg/conversion"
+	runtime "k8s.io/client-go/pkg/runtime"
 	reflect "reflect"
 )
 

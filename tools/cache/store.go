@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"strings"
 
-	"k8s.io/client-go/1.5/pkg/api/meta"
+	"k8s.io/client-go/pkg/api/meta"
 )
 
 // Store is a generic object storage interface. Reflector knows how to watch a server

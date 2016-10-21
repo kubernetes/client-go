@@ -20,7 +20,7 @@ import (
 	"net/http"
 	"time"
 
-	"k8s.io/client-go/1.5/pkg/api"
+	"k8s.io/client-go/pkg/api"
 )
 
 // TODO: Reconcile custom types in kubelet/types and this subpackage

@@ -29,13 +29,13 @@ import (
 
 	"github.com/golang/glog"
 
-	"k8s.io/client-go/1.5/pkg/api"
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
-	"k8s.io/client-go/1.5/pkg/runtime"
-	certutil "k8s.io/client-go/1.5/pkg/util/cert"
-	"k8s.io/client-go/1.5/pkg/util/flowcontrol"
-	"k8s.io/client-go/1.5/pkg/version"
-	clientcmdapi "k8s.io/client-go/1.5/tools/clientcmd/api"
+	"k8s.io/client-go/pkg/api"
+	"k8s.io/client-go/pkg/api/unversioned"
+	"k8s.io/client-go/pkg/runtime"
+	certutil "k8s.io/client-go/pkg/util/cert"
+	"k8s.io/client-go/pkg/util/flowcontrol"
+	"k8s.io/client-go/pkg/version"
+	clientcmdapi "k8s.io/client-go/tools/clientcmd/api"
 )
 
 const (
@@ -189,6 +189,9 @@ func RESTClientFor(config *Config) (*RESTClient, error) {
 	var httpClient *http.Client
 	if transport != http.DefaultTransport {
 		httpClient = &http.Client{Transport: transport}
+		if config.Timeout > 0 {
+			httpClient.Timeout = config.Timeout
+		}
 	}
 
 	return NewRESTClient(baseURL, versionedAPIPath, config.ContentConfig, qps, burst, config.RateLimiter, httpClient)
@@ -214,6 +217,9 @@ func UnversionedRESTClientFor(config *Config) (*RESTClient, error) {
 	var httpClient *http.Client
 	if transport != http.DefaultTransport {
 		httpClient = &http.Client{Transport: transport}
+		if config.Timeout > 0 {
+			httpClient.Timeout = config.Timeout
+		}
 	}
 
 	versionConfig := config.ContentConfig
@@ -336,4 +342,27 @@ func AddUserAgent(config *Config, userAgent string) *Config {
 	fullUserAgent := DefaultKubernetesUserAgent() + "/" + userAgent
 	config.UserAgent = fullUserAgent
 	return config
+}
+
+// AnonymousClientConfig returns a copy of the given config with all user credentials (cert/key, bearer token, and username/password) removed
+func AnonymousClientConfig(config *Config) *Config {
+	// copy only known safe fields
+	return &Config{
+		Host:          config.Host,
+		APIPath:       config.APIPath,
+		Prefix:        config.Prefix,
+		ContentConfig: config.ContentConfig,
+		TLSClientConfig: TLSClientConfig{
+			CAFile: config.TLSClientConfig.CAFile,
+			CAData: config.TLSClientConfig.CAData,
+		},
+		RateLimiter:   config.RateLimiter,
+		Insecure:      config.Insecure,
+		UserAgent:     config.UserAgent,
+		Transport:     config.Transport,
+		WrapTransport: config.WrapTransport,
+		QPS:           config.QPS,
+		Burst:         config.Burst,
+		Timeout:       config.Timeout,
+	}
 }

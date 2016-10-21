@@ -17,8 +17,8 @@ limitations under the License.
 package meta
 
 import (
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
-	"k8s.io/client-go/1.5/pkg/runtime"
+	"k8s.io/client-go/pkg/api/unversioned"
+	"k8s.io/client-go/pkg/runtime"
 )
 
 // InterfacesForUnstructured returns VersionInterfaces suitable for

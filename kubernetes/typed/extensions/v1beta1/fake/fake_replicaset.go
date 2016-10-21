@@ -17,12 +17,13 @@ limitations under the License.
 package fake
 
 import (
-	api "k8s.io/client-go/1.5/pkg/api"
-	unversioned "k8s.io/client-go/1.5/pkg/api/unversioned"
-	v1beta1 "k8s.io/client-go/1.5/pkg/apis/extensions/v1beta1"
-	labels "k8s.io/client-go/1.5/pkg/labels"
-	watch "k8s.io/client-go/1.5/pkg/watch"
-	testing "k8s.io/client-go/1.5/testing"
+	api "k8s.io/client-go/pkg/api"
+	unversioned "k8s.io/client-go/pkg/api/unversioned"
+	v1 "k8s.io/client-go/pkg/api/v1"
+	v1beta1 "k8s.io/client-go/pkg/apis/extensions/v1beta1"
+	labels "k8s.io/client-go/pkg/labels"
+	watch "k8s.io/client-go/pkg/watch"
+	testing "k8s.io/client-go/testing"
 )
 
 // FakeReplicaSets implements ReplicaSetInterface
@@ -63,14 +64,14 @@ func (c *FakeReplicaSets) UpdateStatus(replicaSet *v1beta1.ReplicaSet) (*v1beta1
 	return obj.(*v1beta1.ReplicaSet), err
 }
 
-func (c *FakeReplicaSets) Delete(name string, options *api.DeleteOptions) error {
+func (c *FakeReplicaSets) Delete(name string, options *v1.DeleteOptions) error {
 	_, err := c.Fake.
 		Invokes(testing.NewDeleteAction(replicasetsResource, c.ns, name), &v1beta1.ReplicaSet{})
 
 	return err
 }
 
-func (c *FakeReplicaSets) DeleteCollection(options *api.DeleteOptions, listOptions api.ListOptions) error {
+func (c *FakeReplicaSets) DeleteCollection(options *v1.DeleteOptions, listOptions v1.ListOptions) error {
 	action := testing.NewDeleteCollectionAction(replicasetsResource, c.ns, listOptions)
 
 	_, err := c.Fake.Invokes(action, &v1beta1.ReplicaSetList{})
@@ -87,7 +88,7 @@ func (c *FakeReplicaSets) Get(name string) (result *v1beta1.ReplicaSet, err erro
 	return obj.(*v1beta1.ReplicaSet), err
 }
 
-func (c *FakeReplicaSets) List(opts api.ListOptions) (result *v1beta1.ReplicaSetList, err error) {
+func (c *FakeReplicaSets) List(opts v1.ListOptions) (result *v1beta1.ReplicaSetList, err error) {
 	obj, err := c.Fake.
 		Invokes(testing.NewListAction(replicasetsResource, c.ns, opts), &v1beta1.ReplicaSetList{})
 
@@ -95,7 +96,7 @@ func (c *FakeReplicaSets) List(opts api.ListOptions) (result *v1beta1.ReplicaSet
 		return nil, err
 	}
 
-	label := opts.LabelSelector
+	label, _, _ := testing.ExtractFromListOptions(opts)
 	if label == nil {
 		label = labels.Everything()
 	}
@@ -109,7 +110,7 @@ func (c *FakeReplicaSets) List(opts api.ListOptions) (result *v1beta1.ReplicaSet
 }
 
 // Watch returns a watch.Interface that watches the requested replicaSets.
-func (c *FakeReplicaSets) Watch(opts api.ListOptions) (watch.Interface, error) {
+func (c *FakeReplicaSets) Watch(opts v1.ListOptions) (watch.Interface, error) {
 	return c.Fake.
 		InvokesWatch(testing.NewWatchAction(replicasetsResource, c.ns, opts))
 

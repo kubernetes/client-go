@@ -17,13 +17,13 @@ limitations under the License.
 package api
 
 import (
-	"k8s.io/client-go/1.5/pkg/api/resource"
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
-	"k8s.io/client-go/1.5/pkg/fields"
-	"k8s.io/client-go/1.5/pkg/labels"
-	"k8s.io/client-go/1.5/pkg/runtime"
-	"k8s.io/client-go/1.5/pkg/types"
-	"k8s.io/client-go/1.5/pkg/util/intstr"
+	"k8s.io/client-go/pkg/api/resource"
+	"k8s.io/client-go/pkg/api/unversioned"
+	"k8s.io/client-go/pkg/fields"
+	"k8s.io/client-go/pkg/labels"
+	"k8s.io/client-go/pkg/runtime"
+	"k8s.io/client-go/pkg/types"
+	"k8s.io/client-go/pkg/util/intstr"
 )
 
 // Common string formats
@@ -741,10 +741,14 @@ type CephFSVolumeSource struct {
 }
 
 // Represents a Flocker volume mounted by the Flocker agent.
+// One and only one of datasetName and datasetUUID should be set.
 // Flocker volumes do not support ownership management or SELinux relabeling.
 type FlockerVolumeSource struct {
-	// Required: the volume name. This is going to be store on metadata -> name on the payload for Flocker
-	DatasetName string `json:"datasetName"`
+	// Name of the dataset stored as metadata -> name on the dataset for Flocker
+	// should be considered as deprecated
+	DatasetName string `json:"datasetName,omitempty"`
+	// UUID of the dataset. This is unique identifier of a Flocker dataset
+	DatasetUUID string `json:"datasetUUID,omitempty"`
 }
 
 // Represents a volume containing downward API info.
@@ -1644,7 +1648,7 @@ type PodStatus struct {
 	// The list has one entry per init container in the manifest. The most recent successful
 	// init container will have ready = true, the most recently started container will have
 	// startTime set.
-	// More info: http://releases.k8s.io/HEAD/docs/user-guide/pod-states.md#container-statuses
+	// More info: http://kubernetes.io/docs/user-guide/pod-states#container-statuses
 	InitContainerStatuses []ContainerStatus `json:"-"`
 	// The list has one entry per container in the manifest. Each entry is
 	// currently the output of `docker inspect`. This output format is *not*
@@ -1713,6 +1717,11 @@ type ReplicationControllerSpec struct {
 	// Replicas is the number of desired replicas.
 	Replicas int32 `json:"replicas"`
 
+	// Minimum number of seconds for which a newly created pod should be ready
+	// without any of its container crashing, for it to be considered available.
+	// Defaults to 0 (pod will be considered available as soon as it is ready)
+	MinReadySeconds int32 `json:"minReadySeconds,omitempty"`
+
 	// Selector is a label query over pods that should match the Replicas count.
 	Selector map[string]string `json:"selector"`
 
@@ -1739,8 +1748,40 @@ type ReplicationControllerStatus struct {
 	// The number of ready replicas for this replication controller.
 	ReadyReplicas int32 `json:"readyReplicas,omitempty"`
 
+	// The number of available replicas (ready for at least minReadySeconds) for this replication controller.
+	AvailableReplicas int32 `json:"availableReplicas,omitempty"`
+
 	// ObservedGeneration is the most recent generation observed by the controller.
 	ObservedGeneration int64 `json:"observedGeneration,omitempty"`
+
+	// Represents the latest available observations of a replication controller's current state.
+	Conditions []ReplicationControllerCondition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
+}
+
+type ReplicationControllerConditionType string
+
+// These are valid conditions of a replication controller.
+const (
+	// ReplicationControllerReplicaFailure is added in a replication controller when one of its pods
+	// fails to be created due to insufficient quota, limit ranges, pod security policy, node selectors,
+	// etc. or deleted due to kubelet being down or finalizers are failing.
+	ReplicationControllerReplicaFailure ReplicationControllerConditionType = "ReplicaFailure"
+)
+
+// ReplicationControllerCondition describes the state of a replication controller at a certain point.
+type ReplicationControllerCondition struct {
+	// Type of replication controller condition.
+	Type ReplicationControllerConditionType `json:"type"`
+	// Status of the condition, one of True, False, Unknown.
+	Status ConditionStatus `json:"status"`
+	// Last time we probed the condition.
+	LastProbeTime unversioned.Time `json:"lastProbeTime,omitempty"`
+	// The last time the condition transitioned from one status to another.
+	LastTransitionTime unversioned.Time `json:"lastTransitionTime,omitempty"`
+	// The reason for the condition's last transition.
+	Reason string `json:"reason,omitempty"`
+	// A human readable message indicating details about the transition.
+	Message string `json:"message,omitempty"`
 }
 
 // +genclient=true
@@ -1855,7 +1896,7 @@ type ServiceSpec struct {
 	// "LoadBalancer" builds on NodePort and creates an
 	// external load-balancer (if supported in the current cloud) which routes
 	// to the clusterIP.
-	// More info: http://releases.k8s.io/HEAD/docs/user-guide/services.md#overview
+	// More info: http://kubernetes.io/docs/user-guide/services#overview
 	Type ServiceType `json:"type,omitempty"`
 
 	// Required: The list of ports that are exposed by this service.
@@ -1866,7 +1907,7 @@ type ServiceSpec struct {
 	// external process managing its endpoints, which Kubernetes will not
 	// modify. Only applies to types ClusterIP, NodePort, and LoadBalancer.
 	// Ignored if type is ExternalName.
-	// More info: http://releases.k8s.io/HEAD/docs/user-guide/services.md#overview
+	// More info: http://kubernetes.io/docs/user-guide/services#overview
 	Selector map[string]string `json:"selector"`
 
 	// ClusterIP is the IP address of the service and is usually assigned
@@ -1877,7 +1918,7 @@ type ServiceSpec struct {
 	// can be specified for headless services when proxying is not required.
 	// Only applies to types ClusterIP, NodePort, and LoadBalancer. Ignored if
 	// type is ExternalName.
-	// More info: http://releases.k8s.io/HEAD/docs/user-guide/services.md#virtual-ips-and-service-proxies
+	// More info: http://kubernetes.io/docs/user-guide/services#virtual-ips-and-service-proxies
 	ClusterIP string `json:"clusterIP,omitempty"`
 
 	// ExternalName is the external reference that kubedns or equivalent will
@@ -2212,6 +2253,8 @@ const (
 	NodeDiskPressure NodeConditionType = "DiskPressure"
 	// NodeNetworkUnavailable means that network for the node is not correctly configured.
 	NodeNetworkUnavailable NodeConditionType = "NetworkUnavailable"
+	// NodeInodePressure means the kublet is under pressure due to insufficient available inodes.
+	NodeInodePressure NodeConditionType = "InodePressure"
 )
 
 type NodeCondition struct {
@@ -2525,10 +2568,10 @@ type OwnerReference struct {
 	// More info: http://releases.k8s.io/HEAD/docs/devel/api-conventions.md#types-kinds
 	Kind string `json:"kind"`
 	// Name of the referent.
-	// More info: http://releases.k8s.io/HEAD/docs/user-guide/identifiers.md#names
+	// More info: http://kubernetes.io/docs/user-guide/identifiers#names
 	Name string `json:"name"`
 	// UID of the referent.
-	// More info: http://releases.k8s.io/HEAD/docs/user-guide/identifiers.md#uids
+	// More info: http://kubernetes.io/docs/user-guide/identifiers#uids
 	UID types.UID `json:"uid"`
 	// If true, this reference points to the managing controller.
 	Controller *bool `json:"controller,omitempty"`
@@ -2641,6 +2684,8 @@ const (
 	LimitTypePod LimitType = "Pod"
 	// Limit that applies to all containers in a namespace
 	LimitTypeContainer LimitType = "Container"
+	// Limit that applies to all persistent volume claims in a namespace
+	LimitTypePersistentVolumeClaim LimitType = "PersistentVolumeClaim"
 )
 
 // LimitRangeItem defines a min/max usage limit for any resource that matches on kind

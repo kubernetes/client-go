@@ -19,8 +19,8 @@ package runtime
 import (
 	"errors"
 
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
-	"k8s.io/client-go/1.5/pkg/conversion"
+	"k8s.io/client-go/pkg/api/unversioned"
+	"k8s.io/client-go/pkg/conversion"
 )
 
 type encodable struct {

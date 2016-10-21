@@ -19,10 +19,10 @@ limitations under the License.
 package install
 
 import (
-	"k8s.io/client-go/1.5/pkg/apimachinery/announced"
-	"k8s.io/client-go/1.5/pkg/apis/extensions"
-	"k8s.io/client-go/1.5/pkg/apis/extensions/v1beta1"
-	"k8s.io/client-go/1.5/pkg/util/sets"
+	"k8s.io/client-go/pkg/apimachinery/announced"
+	"k8s.io/client-go/pkg/apis/extensions"
+	"k8s.io/client-go/pkg/apis/extensions/v1beta1"
+	"k8s.io/client-go/pkg/util/sets"
 )
 
 func init() {
@@ -30,7 +30,7 @@ func init() {
 		&announced.GroupMetaFactoryArgs{
 			GroupName:                  extensions.GroupName,
 			VersionPreferenceOrder:     []string{v1beta1.SchemeGroupVersion.Version},
-			ImportPrefix:               "k8s.io/client-go/1.5/pkg/apis/extensions",
+			ImportPrefix:               "k8s.io/client-go/pkg/apis/extensions",
 			RootScopedKinds:            sets.NewString("PodSecurityPolicy", "ThirdPartyResource"),
 			AddInternalObjectsToScheme: extensions.AddToScheme,
 		},

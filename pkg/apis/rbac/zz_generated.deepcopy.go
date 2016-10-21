@@ -21,9 +21,9 @@ limitations under the License.
 package rbac
 
 import (
-	api "k8s.io/client-go/1.5/pkg/api"
-	conversion "k8s.io/client-go/1.5/pkg/conversion"
-	runtime "k8s.io/client-go/1.5/pkg/runtime"
+	api "k8s.io/client-go/pkg/api"
+	conversion "k8s.io/client-go/pkg/conversion"
+	runtime "k8s.io/client-go/pkg/runtime"
 	reflect "reflect"
 )
 

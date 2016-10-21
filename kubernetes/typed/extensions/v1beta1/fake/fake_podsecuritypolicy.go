@@ -17,12 +17,13 @@ limitations under the License.
 package fake
 
 import (
-	api "k8s.io/client-go/1.5/pkg/api"
-	unversioned "k8s.io/client-go/1.5/pkg/api/unversioned"
-	v1beta1 "k8s.io/client-go/1.5/pkg/apis/extensions/v1beta1"
-	labels "k8s.io/client-go/1.5/pkg/labels"
-	watch "k8s.io/client-go/1.5/pkg/watch"
-	testing "k8s.io/client-go/1.5/testing"
+	api "k8s.io/client-go/pkg/api"
+	unversioned "k8s.io/client-go/pkg/api/unversioned"
+	v1 "k8s.io/client-go/pkg/api/v1"
+	v1beta1 "k8s.io/client-go/pkg/apis/extensions/v1beta1"
+	labels "k8s.io/client-go/pkg/labels"
+	watch "k8s.io/client-go/pkg/watch"
+	testing "k8s.io/client-go/testing"
 )
 
 // FakePodSecurityPolicies implements PodSecurityPolicyInterface
@@ -50,13 +51,13 @@ func (c *FakePodSecurityPolicies) Update(podSecurityPolicy *v1beta1.PodSecurityP
 	return obj.(*v1beta1.PodSecurityPolicy), err
 }
 
-func (c *FakePodSecurityPolicies) Delete(name string, options *api.DeleteOptions) error {
+func (c *FakePodSecurityPolicies) Delete(name string, options *v1.DeleteOptions) error {
 	_, err := c.Fake.
 		Invokes(testing.NewRootDeleteAction(podsecuritypoliciesResource, name), &v1beta1.PodSecurityPolicy{})
 	return err
 }
 
-func (c *FakePodSecurityPolicies) DeleteCollection(options *api.DeleteOptions, listOptions api.ListOptions) error {
+func (c *FakePodSecurityPolicies) DeleteCollection(options *v1.DeleteOptions, listOptions v1.ListOptions) error {
 	action := testing.NewRootDeleteCollectionAction(podsecuritypoliciesResource, listOptions)
 
 	_, err := c.Fake.Invokes(action, &v1beta1.PodSecurityPolicyList{})
@@ -72,14 +73,14 @@ func (c *FakePodSecurityPolicies) Get(name string) (result *v1beta1.PodSecurityP
 	return obj.(*v1beta1.PodSecurityPolicy), err
 }
 
-func (c *FakePodSecurityPolicies) List(opts api.ListOptions) (result *v1beta1.PodSecurityPolicyList, err error) {
+func (c *FakePodSecurityPolicies) List(opts v1.ListOptions) (result *v1beta1.PodSecurityPolicyList, err error) {
 	obj, err := c.Fake.
 		Invokes(testing.NewRootListAction(podsecuritypoliciesResource, opts), &v1beta1.PodSecurityPolicyList{})
 	if obj == nil {
 		return nil, err
 	}
 
-	label := opts.LabelSelector
+	label, _, _ := testing.ExtractFromListOptions(opts)
 	if label == nil {
 		label = labels.Everything()
 	}
@@ -93,7 +94,7 @@ func (c *FakePodSecurityPolicies) List(opts api.ListOptions) (result *v1beta1.Po
 }
 
 // Watch returns a watch.Interface that watches the requested podSecurityPolicies.
-func (c *FakePodSecurityPolicies) Watch(opts api.ListOptions) (watch.Interface, error) {
+func (c *FakePodSecurityPolicies) Watch(opts v1.ListOptions) (watch.Interface, error) {
 	return c.Fake.
 		InvokesWatch(testing.NewRootWatchAction(podsecuritypoliciesResource, opts))
 }

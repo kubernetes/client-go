@@ -17,12 +17,13 @@ limitations under the License.
 package fake
 
 import (
-	api "k8s.io/client-go/1.5/pkg/api"
-	unversioned "k8s.io/client-go/1.5/pkg/api/unversioned"
-	v1alpha1 "k8s.io/client-go/1.5/pkg/apis/rbac/v1alpha1"
-	labels "k8s.io/client-go/1.5/pkg/labels"
-	watch "k8s.io/client-go/1.5/pkg/watch"
-	testing "k8s.io/client-go/1.5/testing"
+	api "k8s.io/client-go/pkg/api"
+	unversioned "k8s.io/client-go/pkg/api/unversioned"
+	v1 "k8s.io/client-go/pkg/api/v1"
+	v1alpha1 "k8s.io/client-go/pkg/apis/rbac/v1alpha1"
+	labels "k8s.io/client-go/pkg/labels"
+	watch "k8s.io/client-go/pkg/watch"
+	testing "k8s.io/client-go/testing"
 )
 
 // FakeRoles implements RoleInterface
@@ -53,14 +54,14 @@ func (c *FakeRoles) Update(role *v1alpha1.Role) (result *v1alpha1.Role, err erro
 	return obj.(*v1alpha1.Role), err
 }
 
-func (c *FakeRoles) Delete(name string, options *api.DeleteOptions) error {
+func (c *FakeRoles) Delete(name string, options *v1.DeleteOptions) error {
 	_, err := c.Fake.
 		Invokes(testing.NewDeleteAction(rolesResource, c.ns, name), &v1alpha1.Role{})
 
 	return err
 }
 
-func (c *FakeRoles) DeleteCollection(options *api.DeleteOptions, listOptions api.ListOptions) error {
+func (c *FakeRoles) DeleteCollection(options *v1.DeleteOptions, listOptions v1.ListOptions) error {
 	action := testing.NewDeleteCollectionAction(rolesResource, c.ns, listOptions)
 
 	_, err := c.Fake.Invokes(action, &v1alpha1.RoleList{})
@@ -77,7 +78,7 @@ func (c *FakeRoles) Get(name string) (result *v1alpha1.Role, err error) {
 	return obj.(*v1alpha1.Role), err
 }
 
-func (c *FakeRoles) List(opts api.ListOptions) (result *v1alpha1.RoleList, err error) {
+func (c *FakeRoles) List(opts v1.ListOptions) (result *v1alpha1.RoleList, err error) {
 	obj, err := c.Fake.
 		Invokes(testing.NewListAction(rolesResource, c.ns, opts), &v1alpha1.RoleList{})
 
@@ -85,7 +86,7 @@ func (c *FakeRoles) List(opts api.ListOptions) (result *v1alpha1.RoleList, err e
 		return nil, err
 	}
 
-	label := opts.LabelSelector
+	label, _, _ := testing.ExtractFromListOptions(opts)
 	if label == nil {
 		label = labels.Everything()
 	}
@@ -99,7 +100,7 @@ func (c *FakeRoles) List(opts api.ListOptions) (result *v1alpha1.RoleList, err e
 }
 
 // Watch returns a watch.Interface that watches the requested roles.
-func (c *FakeRoles) Watch(opts api.ListOptions) (watch.Interface, error) {
+func (c *FakeRoles) Watch(opts v1.ListOptions) (watch.Interface, error) {
 	return c.Fake.
 		InvokesWatch(testing.NewWatchAction(rolesResource, c.ns, opts))
 

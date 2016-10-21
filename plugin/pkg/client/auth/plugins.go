@@ -18,6 +18,6 @@ package auth
 
 import (
 	// Initialize all known client auth plugins.
-	_ "k8s.io/client-go/1.5/plugin/pkg/client/auth/gcp"
-	_ "k8s.io/client-go/1.5/plugin/pkg/client/auth/oidc"
+	_ "k8s.io/client-go/plugin/pkg/client/auth/gcp"
+	_ "k8s.io/client-go/plugin/pkg/client/auth/oidc"
 )

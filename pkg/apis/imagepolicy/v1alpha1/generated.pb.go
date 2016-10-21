@@ -70,10 +70,10 @@ func (*ImageReviewStatus) ProtoMessage()               {}
 func (*ImageReviewStatus) Descriptor() ([]byte, []int) { return fileDescriptorGenerated, []int{3} }
 
 func init() {
-	proto.RegisterType((*ImageReview)(nil), "k8s.io.client-go.1.5.pkg.apis.imagepolicy.v1alpha1.ImageReview")
-	proto.RegisterType((*ImageReviewContainerSpec)(nil), "k8s.io.client-go.1.5.pkg.apis.imagepolicy.v1alpha1.ImageReviewContainerSpec")
-	proto.RegisterType((*ImageReviewSpec)(nil), "k8s.io.client-go.1.5.pkg.apis.imagepolicy.v1alpha1.ImageReviewSpec")
-	proto.RegisterType((*ImageReviewStatus)(nil), "k8s.io.client-go.1.5.pkg.apis.imagepolicy.v1alpha1.ImageReviewStatus")
+	proto.RegisterType((*ImageReview)(nil), "k8s.io.client-go.pkg.apis.imagepolicy.v1alpha1.ImageReview")
+	proto.RegisterType((*ImageReviewContainerSpec)(nil), "k8s.io.client-go.pkg.apis.imagepolicy.v1alpha1.ImageReviewContainerSpec")
+	proto.RegisterType((*ImageReviewSpec)(nil), "k8s.io.client-go.pkg.apis.imagepolicy.v1alpha1.ImageReviewSpec")
+	proto.RegisterType((*ImageReviewStatus)(nil), "k8s.io.client-go.pkg.apis.imagepolicy.v1alpha1.ImageReviewStatus")
 }
 func (m *ImageReview) Marshal() (data []byte, err error) {
 	size := m.Size()

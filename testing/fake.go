@@ -20,11 +20,11 @@ import (
 	"fmt"
 	"sync"
 
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
-	"k8s.io/client-go/1.5/pkg/runtime"
-	"k8s.io/client-go/1.5/pkg/version"
-	"k8s.io/client-go/1.5/pkg/watch"
-	"k8s.io/client-go/1.5/rest"
+	"k8s.io/client-go/pkg/api/unversioned"
+	"k8s.io/client-go/pkg/runtime"
+	"k8s.io/client-go/pkg/version"
+	"k8s.io/client-go/pkg/watch"
+	"k8s.io/client-go/rest"
 )
 
 // Fake implements client.Interface. Meant to be embedded into a struct to get

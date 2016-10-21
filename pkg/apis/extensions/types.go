@@ -29,10 +29,10 @@ support is experimental.
 package extensions
 
 import (
-	"k8s.io/client-go/1.5/pkg/api"
-	"k8s.io/client-go/1.5/pkg/api/resource"
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
-	"k8s.io/client-go/1.5/pkg/util/intstr"
+	"k8s.io/client-go/pkg/api"
+	"k8s.io/client-go/pkg/api/resource"
+	"k8s.io/client-go/pkg/api/unversioned"
+	"k8s.io/client-go/pkg/util/intstr"
 )
 
 const (
@@ -54,7 +54,7 @@ type ScaleStatus struct {
 	Replicas int32 `json:"replicas"`
 
 	// label query over pods that should match the replicas count.
-	// More info: http://releases.k8s.io/HEAD/docs/user-guide/labels.md#label-selectors
+	// More info: http://kubernetes.io/docs/user-guide/labels#label-selectors
 	Selector *unversioned.LabelSelector `json:"selector,omitempty"`
 }
 
@@ -339,14 +339,14 @@ type DaemonSetSpec struct {
 	// Selector is a label query over pods that are managed by the daemon set.
 	// Must match in order to be controlled.
 	// If empty, defaulted to labels on Pod template.
-	// More info: http://releases.k8s.io/HEAD/docs/user-guide/labels.md#label-selectors
+	// More info: http://kubernetes.io/docs/user-guide/labels#label-selectors
 	Selector *unversioned.LabelSelector `json:"selector,omitempty"`
 
 	// Template is the object that describes the pod that will be created.
 	// The DaemonSet will create exactly one copy of this pod on every node
 	// that matches the template's node selector (or on every node if no node
 	// selector is specified).
-	// More info: http://releases.k8s.io/HEAD/docs/user-guide/replication-controller.md#pod-template
+	// More info: http://kubernetes.io/docs/user-guide/replication-controller#pod-template
 	Template api.PodTemplateSpec `json:"template"`
 
 	// TODO(madhusudancs): Uncomment while implementing DaemonSet updates.
@@ -385,6 +385,10 @@ type DaemonSetStatus struct {
 	// DesiredNumberScheduled is the total number of nodes that should be running the daemon
 	// pod (including nodes correctly running the daemon pod).
 	DesiredNumberScheduled int32 `json:"desiredNumberScheduled"`
+
+	// NumberReady is the number of nodes that should be running the daemon pod and have one
+	// or more of the daemon pod running and ready.
+	NumberReady int32 `json:"numberReady"`
 }
 
 // +genclient=true
@@ -610,10 +614,15 @@ type ReplicaSetSpec struct {
 	// Replicas is the number of desired replicas.
 	Replicas int32 `json:"replicas"`
 
+	// Minimum number of seconds for which a newly created pod should be ready
+	// without any of its container crashing, for it to be considered available.
+	// Defaults to 0 (pod will be considered available as soon as it is ready)
+	MinReadySeconds int32 `json:"minReadySeconds,omitempty"`
+
 	// Selector is a label query over pods that should match the replica count.
 	// Must match in order to be controlled.
 	// If empty, defaulted to labels on pod template.
-	// More info: http://releases.k8s.io/HEAD/docs/user-guide/labels.md#label-selectors
+	// More info: http://kubernetes.io/docs/user-guide/labels#label-selectors
 	Selector *unversioned.LabelSelector `json:"selector,omitempty"`
 
 	// Template is the object that describes the pod that will be created if
@@ -632,8 +641,40 @@ type ReplicaSetStatus struct {
 	// The number of ready replicas for this replica set.
 	ReadyReplicas int32 `json:"readyReplicas,omitempty"`
 
+	// The number of available replicas (ready for at least minReadySeconds) for this replica set.
+	AvailableReplicas int32 `json:"availableReplicas,omitempty"`
+
 	// ObservedGeneration is the most recent generation observed by the controller.
 	ObservedGeneration int64 `json:"observedGeneration,omitempty"`
+
+	// Represents the latest available observations of a replica set's current state.
+	Conditions []ReplicaSetCondition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type"`
+}
+
+type ReplicaSetConditionType string
+
+// These are valid conditions of a replica set.
+const (
+	// ReplicaSetReplicaFailure is added in a replica set when one of its pods fails to be created
+	// due to insufficient quota, limit ranges, pod security policy, node selectors, etc. or deleted
+	// due to kubelet being down or finalizers are failing.
+	ReplicaSetReplicaFailure ReplicaSetConditionType = "ReplicaFailure"
+)
+
+// ReplicaSetCondition describes the state of a replica set at a certain point.
+type ReplicaSetCondition struct {
+	// Type of replica set condition.
+	Type ReplicaSetConditionType `json:"type"`
+	// Status of the condition, one of True, False, Unknown.
+	Status api.ConditionStatus `json:"status"`
+	// Last time we probed the condition.
+	LastProbeTime unversioned.Time `json:"lastProbeTime,omitempty"`
+	// The last time the condition transitioned from one status to another.
+	LastTransitionTime unversioned.Time `json:"lastTransitionTime,omitempty"`
+	// The reason for the condition's last transition.
+	Reason string `json:"reason,omitempty"`
+	// A human readable message indicating details about the transition.
+	Message string `json:"message,omitempty"`
 }
 
 // +genclient=true

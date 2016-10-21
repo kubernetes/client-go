@@ -30,37 +30,39 @@ import (
 	"reflect"
 	"strings"
 
-	"k8s.io/client-go/1.5/pkg/api"
-	"k8s.io/client-go/1.5/pkg/api/meta"
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
-	"k8s.io/client-go/1.5/pkg/apimachinery/registered"
-	"k8s.io/client-go/1.5/pkg/apis/apps"
-	"k8s.io/client-go/1.5/pkg/apis/autoscaling"
-	"k8s.io/client-go/1.5/pkg/apis/batch"
-	"k8s.io/client-go/1.5/pkg/apis/certificates"
-	"k8s.io/client-go/1.5/pkg/apis/extensions"
-	"k8s.io/client-go/1.5/pkg/apis/imagepolicy"
-	"k8s.io/client-go/1.5/pkg/apis/policy"
-	"k8s.io/client-go/1.5/pkg/apis/rbac"
-	"k8s.io/client-go/1.5/pkg/apis/storage"
-	"k8s.io/client-go/1.5/pkg/federation/apis/federation"
-	"k8s.io/client-go/1.5/pkg/runtime"
-	"k8s.io/client-go/1.5/pkg/runtime/serializer/recognizer"
+	"k8s.io/client-go/pkg/api"
+	"k8s.io/client-go/pkg/api/meta"
+	"k8s.io/client-go/pkg/api/unversioned"
+	"k8s.io/client-go/pkg/apimachinery/registered"
+	"k8s.io/client-go/pkg/apis/apps"
+	"k8s.io/client-go/pkg/apis/autoscaling"
+	"k8s.io/client-go/pkg/apis/batch"
+	"k8s.io/client-go/pkg/apis/certificates"
+	"k8s.io/client-go/pkg/apis/extensions"
+	"k8s.io/client-go/pkg/apis/imagepolicy"
+	"k8s.io/client-go/pkg/apis/kubeadm"
+	"k8s.io/client-go/pkg/apis/policy"
+	"k8s.io/client-go/pkg/apis/rbac"
+	"k8s.io/client-go/pkg/apis/storage"
+	"k8s.io/client-go/pkg/federation/apis/federation"
+	"k8s.io/client-go/pkg/runtime"
+	"k8s.io/client-go/pkg/runtime/serializer/recognizer"
 
-	_ "k8s.io/client-go/1.5/pkg/api/install"
-	_ "k8s.io/client-go/1.5/pkg/apis/apps/install"
-	_ "k8s.io/client-go/1.5/pkg/apis/authentication/install"
-	_ "k8s.io/client-go/1.5/pkg/apis/authorization/install"
-	_ "k8s.io/client-go/1.5/pkg/apis/autoscaling/install"
-	_ "k8s.io/client-go/1.5/pkg/apis/batch/install"
-	_ "k8s.io/client-go/1.5/pkg/apis/certificates/install"
-	_ "k8s.io/client-go/1.5/pkg/apis/componentconfig/install"
-	_ "k8s.io/client-go/1.5/pkg/apis/extensions/install"
-	_ "k8s.io/client-go/1.5/pkg/apis/imagepolicy/install"
-	_ "k8s.io/client-go/1.5/pkg/apis/policy/install"
-	_ "k8s.io/client-go/1.5/pkg/apis/rbac/install"
-	_ "k8s.io/client-go/1.5/pkg/apis/storage/install"
-	_ "k8s.io/client-go/1.5/pkg/federation/apis/federation/install"
+	_ "k8s.io/client-go/pkg/api/install"
+	_ "k8s.io/client-go/pkg/apis/apps/install"
+	_ "k8s.io/client-go/pkg/apis/authentication/install"
+	_ "k8s.io/client-go/pkg/apis/authorization/install"
+	_ "k8s.io/client-go/pkg/apis/autoscaling/install"
+	_ "k8s.io/client-go/pkg/apis/batch/install"
+	_ "k8s.io/client-go/pkg/apis/certificates/install"
+	_ "k8s.io/client-go/pkg/apis/componentconfig/install"
+	_ "k8s.io/client-go/pkg/apis/extensions/install"
+	_ "k8s.io/client-go/pkg/apis/imagepolicy/install"
+	_ "k8s.io/client-go/pkg/apis/kubeadm/install"
+	_ "k8s.io/client-go/pkg/apis/policy/install"
+	_ "k8s.io/client-go/pkg/apis/rbac/install"
+	_ "k8s.io/client-go/pkg/apis/storage/install"
+	_ "k8s.io/client-go/pkg/federation/apis/federation/install"
 )
 
 var (
@@ -247,13 +249,21 @@ func init() {
 			externalTypes:        api.Scheme.KnownTypes(externalGroupVersion),
 		}
 	}
-
 	if _, ok := Groups[imagepolicy.GroupName]; !ok {
 		externalGroupVersion := unversioned.GroupVersion{Group: imagepolicy.GroupName, Version: registered.GroupOrDie(imagepolicy.GroupName).GroupVersion.Version}
 		Groups[imagepolicy.GroupName] = TestGroup{
 			externalGroupVersion: externalGroupVersion,
 			internalGroupVersion: imagepolicy.SchemeGroupVersion,
 			internalTypes:        api.Scheme.KnownTypes(imagepolicy.SchemeGroupVersion),
+			externalTypes:        api.Scheme.KnownTypes(externalGroupVersion),
+		}
+	}
+	if _, ok := Groups[kubeadm.GroupName]; !ok {
+		externalGroupVersion := unversioned.GroupVersion{Group: kubeadm.GroupName, Version: registered.GroupOrDie(kubeadm.GroupName).GroupVersion.Version}
+		Groups[kubeadm.GroupName] = TestGroup{
+			externalGroupVersion: externalGroupVersion,
+			internalGroupVersion: kubeadm.SchemeGroupVersion,
+			internalTypes:        api.Scheme.KnownTypes(kubeadm.SchemeGroupVersion),
 			externalTypes:        api.Scheme.KnownTypes(externalGroupVersion),
 		}
 	}

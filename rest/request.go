@@ -32,20 +32,20 @@ import (
 	"time"
 
 	"github.com/golang/glog"
-	"k8s.io/client-go/1.5/pkg/api/errors"
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
-	"k8s.io/client-go/1.5/pkg/api/v1"
-	pathvalidation "k8s.io/client-go/1.5/pkg/api/validation/path"
-	"k8s.io/client-go/1.5/pkg/fields"
-	"k8s.io/client-go/1.5/pkg/labels"
-	"k8s.io/client-go/1.5/pkg/runtime"
-	"k8s.io/client-go/1.5/pkg/runtime/serializer/streaming"
-	"k8s.io/client-go/1.5/pkg/util/flowcontrol"
-	"k8s.io/client-go/1.5/pkg/util/net"
-	"k8s.io/client-go/1.5/pkg/util/sets"
-	"k8s.io/client-go/1.5/pkg/watch"
-	"k8s.io/client-go/1.5/pkg/watch/versioned"
-	"k8s.io/client-go/1.5/tools/metrics"
+	"k8s.io/client-go/pkg/api/errors"
+	"k8s.io/client-go/pkg/api/unversioned"
+	"k8s.io/client-go/pkg/api/v1"
+	pathvalidation "k8s.io/client-go/pkg/api/validation/path"
+	"k8s.io/client-go/pkg/fields"
+	"k8s.io/client-go/pkg/labels"
+	"k8s.io/client-go/pkg/runtime"
+	"k8s.io/client-go/pkg/runtime/serializer/streaming"
+	"k8s.io/client-go/pkg/util/flowcontrol"
+	"k8s.io/client-go/pkg/util/net"
+	"k8s.io/client-go/pkg/util/sets"
+	"k8s.io/client-go/pkg/watch"
+	"k8s.io/client-go/pkg/watch/versioned"
+	"k8s.io/client-go/tools/metrics"
 )
 
 var (
@@ -357,8 +357,9 @@ var fieldMappings = versionToResourceToFieldMapping{
 			nodeUnschedulable: nodeUnschedulable,
 		},
 		"pods": clientFieldNameToAPIVersionFieldName{
-			podHost:   podHost,
-			podStatus: podStatus,
+			objectNameField: objectNameField,
+			podHost:         podHost,
+			podStatus:       podStatus,
 		},
 		"secrets": clientFieldNameToAPIVersionFieldName{
 			secretType: secretType,
@@ -889,10 +890,11 @@ func (r *Request) transformResponse(resp *http.Response, req *http.Request) Resu
 	}
 
 	if glog.V(8) {
-		switch {
-		case bytes.IndexFunc(body, func(r rune) bool { return r < 0x0a }) != -1:
+		if bytes.IndexFunc(body, func(r rune) bool {
+			return r < 0x0a
+		}) != -1 {
 			glog.Infof("Response Body:\n%s", hex.Dump(body))
-		default:
+		} else {
 			glog.Infof("Response Body: %s", string(body))
 		}
 	}

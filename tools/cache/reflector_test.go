@@ -24,11 +24,11 @@ import (
 	"testing"
 	"time"
 
-	"k8s.io/client-go/1.5/pkg/api"
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
-	"k8s.io/client-go/1.5/pkg/runtime"
-	"k8s.io/client-go/1.5/pkg/util/wait"
-	"k8s.io/client-go/1.5/pkg/watch"
+	"k8s.io/client-go/pkg/api"
+	"k8s.io/client-go/pkg/api/unversioned"
+	"k8s.io/client-go/pkg/runtime"
+	"k8s.io/client-go/pkg/util/wait"
+	"k8s.io/client-go/pkg/watch"
 )
 
 var nevererrc chan error

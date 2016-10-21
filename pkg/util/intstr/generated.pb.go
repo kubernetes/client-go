@@ -49,7 +49,7 @@ func (*IntOrString) ProtoMessage()               {}
 func (*IntOrString) Descriptor() ([]byte, []int) { return fileDescriptorGenerated, []int{0} }
 
 func init() {
-	proto.RegisterType((*IntOrString)(nil), "k8s.io.client-go.1.5.pkg.util.intstr.IntOrString")
+	proto.RegisterType((*IntOrString)(nil), "k8s.io.client-go.pkg.util.intstr.IntOrString")
 }
 func (m *IntOrString) Marshal() (data []byte, err error) {
 	size := m.Size()

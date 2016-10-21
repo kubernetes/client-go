@@ -24,7 +24,7 @@ import (
 	"golang.org/x/net/context"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
-	"k8s.io/client-go/1.5/rest"
+	"k8s.io/client-go/rest"
 )
 
 func init() {

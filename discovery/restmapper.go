@@ -20,9 +20,9 @@ import (
 	"fmt"
 	"sync"
 
-	"k8s.io/client-go/1.5/pkg/api/errors"
-	"k8s.io/client-go/1.5/pkg/api/meta"
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
+	"k8s.io/client-go/pkg/api/errors"
+	"k8s.io/client-go/pkg/api/meta"
+	"k8s.io/client-go/pkg/api/unversioned"
 )
 
 // APIGroupResources is an API group with a mapping of versions to

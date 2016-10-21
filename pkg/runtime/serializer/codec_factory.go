@@ -17,11 +17,11 @@ limitations under the License.
 package serializer
 
 import (
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
-	"k8s.io/client-go/1.5/pkg/runtime"
-	"k8s.io/client-go/1.5/pkg/runtime/serializer/json"
-	"k8s.io/client-go/1.5/pkg/runtime/serializer/recognizer"
-	"k8s.io/client-go/1.5/pkg/runtime/serializer/versioning"
+	"k8s.io/client-go/pkg/api/unversioned"
+	"k8s.io/client-go/pkg/runtime"
+	"k8s.io/client-go/pkg/runtime/serializer/json"
+	"k8s.io/client-go/pkg/runtime/serializer/recognizer"
+	"k8s.io/client-go/pkg/runtime/serializer/versioning"
 )
 
 // serializerExtensions are for serializers that are conditionally compiled in

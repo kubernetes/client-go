@@ -17,13 +17,13 @@ limitations under the License.
 package api
 
 import (
-	"k8s.io/client-go/1.5/pkg/api/meta"
-	"k8s.io/client-go/1.5/pkg/api/meta/metatypes"
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
-	"k8s.io/client-go/1.5/pkg/conversion"
-	"k8s.io/client-go/1.5/pkg/runtime"
-	"k8s.io/client-go/1.5/pkg/types"
-	"k8s.io/client-go/1.5/pkg/util/uuid"
+	"k8s.io/client-go/pkg/api/meta"
+	"k8s.io/client-go/pkg/api/meta/metatypes"
+	"k8s.io/client-go/pkg/api/unversioned"
+	"k8s.io/client-go/pkg/conversion"
+	"k8s.io/client-go/pkg/runtime"
+	"k8s.io/client-go/pkg/types"
+	"k8s.io/client-go/pkg/util/uuid"
 )
 
 // FillObjectMetaSystemFields populates fields that are managed by the system on ObjectMeta.

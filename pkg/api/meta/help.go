@@ -20,8 +20,8 @@ import (
 	"fmt"
 	"reflect"
 
-	"k8s.io/client-go/1.5/pkg/conversion"
-	"k8s.io/client-go/1.5/pkg/runtime"
+	"k8s.io/client-go/pkg/conversion"
+	"k8s.io/client-go/pkg/runtime"
 )
 
 // IsListType returns true if the provided Object has a slice called Items

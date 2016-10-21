@@ -47,7 +47,7 @@ func (*Quantity) ProtoMessage()               {}
 func (*Quantity) Descriptor() ([]byte, []int) { return fileDescriptorGenerated, []int{0} }
 
 func init() {
-	proto.RegisterType((*Quantity)(nil), "k8s.io.client-go.1.5.pkg.api.resource.Quantity")
+	proto.RegisterType((*Quantity)(nil), "k8s.io.client-go.pkg.api.resource.Quantity")
 }
 
 var fileDescriptorGenerated = []byte{

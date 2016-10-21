@@ -19,10 +19,10 @@ package v1
 import (
 	"fmt"
 
-	"k8s.io/client-go/1.5/pkg/api"
-	"k8s.io/client-go/1.5/pkg/api/v1"
-	"k8s.io/client-go/1.5/pkg/fields"
-	"k8s.io/client-go/1.5/pkg/runtime"
+	"k8s.io/client-go/pkg/api"
+	"k8s.io/client-go/pkg/api/v1"
+	"k8s.io/client-go/pkg/fields"
+	"k8s.io/client-go/pkg/runtime"
 )
 
 // The EventExpansion interface allows manually adding extra methods to the EventInterface.
@@ -116,7 +116,7 @@ func (e *events) Search(objOrRef runtime.Object) (*v1.EventList, error) {
 		refUID = &stringRefUID
 	}
 	fieldSelector := e.GetFieldSelector(&ref.Name, &ref.Namespace, refKind, refUID)
-	return e.List(api.ListOptions{FieldSelector: fieldSelector})
+	return e.List(v1.ListOptions{FieldSelector: fieldSelector.String()})
 }
 
 // Returns the appropriate field selector based on the API version being used to communicate with the server.

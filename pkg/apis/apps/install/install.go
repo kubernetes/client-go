@@ -19,9 +19,9 @@ limitations under the License.
 package install
 
 import (
-	"k8s.io/client-go/1.5/pkg/apimachinery/announced"
-	"k8s.io/client-go/1.5/pkg/apis/apps"
-	"k8s.io/client-go/1.5/pkg/apis/apps/v1alpha1"
+	"k8s.io/client-go/pkg/apimachinery/announced"
+	"k8s.io/client-go/pkg/apis/apps"
+	"k8s.io/client-go/pkg/apis/apps/v1alpha1"
 )
 
 func init() {
@@ -29,7 +29,7 @@ func init() {
 		&announced.GroupMetaFactoryArgs{
 			GroupName:                  apps.GroupName,
 			VersionPreferenceOrder:     []string{v1alpha1.SchemeGroupVersion.Version},
-			ImportPrefix:               "k8s.io/client-go/1.5/pkg/apis/apps",
+			ImportPrefix:               "k8s.io/client-go/pkg/apis/apps",
 			AddInternalObjectsToScheme: apps.AddToScheme,
 		},
 		announced.VersionToSchemeFunc{

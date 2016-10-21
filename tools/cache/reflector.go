@@ -34,13 +34,13 @@ import (
 	"time"
 
 	"github.com/golang/glog"
-	"k8s.io/client-go/1.5/pkg/api"
-	apierrs "k8s.io/client-go/1.5/pkg/api/errors"
-	"k8s.io/client-go/1.5/pkg/api/meta"
-	"k8s.io/client-go/1.5/pkg/runtime"
-	utilruntime "k8s.io/client-go/1.5/pkg/util/runtime"
-	"k8s.io/client-go/1.5/pkg/util/wait"
-	"k8s.io/client-go/1.5/pkg/watch"
+	"k8s.io/client-go/pkg/api"
+	apierrs "k8s.io/client-go/pkg/api/errors"
+	"k8s.io/client-go/pkg/api/meta"
+	"k8s.io/client-go/pkg/runtime"
+	utilruntime "k8s.io/client-go/pkg/util/runtime"
+	"k8s.io/client-go/pkg/util/wait"
+	"k8s.io/client-go/pkg/watch"
 )
 
 // ListerWatcher is any object that knows how to perform an initial list and start a watch on a resource.
@@ -125,7 +125,7 @@ func NewNamedReflector(name string, lw ListerWatcher, expectedType interface{}, 
 
 // internalPackages are packages that ignored when creating a default reflector name.  These packages are in the common
 // call chains to NewReflector, so they'd be low entropy names for reflectors
-var internalPackages = []string{"kubernetes/pkg/client/cache/", "kubernetes/pkg/controller/framework/", "/runtime/asm_"}
+var internalPackages = []string{"kubernetes/pkg/client/cache/", "/runtime/asm_"}
 
 // getDefaultReflectorName walks back through the call stack until we find a caller from outside of the ignoredPackages
 // it returns back a shortpath/filename:line to aid in identification of this reflector when it starts logging
@@ -164,8 +164,8 @@ func hasPackage(file string, ignoredPackages []string) bool {
 
 // trimPackagePrefix reduces duplicate values off the front of a package name.
 func trimPackagePrefix(file string) string {
-	if l := strings.LastIndex(file, "k8s.io/client-go/1.5/pkg/"); l >= 0 {
-		return file[l+len("k8s.io/client-go/1.5/"):]
+	if l := strings.LastIndex(file, "k8s.io/client-go/pkg/"); l >= 0 {
+		return file[l+len("k8s.io/client-go/"):]
 	}
 	if l := strings.LastIndex(file, "/src/"); l >= 0 {
 		return file[l+5:]

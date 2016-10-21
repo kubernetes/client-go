@@ -17,12 +17,13 @@ limitations under the License.
 package fake
 
 import (
-	api "k8s.io/client-go/1.5/pkg/api"
-	unversioned "k8s.io/client-go/1.5/pkg/api/unversioned"
-	v1alpha1 "k8s.io/client-go/1.5/pkg/apis/apps/v1alpha1"
-	labels "k8s.io/client-go/1.5/pkg/labels"
-	watch "k8s.io/client-go/1.5/pkg/watch"
-	testing "k8s.io/client-go/1.5/testing"
+	api "k8s.io/client-go/pkg/api"
+	unversioned "k8s.io/client-go/pkg/api/unversioned"
+	v1 "k8s.io/client-go/pkg/api/v1"
+	v1alpha1 "k8s.io/client-go/pkg/apis/apps/v1alpha1"
+	labels "k8s.io/client-go/pkg/labels"
+	watch "k8s.io/client-go/pkg/watch"
+	testing "k8s.io/client-go/testing"
 )
 
 // FakePetSets implements PetSetInterface
@@ -63,14 +64,14 @@ func (c *FakePetSets) UpdateStatus(petSet *v1alpha1.PetSet) (*v1alpha1.PetSet, e
 	return obj.(*v1alpha1.PetSet), err
 }
 
-func (c *FakePetSets) Delete(name string, options *api.DeleteOptions) error {
+func (c *FakePetSets) Delete(name string, options *v1.DeleteOptions) error {
 	_, err := c.Fake.
 		Invokes(testing.NewDeleteAction(petsetsResource, c.ns, name), &v1alpha1.PetSet{})
 
 	return err
 }
 
-func (c *FakePetSets) DeleteCollection(options *api.DeleteOptions, listOptions api.ListOptions) error {
+func (c *FakePetSets) DeleteCollection(options *v1.DeleteOptions, listOptions v1.ListOptions) error {
 	action := testing.NewDeleteCollectionAction(petsetsResource, c.ns, listOptions)
 
 	_, err := c.Fake.Invokes(action, &v1alpha1.PetSetList{})
@@ -87,7 +88,7 @@ func (c *FakePetSets) Get(name string) (result *v1alpha1.PetSet, err error) {
 	return obj.(*v1alpha1.PetSet), err
 }
 
-func (c *FakePetSets) List(opts api.ListOptions) (result *v1alpha1.PetSetList, err error) {
+func (c *FakePetSets) List(opts v1.ListOptions) (result *v1alpha1.PetSetList, err error) {
 	obj, err := c.Fake.
 		Invokes(testing.NewListAction(petsetsResource, c.ns, opts), &v1alpha1.PetSetList{})
 
@@ -95,7 +96,7 @@ func (c *FakePetSets) List(opts api.ListOptions) (result *v1alpha1.PetSetList, e
 		return nil, err
 	}
 
-	label := opts.LabelSelector
+	label, _, _ := testing.ExtractFromListOptions(opts)
 	if label == nil {
 		label = labels.Everything()
 	}
@@ -109,7 +110,7 @@ func (c *FakePetSets) List(opts api.ListOptions) (result *v1alpha1.PetSetList, e
 }
 
 // Watch returns a watch.Interface that watches the requested petSets.
-func (c *FakePetSets) Watch(opts api.ListOptions) (watch.Interface, error) {
+func (c *FakePetSets) Watch(opts v1.ListOptions) (watch.Interface, error) {
 	return c.Fake.
 		InvokesWatch(testing.NewWatchAction(petsetsResource, c.ns, opts))
 

@@ -17,10 +17,10 @@ limitations under the License.
 package v1alpha1
 
 import (
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
-	"k8s.io/client-go/1.5/pkg/api/v1"
-	"k8s.io/client-go/1.5/pkg/runtime"
-	"k8s.io/client-go/1.5/pkg/watch/versioned"
+	"k8s.io/client-go/pkg/api/unversioned"
+	"k8s.io/client-go/pkg/api/v1"
+	"k8s.io/client-go/pkg/runtime"
+	"k8s.io/client-go/pkg/watch/versioned"
 )
 
 const GroupName = "rbac.authorization.k8s.io"

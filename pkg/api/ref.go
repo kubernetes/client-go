@@ -22,9 +22,9 @@ import (
 	"net/url"
 	"strings"
 
-	"k8s.io/client-go/1.5/pkg/api/meta"
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
-	"k8s.io/client-go/1.5/pkg/runtime"
+	"k8s.io/client-go/pkg/api/meta"
+	"k8s.io/client-go/pkg/api/unversioned"
+	"k8s.io/client-go/pkg/runtime"
 )
 
 var (

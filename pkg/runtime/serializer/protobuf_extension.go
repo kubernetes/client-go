@@ -17,8 +17,8 @@ limitations under the License.
 package serializer
 
 import (
-	"k8s.io/client-go/1.5/pkg/runtime"
-	"k8s.io/client-go/1.5/pkg/runtime/serializer/protobuf"
+	"k8s.io/client-go/pkg/runtime"
+	"k8s.io/client-go/pkg/runtime/serializer/protobuf"
 )
 
 const (

@@ -19,8 +19,8 @@ package cache
 import (
 	"fmt"
 
-	"k8s.io/client-go/1.5/pkg/api/meta"
-	"k8s.io/client-go/1.5/pkg/util/sets"
+	"k8s.io/client-go/pkg/api/meta"
+	"k8s.io/client-go/pkg/util/sets"
 )
 
 // Indexer is a storage interface that lets you list objects using multiple indexing functions

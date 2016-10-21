@@ -19,7 +19,7 @@ package dynamic
 import (
 	"testing"
 
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
+	"k8s.io/client-go/pkg/api/unversioned"
 )
 
 func TestDiscoveryRESTMapper(t *testing.T) {

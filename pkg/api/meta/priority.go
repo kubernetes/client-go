@@ -19,7 +19,7 @@ package meta
 import (
 	"fmt"
 
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
+	"k8s.io/client-go/pkg/api/unversioned"
 )
 
 const (

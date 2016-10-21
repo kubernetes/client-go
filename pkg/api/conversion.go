@@ -19,15 +19,15 @@ package api
 import (
 	"fmt"
 
-	"k8s.io/client-go/1.5/pkg/api/resource"
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
-	"k8s.io/client-go/1.5/pkg/conversion"
-	"k8s.io/client-go/1.5/pkg/fields"
-	"k8s.io/client-go/1.5/pkg/labels"
-	"k8s.io/client-go/1.5/pkg/runtime"
-	"k8s.io/client-go/1.5/pkg/util/intstr"
-	utillabels "k8s.io/client-go/1.5/pkg/util/labels"
-	"k8s.io/client-go/1.5/pkg/util/validation/field"
+	"k8s.io/client-go/pkg/api/resource"
+	"k8s.io/client-go/pkg/api/unversioned"
+	"k8s.io/client-go/pkg/conversion"
+	"k8s.io/client-go/pkg/fields"
+	"k8s.io/client-go/pkg/labels"
+	"k8s.io/client-go/pkg/runtime"
+	"k8s.io/client-go/pkg/util/intstr"
+	utillabels "k8s.io/client-go/pkg/util/labels"
+	"k8s.io/client-go/pkg/util/validation/field"
 )
 
 func addConversionFuncs(scheme *runtime.Scheme) error {

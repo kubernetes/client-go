@@ -40,7 +40,7 @@ import proto "github.com/gogo/protobuf/proto"
 import fmt "fmt"
 import math "math"
 
-import k8s_io_kubernetes_pkg_api_unversioned "k8s.io/client-go/1.5/pkg/api/unversioned"
+import k8s_io_kubernetes_pkg_api_unversioned "k8s.io/client-go/pkg/api/unversioned"
 
 import strings "strings"
 import reflect "reflect"
@@ -97,14 +97,14 @@ func (*ScaleStatus) ProtoMessage()               {}
 func (*ScaleStatus) Descriptor() ([]byte, []int) { return fileDescriptorGenerated, []int{7} }
 
 func init() {
-	proto.RegisterType((*CrossVersionObjectReference)(nil), "k8s.io.client-go.1.5.pkg.apis.autoscaling.v1.CrossVersionObjectReference")
-	proto.RegisterType((*HorizontalPodAutoscaler)(nil), "k8s.io.client-go.1.5.pkg.apis.autoscaling.v1.HorizontalPodAutoscaler")
-	proto.RegisterType((*HorizontalPodAutoscalerList)(nil), "k8s.io.client-go.1.5.pkg.apis.autoscaling.v1.HorizontalPodAutoscalerList")
-	proto.RegisterType((*HorizontalPodAutoscalerSpec)(nil), "k8s.io.client-go.1.5.pkg.apis.autoscaling.v1.HorizontalPodAutoscalerSpec")
-	proto.RegisterType((*HorizontalPodAutoscalerStatus)(nil), "k8s.io.client-go.1.5.pkg.apis.autoscaling.v1.HorizontalPodAutoscalerStatus")
-	proto.RegisterType((*Scale)(nil), "k8s.io.client-go.1.5.pkg.apis.autoscaling.v1.Scale")
-	proto.RegisterType((*ScaleSpec)(nil), "k8s.io.client-go.1.5.pkg.apis.autoscaling.v1.ScaleSpec")
-	proto.RegisterType((*ScaleStatus)(nil), "k8s.io.client-go.1.5.pkg.apis.autoscaling.v1.ScaleStatus")
+	proto.RegisterType((*CrossVersionObjectReference)(nil), "k8s.io.client-go.pkg.apis.autoscaling.v1.CrossVersionObjectReference")
+	proto.RegisterType((*HorizontalPodAutoscaler)(nil), "k8s.io.client-go.pkg.apis.autoscaling.v1.HorizontalPodAutoscaler")
+	proto.RegisterType((*HorizontalPodAutoscalerList)(nil), "k8s.io.client-go.pkg.apis.autoscaling.v1.HorizontalPodAutoscalerList")
+	proto.RegisterType((*HorizontalPodAutoscalerSpec)(nil), "k8s.io.client-go.pkg.apis.autoscaling.v1.HorizontalPodAutoscalerSpec")
+	proto.RegisterType((*HorizontalPodAutoscalerStatus)(nil), "k8s.io.client-go.pkg.apis.autoscaling.v1.HorizontalPodAutoscalerStatus")
+	proto.RegisterType((*Scale)(nil), "k8s.io.client-go.pkg.apis.autoscaling.v1.Scale")
+	proto.RegisterType((*ScaleSpec)(nil), "k8s.io.client-go.pkg.apis.autoscaling.v1.ScaleSpec")
+	proto.RegisterType((*ScaleStatus)(nil), "k8s.io.client-go.pkg.apis.autoscaling.v1.ScaleStatus")
 }
 func (m *CrossVersionObjectReference) Marshal() (data []byte, err error) {
 	size := m.Size()

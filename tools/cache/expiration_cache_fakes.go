@@ -17,8 +17,8 @@ limitations under the License.
 package cache
 
 import (
-	"k8s.io/client-go/1.5/pkg/util/clock"
-	"k8s.io/client-go/1.5/pkg/util/sets"
+	"k8s.io/client-go/pkg/util/clock"
+	"k8s.io/client-go/pkg/util/sets"
 )
 
 type fakeThreadSafeMap struct {

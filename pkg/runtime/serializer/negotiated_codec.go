@@ -17,7 +17,7 @@ limitations under the License.
 package serializer
 
 import (
-	"k8s.io/client-go/1.5/pkg/runtime"
+	"k8s.io/client-go/pkg/runtime"
 )
 
 // TODO: We should figure out what happens when someone asks

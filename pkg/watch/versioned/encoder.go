@@ -19,9 +19,9 @@ package versioned
 import (
 	"encoding/json"
 
-	"k8s.io/client-go/1.5/pkg/runtime"
-	"k8s.io/client-go/1.5/pkg/runtime/serializer/streaming"
-	"k8s.io/client-go/1.5/pkg/watch"
+	"k8s.io/client-go/pkg/runtime"
+	"k8s.io/client-go/pkg/runtime/serializer/streaming"
+	"k8s.io/client-go/pkg/watch"
 )
 
 // Encoder serializes watch.Events into io.Writer. The internal objects

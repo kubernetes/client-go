@@ -17,12 +17,12 @@ limitations under the License.
 package latest
 
 import (
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
-	"k8s.io/client-go/1.5/pkg/runtime"
-	"k8s.io/client-go/1.5/pkg/runtime/serializer/json"
-	"k8s.io/client-go/1.5/pkg/runtime/serializer/versioning"
-	"k8s.io/client-go/1.5/tools/clientcmd/api"
-	"k8s.io/client-go/1.5/tools/clientcmd/api/v1"
+	"k8s.io/client-go/pkg/api/unversioned"
+	"k8s.io/client-go/pkg/runtime"
+	"k8s.io/client-go/pkg/runtime/serializer/json"
+	"k8s.io/client-go/pkg/runtime/serializer/versioning"
+	"k8s.io/client-go/tools/clientcmd/api"
+	"k8s.io/client-go/tools/clientcmd/api/v1"
 )
 
 // Version is the string that represents the current external default version.

@@ -17,9 +17,9 @@ limitations under the License.
 package api
 
 import (
-	"k8s.io/client-go/1.5/pkg/fields"
-	"k8s.io/client-go/1.5/pkg/labels"
-	"k8s.io/client-go/1.5/pkg/runtime"
+	"k8s.io/client-go/pkg/fields"
+	"k8s.io/client-go/pkg/labels"
+	"k8s.io/client-go/pkg/runtime"
 )
 
 func addDefaultingFuncs(scheme *runtime.Scheme) error {

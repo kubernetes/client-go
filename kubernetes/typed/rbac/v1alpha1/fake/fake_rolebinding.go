@@ -17,12 +17,13 @@ limitations under the License.
 package fake
 
 import (
-	api "k8s.io/client-go/1.5/pkg/api"
-	unversioned "k8s.io/client-go/1.5/pkg/api/unversioned"
-	v1alpha1 "k8s.io/client-go/1.5/pkg/apis/rbac/v1alpha1"
-	labels "k8s.io/client-go/1.5/pkg/labels"
-	watch "k8s.io/client-go/1.5/pkg/watch"
-	testing "k8s.io/client-go/1.5/testing"
+	api "k8s.io/client-go/pkg/api"
+	unversioned "k8s.io/client-go/pkg/api/unversioned"
+	v1 "k8s.io/client-go/pkg/api/v1"
+	v1alpha1 "k8s.io/client-go/pkg/apis/rbac/v1alpha1"
+	labels "k8s.io/client-go/pkg/labels"
+	watch "k8s.io/client-go/pkg/watch"
+	testing "k8s.io/client-go/testing"
 )
 
 // FakeRoleBindings implements RoleBindingInterface
@@ -53,14 +54,14 @@ func (c *FakeRoleBindings) Update(roleBinding *v1alpha1.RoleBinding) (result *v1
 	return obj.(*v1alpha1.RoleBinding), err
 }
 
-func (c *FakeRoleBindings) Delete(name string, options *api.DeleteOptions) error {
+func (c *FakeRoleBindings) Delete(name string, options *v1.DeleteOptions) error {
 	_, err := c.Fake.
 		Invokes(testing.NewDeleteAction(rolebindingsResource, c.ns, name), &v1alpha1.RoleBinding{})
 
 	return err
 }
 
-func (c *FakeRoleBindings) DeleteCollection(options *api.DeleteOptions, listOptions api.ListOptions) error {
+func (c *FakeRoleBindings) DeleteCollection(options *v1.DeleteOptions, listOptions v1.ListOptions) error {
 	action := testing.NewDeleteCollectionAction(rolebindingsResource, c.ns, listOptions)
 
 	_, err := c.Fake.Invokes(action, &v1alpha1.RoleBindingList{})
@@ -77,7 +78,7 @@ func (c *FakeRoleBindings) Get(name string) (result *v1alpha1.RoleBinding, err e
 	return obj.(*v1alpha1.RoleBinding), err
 }
 
-func (c *FakeRoleBindings) List(opts api.ListOptions) (result *v1alpha1.RoleBindingList, err error) {
+func (c *FakeRoleBindings) List(opts v1.ListOptions) (result *v1alpha1.RoleBindingList, err error) {
 	obj, err := c.Fake.
 		Invokes(testing.NewListAction(rolebindingsResource, c.ns, opts), &v1alpha1.RoleBindingList{})
 
@@ -85,7 +86,7 @@ func (c *FakeRoleBindings) List(opts api.ListOptions) (result *v1alpha1.RoleBind
 		return nil, err
 	}
 
-	label := opts.LabelSelector
+	label, _, _ := testing.ExtractFromListOptions(opts)
 	if label == nil {
 		label = labels.Everything()
 	}
@@ -99,7 +100,7 @@ func (c *FakeRoleBindings) List(opts api.ListOptions) (result *v1alpha1.RoleBind
 }
 
 // Watch returns a watch.Interface that watches the requested roleBindings.
-func (c *FakeRoleBindings) Watch(opts api.ListOptions) (watch.Interface, error) {
+func (c *FakeRoleBindings) Watch(opts v1.ListOptions) (watch.Interface, error) {
 	return c.Fake.
 		InvokesWatch(testing.NewWatchAction(rolebindingsResource, c.ns, opts))
 

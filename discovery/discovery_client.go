@@ -25,14 +25,14 @@ import (
 
 	"github.com/emicklei/go-restful/swagger"
 
-	"k8s.io/client-go/1.5/pkg/api"
-	"k8s.io/client-go/1.5/pkg/api/errors"
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
-	"k8s.io/client-go/1.5/pkg/api/v1"
-	"k8s.io/client-go/1.5/pkg/runtime"
-	"k8s.io/client-go/1.5/pkg/runtime/serializer"
-	"k8s.io/client-go/1.5/pkg/version"
-	"k8s.io/client-go/1.5/rest"
+	"k8s.io/client-go/pkg/api"
+	"k8s.io/client-go/pkg/api/errors"
+	"k8s.io/client-go/pkg/api/unversioned"
+	"k8s.io/client-go/pkg/api/v1"
+	"k8s.io/client-go/pkg/runtime"
+	"k8s.io/client-go/pkg/runtime/serializer"
+	"k8s.io/client-go/pkg/version"
+	"k8s.io/client-go/rest"
 )
 
 // DiscoveryInterface holds the methods that discover server-supported API groups,
@@ -199,39 +199,46 @@ func IsGroupDiscoveryFailedError(err error) bool {
 // serverPreferredResources returns the supported resources with the version preferred by the
 // server. If namespaced is true, only namespaced resources will be returned.
 func (d *DiscoveryClient) serverPreferredResources(namespaced bool) ([]unversioned.GroupVersionResource, error) {
-	results := []unversioned.GroupVersionResource{}
-	serverGroupList, err := d.ServerGroups()
-	if err != nil {
-		return results, err
-	}
-
+	// retry in case the groups supported by the server change after ServerGroup() returns.
+	const maxRetries = 2
 	var failedGroups map[unversioned.GroupVersion]error
-	for _, apiGroup := range serverGroupList.Groups {
-		preferredVersion := apiGroup.PreferredVersion
-		groupVersion := unversioned.GroupVersion{Group: apiGroup.Name, Version: preferredVersion.Version}
-		apiResourceList, err := d.ServerResourcesForGroupVersion(preferredVersion.GroupVersion)
+	var results []unversioned.GroupVersionResource
+RetrieveGroups:
+	for i := 0; i < maxRetries; i++ {
+		results = []unversioned.GroupVersionResource{}
+		failedGroups = make(map[unversioned.GroupVersion]error)
+		serverGroupList, err := d.ServerGroups()
 		if err != nil {
-			if failedGroups == nil {
-				failedGroups = make(map[unversioned.GroupVersion]error)
-			}
-			failedGroups[groupVersion] = err
-			continue
+			return results, err
 		}
-		for _, apiResource := range apiResourceList.APIResources {
-			// ignore the root scoped resources if "namespaced" is true.
-			if namespaced && !apiResource.Namespaced {
+
+		for _, apiGroup := range serverGroupList.Groups {
+			preferredVersion := apiGroup.PreferredVersion
+			groupVersion := unversioned.GroupVersion{Group: apiGroup.Name, Version: preferredVersion.Version}
+			apiResourceList, err := d.ServerResourcesForGroupVersion(preferredVersion.GroupVersion)
+			if err != nil {
+				if i < maxRetries-1 {
+					continue RetrieveGroups
+				}
+				failedGroups[groupVersion] = err
 				continue
 			}
-			if strings.Contains(apiResource.Name, "/") {
-				continue
+			for _, apiResource := range apiResourceList.APIResources {
+				// ignore the root scoped resources if "namespaced" is true.
+				if namespaced && !apiResource.Namespaced {
+					continue
+				}
+				if strings.Contains(apiResource.Name, "/") {
+					continue
+				}
+				results = append(results, groupVersion.WithResource(apiResource.Name))
 			}
-			results = append(results, groupVersion.WithResource(apiResource.Name))
+		}
+		if len(failedGroups) == 0 {
+			return results, nil
 		}
 	}
-	if len(failedGroups) > 0 {
-		return results, &ErrGroupDiscoveryFailed{Groups: failedGroups}
-	}
-	return results, nil
+	return results, &ErrGroupDiscoveryFailed{Groups: failedGroups}
 }
 
 // ServerPreferredResources returns the supported resources with the version preferred by the

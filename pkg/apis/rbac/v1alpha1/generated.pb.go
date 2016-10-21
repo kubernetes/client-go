@@ -102,17 +102,17 @@ func (*Subject) ProtoMessage()               {}
 func (*Subject) Descriptor() ([]byte, []int) { return fileDescriptorGenerated, []int{10} }
 
 func init() {
-	proto.RegisterType((*ClusterRole)(nil), "k8s.io.client-go.1.5.pkg.apis.rbac.v1alpha1.ClusterRole")
-	proto.RegisterType((*ClusterRoleBinding)(nil), "k8s.io.client-go.1.5.pkg.apis.rbac.v1alpha1.ClusterRoleBinding")
-	proto.RegisterType((*ClusterRoleBindingList)(nil), "k8s.io.client-go.1.5.pkg.apis.rbac.v1alpha1.ClusterRoleBindingList")
-	proto.RegisterType((*ClusterRoleList)(nil), "k8s.io.client-go.1.5.pkg.apis.rbac.v1alpha1.ClusterRoleList")
-	proto.RegisterType((*PolicyRule)(nil), "k8s.io.client-go.1.5.pkg.apis.rbac.v1alpha1.PolicyRule")
-	proto.RegisterType((*Role)(nil), "k8s.io.client-go.1.5.pkg.apis.rbac.v1alpha1.Role")
-	proto.RegisterType((*RoleBinding)(nil), "k8s.io.client-go.1.5.pkg.apis.rbac.v1alpha1.RoleBinding")
-	proto.RegisterType((*RoleBindingList)(nil), "k8s.io.client-go.1.5.pkg.apis.rbac.v1alpha1.RoleBindingList")
-	proto.RegisterType((*RoleList)(nil), "k8s.io.client-go.1.5.pkg.apis.rbac.v1alpha1.RoleList")
-	proto.RegisterType((*RoleRef)(nil), "k8s.io.client-go.1.5.pkg.apis.rbac.v1alpha1.RoleRef")
-	proto.RegisterType((*Subject)(nil), "k8s.io.client-go.1.5.pkg.apis.rbac.v1alpha1.Subject")
+	proto.RegisterType((*ClusterRole)(nil), "k8s.io.client-go.pkg.apis.rbac.v1alpha1.ClusterRole")
+	proto.RegisterType((*ClusterRoleBinding)(nil), "k8s.io.client-go.pkg.apis.rbac.v1alpha1.ClusterRoleBinding")
+	proto.RegisterType((*ClusterRoleBindingList)(nil), "k8s.io.client-go.pkg.apis.rbac.v1alpha1.ClusterRoleBindingList")
+	proto.RegisterType((*ClusterRoleList)(nil), "k8s.io.client-go.pkg.apis.rbac.v1alpha1.ClusterRoleList")
+	proto.RegisterType((*PolicyRule)(nil), "k8s.io.client-go.pkg.apis.rbac.v1alpha1.PolicyRule")
+	proto.RegisterType((*Role)(nil), "k8s.io.client-go.pkg.apis.rbac.v1alpha1.Role")
+	proto.RegisterType((*RoleBinding)(nil), "k8s.io.client-go.pkg.apis.rbac.v1alpha1.RoleBinding")
+	proto.RegisterType((*RoleBindingList)(nil), "k8s.io.client-go.pkg.apis.rbac.v1alpha1.RoleBindingList")
+	proto.RegisterType((*RoleList)(nil), "k8s.io.client-go.pkg.apis.rbac.v1alpha1.RoleList")
+	proto.RegisterType((*RoleRef)(nil), "k8s.io.client-go.pkg.apis.rbac.v1alpha1.RoleRef")
+	proto.RegisterType((*Subject)(nil), "k8s.io.client-go.pkg.apis.rbac.v1alpha1.Subject")
 }
 func (m *ClusterRole) Marshal() (data []byte, err error) {
 	size := m.Size()

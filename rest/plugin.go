@@ -23,7 +23,7 @@ import (
 
 	"github.com/golang/glog"
 
-	clientcmdapi "k8s.io/client-go/1.5/tools/clientcmd/api"
+	clientcmdapi "k8s.io/client-go/tools/clientcmd/api"
 )
 
 type AuthProvider interface {

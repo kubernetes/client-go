@@ -37,8 +37,8 @@ import proto "github.com/gogo/protobuf/proto"
 import fmt "fmt"
 import math "math"
 
-import k8s_io_kubernetes_pkg_api_unversioned "k8s.io/client-go/1.5/pkg/api/unversioned"
-import k8s_io_kubernetes_pkg_api_v1 "k8s.io/client-go/1.5/pkg/api/v1"
+import k8s_io_kubernetes_pkg_api_unversioned "k8s.io/client-go/pkg/api/unversioned"
+import k8s_io_kubernetes_pkg_api_v1 "k8s.io/client-go/pkg/api/v1"
 
 import strings "strings"
 import reflect "reflect"
@@ -77,11 +77,11 @@ func (*PodDisruptionBudgetStatus) Descriptor() ([]byte, []int) {
 }
 
 func init() {
-	proto.RegisterType((*Eviction)(nil), "k8s.io.client-go.1.5.pkg.apis.policy.v1alpha1.Eviction")
-	proto.RegisterType((*PodDisruptionBudget)(nil), "k8s.io.client-go.1.5.pkg.apis.policy.v1alpha1.PodDisruptionBudget")
-	proto.RegisterType((*PodDisruptionBudgetList)(nil), "k8s.io.client-go.1.5.pkg.apis.policy.v1alpha1.PodDisruptionBudgetList")
-	proto.RegisterType((*PodDisruptionBudgetSpec)(nil), "k8s.io.client-go.1.5.pkg.apis.policy.v1alpha1.PodDisruptionBudgetSpec")
-	proto.RegisterType((*PodDisruptionBudgetStatus)(nil), "k8s.io.client-go.1.5.pkg.apis.policy.v1alpha1.PodDisruptionBudgetStatus")
+	proto.RegisterType((*Eviction)(nil), "k8s.io.client-go.pkg.apis.policy.v1alpha1.Eviction")
+	proto.RegisterType((*PodDisruptionBudget)(nil), "k8s.io.client-go.pkg.apis.policy.v1alpha1.PodDisruptionBudget")
+	proto.RegisterType((*PodDisruptionBudgetList)(nil), "k8s.io.client-go.pkg.apis.policy.v1alpha1.PodDisruptionBudgetList")
+	proto.RegisterType((*PodDisruptionBudgetSpec)(nil), "k8s.io.client-go.pkg.apis.policy.v1alpha1.PodDisruptionBudgetSpec")
+	proto.RegisterType((*PodDisruptionBudgetStatus)(nil), "k8s.io.client-go.pkg.apis.policy.v1alpha1.PodDisruptionBudgetStatus")
 }
 func (m *Eviction) Marshal() (data []byte, err error) {
 	size := m.Size()

@@ -52,7 +52,7 @@ func (*Event) ProtoMessage()               {}
 func (*Event) Descriptor() ([]byte, []int) { return fileDescriptorGenerated, []int{0} }
 
 func init() {
-	proto.RegisterType((*Event)(nil), "k8s.io.client-go.1.5.pkg.watch.versioned.Event")
+	proto.RegisterType((*Event)(nil), "k8s.io.client-go.pkg.watch.versioned.Event")
 }
 func (m *Event) Marshal() (data []byte, err error) {
 	size := m.Size()

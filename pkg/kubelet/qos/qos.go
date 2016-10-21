@@ -17,9 +17,9 @@ limitations under the License.
 package qos
 
 import (
-	"k8s.io/client-go/1.5/pkg/api"
-	"k8s.io/client-go/1.5/pkg/api/resource"
-	"k8s.io/client-go/1.5/pkg/util/sets"
+	"k8s.io/client-go/pkg/api"
+	"k8s.io/client-go/pkg/api/resource"
+	"k8s.io/client-go/pkg/util/sets"
 )
 
 // isResourceGuaranteed returns true if the container's resource requirements are Guaranteed.
@@ -68,11 +68,13 @@ func GetPodQOS(pod *api.Pod) QOSClass {
 			}
 		}
 		// process limits
+		qosLimitsFound := sets.NewString()
 		for name, quantity := range container.Resources.Limits {
 			if !supportedQoSComputeResources.Has(string(name)) {
 				continue
 			}
 			if quantity.Cmp(zeroQuantity) == 1 {
+				qosLimitsFound.Insert(string(name))
 				delta := quantity.Copy()
 				if _, exists := limits[name]; !exists {
 					limits[name] = *delta
@@ -82,7 +84,8 @@ func GetPodQOS(pod *api.Pod) QOSClass {
 				}
 			}
 		}
-		if len(limits) != len(supportedQoSComputeResources) {
+
+		if len(qosLimitsFound) != len(supportedQoSComputeResources) {
 			isGuaranteed = false
 		}
 	}

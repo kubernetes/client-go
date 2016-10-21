@@ -17,10 +17,10 @@ limitations under the License.
 package meta
 
 import (
-	"k8s.io/client-go/1.5/pkg/api/meta/metatypes"
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
-	"k8s.io/client-go/1.5/pkg/runtime"
-	"k8s.io/client-go/1.5/pkg/types"
+	"k8s.io/client-go/pkg/api/meta/metatypes"
+	"k8s.io/client-go/pkg/api/unversioned"
+	"k8s.io/client-go/pkg/runtime"
+	"k8s.io/client-go/pkg/types"
 )
 
 // VersionInterfaces contains the interfaces one should use for dealing with types of a particular version.

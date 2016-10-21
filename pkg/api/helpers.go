@@ -24,15 +24,15 @@ import (
 	"strings"
 	"time"
 
-	"k8s.io/client-go/1.5/pkg/api/resource"
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
-	"k8s.io/client-go/1.5/pkg/conversion"
-	"k8s.io/client-go/1.5/pkg/fields"
-	"k8s.io/client-go/1.5/pkg/labels"
-	"k8s.io/client-go/1.5/pkg/runtime"
-	"k8s.io/client-go/1.5/pkg/selection"
-	"k8s.io/client-go/1.5/pkg/types"
-	"k8s.io/client-go/1.5/pkg/util/sets"
+	"k8s.io/client-go/pkg/api/resource"
+	"k8s.io/client-go/pkg/api/unversioned"
+	"k8s.io/client-go/pkg/conversion"
+	"k8s.io/client-go/pkg/fields"
+	"k8s.io/client-go/pkg/labels"
+	"k8s.io/client-go/pkg/runtime"
+	"k8s.io/client-go/pkg/selection"
+	"k8s.io/client-go/pkg/types"
+	"k8s.io/client-go/pkg/util/sets"
 
 	"github.com/davecgh/go-spew/spew"
 )
@@ -123,6 +123,7 @@ func IsStandardContainerResourceName(str string) bool {
 var standardLimitRangeTypes = sets.NewString(
 	string(LimitTypePod),
 	string(LimitTypeContainer),
+	string(LimitTypePersistentVolumeClaim),
 )
 
 // IsStandardLimitRangeType returns true if the type is Pod or Container
@@ -577,7 +578,7 @@ func SysctlsFromPodAnnotation(annotation string) ([]Sysctl, error) {
 	sysctls := make([]Sysctl, len(kvs))
 	for i, kv := range kvs {
 		cs := strings.Split(kv, "=")
-		if len(cs) != 2 {
+		if len(cs) != 2 || len(cs[0]) == 0 {
 			return nil, fmt.Errorf("sysctl %q not of the format sysctl_name=value", kv)
 		}
 		sysctls[i].Name = cs[0]

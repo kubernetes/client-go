@@ -33,9 +33,9 @@ import (
 	"github.com/coreos/go-oidc/key"
 	"github.com/coreos/go-oidc/oauth2"
 
-	"k8s.io/client-go/1.5/pkg/util/diff"
-	"k8s.io/client-go/1.5/pkg/util/wait"
-	oidctesting "k8s.io/client-go/1.5/plugin/pkg/auth/authenticator/token/oidc/testing"
+	"k8s.io/client-go/pkg/util/diff"
+	"k8s.io/client-go/pkg/util/wait"
+	oidctesting "k8s.io/client-go/plugin/pkg/auth/authenticator/token/oidc/testing"
 )
 
 func TestNewOIDCAuthProvider(t *testing.T) {
@@ -45,10 +45,7 @@ func TestNewOIDCAuthProvider(t *testing.T) {
 	}
 	cert := path.Join(tempDir, "oidc-cert")
 	key := path.Join(tempDir, "oidc-key")
-
-	defer os.Remove(cert)
-	defer os.Remove(key)
-	defer os.Remove(tempDir)
+	defer os.RemoveAll(tempDir)
 
 	oidctesting.GenerateSelfSignedCert(t, "127.0.0.1", cert, key)
 	op := oidctesting.NewOIDCProvider(t, "")

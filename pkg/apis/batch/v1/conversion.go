@@ -19,12 +19,12 @@ package v1
 import (
 	"fmt"
 
-	"k8s.io/client-go/1.5/pkg/api"
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
-	v1 "k8s.io/client-go/1.5/pkg/api/v1"
-	"k8s.io/client-go/1.5/pkg/apis/batch"
-	"k8s.io/client-go/1.5/pkg/conversion"
-	"k8s.io/client-go/1.5/pkg/runtime"
+	"k8s.io/client-go/pkg/api"
+	"k8s.io/client-go/pkg/api/unversioned"
+	v1 "k8s.io/client-go/pkg/api/v1"
+	"k8s.io/client-go/pkg/apis/batch"
+	"k8s.io/client-go/pkg/conversion"
+	"k8s.io/client-go/pkg/runtime"
 )
 
 func addConversionFuncs(scheme *runtime.Scheme) error {

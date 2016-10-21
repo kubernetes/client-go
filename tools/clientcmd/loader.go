@@ -30,13 +30,13 @@ import (
 	"github.com/golang/glog"
 	"github.com/imdario/mergo"
 
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
-	"k8s.io/client-go/1.5/pkg/runtime"
-	utilerrors "k8s.io/client-go/1.5/pkg/util/errors"
-	"k8s.io/client-go/1.5/pkg/util/homedir"
-	"k8s.io/client-go/1.5/rest"
-	clientcmdapi "k8s.io/client-go/1.5/tools/clientcmd/api"
-	clientcmdlatest "k8s.io/client-go/1.5/tools/clientcmd/api/latest"
+	"k8s.io/client-go/pkg/api/unversioned"
+	"k8s.io/client-go/pkg/runtime"
+	utilerrors "k8s.io/client-go/pkg/util/errors"
+	"k8s.io/client-go/pkg/util/homedir"
+	"k8s.io/client-go/rest"
+	clientcmdapi "k8s.io/client-go/tools/clientcmd/api"
+	clientcmdlatest "k8s.io/client-go/tools/clientcmd/api/latest"
 )
 
 const (

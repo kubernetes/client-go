@@ -22,11 +22,11 @@ import (
 	"strconv"
 	"sync"
 
-	"k8s.io/client-go/1.5/pkg/api"
-	"k8s.io/client-go/1.5/pkg/api/meta"
-	"k8s.io/client-go/1.5/pkg/runtime"
-	"k8s.io/client-go/1.5/pkg/types"
-	"k8s.io/client-go/1.5/pkg/watch"
+	"k8s.io/client-go/pkg/api"
+	"k8s.io/client-go/pkg/api/meta"
+	"k8s.io/client-go/pkg/runtime"
+	"k8s.io/client-go/pkg/types"
+	"k8s.io/client-go/pkg/watch"
 )
 
 func NewFakeControllerSource() *FakeControllerSource {

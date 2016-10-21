@@ -21,9 +21,9 @@ import (
 	"io"
 	"reflect"
 
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
-	"k8s.io/client-go/1.5/pkg/conversion"
-	"k8s.io/client-go/1.5/pkg/util/errors"
+	"k8s.io/client-go/pkg/api/unversioned"
+	"k8s.io/client-go/pkg/conversion"
+	"k8s.io/client-go/pkg/util/errors"
 )
 
 // unsafeObjectConvertor implements ObjectConvertor using the unsafe conversion path.

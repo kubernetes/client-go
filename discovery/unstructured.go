@@ -19,8 +19,8 @@ package discovery
 import (
 	"fmt"
 
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
-	"k8s.io/client-go/1.5/pkg/runtime"
+	"k8s.io/client-go/pkg/api/unversioned"
+	"k8s.io/client-go/pkg/runtime"
 )
 
 // UnstructuredObjectTyper provides a runtime.ObjectTyper implmentation for

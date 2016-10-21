@@ -21,7 +21,7 @@ import (
 	"net/url"
 	"path"
 
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
+	"k8s.io/client-go/pkg/api/unversioned"
 )
 
 // DefaultServerURL converts a host, host:port, or URL string to the default base server API path

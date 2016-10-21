@@ -19,10 +19,10 @@ limitations under the License.
 package install
 
 import (
-	"k8s.io/client-go/1.5/pkg/apimachinery/announced"
-	"k8s.io/client-go/1.5/pkg/apis/certificates"
-	"k8s.io/client-go/1.5/pkg/apis/certificates/v1alpha1"
-	"k8s.io/client-go/1.5/pkg/util/sets"
+	"k8s.io/client-go/pkg/apimachinery/announced"
+	"k8s.io/client-go/pkg/apis/certificates"
+	"k8s.io/client-go/pkg/apis/certificates/v1alpha1"
+	"k8s.io/client-go/pkg/util/sets"
 )
 
 func init() {
@@ -30,7 +30,7 @@ func init() {
 		&announced.GroupMetaFactoryArgs{
 			GroupName:                  certificates.GroupName,
 			VersionPreferenceOrder:     []string{v1alpha1.SchemeGroupVersion.Version},
-			ImportPrefix:               "k8s.io/client-go/1.5/pkg/apis/certificates",
+			ImportPrefix:               "k8s.io/client-go/pkg/apis/certificates",
 			RootScopedKinds:            sets.NewString("CertificateSigningRequest"),
 			AddInternalObjectsToScheme: certificates.AddToScheme,
 		},

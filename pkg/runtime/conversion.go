@@ -23,7 +23,7 @@ import (
 	"strconv"
 	"strings"
 
-	"k8s.io/client-go/1.5/pkg/conversion"
+	"k8s.io/client-go/pkg/conversion"
 )
 
 // JSONKeyMapper uses the struct tags on a conversion to determine the key value for

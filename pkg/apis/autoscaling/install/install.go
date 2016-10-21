@@ -19,9 +19,9 @@ limitations under the License.
 package install
 
 import (
-	"k8s.io/client-go/1.5/pkg/apimachinery/announced"
-	"k8s.io/client-go/1.5/pkg/apis/autoscaling"
-	"k8s.io/client-go/1.5/pkg/apis/autoscaling/v1"
+	"k8s.io/client-go/pkg/apimachinery/announced"
+	"k8s.io/client-go/pkg/apis/autoscaling"
+	"k8s.io/client-go/pkg/apis/autoscaling/v1"
 )
 
 func init() {
@@ -29,7 +29,7 @@ func init() {
 		&announced.GroupMetaFactoryArgs{
 			GroupName:                  autoscaling.GroupName,
 			VersionPreferenceOrder:     []string{v1.SchemeGroupVersion.Version},
-			ImportPrefix:               "k8s.io/client-go/1.5/pkg/apis/autoscaling",
+			ImportPrefix:               "k8s.io/client-go/pkg/apis/autoscaling",
 			AddInternalObjectsToScheme: autoscaling.AddToScheme,
 		},
 		announced.VersionToSchemeFunc{

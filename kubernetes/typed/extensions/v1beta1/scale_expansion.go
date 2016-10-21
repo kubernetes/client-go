@@ -17,9 +17,9 @@ limitations under the License.
 package v1beta1
 
 import (
-	"k8s.io/client-go/1.5/pkg/api/meta"
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
-	"k8s.io/client-go/1.5/pkg/apis/extensions/v1beta1"
+	"k8s.io/client-go/pkg/api/meta"
+	"k8s.io/client-go/pkg/api/unversioned"
+	"k8s.io/client-go/pkg/apis/extensions/v1beta1"
 )
 
 // The ScaleExpansion interface allows manually adding extra methods to the ScaleInterface.

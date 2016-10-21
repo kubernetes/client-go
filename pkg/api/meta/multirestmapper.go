@@ -20,9 +20,9 @@ import (
 	"fmt"
 	"strings"
 
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
-	utilerrors "k8s.io/client-go/1.5/pkg/util/errors"
-	"k8s.io/client-go/1.5/pkg/util/sets"
+	"k8s.io/client-go/pkg/api/unversioned"
+	utilerrors "k8s.io/client-go/pkg/util/errors"
+	"k8s.io/client-go/pkg/util/sets"
 )
 
 // MultiRESTMapper is a wrapper for multiple RESTMappers.

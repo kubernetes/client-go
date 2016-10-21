@@ -17,12 +17,12 @@ limitations under the License.
 package fake
 
 import (
-	api "k8s.io/client-go/1.5/pkg/api"
-	unversioned "k8s.io/client-go/1.5/pkg/api/unversioned"
-	v1 "k8s.io/client-go/1.5/pkg/api/v1"
-	labels "k8s.io/client-go/1.5/pkg/labels"
-	watch "k8s.io/client-go/1.5/pkg/watch"
-	testing "k8s.io/client-go/1.5/testing"
+	api "k8s.io/client-go/pkg/api"
+	unversioned "k8s.io/client-go/pkg/api/unversioned"
+	v1 "k8s.io/client-go/pkg/api/v1"
+	labels "k8s.io/client-go/pkg/labels"
+	watch "k8s.io/client-go/pkg/watch"
+	testing "k8s.io/client-go/testing"
 )
 
 // FakePods implements PodInterface
@@ -63,14 +63,14 @@ func (c *FakePods) UpdateStatus(pod *v1.Pod) (*v1.Pod, error) {
 	return obj.(*v1.Pod), err
 }
 
-func (c *FakePods) Delete(name string, options *api.DeleteOptions) error {
+func (c *FakePods) Delete(name string, options *v1.DeleteOptions) error {
 	_, err := c.Fake.
 		Invokes(testing.NewDeleteAction(podsResource, c.ns, name), &v1.Pod{})
 
 	return err
 }
 
-func (c *FakePods) DeleteCollection(options *api.DeleteOptions, listOptions api.ListOptions) error {
+func (c *FakePods) DeleteCollection(options *v1.DeleteOptions, listOptions v1.ListOptions) error {
 	action := testing.NewDeleteCollectionAction(podsResource, c.ns, listOptions)
 
 	_, err := c.Fake.Invokes(action, &v1.PodList{})
@@ -87,7 +87,7 @@ func (c *FakePods) Get(name string) (result *v1.Pod, err error) {
 	return obj.(*v1.Pod), err
 }
 
-func (c *FakePods) List(opts api.ListOptions) (result *v1.PodList, err error) {
+func (c *FakePods) List(opts v1.ListOptions) (result *v1.PodList, err error) {
 	obj, err := c.Fake.
 		Invokes(testing.NewListAction(podsResource, c.ns, opts), &v1.PodList{})
 
@@ -95,7 +95,7 @@ func (c *FakePods) List(opts api.ListOptions) (result *v1.PodList, err error) {
 		return nil, err
 	}
 
-	label := opts.LabelSelector
+	label, _, _ := testing.ExtractFromListOptions(opts)
 	if label == nil {
 		label = labels.Everything()
 	}
@@ -109,7 +109,7 @@ func (c *FakePods) List(opts api.ListOptions) (result *v1.PodList, err error) {
 }
 
 // Watch returns a watch.Interface that watches the requested pods.
-func (c *FakePods) Watch(opts api.ListOptions) (watch.Interface, error) {
+func (c *FakePods) Watch(opts v1.ListOptions) (watch.Interface, error) {
 	return c.Fake.
 		InvokesWatch(testing.NewWatchAction(podsResource, c.ns, opts))
 

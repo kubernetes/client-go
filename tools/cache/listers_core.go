@@ -19,9 +19,9 @@ package cache
 import (
 	"fmt"
 
-	"k8s.io/client-go/1.5/pkg/api"
-	"k8s.io/client-go/1.5/pkg/api/errors"
-	"k8s.io/client-go/1.5/pkg/labels"
+	"k8s.io/client-go/pkg/api"
+	"k8s.io/client-go/pkg/api/errors"
+	"k8s.io/client-go/pkg/labels"
 )
 
 //  TODO: generate these classes and methods for all resources of interest using

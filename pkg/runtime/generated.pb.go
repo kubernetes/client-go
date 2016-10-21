@@ -62,9 +62,9 @@ func (*Unknown) ProtoMessage()               {}
 func (*Unknown) Descriptor() ([]byte, []int) { return fileDescriptorGenerated, []int{2} }
 
 func init() {
-	proto.RegisterType((*RawExtension)(nil), "k8s.io.client-go.1.5.pkg.runtime.RawExtension")
-	proto.RegisterType((*TypeMeta)(nil), "k8s.io.client-go.1.5.pkg.runtime.TypeMeta")
-	proto.RegisterType((*Unknown)(nil), "k8s.io.client-go.1.5.pkg.runtime.Unknown")
+	proto.RegisterType((*RawExtension)(nil), "k8s.io.client-go.pkg.runtime.RawExtension")
+	proto.RegisterType((*TypeMeta)(nil), "k8s.io.client-go.pkg.runtime.TypeMeta")
+	proto.RegisterType((*Unknown)(nil), "k8s.io.client-go.pkg.runtime.Unknown")
 }
 func (m *RawExtension) Marshal() (data []byte, err error) {
 	size := m.Size()

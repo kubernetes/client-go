@@ -19,8 +19,8 @@ package watch
 import (
 	"sync"
 
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
-	"k8s.io/client-go/1.5/pkg/runtime"
+	"k8s.io/client-go/pkg/api/unversioned"
+	"k8s.io/client-go/pkg/runtime"
 )
 
 // FullChannelBehavior controls how the Broadcaster reacts if a watcher's watch

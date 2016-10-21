@@ -17,9 +17,9 @@ limitations under the License.
 package v1
 
 import (
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
-	"k8s.io/client-go/1.5/pkg/runtime"
-	versionedwatch "k8s.io/client-go/1.5/pkg/watch/versioned"
+	"k8s.io/client-go/pkg/api/unversioned"
+	"k8s.io/client-go/pkg/runtime"
+	versionedwatch "k8s.io/client-go/pkg/watch/versioned"
 )
 
 // GroupName is the group name use in this package

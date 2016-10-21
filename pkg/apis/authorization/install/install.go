@@ -19,10 +19,10 @@ limitations under the License.
 package install
 
 import (
-	"k8s.io/client-go/1.5/pkg/apimachinery/announced"
-	"k8s.io/client-go/1.5/pkg/apis/authorization"
-	"k8s.io/client-go/1.5/pkg/apis/authorization/v1beta1"
-	"k8s.io/client-go/1.5/pkg/util/sets"
+	"k8s.io/client-go/pkg/apimachinery/announced"
+	"k8s.io/client-go/pkg/apis/authorization"
+	"k8s.io/client-go/pkg/apis/authorization/v1beta1"
+	"k8s.io/client-go/pkg/util/sets"
 )
 
 func init() {
@@ -30,7 +30,7 @@ func init() {
 		&announced.GroupMetaFactoryArgs{
 			GroupName:                  authorization.GroupName,
 			VersionPreferenceOrder:     []string{v1beta1.SchemeGroupVersion.Version},
-			ImportPrefix:               "k8s.io/client-go/1.5/pkg/apis/authorization",
+			ImportPrefix:               "k8s.io/client-go/pkg/apis/authorization",
 			RootScopedKinds:            sets.NewString("SubjectAccessReview", "SelfSubjectAccessReview"),
 			AddInternalObjectsToScheme: authorization.AddToScheme,
 		},

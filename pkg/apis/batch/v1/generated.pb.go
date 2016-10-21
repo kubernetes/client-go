@@ -39,8 +39,8 @@ import proto "github.com/gogo/protobuf/proto"
 import fmt "fmt"
 import math "math"
 
-import k8s_io_kubernetes_pkg_api_unversioned "k8s.io/client-go/1.5/pkg/api/unversioned"
-import k8s_io_kubernetes_pkg_api_v1 "k8s.io/client-go/1.5/pkg/api/v1"
+import k8s_io_kubernetes_pkg_api_unversioned "k8s.io/client-go/pkg/api/unversioned"
+import k8s_io_kubernetes_pkg_api_v1 "k8s.io/client-go/pkg/api/v1"
 
 import strings "strings"
 import reflect "reflect"
@@ -88,13 +88,13 @@ func (*LabelSelectorRequirement) Descriptor() ([]byte, []int) {
 }
 
 func init() {
-	proto.RegisterType((*Job)(nil), "k8s.io.client-go.1.5.pkg.apis.batch.v1.Job")
-	proto.RegisterType((*JobCondition)(nil), "k8s.io.client-go.1.5.pkg.apis.batch.v1.JobCondition")
-	proto.RegisterType((*JobList)(nil), "k8s.io.client-go.1.5.pkg.apis.batch.v1.JobList")
-	proto.RegisterType((*JobSpec)(nil), "k8s.io.client-go.1.5.pkg.apis.batch.v1.JobSpec")
-	proto.RegisterType((*JobStatus)(nil), "k8s.io.client-go.1.5.pkg.apis.batch.v1.JobStatus")
-	proto.RegisterType((*LabelSelector)(nil), "k8s.io.client-go.1.5.pkg.apis.batch.v1.LabelSelector")
-	proto.RegisterType((*LabelSelectorRequirement)(nil), "k8s.io.client-go.1.5.pkg.apis.batch.v1.LabelSelectorRequirement")
+	proto.RegisterType((*Job)(nil), "k8s.io.client-go.pkg.apis.batch.v1.Job")
+	proto.RegisterType((*JobCondition)(nil), "k8s.io.client-go.pkg.apis.batch.v1.JobCondition")
+	proto.RegisterType((*JobList)(nil), "k8s.io.client-go.pkg.apis.batch.v1.JobList")
+	proto.RegisterType((*JobSpec)(nil), "k8s.io.client-go.pkg.apis.batch.v1.JobSpec")
+	proto.RegisterType((*JobStatus)(nil), "k8s.io.client-go.pkg.apis.batch.v1.JobStatus")
+	proto.RegisterType((*LabelSelector)(nil), "k8s.io.client-go.pkg.apis.batch.v1.LabelSelector")
+	proto.RegisterType((*LabelSelectorRequirement)(nil), "k8s.io.client-go.pkg.apis.batch.v1.LabelSelectorRequirement")
 }
 func (m *Job) Marshal() (data []byte, err error) {
 	size := m.Size()

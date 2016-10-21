@@ -21,8 +21,8 @@ limitations under the License.
 package v1alpha1
 
 import (
-	conversion "k8s.io/client-go/1.5/pkg/conversion"
-	runtime "k8s.io/client-go/1.5/pkg/runtime"
+	conversion "k8s.io/client-go/pkg/conversion"
+	runtime "k8s.io/client-go/pkg/runtime"
 	reflect "reflect"
 )
 
@@ -257,6 +257,7 @@ func DeepCopy_v1alpha1_KubeletConfiguration(in interface{}, out interface{}, c *
 		} else {
 			out.CgroupsPerQOS = nil
 		}
+		out.CgroupDriver = in.CgroupDriver
 		out.ContainerRuntime = in.ContainerRuntime
 		out.RemoteRuntimeEndpoint = in.RemoteRuntimeEndpoint
 		out.RemoteImageEndpoint = in.RemoteImageEndpoint
@@ -331,7 +332,6 @@ func DeepCopy_v1alpha1_KubeletConfiguration(in interface{}, out interface{}, c *
 		} else {
 			out.SerializeImagePulls = nil
 		}
-		out.ExperimentalFlannelOverlay = in.ExperimentalFlannelOverlay
 		out.OutOfDiskTransitionFrequency = in.OutOfDiskTransitionFrequency
 		out.NodeIP = in.NodeIP
 		if in.NodeLabels != nil {

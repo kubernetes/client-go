@@ -21,12 +21,12 @@ import (
 	"runtime"
 	"time"
 
-	"k8s.io/client-go/1.5/pkg/api"
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
-	"k8s.io/client-go/1.5/pkg/kubelet/qos"
-	kubetypes "k8s.io/client-go/1.5/pkg/kubelet/types"
-	"k8s.io/client-go/1.5/pkg/master/ports"
-	kruntime "k8s.io/client-go/1.5/pkg/runtime"
+	"k8s.io/client-go/pkg/api"
+	"k8s.io/client-go/pkg/api/unversioned"
+	"k8s.io/client-go/pkg/kubelet/qos"
+	kubetypes "k8s.io/client-go/pkg/kubelet/types"
+	"k8s.io/client-go/pkg/master/ports"
+	kruntime "k8s.io/client-go/pkg/runtime"
 )
 
 const (
@@ -350,6 +350,13 @@ func SetDefaults_KubeletConfiguration(obj *KubeletConfiguration) {
 	if obj.IPTablesDropBit == nil {
 		temp := int32(defaultIPTablesDropBit)
 		obj.IPTablesDropBit = &temp
+	}
+	if obj.CgroupDriver == "" {
+		obj.CgroupDriver = "cgroupfs"
+	}
+	if obj.CgroupsPerQOS == nil {
+		temp := false
+		obj.CgroupsPerQOS = &temp
 	}
 }
 

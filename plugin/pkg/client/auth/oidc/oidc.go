@@ -29,8 +29,8 @@ import (
 	"github.com/coreos/go-oidc/oidc"
 	"github.com/golang/glog"
 
-	"k8s.io/client-go/1.5/pkg/util/wait"
-	"k8s.io/client-go/1.5/rest"
+	"k8s.io/client-go/pkg/util/wait"
+	"k8s.io/client-go/rest"
 )
 
 const (

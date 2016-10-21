@@ -17,8 +17,8 @@ limitations under the License.
 package v1
 
 import (
-	"k8s.io/client-go/1.5/pkg/util/net"
-	"k8s.io/client-go/1.5/rest"
+	"k8s.io/client-go/pkg/util/net"
+	"k8s.io/client-go/rest"
 )
 
 // The ServiceExpansion interface allows manually adding extra methods to the ServiceInterface.

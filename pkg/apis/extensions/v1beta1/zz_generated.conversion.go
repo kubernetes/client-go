@@ -21,14 +21,14 @@ limitations under the License.
 package v1beta1
 
 import (
-	api "k8s.io/client-go/1.5/pkg/api"
-	unversioned "k8s.io/client-go/1.5/pkg/api/unversioned"
-	v1 "k8s.io/client-go/1.5/pkg/api/v1"
-	autoscaling "k8s.io/client-go/1.5/pkg/apis/autoscaling"
-	batch "k8s.io/client-go/1.5/pkg/apis/batch"
-	extensions "k8s.io/client-go/1.5/pkg/apis/extensions"
-	conversion "k8s.io/client-go/1.5/pkg/conversion"
-	runtime "k8s.io/client-go/1.5/pkg/runtime"
+	api "k8s.io/client-go/pkg/api"
+	unversioned "k8s.io/client-go/pkg/api/unversioned"
+	v1 "k8s.io/client-go/pkg/api/v1"
+	autoscaling "k8s.io/client-go/pkg/apis/autoscaling"
+	batch "k8s.io/client-go/pkg/apis/batch"
+	extensions "k8s.io/client-go/pkg/apis/extensions"
+	conversion "k8s.io/client-go/pkg/conversion"
+	runtime "k8s.io/client-go/pkg/runtime"
 )
 
 func init() {
@@ -119,8 +119,6 @@ func RegisterConversions(scheme *runtime.Scheme) error {
 		Convert_unversioned_LabelSelector_To_v1beta1_LabelSelector,
 		Convert_v1beta1_LabelSelectorRequirement_To_unversioned_LabelSelectorRequirement,
 		Convert_unversioned_LabelSelectorRequirement_To_v1beta1_LabelSelectorRequirement,
-		Convert_v1beta1_ListOptions_To_api_ListOptions,
-		Convert_api_ListOptions_To_v1beta1_ListOptions,
 		Convert_v1beta1_NetworkPolicy_To_extensions_NetworkPolicy,
 		Convert_extensions_NetworkPolicy_To_v1beta1_NetworkPolicy,
 		Convert_v1beta1_NetworkPolicyIngressRule_To_extensions_NetworkPolicyIngressRule,
@@ -141,6 +139,8 @@ func RegisterConversions(scheme *runtime.Scheme) error {
 		Convert_extensions_PodSecurityPolicySpec_To_v1beta1_PodSecurityPolicySpec,
 		Convert_v1beta1_ReplicaSet_To_extensions_ReplicaSet,
 		Convert_extensions_ReplicaSet_To_v1beta1_ReplicaSet,
+		Convert_v1beta1_ReplicaSetCondition_To_extensions_ReplicaSetCondition,
+		Convert_extensions_ReplicaSetCondition_To_v1beta1_ReplicaSetCondition,
 		Convert_v1beta1_ReplicaSetList_To_extensions_ReplicaSetList,
 		Convert_extensions_ReplicaSetList_To_v1beta1_ReplicaSetList,
 		Convert_v1beta1_ReplicaSetSpec_To_extensions_ReplicaSetSpec,
@@ -455,6 +455,7 @@ func autoConvert_v1beta1_DaemonSetStatus_To_extensions_DaemonSetStatus(in *Daemo
 	out.CurrentNumberScheduled = in.CurrentNumberScheduled
 	out.NumberMisscheduled = in.NumberMisscheduled
 	out.DesiredNumberScheduled = in.DesiredNumberScheduled
+	out.NumberReady = in.NumberReady
 	return nil
 }
 
@@ -466,6 +467,7 @@ func autoConvert_extensions_DaemonSetStatus_To_v1beta1_DaemonSetStatus(in *exten
 	out.CurrentNumberScheduled = in.CurrentNumberScheduled
 	out.NumberMisscheduled = in.NumberMisscheduled
 	out.DesiredNumberScheduled = in.DesiredNumberScheduled
+	out.NumberReady = in.NumberReady
 	return nil
 }
 
@@ -1598,46 +1600,6 @@ func Convert_unversioned_LabelSelectorRequirement_To_v1beta1_LabelSelectorRequir
 	return autoConvert_unversioned_LabelSelectorRequirement_To_v1beta1_LabelSelectorRequirement(in, out, s)
 }
 
-func autoConvert_v1beta1_ListOptions_To_api_ListOptions(in *ListOptions, out *api.ListOptions, s conversion.Scope) error {
-	if err := api.Convert_unversioned_TypeMeta_To_unversioned_TypeMeta(&in.TypeMeta, &out.TypeMeta, s); err != nil {
-		return err
-	}
-	if err := api.Convert_string_To_labels_Selector(&in.LabelSelector, &out.LabelSelector, s); err != nil {
-		return err
-	}
-	if err := api.Convert_string_To_fields_Selector(&in.FieldSelector, &out.FieldSelector, s); err != nil {
-		return err
-	}
-	out.Watch = in.Watch
-	out.ResourceVersion = in.ResourceVersion
-	out.TimeoutSeconds = in.TimeoutSeconds
-	return nil
-}
-
-func Convert_v1beta1_ListOptions_To_api_ListOptions(in *ListOptions, out *api.ListOptions, s conversion.Scope) error {
-	return autoConvert_v1beta1_ListOptions_To_api_ListOptions(in, out, s)
-}
-
-func autoConvert_api_ListOptions_To_v1beta1_ListOptions(in *api.ListOptions, out *ListOptions, s conversion.Scope) error {
-	if err := api.Convert_unversioned_TypeMeta_To_unversioned_TypeMeta(&in.TypeMeta, &out.TypeMeta, s); err != nil {
-		return err
-	}
-	if err := api.Convert_labels_Selector_To_string(&in.LabelSelector, &out.LabelSelector, s); err != nil {
-		return err
-	}
-	if err := api.Convert_fields_Selector_To_string(&in.FieldSelector, &out.FieldSelector, s); err != nil {
-		return err
-	}
-	out.Watch = in.Watch
-	out.ResourceVersion = in.ResourceVersion
-	out.TimeoutSeconds = in.TimeoutSeconds
-	return nil
-}
-
-func Convert_api_ListOptions_To_v1beta1_ListOptions(in *api.ListOptions, out *ListOptions, s conversion.Scope) error {
-	return autoConvert_api_ListOptions_To_v1beta1_ListOptions(in, out, s)
-}
-
 func autoConvert_v1beta1_NetworkPolicy_To_extensions_NetworkPolicy(in *NetworkPolicy, out *extensions.NetworkPolicy, s conversion.Scope) error {
 	SetDefaults_NetworkPolicy(in)
 	if err := api.Convert_unversioned_TypeMeta_To_unversioned_TypeMeta(&in.TypeMeta, &out.TypeMeta, s); err != nil {
@@ -2186,6 +2148,42 @@ func Convert_extensions_ReplicaSet_To_v1beta1_ReplicaSet(in *extensions.ReplicaS
 	return autoConvert_extensions_ReplicaSet_To_v1beta1_ReplicaSet(in, out, s)
 }
 
+func autoConvert_v1beta1_ReplicaSetCondition_To_extensions_ReplicaSetCondition(in *ReplicaSetCondition, out *extensions.ReplicaSetCondition, s conversion.Scope) error {
+	out.Type = extensions.ReplicaSetConditionType(in.Type)
+	out.Status = api.ConditionStatus(in.Status)
+	if err := api.Convert_unversioned_Time_To_unversioned_Time(&in.LastProbeTime, &out.LastProbeTime, s); err != nil {
+		return err
+	}
+	if err := api.Convert_unversioned_Time_To_unversioned_Time(&in.LastTransitionTime, &out.LastTransitionTime, s); err != nil {
+		return err
+	}
+	out.Reason = in.Reason
+	out.Message = in.Message
+	return nil
+}
+
+func Convert_v1beta1_ReplicaSetCondition_To_extensions_ReplicaSetCondition(in *ReplicaSetCondition, out *extensions.ReplicaSetCondition, s conversion.Scope) error {
+	return autoConvert_v1beta1_ReplicaSetCondition_To_extensions_ReplicaSetCondition(in, out, s)
+}
+
+func autoConvert_extensions_ReplicaSetCondition_To_v1beta1_ReplicaSetCondition(in *extensions.ReplicaSetCondition, out *ReplicaSetCondition, s conversion.Scope) error {
+	out.Type = ReplicaSetConditionType(in.Type)
+	out.Status = v1.ConditionStatus(in.Status)
+	if err := api.Convert_unversioned_Time_To_unversioned_Time(&in.LastProbeTime, &out.LastProbeTime, s); err != nil {
+		return err
+	}
+	if err := api.Convert_unversioned_Time_To_unversioned_Time(&in.LastTransitionTime, &out.LastTransitionTime, s); err != nil {
+		return err
+	}
+	out.Reason = in.Reason
+	out.Message = in.Message
+	return nil
+}
+
+func Convert_extensions_ReplicaSetCondition_To_v1beta1_ReplicaSetCondition(in *extensions.ReplicaSetCondition, out *ReplicaSetCondition, s conversion.Scope) error {
+	return autoConvert_extensions_ReplicaSetCondition_To_v1beta1_ReplicaSetCondition(in, out, s)
+}
+
 func autoConvert_v1beta1_ReplicaSetList_To_extensions_ReplicaSetList(in *ReplicaSetList, out *extensions.ReplicaSetList, s conversion.Scope) error {
 	if err := api.Convert_unversioned_TypeMeta_To_unversioned_TypeMeta(&in.TypeMeta, &out.TypeMeta, s); err != nil {
 		return err
@@ -2240,6 +2238,7 @@ func autoConvert_v1beta1_ReplicaSetSpec_To_extensions_ReplicaSetSpec(in *Replica
 	if err := api.Convert_Pointer_int32_To_int32(&in.Replicas, &out.Replicas, s); err != nil {
 		return err
 	}
+	out.MinReadySeconds = in.MinReadySeconds
 	if in.Selector != nil {
 		in, out := &in.Selector, &out.Selector
 		*out = new(unversioned.LabelSelector)
@@ -2259,6 +2258,7 @@ func autoConvert_extensions_ReplicaSetSpec_To_v1beta1_ReplicaSetSpec(in *extensi
 	if err := api.Convert_int32_To_Pointer_int32(&in.Replicas, &out.Replicas, s); err != nil {
 		return err
 	}
+	out.MinReadySeconds = in.MinReadySeconds
 	if in.Selector != nil {
 		in, out := &in.Selector, &out.Selector
 		*out = new(LabelSelector)
@@ -2278,7 +2278,19 @@ func autoConvert_v1beta1_ReplicaSetStatus_To_extensions_ReplicaSetStatus(in *Rep
 	out.Replicas = in.Replicas
 	out.FullyLabeledReplicas = in.FullyLabeledReplicas
 	out.ReadyReplicas = in.ReadyReplicas
+	out.AvailableReplicas = in.AvailableReplicas
 	out.ObservedGeneration = in.ObservedGeneration
+	if in.Conditions != nil {
+		in, out := &in.Conditions, &out.Conditions
+		*out = make([]extensions.ReplicaSetCondition, len(*in))
+		for i := range *in {
+			if err := Convert_v1beta1_ReplicaSetCondition_To_extensions_ReplicaSetCondition(&(*in)[i], &(*out)[i], s); err != nil {
+				return err
+			}
+		}
+	} else {
+		out.Conditions = nil
+	}
 	return nil
 }
 
@@ -2290,7 +2302,19 @@ func autoConvert_extensions_ReplicaSetStatus_To_v1beta1_ReplicaSetStatus(in *ext
 	out.Replicas = in.Replicas
 	out.FullyLabeledReplicas = in.FullyLabeledReplicas
 	out.ReadyReplicas = in.ReadyReplicas
+	out.AvailableReplicas = in.AvailableReplicas
 	out.ObservedGeneration = in.ObservedGeneration
+	if in.Conditions != nil {
+		in, out := &in.Conditions, &out.Conditions
+		*out = make([]ReplicaSetCondition, len(*in))
+		for i := range *in {
+			if err := Convert_extensions_ReplicaSetCondition_To_v1beta1_ReplicaSetCondition(&(*in)[i], &(*out)[i], s); err != nil {
+				return err
+			}
+		}
+	} else {
+		out.Conditions = nil
+	}
 	return nil
 }
 

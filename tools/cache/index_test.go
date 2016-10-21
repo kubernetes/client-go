@@ -20,7 +20,7 @@ import (
 	"strings"
 	"testing"
 
-	"k8s.io/client-go/1.5/pkg/api"
+	"k8s.io/client-go/pkg/api"
 )
 
 func testIndexFunc(obj interface{}) ([]string, error) {

@@ -68,7 +68,7 @@ import (
 	"io/ioutil"
 	"os"
 
-	"k8s.io/client-go/1.5/rest"
+	"k8s.io/client-go/rest"
 )
 
 // Info holds Kubernetes API authorization config.  It is intended

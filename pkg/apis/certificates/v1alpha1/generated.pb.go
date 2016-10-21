@@ -82,11 +82,11 @@ func (*CertificateSigningRequestStatus) Descriptor() ([]byte, []int) {
 }
 
 func init() {
-	proto.RegisterType((*CertificateSigningRequest)(nil), "k8s.io.client-go.1.5.pkg.apis.certificates.v1alpha1.CertificateSigningRequest")
-	proto.RegisterType((*CertificateSigningRequestCondition)(nil), "k8s.io.client-go.1.5.pkg.apis.certificates.v1alpha1.CertificateSigningRequestCondition")
-	proto.RegisterType((*CertificateSigningRequestList)(nil), "k8s.io.client-go.1.5.pkg.apis.certificates.v1alpha1.CertificateSigningRequestList")
-	proto.RegisterType((*CertificateSigningRequestSpec)(nil), "k8s.io.client-go.1.5.pkg.apis.certificates.v1alpha1.CertificateSigningRequestSpec")
-	proto.RegisterType((*CertificateSigningRequestStatus)(nil), "k8s.io.client-go.1.5.pkg.apis.certificates.v1alpha1.CertificateSigningRequestStatus")
+	proto.RegisterType((*CertificateSigningRequest)(nil), "k8s.io.client-go.pkg.apis.certificates.v1alpha1.CertificateSigningRequest")
+	proto.RegisterType((*CertificateSigningRequestCondition)(nil), "k8s.io.client-go.pkg.apis.certificates.v1alpha1.CertificateSigningRequestCondition")
+	proto.RegisterType((*CertificateSigningRequestList)(nil), "k8s.io.client-go.pkg.apis.certificates.v1alpha1.CertificateSigningRequestList")
+	proto.RegisterType((*CertificateSigningRequestSpec)(nil), "k8s.io.client-go.pkg.apis.certificates.v1alpha1.CertificateSigningRequestSpec")
+	proto.RegisterType((*CertificateSigningRequestStatus)(nil), "k8s.io.client-go.pkg.apis.certificates.v1alpha1.CertificateSigningRequestStatus")
 }
 func (m *CertificateSigningRequest) Marshal() (data []byte, err error) {
 	size := m.Size()

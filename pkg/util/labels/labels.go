@@ -19,7 +19,7 @@ package labels
 import (
 	"fmt"
 
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
+	"k8s.io/client-go/pkg/api/unversioned"
 )
 
 // Clones the given map and returns a new map with the given key and value added.

@@ -19,9 +19,9 @@ package v1
 import (
 	"sort"
 
-	"k8s.io/client-go/1.5/pkg/conversion"
-	"k8s.io/client-go/1.5/pkg/runtime"
-	"k8s.io/client-go/1.5/tools/clientcmd/api"
+	"k8s.io/client-go/pkg/conversion"
+	"k8s.io/client-go/pkg/runtime"
+	"k8s.io/client-go/tools/clientcmd/api"
 )
 
 func addConversionFuncs(scheme *runtime.Scheme) error {

@@ -17,10 +17,10 @@ limitations under the License.
 package v1alpha1
 
 import (
-	api "k8s.io/client-go/1.5/pkg/api"
-	registered "k8s.io/client-go/1.5/pkg/apimachinery/registered"
-	serializer "k8s.io/client-go/1.5/pkg/runtime/serializer"
-	rest "k8s.io/client-go/1.5/rest"
+	api "k8s.io/client-go/pkg/api"
+	registered "k8s.io/client-go/pkg/apimachinery/registered"
+	serializer "k8s.io/client-go/pkg/runtime/serializer"
+	rest "k8s.io/client-go/rest"
 )
 
 type RbacInterface interface {

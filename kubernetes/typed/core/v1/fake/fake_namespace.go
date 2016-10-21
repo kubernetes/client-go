@@ -17,12 +17,12 @@ limitations under the License.
 package fake
 
 import (
-	api "k8s.io/client-go/1.5/pkg/api"
-	unversioned "k8s.io/client-go/1.5/pkg/api/unversioned"
-	v1 "k8s.io/client-go/1.5/pkg/api/v1"
-	labels "k8s.io/client-go/1.5/pkg/labels"
-	watch "k8s.io/client-go/1.5/pkg/watch"
-	testing "k8s.io/client-go/1.5/testing"
+	api "k8s.io/client-go/pkg/api"
+	unversioned "k8s.io/client-go/pkg/api/unversioned"
+	v1 "k8s.io/client-go/pkg/api/v1"
+	labels "k8s.io/client-go/pkg/labels"
+	watch "k8s.io/client-go/pkg/watch"
+	testing "k8s.io/client-go/testing"
 )
 
 // FakeNamespaces implements NamespaceInterface
@@ -59,13 +59,13 @@ func (c *FakeNamespaces) UpdateStatus(namespace *v1.Namespace) (*v1.Namespace, e
 	return obj.(*v1.Namespace), err
 }
 
-func (c *FakeNamespaces) Delete(name string, options *api.DeleteOptions) error {
+func (c *FakeNamespaces) Delete(name string, options *v1.DeleteOptions) error {
 	_, err := c.Fake.
 		Invokes(testing.NewRootDeleteAction(namespacesResource, name), &v1.Namespace{})
 	return err
 }
 
-func (c *FakeNamespaces) DeleteCollection(options *api.DeleteOptions, listOptions api.ListOptions) error {
+func (c *FakeNamespaces) DeleteCollection(options *v1.DeleteOptions, listOptions v1.ListOptions) error {
 	action := testing.NewRootDeleteCollectionAction(namespacesResource, listOptions)
 
 	_, err := c.Fake.Invokes(action, &v1.NamespaceList{})
@@ -81,14 +81,14 @@ func (c *FakeNamespaces) Get(name string) (result *v1.Namespace, err error) {
 	return obj.(*v1.Namespace), err
 }
 
-func (c *FakeNamespaces) List(opts api.ListOptions) (result *v1.NamespaceList, err error) {
+func (c *FakeNamespaces) List(opts v1.ListOptions) (result *v1.NamespaceList, err error) {
 	obj, err := c.Fake.
 		Invokes(testing.NewRootListAction(namespacesResource, opts), &v1.NamespaceList{})
 	if obj == nil {
 		return nil, err
 	}
 
-	label := opts.LabelSelector
+	label, _, _ := testing.ExtractFromListOptions(opts)
 	if label == nil {
 		label = labels.Everything()
 	}
@@ -102,7 +102,7 @@ func (c *FakeNamespaces) List(opts api.ListOptions) (result *v1.NamespaceList, e
 }
 
 // Watch returns a watch.Interface that watches the requested namespaces.
-func (c *FakeNamespaces) Watch(opts api.ListOptions) (watch.Interface, error) {
+func (c *FakeNamespaces) Watch(opts v1.ListOptions) (watch.Interface, error) {
 	return c.Fake.
 		InvokesWatch(testing.NewRootWatchAction(namespacesResource, opts))
 }

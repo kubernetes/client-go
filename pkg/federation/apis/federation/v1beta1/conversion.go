@@ -19,7 +19,7 @@ package v1beta1
 import (
 	"fmt"
 
-	"k8s.io/client-go/1.5/pkg/runtime"
+	"k8s.io/client-go/pkg/runtime"
 )
 
 func addConversionFuncs(scheme *runtime.Scheme) error {

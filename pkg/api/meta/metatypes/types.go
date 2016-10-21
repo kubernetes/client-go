@@ -19,7 +19,7 @@ limitations under the License.
 // API objects because it causes import cycle.
 package metatypes
 
-import "k8s.io/client-go/1.5/pkg/types"
+import "k8s.io/client-go/pkg/types"
 
 type OwnerReference struct {
 	APIVersion string

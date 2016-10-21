@@ -17,7 +17,7 @@ limitations under the License.
 package api
 
 import (
-	"k8s.io/client-go/1.5/pkg/runtime"
+	"k8s.io/client-go/pkg/runtime"
 )
 
 // Where possible, json tags match the cli argument names.

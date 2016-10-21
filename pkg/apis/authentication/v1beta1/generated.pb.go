@@ -73,11 +73,11 @@ func (*UserInfo) ProtoMessage()               {}
 func (*UserInfo) Descriptor() ([]byte, []int) { return fileDescriptorGenerated, []int{4} }
 
 func init() {
-	proto.RegisterType((*ExtraValue)(nil), "k8s.io.client-go.1.5.pkg.apis.authentication.v1beta1.ExtraValue")
-	proto.RegisterType((*TokenReview)(nil), "k8s.io.client-go.1.5.pkg.apis.authentication.v1beta1.TokenReview")
-	proto.RegisterType((*TokenReviewSpec)(nil), "k8s.io.client-go.1.5.pkg.apis.authentication.v1beta1.TokenReviewSpec")
-	proto.RegisterType((*TokenReviewStatus)(nil), "k8s.io.client-go.1.5.pkg.apis.authentication.v1beta1.TokenReviewStatus")
-	proto.RegisterType((*UserInfo)(nil), "k8s.io.client-go.1.5.pkg.apis.authentication.v1beta1.UserInfo")
+	proto.RegisterType((*ExtraValue)(nil), "k8s.io.client-go.pkg.apis.authentication.v1beta1.ExtraValue")
+	proto.RegisterType((*TokenReview)(nil), "k8s.io.client-go.pkg.apis.authentication.v1beta1.TokenReview")
+	proto.RegisterType((*TokenReviewSpec)(nil), "k8s.io.client-go.pkg.apis.authentication.v1beta1.TokenReviewSpec")
+	proto.RegisterType((*TokenReviewStatus)(nil), "k8s.io.client-go.pkg.apis.authentication.v1beta1.TokenReviewStatus")
+	proto.RegisterType((*UserInfo)(nil), "k8s.io.client-go.pkg.apis.authentication.v1beta1.UserInfo")
 }
 func (m ExtraValue) Marshal() (data []byte, err error) {
 	size := m.Size()

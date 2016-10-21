@@ -24,7 +24,7 @@ import (
 	"os"
 
 	"github.com/howeyc/gopass"
-	clientauth "k8s.io/client-go/1.5/tools/auth"
+	clientauth "k8s.io/client-go/tools/auth"
 )
 
 // AuthLoaders are used to build clientauth.Info objects.

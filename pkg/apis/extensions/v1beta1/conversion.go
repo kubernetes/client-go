@@ -19,15 +19,15 @@ package v1beta1
 import (
 	"fmt"
 
-	"k8s.io/client-go/1.5/pkg/api"
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
-	v1 "k8s.io/client-go/1.5/pkg/api/v1"
-	"k8s.io/client-go/1.5/pkg/apis/autoscaling"
-	"k8s.io/client-go/1.5/pkg/apis/batch"
-	"k8s.io/client-go/1.5/pkg/apis/extensions"
-	"k8s.io/client-go/1.5/pkg/conversion"
-	"k8s.io/client-go/1.5/pkg/runtime"
-	"k8s.io/client-go/1.5/pkg/util/intstr"
+	"k8s.io/client-go/pkg/api"
+	"k8s.io/client-go/pkg/api/unversioned"
+	v1 "k8s.io/client-go/pkg/api/v1"
+	"k8s.io/client-go/pkg/apis/autoscaling"
+	"k8s.io/client-go/pkg/apis/batch"
+	"k8s.io/client-go/pkg/apis/extensions"
+	"k8s.io/client-go/pkg/conversion"
+	"k8s.io/client-go/pkg/runtime"
+	"k8s.io/client-go/pkg/util/intstr"
 )
 
 func addConversionFuncs(scheme *runtime.Scheme) error {
@@ -249,6 +249,7 @@ func Convert_v1beta1_RollingUpdateDeployment_To_extensions_RollingUpdateDeployme
 func Convert_extensions_ReplicaSetSpec_To_v1beta1_ReplicaSetSpec(in *extensions.ReplicaSetSpec, out *ReplicaSetSpec, s conversion.Scope) error {
 	out.Replicas = new(int32)
 	*out.Replicas = int32(in.Replicas)
+	out.MinReadySeconds = in.MinReadySeconds
 	if in.Selector != nil {
 		out.Selector = new(LabelSelector)
 		if err := Convert_unversioned_LabelSelector_To_v1beta1_LabelSelector(in.Selector, out.Selector, s); err != nil {
@@ -268,6 +269,7 @@ func Convert_v1beta1_ReplicaSetSpec_To_extensions_ReplicaSetSpec(in *ReplicaSetS
 	if in.Replicas != nil {
 		out.Replicas = *in.Replicas
 	}
+	out.MinReadySeconds = in.MinReadySeconds
 	if in.Selector != nil {
 		out.Selector = new(unversioned.LabelSelector)
 		if err := Convert_v1beta1_LabelSelector_To_unversioned_LabelSelector(in.Selector, out.Selector, s); err != nil {

@@ -17,10 +17,10 @@ limitations under the License.
 package v1beta1
 
 import (
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
-	"k8s.io/client-go/1.5/pkg/api/v1"
-	"k8s.io/client-go/1.5/pkg/runtime"
-	versionedwatch "k8s.io/client-go/1.5/pkg/watch/versioned"
+	"k8s.io/client-go/pkg/api/unversioned"
+	"k8s.io/client-go/pkg/api/v1"
+	"k8s.io/client-go/pkg/runtime"
+	versionedwatch "k8s.io/client-go/pkg/watch/versioned"
 )
 
 // GroupName is the group name use in this package
@@ -54,7 +54,7 @@ func addKnownTypes(scheme *runtime.Scheme) error {
 		&ThirdPartyResourceDataList{},
 		&Ingress{},
 		&IngressList{},
-		&ListOptions{},
+		&v1.ListOptions{},
 		&v1.DeleteOptions{},
 		&ReplicaSet{},
 		&ReplicaSetList{},

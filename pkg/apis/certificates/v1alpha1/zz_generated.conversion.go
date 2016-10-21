@@ -21,10 +21,10 @@ limitations under the License.
 package v1alpha1
 
 import (
-	api "k8s.io/client-go/1.5/pkg/api"
-	certificates "k8s.io/client-go/1.5/pkg/apis/certificates"
-	conversion "k8s.io/client-go/1.5/pkg/conversion"
-	runtime "k8s.io/client-go/1.5/pkg/runtime"
+	api "k8s.io/client-go/pkg/api"
+	certificates "k8s.io/client-go/pkg/apis/certificates"
+	conversion "k8s.io/client-go/pkg/conversion"
+	runtime "k8s.io/client-go/pkg/runtime"
 )
 
 func init() {

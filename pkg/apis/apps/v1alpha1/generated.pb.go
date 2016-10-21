@@ -36,8 +36,8 @@ import proto "github.com/gogo/protobuf/proto"
 import fmt "fmt"
 import math "math"
 
-import k8s_io_kubernetes_pkg_api_unversioned "k8s.io/client-go/1.5/pkg/api/unversioned"
-import k8s_io_kubernetes_pkg_api_v1 "k8s.io/client-go/1.5/pkg/api/v1"
+import k8s_io_kubernetes_pkg_api_unversioned "k8s.io/client-go/pkg/api/unversioned"
+import k8s_io_kubernetes_pkg_api_v1 "k8s.io/client-go/pkg/api/v1"
 
 import strings "strings"
 import reflect "reflect"
@@ -70,10 +70,10 @@ func (*PetSetStatus) ProtoMessage()               {}
 func (*PetSetStatus) Descriptor() ([]byte, []int) { return fileDescriptorGenerated, []int{3} }
 
 func init() {
-	proto.RegisterType((*PetSet)(nil), "k8s.io.client-go.1.5.pkg.apis.apps.v1alpha1.PetSet")
-	proto.RegisterType((*PetSetList)(nil), "k8s.io.client-go.1.5.pkg.apis.apps.v1alpha1.PetSetList")
-	proto.RegisterType((*PetSetSpec)(nil), "k8s.io.client-go.1.5.pkg.apis.apps.v1alpha1.PetSetSpec")
-	proto.RegisterType((*PetSetStatus)(nil), "k8s.io.client-go.1.5.pkg.apis.apps.v1alpha1.PetSetStatus")
+	proto.RegisterType((*PetSet)(nil), "k8s.io.client-go.pkg.apis.apps.v1alpha1.PetSet")
+	proto.RegisterType((*PetSetList)(nil), "k8s.io.client-go.pkg.apis.apps.v1alpha1.PetSetList")
+	proto.RegisterType((*PetSetSpec)(nil), "k8s.io.client-go.pkg.apis.apps.v1alpha1.PetSetSpec")
+	proto.RegisterType((*PetSetStatus)(nil), "k8s.io.client-go.pkg.apis.apps.v1alpha1.PetSetStatus")
 }
 func (m *PetSet) Marshal() (data []byte, err error) {
 	size := m.Size()

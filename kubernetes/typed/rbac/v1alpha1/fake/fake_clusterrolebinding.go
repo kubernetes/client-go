@@ -17,12 +17,13 @@ limitations under the License.
 package fake
 
 import (
-	api "k8s.io/client-go/1.5/pkg/api"
-	unversioned "k8s.io/client-go/1.5/pkg/api/unversioned"
-	v1alpha1 "k8s.io/client-go/1.5/pkg/apis/rbac/v1alpha1"
-	labels "k8s.io/client-go/1.5/pkg/labels"
-	watch "k8s.io/client-go/1.5/pkg/watch"
-	testing "k8s.io/client-go/1.5/testing"
+	api "k8s.io/client-go/pkg/api"
+	unversioned "k8s.io/client-go/pkg/api/unversioned"
+	v1 "k8s.io/client-go/pkg/api/v1"
+	v1alpha1 "k8s.io/client-go/pkg/apis/rbac/v1alpha1"
+	labels "k8s.io/client-go/pkg/labels"
+	watch "k8s.io/client-go/pkg/watch"
+	testing "k8s.io/client-go/testing"
 )
 
 // FakeClusterRoleBindings implements ClusterRoleBindingInterface
@@ -50,13 +51,13 @@ func (c *FakeClusterRoleBindings) Update(clusterRoleBinding *v1alpha1.ClusterRol
 	return obj.(*v1alpha1.ClusterRoleBinding), err
 }
 
-func (c *FakeClusterRoleBindings) Delete(name string, options *api.DeleteOptions) error {
+func (c *FakeClusterRoleBindings) Delete(name string, options *v1.DeleteOptions) error {
 	_, err := c.Fake.
 		Invokes(testing.NewRootDeleteAction(clusterrolebindingsResource, name), &v1alpha1.ClusterRoleBinding{})
 	return err
 }
 
-func (c *FakeClusterRoleBindings) DeleteCollection(options *api.DeleteOptions, listOptions api.ListOptions) error {
+func (c *FakeClusterRoleBindings) DeleteCollection(options *v1.DeleteOptions, listOptions v1.ListOptions) error {
 	action := testing.NewRootDeleteCollectionAction(clusterrolebindingsResource, listOptions)
 
 	_, err := c.Fake.Invokes(action, &v1alpha1.ClusterRoleBindingList{})
@@ -72,14 +73,14 @@ func (c *FakeClusterRoleBindings) Get(name string) (result *v1alpha1.ClusterRole
 	return obj.(*v1alpha1.ClusterRoleBinding), err
 }
 
-func (c *FakeClusterRoleBindings) List(opts api.ListOptions) (result *v1alpha1.ClusterRoleBindingList, err error) {
+func (c *FakeClusterRoleBindings) List(opts v1.ListOptions) (result *v1alpha1.ClusterRoleBindingList, err error) {
 	obj, err := c.Fake.
 		Invokes(testing.NewRootListAction(clusterrolebindingsResource, opts), &v1alpha1.ClusterRoleBindingList{})
 	if obj == nil {
 		return nil, err
 	}
 
-	label := opts.LabelSelector
+	label, _, _ := testing.ExtractFromListOptions(opts)
 	if label == nil {
 		label = labels.Everything()
 	}
@@ -93,7 +94,7 @@ func (c *FakeClusterRoleBindings) List(opts api.ListOptions) (result *v1alpha1.C
 }
 
 // Watch returns a watch.Interface that watches the requested clusterRoleBindings.
-func (c *FakeClusterRoleBindings) Watch(opts api.ListOptions) (watch.Interface, error) {
+func (c *FakeClusterRoleBindings) Watch(opts v1.ListOptions) (watch.Interface, error) {
 	return c.Fake.
 		InvokesWatch(testing.NewRootWatchAction(clusterrolebindingsResource, opts))
 }

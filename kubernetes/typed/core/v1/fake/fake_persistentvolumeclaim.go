@@ -17,12 +17,12 @@ limitations under the License.
 package fake
 
 import (
-	api "k8s.io/client-go/1.5/pkg/api"
-	unversioned "k8s.io/client-go/1.5/pkg/api/unversioned"
-	v1 "k8s.io/client-go/1.5/pkg/api/v1"
-	labels "k8s.io/client-go/1.5/pkg/labels"
-	watch "k8s.io/client-go/1.5/pkg/watch"
-	testing "k8s.io/client-go/1.5/testing"
+	api "k8s.io/client-go/pkg/api"
+	unversioned "k8s.io/client-go/pkg/api/unversioned"
+	v1 "k8s.io/client-go/pkg/api/v1"
+	labels "k8s.io/client-go/pkg/labels"
+	watch "k8s.io/client-go/pkg/watch"
+	testing "k8s.io/client-go/testing"
 )
 
 // FakePersistentVolumeClaims implements PersistentVolumeClaimInterface
@@ -63,14 +63,14 @@ func (c *FakePersistentVolumeClaims) UpdateStatus(persistentVolumeClaim *v1.Pers
 	return obj.(*v1.PersistentVolumeClaim), err
 }
 
-func (c *FakePersistentVolumeClaims) Delete(name string, options *api.DeleteOptions) error {
+func (c *FakePersistentVolumeClaims) Delete(name string, options *v1.DeleteOptions) error {
 	_, err := c.Fake.
 		Invokes(testing.NewDeleteAction(persistentvolumeclaimsResource, c.ns, name), &v1.PersistentVolumeClaim{})
 
 	return err
 }
 
-func (c *FakePersistentVolumeClaims) DeleteCollection(options *api.DeleteOptions, listOptions api.ListOptions) error {
+func (c *FakePersistentVolumeClaims) DeleteCollection(options *v1.DeleteOptions, listOptions v1.ListOptions) error {
 	action := testing.NewDeleteCollectionAction(persistentvolumeclaimsResource, c.ns, listOptions)
 
 	_, err := c.Fake.Invokes(action, &v1.PersistentVolumeClaimList{})
@@ -87,7 +87,7 @@ func (c *FakePersistentVolumeClaims) Get(name string) (result *v1.PersistentVolu
 	return obj.(*v1.PersistentVolumeClaim), err
 }
 
-func (c *FakePersistentVolumeClaims) List(opts api.ListOptions) (result *v1.PersistentVolumeClaimList, err error) {
+func (c *FakePersistentVolumeClaims) List(opts v1.ListOptions) (result *v1.PersistentVolumeClaimList, err error) {
 	obj, err := c.Fake.
 		Invokes(testing.NewListAction(persistentvolumeclaimsResource, c.ns, opts), &v1.PersistentVolumeClaimList{})
 
@@ -95,7 +95,7 @@ func (c *FakePersistentVolumeClaims) List(opts api.ListOptions) (result *v1.Pers
 		return nil, err
 	}
 
-	label := opts.LabelSelector
+	label, _, _ := testing.ExtractFromListOptions(opts)
 	if label == nil {
 		label = labels.Everything()
 	}
@@ -109,7 +109,7 @@ func (c *FakePersistentVolumeClaims) List(opts api.ListOptions) (result *v1.Pers
 }
 
 // Watch returns a watch.Interface that watches the requested persistentVolumeClaims.
-func (c *FakePersistentVolumeClaims) Watch(opts api.ListOptions) (watch.Interface, error) {
+func (c *FakePersistentVolumeClaims) Watch(opts v1.ListOptions) (watch.Interface, error) {
 	return c.Fake.
 		InvokesWatch(testing.NewWatchAction(persistentvolumeclaimsResource, c.ns, opts))
 

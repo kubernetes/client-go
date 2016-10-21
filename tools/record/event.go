@@ -21,14 +21,14 @@ import (
 	"math/rand"
 	"time"
 
-	"k8s.io/client-go/1.5/pkg/api/errors"
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
-	"k8s.io/client-go/1.5/pkg/api/v1"
-	"k8s.io/client-go/1.5/pkg/runtime"
-	"k8s.io/client-go/1.5/pkg/util/clock"
-	utilruntime "k8s.io/client-go/1.5/pkg/util/runtime"
-	"k8s.io/client-go/1.5/pkg/watch"
-	"k8s.io/client-go/1.5/rest"
+	"k8s.io/client-go/pkg/api/errors"
+	"k8s.io/client-go/pkg/api/unversioned"
+	"k8s.io/client-go/pkg/api/v1"
+	"k8s.io/client-go/pkg/runtime"
+	"k8s.io/client-go/pkg/util/clock"
+	utilruntime "k8s.io/client-go/pkg/util/runtime"
+	"k8s.io/client-go/pkg/watch"
+	"k8s.io/client-go/rest"
 
 	"net/http"
 

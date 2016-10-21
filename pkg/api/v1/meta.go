@@ -17,10 +17,10 @@ limitations under the License.
 package v1
 
 import (
-	"k8s.io/client-go/1.5/pkg/api/meta"
-	"k8s.io/client-go/1.5/pkg/api/meta/metatypes"
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
-	"k8s.io/client-go/1.5/pkg/types"
+	"k8s.io/client-go/pkg/api/meta"
+	"k8s.io/client-go/pkg/api/meta/metatypes"
+	"k8s.io/client-go/pkg/api/unversioned"
+	"k8s.io/client-go/pkg/types"
 )
 
 func (obj *ObjectMeta) GetObjectMeta() meta.Object { return obj }

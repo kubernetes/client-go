@@ -25,11 +25,11 @@ import (
 
 	"github.com/golang/groupcache/lru"
 
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
-	"k8s.io/client-go/1.5/pkg/api/v1"
-	"k8s.io/client-go/1.5/pkg/util/clock"
-	"k8s.io/client-go/1.5/pkg/util/sets"
-	"k8s.io/client-go/1.5/pkg/util/strategicpatch"
+	"k8s.io/client-go/pkg/api/unversioned"
+	"k8s.io/client-go/pkg/api/v1"
+	"k8s.io/client-go/pkg/util/clock"
+	"k8s.io/client-go/pkg/util/sets"
+	"k8s.io/client-go/pkg/util/strategicpatch"
 )
 
 const (

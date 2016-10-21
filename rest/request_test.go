@@ -31,21 +31,22 @@ import (
 	"testing"
 	"time"
 
-	"k8s.io/client-go/1.5/pkg/api"
-	apierrors "k8s.io/client-go/1.5/pkg/api/errors"
-	"k8s.io/client-go/1.5/pkg/api/testapi"
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
-	"k8s.io/client-go/1.5/pkg/api/v1"
-	"k8s.io/client-go/1.5/pkg/labels"
-	"k8s.io/client-go/1.5/pkg/runtime"
-	"k8s.io/client-go/1.5/pkg/runtime/serializer/streaming"
-	"k8s.io/client-go/1.5/pkg/util/clock"
-	"k8s.io/client-go/1.5/pkg/util/flowcontrol"
-	"k8s.io/client-go/1.5/pkg/util/httpstream"
-	"k8s.io/client-go/1.5/pkg/util/intstr"
-	utiltesting "k8s.io/client-go/1.5/pkg/util/testing"
-	"k8s.io/client-go/1.5/pkg/watch"
-	"k8s.io/client-go/1.5/pkg/watch/versioned"
+	"k8s.io/client-go/pkg/api"
+	apierrors "k8s.io/client-go/pkg/api/errors"
+	"k8s.io/client-go/pkg/api/testapi"
+	"k8s.io/client-go/pkg/api/unversioned"
+	"k8s.io/client-go/pkg/api/v1"
+	"k8s.io/client-go/pkg/apimachinery/registered"
+	"k8s.io/client-go/pkg/labels"
+	"k8s.io/client-go/pkg/runtime"
+	"k8s.io/client-go/pkg/runtime/serializer/streaming"
+	"k8s.io/client-go/pkg/util/clock"
+	"k8s.io/client-go/pkg/util/flowcontrol"
+	"k8s.io/client-go/pkg/util/httpstream"
+	"k8s.io/client-go/pkg/util/intstr"
+	utiltesting "k8s.io/client-go/pkg/util/testing"
+	"k8s.io/client-go/pkg/watch"
+	"k8s.io/client-go/pkg/watch/versioned"
 )
 
 func TestNewRequestSetsAccept(t *testing.T) {
@@ -89,7 +90,7 @@ func TestRequestSetsHeaders(t *testing.T) {
 func TestRequestWithErrorWontChange(t *testing.T) {
 	original := Request{
 		err:     errors.New("test"),
-		content: ContentConfig{GroupVersion: testapi.Default.GroupVersion()},
+		content: ContentConfig{GroupVersion: &registered.GroupOrDie(api.GroupName).GroupVersion},
 	}
 	r := original
 	changed := r.Param("foo", "bar").
@@ -273,7 +274,7 @@ func (obj NotAnAPIObject) SetGroupVersionKind(gvk *unversioned.GroupVersionKind)
 
 func defaultContentConfig() ContentConfig {
 	return ContentConfig{
-		GroupVersion:         testapi.Default.GroupVersion(),
+		GroupVersion:         &registered.GroupOrDie(api.GroupName).GroupVersion,
 		NegotiatedSerializer: testapi.Default.NegotiatedSerializer(),
 	}
 }
@@ -1153,7 +1154,7 @@ func TestDoRequestNewWayReader(t *testing.T) {
 	}
 	tmpStr := string(reqBodyExpected)
 	requestURL := testapi.Default.ResourcePathWithPrefix("foo", "bar", "", "baz")
-	requestURL += "?" + unversioned.LabelSelectorQueryParam(testapi.Default.GroupVersion().String()) + "=name%3Dfoo&timeout=1s"
+	requestURL += "?" + unversioned.LabelSelectorQueryParam(registered.GroupOrDie(api.GroupName).GroupVersion.String()) + "=name%3Dfoo&timeout=1s"
 	fakeHandler.ValidateRequest(t, requestURL, "POST", &tmpStr)
 }
 
@@ -1193,7 +1194,7 @@ func TestDoRequestNewWayObj(t *testing.T) {
 	}
 	tmpStr := string(reqBodyExpected)
 	requestURL := testapi.Default.ResourcePath("foo", "", "bar/baz")
-	requestURL += "?" + unversioned.LabelSelectorQueryParam(testapi.Default.GroupVersion().String()) + "=name%3Dfoo&timeout=1s"
+	requestURL += "?" + unversioned.LabelSelectorQueryParam(registered.GroupOrDie(api.GroupName).GroupVersion.String()) + "=name%3Dfoo&timeout=1s"
 	fakeHandler.ValidateRequest(t, requestURL, "POST", &tmpStr)
 }
 

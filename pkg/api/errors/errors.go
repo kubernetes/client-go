@@ -22,20 +22,18 @@ import (
 	"net/http"
 	"strings"
 
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
-	"k8s.io/client-go/1.5/pkg/runtime"
-	"k8s.io/client-go/1.5/pkg/util/validation/field"
+	"k8s.io/client-go/pkg/api/unversioned"
+	"k8s.io/client-go/pkg/runtime"
+	"k8s.io/client-go/pkg/util/validation/field"
 )
 
 // HTTP Status codes not in the golang http package.
 const (
 	StatusUnprocessableEntity = 422
 	StatusTooManyRequests     = 429
-	// HTTP recommendations are for servers to define 5xx error codes
-	// for scenarios not covered by behavior. In this case, ServerTimeout
-	// is an indication that a transient server error has occurred and the
-	// client *should* retry, with an optional Retry-After header to specify
-	// the back off window.
+	// StatusServerTimeout is an indication that a transient server error has
+	// occurred and the client *should* retry, with an optional Retry-After
+	// header to specify the back off window.
 	StatusServerTimeout = 504
 )
 

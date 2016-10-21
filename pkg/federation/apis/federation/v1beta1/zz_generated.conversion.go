@@ -21,11 +21,11 @@ limitations under the License.
 package v1beta1
 
 import (
-	api "k8s.io/client-go/1.5/pkg/api"
-	v1 "k8s.io/client-go/1.5/pkg/api/v1"
-	conversion "k8s.io/client-go/1.5/pkg/conversion"
-	federation "k8s.io/client-go/1.5/pkg/federation/apis/federation"
-	runtime "k8s.io/client-go/1.5/pkg/runtime"
+	api "k8s.io/client-go/pkg/api"
+	v1 "k8s.io/client-go/pkg/api/v1"
+	conversion "k8s.io/client-go/pkg/conversion"
+	federation "k8s.io/client-go/pkg/federation/apis/federation"
+	runtime "k8s.io/client-go/pkg/runtime"
 )
 
 func init() {

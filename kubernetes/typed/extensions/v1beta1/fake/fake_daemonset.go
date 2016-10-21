@@ -17,12 +17,13 @@ limitations under the License.
 package fake
 
 import (
-	api "k8s.io/client-go/1.5/pkg/api"
-	unversioned "k8s.io/client-go/1.5/pkg/api/unversioned"
-	v1beta1 "k8s.io/client-go/1.5/pkg/apis/extensions/v1beta1"
-	labels "k8s.io/client-go/1.5/pkg/labels"
-	watch "k8s.io/client-go/1.5/pkg/watch"
-	testing "k8s.io/client-go/1.5/testing"
+	api "k8s.io/client-go/pkg/api"
+	unversioned "k8s.io/client-go/pkg/api/unversioned"
+	v1 "k8s.io/client-go/pkg/api/v1"
+	v1beta1 "k8s.io/client-go/pkg/apis/extensions/v1beta1"
+	labels "k8s.io/client-go/pkg/labels"
+	watch "k8s.io/client-go/pkg/watch"
+	testing "k8s.io/client-go/testing"
 )
 
 // FakeDaemonSets implements DaemonSetInterface
@@ -63,14 +64,14 @@ func (c *FakeDaemonSets) UpdateStatus(daemonSet *v1beta1.DaemonSet) (*v1beta1.Da
 	return obj.(*v1beta1.DaemonSet), err
 }
 
-func (c *FakeDaemonSets) Delete(name string, options *api.DeleteOptions) error {
+func (c *FakeDaemonSets) Delete(name string, options *v1.DeleteOptions) error {
 	_, err := c.Fake.
 		Invokes(testing.NewDeleteAction(daemonsetsResource, c.ns, name), &v1beta1.DaemonSet{})
 
 	return err
 }
 
-func (c *FakeDaemonSets) DeleteCollection(options *api.DeleteOptions, listOptions api.ListOptions) error {
+func (c *FakeDaemonSets) DeleteCollection(options *v1.DeleteOptions, listOptions v1.ListOptions) error {
 	action := testing.NewDeleteCollectionAction(daemonsetsResource, c.ns, listOptions)
 
 	_, err := c.Fake.Invokes(action, &v1beta1.DaemonSetList{})
@@ -87,7 +88,7 @@ func (c *FakeDaemonSets) Get(name string) (result *v1beta1.DaemonSet, err error)
 	return obj.(*v1beta1.DaemonSet), err
 }
 
-func (c *FakeDaemonSets) List(opts api.ListOptions) (result *v1beta1.DaemonSetList, err error) {
+func (c *FakeDaemonSets) List(opts v1.ListOptions) (result *v1beta1.DaemonSetList, err error) {
 	obj, err := c.Fake.
 		Invokes(testing.NewListAction(daemonsetsResource, c.ns, opts), &v1beta1.DaemonSetList{})
 
@@ -95,7 +96,7 @@ func (c *FakeDaemonSets) List(opts api.ListOptions) (result *v1beta1.DaemonSetLi
 		return nil, err
 	}
 
-	label := opts.LabelSelector
+	label, _, _ := testing.ExtractFromListOptions(opts)
 	if label == nil {
 		label = labels.Everything()
 	}
@@ -109,7 +110,7 @@ func (c *FakeDaemonSets) List(opts api.ListOptions) (result *v1beta1.DaemonSetLi
 }
 
 // Watch returns a watch.Interface that watches the requested daemonSets.
-func (c *FakeDaemonSets) Watch(opts api.ListOptions) (watch.Interface, error) {
+func (c *FakeDaemonSets) Watch(opts v1.ListOptions) (watch.Interface, error) {
 	return c.Fake.
 		InvokesWatch(testing.NewWatchAction(daemonsetsResource, c.ns, opts))
 

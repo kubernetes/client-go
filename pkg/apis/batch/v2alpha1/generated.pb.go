@@ -45,8 +45,8 @@ import proto "github.com/gogo/protobuf/proto"
 import fmt "fmt"
 import math "math"
 
-import k8s_io_kubernetes_pkg_api_unversioned "k8s.io/client-go/1.5/pkg/api/unversioned"
-import k8s_io_kubernetes_pkg_api_v1 "k8s.io/client-go/1.5/pkg/api/v1"
+import k8s_io_kubernetes_pkg_api_unversioned "k8s.io/client-go/pkg/api/unversioned"
+import k8s_io_kubernetes_pkg_api_v1 "k8s.io/client-go/pkg/api/v1"
 
 import strings "strings"
 import reflect "reflect"
@@ -118,19 +118,19 @@ func (*ScheduledJobStatus) ProtoMessage()               {}
 func (*ScheduledJobStatus) Descriptor() ([]byte, []int) { return fileDescriptorGenerated, []int{12} }
 
 func init() {
-	proto.RegisterType((*Job)(nil), "k8s.io.client-go.1.5.pkg.apis.batch.v2alpha1.Job")
-	proto.RegisterType((*JobCondition)(nil), "k8s.io.client-go.1.5.pkg.apis.batch.v2alpha1.JobCondition")
-	proto.RegisterType((*JobList)(nil), "k8s.io.client-go.1.5.pkg.apis.batch.v2alpha1.JobList")
-	proto.RegisterType((*JobSpec)(nil), "k8s.io.client-go.1.5.pkg.apis.batch.v2alpha1.JobSpec")
-	proto.RegisterType((*JobStatus)(nil), "k8s.io.client-go.1.5.pkg.apis.batch.v2alpha1.JobStatus")
-	proto.RegisterType((*JobTemplate)(nil), "k8s.io.client-go.1.5.pkg.apis.batch.v2alpha1.JobTemplate")
-	proto.RegisterType((*JobTemplateSpec)(nil), "k8s.io.client-go.1.5.pkg.apis.batch.v2alpha1.JobTemplateSpec")
-	proto.RegisterType((*LabelSelector)(nil), "k8s.io.client-go.1.5.pkg.apis.batch.v2alpha1.LabelSelector")
-	proto.RegisterType((*LabelSelectorRequirement)(nil), "k8s.io.client-go.1.5.pkg.apis.batch.v2alpha1.LabelSelectorRequirement")
-	proto.RegisterType((*ScheduledJob)(nil), "k8s.io.client-go.1.5.pkg.apis.batch.v2alpha1.ScheduledJob")
-	proto.RegisterType((*ScheduledJobList)(nil), "k8s.io.client-go.1.5.pkg.apis.batch.v2alpha1.ScheduledJobList")
-	proto.RegisterType((*ScheduledJobSpec)(nil), "k8s.io.client-go.1.5.pkg.apis.batch.v2alpha1.ScheduledJobSpec")
-	proto.RegisterType((*ScheduledJobStatus)(nil), "k8s.io.client-go.1.5.pkg.apis.batch.v2alpha1.ScheduledJobStatus")
+	proto.RegisterType((*Job)(nil), "k8s.io.client-go.pkg.apis.batch.v2alpha1.Job")
+	proto.RegisterType((*JobCondition)(nil), "k8s.io.client-go.pkg.apis.batch.v2alpha1.JobCondition")
+	proto.RegisterType((*JobList)(nil), "k8s.io.client-go.pkg.apis.batch.v2alpha1.JobList")
+	proto.RegisterType((*JobSpec)(nil), "k8s.io.client-go.pkg.apis.batch.v2alpha1.JobSpec")
+	proto.RegisterType((*JobStatus)(nil), "k8s.io.client-go.pkg.apis.batch.v2alpha1.JobStatus")
+	proto.RegisterType((*JobTemplate)(nil), "k8s.io.client-go.pkg.apis.batch.v2alpha1.JobTemplate")
+	proto.RegisterType((*JobTemplateSpec)(nil), "k8s.io.client-go.pkg.apis.batch.v2alpha1.JobTemplateSpec")
+	proto.RegisterType((*LabelSelector)(nil), "k8s.io.client-go.pkg.apis.batch.v2alpha1.LabelSelector")
+	proto.RegisterType((*LabelSelectorRequirement)(nil), "k8s.io.client-go.pkg.apis.batch.v2alpha1.LabelSelectorRequirement")
+	proto.RegisterType((*ScheduledJob)(nil), "k8s.io.client-go.pkg.apis.batch.v2alpha1.ScheduledJob")
+	proto.RegisterType((*ScheduledJobList)(nil), "k8s.io.client-go.pkg.apis.batch.v2alpha1.ScheduledJobList")
+	proto.RegisterType((*ScheduledJobSpec)(nil), "k8s.io.client-go.pkg.apis.batch.v2alpha1.ScheduledJobSpec")
+	proto.RegisterType((*ScheduledJobStatus)(nil), "k8s.io.client-go.pkg.apis.batch.v2alpha1.ScheduledJobStatus")
 }
 func (m *Job) Marshal() (data []byte, err error) {
 	size := m.Size()

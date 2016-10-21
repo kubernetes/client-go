@@ -99,15 +99,15 @@ func (*SubjectAccessReviewStatus) Descriptor() ([]byte, []int) {
 }
 
 func init() {
-	proto.RegisterType((*ExtraValue)(nil), "k8s.io.client-go.1.5.pkg.apis.authorization.v1beta1.ExtraValue")
-	proto.RegisterType((*LocalSubjectAccessReview)(nil), "k8s.io.client-go.1.5.pkg.apis.authorization.v1beta1.LocalSubjectAccessReview")
-	proto.RegisterType((*NonResourceAttributes)(nil), "k8s.io.client-go.1.5.pkg.apis.authorization.v1beta1.NonResourceAttributes")
-	proto.RegisterType((*ResourceAttributes)(nil), "k8s.io.client-go.1.5.pkg.apis.authorization.v1beta1.ResourceAttributes")
-	proto.RegisterType((*SelfSubjectAccessReview)(nil), "k8s.io.client-go.1.5.pkg.apis.authorization.v1beta1.SelfSubjectAccessReview")
-	proto.RegisterType((*SelfSubjectAccessReviewSpec)(nil), "k8s.io.client-go.1.5.pkg.apis.authorization.v1beta1.SelfSubjectAccessReviewSpec")
-	proto.RegisterType((*SubjectAccessReview)(nil), "k8s.io.client-go.1.5.pkg.apis.authorization.v1beta1.SubjectAccessReview")
-	proto.RegisterType((*SubjectAccessReviewSpec)(nil), "k8s.io.client-go.1.5.pkg.apis.authorization.v1beta1.SubjectAccessReviewSpec")
-	proto.RegisterType((*SubjectAccessReviewStatus)(nil), "k8s.io.client-go.1.5.pkg.apis.authorization.v1beta1.SubjectAccessReviewStatus")
+	proto.RegisterType((*ExtraValue)(nil), "k8s.io.client-go.pkg.apis.authorization.v1beta1.ExtraValue")
+	proto.RegisterType((*LocalSubjectAccessReview)(nil), "k8s.io.client-go.pkg.apis.authorization.v1beta1.LocalSubjectAccessReview")
+	proto.RegisterType((*NonResourceAttributes)(nil), "k8s.io.client-go.pkg.apis.authorization.v1beta1.NonResourceAttributes")
+	proto.RegisterType((*ResourceAttributes)(nil), "k8s.io.client-go.pkg.apis.authorization.v1beta1.ResourceAttributes")
+	proto.RegisterType((*SelfSubjectAccessReview)(nil), "k8s.io.client-go.pkg.apis.authorization.v1beta1.SelfSubjectAccessReview")
+	proto.RegisterType((*SelfSubjectAccessReviewSpec)(nil), "k8s.io.client-go.pkg.apis.authorization.v1beta1.SelfSubjectAccessReviewSpec")
+	proto.RegisterType((*SubjectAccessReview)(nil), "k8s.io.client-go.pkg.apis.authorization.v1beta1.SubjectAccessReview")
+	proto.RegisterType((*SubjectAccessReviewSpec)(nil), "k8s.io.client-go.pkg.apis.authorization.v1beta1.SubjectAccessReviewSpec")
+	proto.RegisterType((*SubjectAccessReviewStatus)(nil), "k8s.io.client-go.pkg.apis.authorization.v1beta1.SubjectAccessReviewStatus")
 }
 func (m ExtraValue) Marshal() (data []byte, err error) {
 	size := m.Size()

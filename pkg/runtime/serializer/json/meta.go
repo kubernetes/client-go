@@ -20,7 +20,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
+	"k8s.io/client-go/pkg/api/unversioned"
 )
 
 // MetaFactory is used to store and retrieve the version and kind

@@ -21,11 +21,11 @@ syntax = 'proto2';
 
 package k8s.io.kubernetes.pkg.apis.apps.v1alpha1;
 
-import "k8s.io/kubernetes/pkg/api/resource/generated.proto";
-import "k8s.io/kubernetes/pkg/api/unversioned/generated.proto";
-import "k8s.io/kubernetes/pkg/api/v1/generated.proto";
-import "k8s.io/kubernetes/pkg/runtime/generated.proto";
-import "k8s.io/kubernetes/pkg/util/intstr/generated.proto";
+import "k8s.io/client-go/pkg/api/resource/generated.proto";
+import "k8s.io/client-go/pkg/api/unversioned/generated.proto";
+import "k8s.io/client-go/pkg/api/v1/generated.proto";
+import "k8s.io/client-go/pkg/runtime/generated.proto";
+import "k8s.io/client-go/pkg/util/intstr/generated.proto";
 
 // Package-wide variables from generator "generated".
 option go_package = "v1alpha1";
@@ -66,7 +66,7 @@ message PetSetSpec {
 
   // Selector is a label query over pods that should match the replica count.
   // If empty, defaulted to labels on the pod template.
-  // More info: http://releases.k8s.io/HEAD/docs/user-guide/labels.md#label-selectors
+  // More info: http://kubernetes.io/docs/user-guide/labels#label-selectors
   optional k8s.io.kubernetes.pkg.api.unversioned.LabelSelector selector = 2;
 
   // Template is the object that describes the pod that will be created if

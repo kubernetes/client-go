@@ -17,12 +17,13 @@ limitations under the License.
 package fake
 
 import (
-	api "k8s.io/client-go/1.5/pkg/api"
-	unversioned "k8s.io/client-go/1.5/pkg/api/unversioned"
-	v1 "k8s.io/client-go/1.5/pkg/apis/batch/v1"
-	labels "k8s.io/client-go/1.5/pkg/labels"
-	watch "k8s.io/client-go/1.5/pkg/watch"
-	testing "k8s.io/client-go/1.5/testing"
+	api "k8s.io/client-go/pkg/api"
+	unversioned "k8s.io/client-go/pkg/api/unversioned"
+	api_v1 "k8s.io/client-go/pkg/api/v1"
+	v1 "k8s.io/client-go/pkg/apis/batch/v1"
+	labels "k8s.io/client-go/pkg/labels"
+	watch "k8s.io/client-go/pkg/watch"
+	testing "k8s.io/client-go/testing"
 )
 
 // FakeJobs implements JobInterface
@@ -63,14 +64,14 @@ func (c *FakeJobs) UpdateStatus(job *v1.Job) (*v1.Job, error) {
 	return obj.(*v1.Job), err
 }
 
-func (c *FakeJobs) Delete(name string, options *api.DeleteOptions) error {
+func (c *FakeJobs) Delete(name string, options *api_v1.DeleteOptions) error {
 	_, err := c.Fake.
 		Invokes(testing.NewDeleteAction(jobsResource, c.ns, name), &v1.Job{})
 
 	return err
 }
 
-func (c *FakeJobs) DeleteCollection(options *api.DeleteOptions, listOptions api.ListOptions) error {
+func (c *FakeJobs) DeleteCollection(options *api_v1.DeleteOptions, listOptions api_v1.ListOptions) error {
 	action := testing.NewDeleteCollectionAction(jobsResource, c.ns, listOptions)
 
 	_, err := c.Fake.Invokes(action, &v1.JobList{})
@@ -87,7 +88,7 @@ func (c *FakeJobs) Get(name string) (result *v1.Job, err error) {
 	return obj.(*v1.Job), err
 }
 
-func (c *FakeJobs) List(opts api.ListOptions) (result *v1.JobList, err error) {
+func (c *FakeJobs) List(opts api_v1.ListOptions) (result *v1.JobList, err error) {
 	obj, err := c.Fake.
 		Invokes(testing.NewListAction(jobsResource, c.ns, opts), &v1.JobList{})
 
@@ -95,7 +96,7 @@ func (c *FakeJobs) List(opts api.ListOptions) (result *v1.JobList, err error) {
 		return nil, err
 	}
 
-	label := opts.LabelSelector
+	label, _, _ := testing.ExtractFromListOptions(opts)
 	if label == nil {
 		label = labels.Everything()
 	}
@@ -109,7 +110,7 @@ func (c *FakeJobs) List(opts api.ListOptions) (result *v1.JobList, err error) {
 }
 
 // Watch returns a watch.Interface that watches the requested jobs.
-func (c *FakeJobs) Watch(opts api.ListOptions) (watch.Interface, error) {
+func (c *FakeJobs) Watch(opts api_v1.ListOptions) (watch.Interface, error) {
 	return c.Fake.
 		InvokesWatch(testing.NewWatchAction(jobsResource, c.ns, opts))
 

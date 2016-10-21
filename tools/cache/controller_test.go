@@ -23,12 +23,12 @@ import (
 	"testing"
 	"time"
 
-	"k8s.io/client-go/1.5/pkg/api"
-	"k8s.io/client-go/1.5/pkg/runtime"
-	"k8s.io/client-go/1.5/pkg/util/sets"
-	"k8s.io/client-go/1.5/pkg/util/wait"
-	"k8s.io/client-go/1.5/pkg/watch"
-	fcache "k8s.io/client-go/1.5/tools/cache/testing"
+	"k8s.io/client-go/pkg/api"
+	"k8s.io/client-go/pkg/runtime"
+	"k8s.io/client-go/pkg/util/sets"
+	"k8s.io/client-go/pkg/util/wait"
+	"k8s.io/client-go/pkg/watch"
+	fcache "k8s.io/client-go/tools/cache/testing"
 
 	"github.com/google/gofuzz"
 )

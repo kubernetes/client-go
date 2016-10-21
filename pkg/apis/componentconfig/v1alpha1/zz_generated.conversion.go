@@ -21,11 +21,11 @@ limitations under the License.
 package v1alpha1
 
 import (
-	api "k8s.io/client-go/1.5/pkg/api"
-	componentconfig "k8s.io/client-go/1.5/pkg/apis/componentconfig"
-	conversion "k8s.io/client-go/1.5/pkg/conversion"
-	runtime "k8s.io/client-go/1.5/pkg/runtime"
-	config "k8s.io/client-go/1.5/pkg/util/config"
+	api "k8s.io/client-go/pkg/api"
+	componentconfig "k8s.io/client-go/pkg/apis/componentconfig"
+	conversion "k8s.io/client-go/pkg/conversion"
+	runtime "k8s.io/client-go/pkg/runtime"
+	config "k8s.io/client-go/pkg/util/config"
 )
 
 func init() {
@@ -248,6 +248,7 @@ func autoConvert_v1alpha1_KubeletConfiguration_To_componentconfig_KubeletConfigu
 	if err := api.Convert_Pointer_bool_To_bool(&in.CgroupsPerQOS, &out.CgroupsPerQOS, s); err != nil {
 		return err
 	}
+	out.CgroupDriver = in.CgroupDriver
 	out.ContainerRuntime = in.ContainerRuntime
 	out.RemoteRuntimeEndpoint = in.RemoteRuntimeEndpoint
 	out.RemoteImageEndpoint = in.RemoteImageEndpoint
@@ -290,7 +291,6 @@ func autoConvert_v1alpha1_KubeletConfiguration_To_componentconfig_KubeletConfigu
 	if err := api.Convert_Pointer_bool_To_bool(&in.SerializeImagePulls, &out.SerializeImagePulls, s); err != nil {
 		return err
 	}
-	out.ExperimentalFlannelOverlay = in.ExperimentalFlannelOverlay
 	out.OutOfDiskTransitionFrequency = in.OutOfDiskTransitionFrequency
 	out.NodeIP = in.NodeIP
 	out.NodeLabels = in.NodeLabels
@@ -426,6 +426,7 @@ func autoConvert_componentconfig_KubeletConfiguration_To_v1alpha1_KubeletConfigu
 	if err := api.Convert_bool_To_Pointer_bool(&in.CgroupsPerQOS, &out.CgroupsPerQOS, s); err != nil {
 		return err
 	}
+	out.CgroupDriver = in.CgroupDriver
 	out.RuntimeCgroups = in.RuntimeCgroups
 	out.SystemCgroups = in.SystemCgroups
 	out.CgroupRoot = in.CgroupRoot
@@ -471,7 +472,6 @@ func autoConvert_componentconfig_KubeletConfiguration_To_v1alpha1_KubeletConfigu
 	if err := api.Convert_bool_To_Pointer_bool(&in.SerializeImagePulls, &out.SerializeImagePulls, s); err != nil {
 		return err
 	}
-	out.ExperimentalFlannelOverlay = in.ExperimentalFlannelOverlay
 	out.OutOfDiskTransitionFrequency = in.OutOfDiskTransitionFrequency
 	out.NodeIP = in.NodeIP
 	out.NodeLabels = in.NodeLabels

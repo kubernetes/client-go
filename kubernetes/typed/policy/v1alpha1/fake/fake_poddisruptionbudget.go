@@ -17,12 +17,13 @@ limitations under the License.
 package fake
 
 import (
-	api "k8s.io/client-go/1.5/pkg/api"
-	unversioned "k8s.io/client-go/1.5/pkg/api/unversioned"
-	v1alpha1 "k8s.io/client-go/1.5/pkg/apis/policy/v1alpha1"
-	labels "k8s.io/client-go/1.5/pkg/labels"
-	watch "k8s.io/client-go/1.5/pkg/watch"
-	testing "k8s.io/client-go/1.5/testing"
+	api "k8s.io/client-go/pkg/api"
+	unversioned "k8s.io/client-go/pkg/api/unversioned"
+	v1 "k8s.io/client-go/pkg/api/v1"
+	v1alpha1 "k8s.io/client-go/pkg/apis/policy/v1alpha1"
+	labels "k8s.io/client-go/pkg/labels"
+	watch "k8s.io/client-go/pkg/watch"
+	testing "k8s.io/client-go/testing"
 )
 
 // FakePodDisruptionBudgets implements PodDisruptionBudgetInterface
@@ -63,14 +64,14 @@ func (c *FakePodDisruptionBudgets) UpdateStatus(podDisruptionBudget *v1alpha1.Po
 	return obj.(*v1alpha1.PodDisruptionBudget), err
 }
 
-func (c *FakePodDisruptionBudgets) Delete(name string, options *api.DeleteOptions) error {
+func (c *FakePodDisruptionBudgets) Delete(name string, options *v1.DeleteOptions) error {
 	_, err := c.Fake.
 		Invokes(testing.NewDeleteAction(poddisruptionbudgetsResource, c.ns, name), &v1alpha1.PodDisruptionBudget{})
 
 	return err
 }
 
-func (c *FakePodDisruptionBudgets) DeleteCollection(options *api.DeleteOptions, listOptions api.ListOptions) error {
+func (c *FakePodDisruptionBudgets) DeleteCollection(options *v1.DeleteOptions, listOptions v1.ListOptions) error {
 	action := testing.NewDeleteCollectionAction(poddisruptionbudgetsResource, c.ns, listOptions)
 
 	_, err := c.Fake.Invokes(action, &v1alpha1.PodDisruptionBudgetList{})
@@ -87,7 +88,7 @@ func (c *FakePodDisruptionBudgets) Get(name string) (result *v1alpha1.PodDisrupt
 	return obj.(*v1alpha1.PodDisruptionBudget), err
 }
 
-func (c *FakePodDisruptionBudgets) List(opts api.ListOptions) (result *v1alpha1.PodDisruptionBudgetList, err error) {
+func (c *FakePodDisruptionBudgets) List(opts v1.ListOptions) (result *v1alpha1.PodDisruptionBudgetList, err error) {
 	obj, err := c.Fake.
 		Invokes(testing.NewListAction(poddisruptionbudgetsResource, c.ns, opts), &v1alpha1.PodDisruptionBudgetList{})
 
@@ -95,7 +96,7 @@ func (c *FakePodDisruptionBudgets) List(opts api.ListOptions) (result *v1alpha1.
 		return nil, err
 	}
 
-	label := opts.LabelSelector
+	label, _, _ := testing.ExtractFromListOptions(opts)
 	if label == nil {
 		label = labels.Everything()
 	}
@@ -109,7 +110,7 @@ func (c *FakePodDisruptionBudgets) List(opts api.ListOptions) (result *v1alpha1.
 }
 
 // Watch returns a watch.Interface that watches the requested podDisruptionBudgets.
-func (c *FakePodDisruptionBudgets) Watch(opts api.ListOptions) (watch.Interface, error) {
+func (c *FakePodDisruptionBudgets) Watch(opts v1.ListOptions) (watch.Interface, error) {
 	return c.Fake.
 		InvokesWatch(testing.NewWatchAction(poddisruptionbudgetsResource, c.ns, opts))
 

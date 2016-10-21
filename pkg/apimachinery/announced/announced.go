@@ -24,8 +24,8 @@ package announced
 import (
 	"fmt"
 
-	"k8s.io/client-go/1.5/pkg/apimachinery/registered"
-	"k8s.io/client-go/1.5/pkg/runtime"
+	"k8s.io/client-go/pkg/apimachinery/registered"
+	"k8s.io/client-go/pkg/runtime"
 )
 
 var (
