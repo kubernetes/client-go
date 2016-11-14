@@ -3,9 +3,9 @@ package main
 import (
 	"encoding/json"
 
-	"k8s.io/client-go/1.5/pkg/api"
-	"k8s.io/client-go/1.5/pkg/api/meta"
-	"k8s.io/client-go/1.5/pkg/api/unversioned"
+	"k8s.io/client-go/pkg/api"
+	"k8s.io/client-go/pkg/api/meta"
+	"k8s.io/client-go/pkg/api/unversioned"
 )
 
 type ExampleSpec struct {
@@ -47,9 +47,11 @@ func (el *ExampleList) GetListMeta() unversioned.List {
 	return &el.Metadata
 }
 
-// The code below is used only to work around a known problem with third-party
-// resources and ugorji. If/when these issues are resolved, the code below
-// should no longer be required.
+// Some of the code below is used only to work around a known problem with
+// third-party resources and ugorji (see: https://github.com/ugorji/go/issues/178).
+// If/when these issues are resolved, `UnmarshalJSON(data []byte) error` will
+// still need to be defined against your custom structs, but there won't be any
+// need for indirection through other types.
 
 type ExampleListCopy ExampleList
 type ExampleCopy Example
