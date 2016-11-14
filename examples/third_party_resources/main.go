@@ -138,7 +138,9 @@ func configureClient(config *rest.Config) {
 	config.GroupVersion = &groupversion
 	config.APIPath = "/apis"
 	config.ContentType = runtime.ContentTypeJSON
-	config.NegotiatedSerializer = serializer.DirectCodecFactory{CodecFactory: api.Codecs}
+
+	scheme := runtime.NewScheme()
+	config.NegotiatedSerializer = serializer.DirectCodecFactory{CodecFactory: serializer.NewCodecFactory(scheme)}
 
 	schemeBuilder := runtime.NewSchemeBuilder(
 		func(scheme *runtime.Scheme) error {
@@ -151,5 +153,5 @@ func configureClient(config *rest.Config) {
 			)
 			return nil
 		})
-	schemeBuilder.AddToScheme(api.Scheme)
+	schemeBuilder.AddToScheme(scheme)
 }
