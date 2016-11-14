@@ -3,7 +3,10 @@
 This particular example demonstrates how to perform basic operations such as:
 
 * How to register a new ThirdPartyResource (custom Resource type)
-* How to create/get/list instances of your new Resource type (update/delete/etc work as well but are not demonstrated) 
+* How to create/get/list instances of your new Resource type (update/delete/etc work as well but are not demonstrated)
+
+Please note that Third Party Resources are still an In Development feature,
+[with known issues](https://github.com/kubernetes/features/issues/95). 
 
 ## Running
 
