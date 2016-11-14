@@ -14,8 +14,10 @@ go run *.go -kubeconfig=$HOME/.kube/config
 
 ## Use Cases
 
-ThirdPartyResources can be used to implement custom Resource types for your Kubernetes cluster.
-These act like most other Resources in Kubernetes, and may be `kubectl apply`'d, etc.
+[ThirdPartyResources](http://kubernetes.io/docs/user-guide/thirdpartyresources/)
+can be used to implement custom Resource types for your Kubernetes cluster.
+Instances of your new resource type then work like most other Kubernetes Resources
+(e.g. `kubectl apply`, `kubectl get mycustomresourcetypes`, etc. work).
 
 Some example use cases:
 
