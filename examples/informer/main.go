@@ -88,7 +88,7 @@ func main() {
 		select {
 		case s := <-signals:
 			fmt.Printf("received signal %#v, exiting...\n", s)
-			close(stopchan)
+			close(stop)
 			os.Exit(0)
 		}
 	}
