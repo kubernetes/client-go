@@ -68,7 +68,8 @@ func main() {
 			DeleteFunc: delete,
 		})
 
-	// store can be used to List and Get, never to write directly
+	// store can be used to List and Get
+	// NEVER modify objects from the store. It's a read-only, local cache.
 	fmt.Println("listing pods from store:")
 	for _, obj := range store.List() {
 		pod := obj.(*v1.Pod)
