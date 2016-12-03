@@ -84,14 +84,10 @@ func main() {
 	// and now we block on a signal
 	signals := make(chan os.Signal, 1)
 	signal.Notify(signals, syscall.SIGINT, syscall.SIGTERM)
-	for {
-		select {
-		case s := <-signals:
-			fmt.Printf("received signal %#v, exiting...\n", s)
-			close(stop)
-			os.Exit(0)
-		}
-	}
+	s := <-signals:
+	fmt.Printf("received signal %#v, exiting...\n", s)
+	close(stop)
+	os.Exit(0)
 }
 
 // Handler functions as per the controller above.
