@@ -35,7 +35,7 @@ func main() {
 		panic(err)
 	}
 
-	stopchan := make(chan struct{}, 1)
+	stop := make(chan struct{}, 1)
 	source := cache.NewListWatchFromClient(
 		clientset.CoreClient,
 		"pods",
@@ -49,9 +49,9 @@ func main() {
 		&v1.Pod{},
 
 		// resyncPeriod
-		// Every resyncPeriod, all of your resources will trigger either a CREATE/UPDATE
-		// event for reconciliation purposes.
-		time.Second*30,
+		// Every resyncPeriod, all resources in the cache will retrigger events.
+		// Set to 0 to disable the resync.
+		time.Second*0,
 
 		// Your custom resource event handlers.
 		cache.ResourceEventHandlerFuncs{
@@ -72,11 +72,13 @@ func main() {
 	fmt.Println("listing pods from store:")
 	for _, obj := range store.List() {
 		pod := obj.(*v1.Pod)
+
+		// This will likely be empty the first run, but may not
 		fmt.Printf("%#v\n", pod)
 	}
 
 	// the controller run starts the event processing loop
-	go controller.Run(stopchan)
+	go controller.Run(stop)
 
 	// and now we block on a signal
 	signals := make(chan os.Signal, 1)
@@ -101,10 +103,10 @@ func create(obj interface{}) {
 }
 
 func update(old, new interface{}) {
-	oldpod := old.(*v1.Pod)
-	// newpod := new.(*v1.Pod)
+	oldPod := old.(*v1.Pod)
+	newPod := new.(*v1.Pod)
 
-	fmt.Println("POD UPDATED:", podWithNamespace(oldpod))
+	fmt.Printf("POD UPDATED:\n  old: %s\n  new: %s\n", podWithNamespace(oldPod), podWithNamespace(newPod))
 }
 
 func delete(obj interface{}) {
