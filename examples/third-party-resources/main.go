@@ -7,10 +7,11 @@ import (
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/pkg/api"
 	"k8s.io/client-go/pkg/api/errors"
-	"k8s.io/client-go/pkg/api/unversioned"
 	"k8s.io/client-go/pkg/api/v1"
 	"k8s.io/client-go/pkg/apis/extensions/v1beta1"
+	metav1 "k8s.io/client-go/pkg/apis/meta/v1"
 	"k8s.io/client-go/pkg/runtime"
+	"k8s.io/client-go/pkg/runtime/schema"
 	"k8s.io/client-go/pkg/runtime/serializer"
 	"k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/clientcmd"
@@ -39,7 +40,7 @@ func main() {
 	}
 
 	// initialize third party resource if it does not exist
-	tpr, err := clientset.Extensions().ThirdPartyResources().Get("example.k8s.io")
+	tpr, err := clientset.Extensions().ThirdPartyResources().Get("example.k8s.io", metav1.GetOptions{})
 	if err != nil {
 		if errors.IsNotFound(err) {
 			tpr := &v1beta1.ThirdPartyResource{
@@ -130,7 +131,7 @@ func buildConfig(kubeconfig string) (*rest.Config, error) {
 }
 
 func configureClient(config *rest.Config) {
-	groupversion := unversioned.GroupVersion{
+	groupversion := schema.GroupVersion{
 		Group:   "k8s.io",
 		Version: "v1",
 	}
