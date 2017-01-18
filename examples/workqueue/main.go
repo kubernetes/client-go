@@ -18,7 +18,6 @@ package main
 
 import (
 	"flag"
-	"runtime/debug"
 	"time"
 
 	"k8s.io/client-go/kubernetes"
@@ -32,16 +31,6 @@ import (
 
 	"github.com/golang/glog"
 )
-
-var (
-	kubeconfig string
-	master     string
-)
-
-func init() {
-	flag.StringVar(&kubeconfig, "kubeconfig", "", "absolute path to the kubeconfig file")
-	flag.StringVar(&master, "master", "", "master url")
-}
 
 type Controller struct {
 	indexer  cache.Indexer
@@ -62,8 +51,6 @@ func NewController(queue workqueue.RateLimitingInterface, indexer cache.Indexer,
 type ControllerFunc func(cache.Indexer, workqueue.RateLimitingInterface) bool
 
 func (c *Controller) Run(threadiness int, stopCh chan struct{}) {
-	// Don't crash the loop on a panic
-	defer catchPanic()
 	// Let the workers stop when we are done
 	defer c.queue.ShutDown()
 	glog.Info("Starting Pod controller")
@@ -84,6 +71,11 @@ func (c *Controller) runWorker() {
 }
 
 func main() {
+	var kubeconfig string
+	var master string
+
+	flag.StringVar(&kubeconfig, "kubeconfig", "", "absolute path to the kubeconfig file")
+	flag.StringVar(&master, "master", "", "master url")
 	flag.Parse()
 
 	// Create the connection
@@ -185,10 +177,4 @@ func main() {
 
 	// Wait forever
 	select {}
-}
-
-func catchPanic() {
-	if r := recover(); r != nil {
-		glog.Errorf("Catched panic with stacktrace %s", string(debug.Stack()))
-	}
 }
