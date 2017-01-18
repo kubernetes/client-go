@@ -4,15 +4,14 @@ import (
 	"flag"
 	"fmt"
 
+	"k8s.io/apimachinery/pkg/api/errors"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/apimachinery/pkg/runtime"
+	"k8s.io/apimachinery/pkg/runtime/schema"
+	"k8s.io/apimachinery/pkg/runtime/serializer"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/pkg/api"
-	"k8s.io/client-go/pkg/api/errors"
-	"k8s.io/client-go/pkg/api/v1"
 	"k8s.io/client-go/pkg/apis/extensions/v1beta1"
-	metav1 "k8s.io/client-go/pkg/apis/meta/v1"
-	"k8s.io/client-go/pkg/runtime"
-	"k8s.io/client-go/pkg/runtime/schema"
-	"k8s.io/client-go/pkg/runtime/serializer"
 	"k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/clientcmd"
 
@@ -44,7 +43,7 @@ func main() {
 	if err != nil {
 		if errors.IsNotFound(err) {
 			tpr := &v1beta1.ThirdPartyResource{
-				ObjectMeta: v1.ObjectMeta{
+				ObjectMeta: metav1.ObjectMeta{
 					Name: "example.k8s.io",
 				},
 				Versions: []v1beta1.APIVersion{
