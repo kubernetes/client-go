@@ -14,7 +14,5 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-// Package policy is for any kind of policy object.  Suitable examples, even if
-// they aren't all here, are PodDisruptionBudget, PodSecurityPolicy,
-// NetworkPolicy, etc.
-package v1alpha1
+// package openapi holds shared codes and types between open API code generator and spec generator.
+package openapi

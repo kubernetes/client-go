@@ -14,25 +14,33 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package fake
+package cert
 
 import (
-	v1alpha1 "k8s.io/client-go/kubernetes/typed/policy/v1alpha1"
-	rest "k8s.io/client-go/rest"
-	testing "k8s.io/client-go/testing"
+	"crypto/x509/pkix"
+	"io/ioutil"
+	"net"
+	"testing"
 )
 
-type FakePolicyV1alpha1 struct {
-	*testing.Fake
-}
+func TestMakeCSR(t *testing.T) {
+	keyFile := "testdata/dontUseThisKey.pem"
+	subject := &pkix.Name{
+		CommonName: "kube-worker",
+	}
+	dnsSANs := []string{"localhost"}
+	ipSANs := []net.IP{net.ParseIP("127.0.0.1")}
 
-func (c *FakePolicyV1alpha1) PodDisruptionBudgets(namespace string) v1alpha1.PodDisruptionBudgetInterface {
-	return &FakePodDisruptionBudgets{c, namespace}
-}
-
-// RESTClient returns a RESTClient that is used to communicate
-// with API server by this client implementation.
-func (c *FakePolicyV1alpha1) RESTClient() rest.Interface {
-	var ret *rest.RESTClient
-	return ret
+	keyData, err := ioutil.ReadFile(keyFile)
+	if err != nil {
+		t.Fatal(err)
+	}
+	key, err := ParsePrivateKeyPEM(keyData)
+	if err != nil {
+		t.Fatal(err)
+	}
+	_, err = MakeCSR(key, subject, dnsSANs, ipSANs)
+	if err != nil {
+		t.Error(err)
+	}
 }
