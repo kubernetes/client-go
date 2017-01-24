@@ -1243,6 +1243,9 @@ type EnvFromSource struct {
 	// The ConfigMap to select from
 	// +optional
 	ConfigMapRef *ConfigMapEnvSource `json:"configMapRef,omitempty" protobuf:"bytes,2,opt,name=configMapRef"`
+	// The Secret to select from
+	// +optional
+	SecretRef *SecretEnvSource `json:"secretRef,omitempty" protobuf:"bytes,3,opt,name=secretRef"`
 }
 
 // ConfigMapEnvSource selects a ConfigMap to populate the environment
@@ -1252,6 +1255,16 @@ type EnvFromSource struct {
 // key-value pairs as environment variables.
 type ConfigMapEnvSource struct {
 	// The ConfigMap to select from.
+	LocalObjectReference `json:",inline" protobuf:"bytes,1,opt,name=localObjectReference"`
+}
+
+// SecretEnvSource selects a Secret to populate the environment
+// variables with.
+//
+// The contents of the target Secret's Data field will represent the
+// key-value pairs as environment variables.
+type SecretEnvSource struct {
+	// The Secret to select from.
 	LocalObjectReference `json:",inline" protobuf:"bytes,1,opt,name=localObjectReference"`
 }
 
@@ -1352,6 +1365,19 @@ const (
 	PullNever PullPolicy = "Never"
 	// PullIfNotPresent means that kubelet pulls if the image isn't present on disk. Container will fail if the image isn't present and the pull fails.
 	PullIfNotPresent PullPolicy = "IfNotPresent"
+)
+
+// TerminationMessagePolicy describes how termination messages are retrieved from a container.
+type TerminationMessagePolicy string
+
+const (
+	// TerminationMessageReadFile is the default behavior and will set the container status message to
+	// the contents of the container's terminationMessagePath when the container exits.
+	TerminationMessageReadFile TerminationMessagePolicy = "File"
+	// TerminationMessageFallbackToLogsOnError will read the most recent contents of the container logs
+	// for the container status message when the container exits with an error and the
+	// terminationMessagePath has no contents.
+	TerminationMessageFallbackToLogsOnError TerminationMessagePolicy = "FallbackToLogsOnError"
 )
 
 // Capability represent POSIX capabilities type
@@ -1471,10 +1497,21 @@ type Container struct {
 	// Optional: Path at which the file to which the container's termination message
 	// will be written is mounted into the container's filesystem.
 	// Message written is intended to be brief final status, such as an assertion failure message.
+	// Will be truncated by the node if greater than 4096 bytes. The total message length across
+	// all containers will be limited to 12kb.
 	// Defaults to /dev/termination-log.
 	// Cannot be updated.
 	// +optional
 	TerminationMessagePath string `json:"terminationMessagePath,omitempty" protobuf:"bytes,13,opt,name=terminationMessagePath"`
+	// Indicate how the termination message should be populated. File will use the contents of
+	// terminationMessagePath to populate the container status message on both success and failure.
+	// FallbackToLogsOnError will use the last chunk of container log output if the termination
+	// message file is empty and the container exited with an error.
+	// The log output is limited to 2048 bytes or 80 lines, whichever is smaller.
+	// Defaults to File.
+	// Cannot be updated.
+	// +optional
+	TerminationMessagePolicy TerminationMessagePolicy `json:"terminationMessagePolicy,omitempty" protobuf:"bytes,20,opt,name=terminationMessagePolicy,casttype=TerminationMessagePolicy"`
 	// Image pull policy.
 	// One of Always, Never, IfNotPresent.
 	// Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.
@@ -3271,6 +3308,8 @@ type DeleteOptions struct {
 }
 
 // ListOptions is the query options to a standard REST list call.
+// DEPRECATED: This type has been moved to meta/v1 and will be removed soon.
+// +k8s:openapi-gen=false
 type ListOptions struct {
 	metav1.TypeMeta `json:",inline"`
 
@@ -3408,6 +3447,21 @@ type PodExecOptions struct {
 
 	// Command is the remote command to execute. argv array. Not executed within a shell.
 	Command []string `json:"command" protobuf:"bytes,6,rep,name=command"`
+}
+
+// PodPortForwardOptions is the query options to a Pod's port forward call
+// when using WebSockets.
+// The `port` query parameter must specify the port or
+// ports (comma separated) to forward over.
+// Port forwarding over SPDY does not use these options. It requires the port
+// to be passed in the `port` header as part of request.
+type PodPortForwardOptions struct {
+	metav1.TypeMeta `json:",inline"`
+
+	// List of ports to forward
+	// Required when using WebSockets
+	// +optional
+	Ports []int32 `json:"ports,omitempty" protobuf:"varint,1,rep,name=ports"`
 }
 
 // PodProxyOptions is the query options to a Pod's proxy call.

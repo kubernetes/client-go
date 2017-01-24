@@ -50,6 +50,23 @@ func (c *ConversionError) Error() string {
 	)
 }
 
+const (
+	// annotation key prefix used to identify non-convertible json paths.
+	NonConvertibleAnnotationPrefix = "non-convertible.kubernetes.io"
+)
+
+// NonConvertibleFields iterates over the provided map and filters out all but
+// any keys with the "non-convertible.kubernetes.io" prefix.
+func NonConvertibleFields(annotations map[string]string) map[string]string {
+	nonConvertibleKeys := map[string]string{}
+	for key, value := range annotations {
+		if strings.HasPrefix(key, NonConvertibleAnnotationPrefix) {
+			nonConvertibleKeys[key] = value
+		}
+	}
+	return nonConvertibleKeys
+}
+
 // Semantic can do semantic deep equality checks for api objects.
 // Example: api.Semantic.DeepEqual(aPod, aPodWithNonNilButEmptyMaps) == true
 var Semantic = conversion.EqualitiesOrDie(
@@ -268,14 +285,6 @@ func SetMetaDataAnnotation(obj *ObjectMeta, ann string, value string) {
 
 func IsStandardFinalizerName(str string) bool {
 	return standardFinalizers.Has(str)
-}
-
-// SingleObject returns a ListOptions for watching a single object.
-func SingleObject(meta metav1.ObjectMeta) ListOptions {
-	return ListOptions{
-		FieldSelector:   fields.OneTermEqualSelector("metadata.name", meta.Name),
-		ResourceVersion: meta.ResourceVersion,
-	}
 }
 
 // AddToNodeAddresses appends the NodeAddresses to the passed-by-pointer slice,
