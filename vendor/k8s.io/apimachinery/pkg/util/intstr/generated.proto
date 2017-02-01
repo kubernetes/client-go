@@ -19,7 +19,7 @@ limitations under the License.
 
 syntax = 'proto2';
 
-package k8s.io.kubernetes.pkg.util.intstr;
+package k8s.io.apimachinery.pkg.util.intstr;
 
 // Package-wide variables from generator "generated".
 option go_package = "intstr";
