@@ -3,10 +3,8 @@ package main
 import (
 	"encoding/json"
 
-	"k8s.io/client-go/pkg/api"
-	"k8s.io/client-go/pkg/api/meta"
-	metav1 "k8s.io/client-go/pkg/apis/meta/v1"
-	"k8s.io/client-go/pkg/runtime/schema"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/apimachinery/pkg/runtime/schema"
 )
 
 type ExampleSpec struct {
@@ -16,7 +14,7 @@ type ExampleSpec struct {
 
 type Example struct {
 	metav1.TypeMeta `json:",inline"`
-	Metadata        api.ObjectMeta `json:"metadata"`
+	Metadata        metav1.ObjectMeta `json:"metadata"`
 
 	Spec ExampleSpec `json:"spec"`
 }
@@ -34,7 +32,7 @@ func (e *Example) GetObjectKind() schema.ObjectKind {
 }
 
 // Required to satisfy ObjectMetaAccessor interface
-func (e *Example) GetObjectMeta() meta.Object {
+func (e *Example) GetObjectMeta() metav1.Object {
 	return &e.Metadata
 }
 
