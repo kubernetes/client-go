@@ -3,10 +3,9 @@ package main
 import (
 	"encoding/json"
 
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/client-go/pkg/api"
-	"k8s.io/client-go/pkg/api/meta"
-	metav1 "k8s.io/client-go/pkg/apis/meta/v1"
-	"k8s.io/client-go/pkg/runtime/schema"
 )
 
 type ExampleSpec struct {
@@ -34,7 +33,7 @@ func (e *Example) GetObjectKind() schema.ObjectKind {
 }
 
 // Required to satisfy ObjectMetaAccessor interface
-func (e *Example) GetObjectMeta() meta.Object {
+func (e *Example) GetObjectMeta() *api.ObjectMeta {
 	return &e.Metadata
 }
 
