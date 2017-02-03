@@ -1,3 +1,19 @@
+/*
+Copyright 2017 The Kubernetes Authors.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
 package main
 
 import (
@@ -39,7 +55,7 @@ func main() {
 	}
 
 	// initialize third party resource if it does not exist
-	tpr, err := clientset.Extensions().ThirdPartyResources().Get("example.k8s.io", metav1.GetOptions{})
+	tpr, err := clientset.ExtensionsV1beta1().ThirdPartyResources().Get("example.k8s.io", metav1.GetOptions{})
 	if err != nil {
 		if errors.IsNotFound(err) {
 			tpr := &v1beta1.ThirdPartyResource{
@@ -52,7 +68,7 @@ func main() {
 				Description: "An Example ThirdPartyResource",
 			}
 
-			result, err := clientset.Extensions().ThirdPartyResources().Create(tpr)
+			result, err := clientset.ExtensionsV1beta1().ThirdPartyResources().Create(tpr)
 			if err != nil {
 				panic(err)
 			}
@@ -86,7 +102,7 @@ func main() {
 		if errors.IsNotFound(err) {
 			// Create an instance of our TPR
 			example := &Example{
-				Metadata: api.ObjectMeta{
+				Metadata: metav1.ObjectMeta{
 					Name: "example1",
 				},
 				Spec: ExampleSpec{
@@ -146,10 +162,9 @@ func configureClient(config *rest.Config) {
 				groupversion,
 				&Example{},
 				&ExampleList{},
-				&api.ListOptions{},
-				&api.DeleteOptions{},
 			)
 			return nil
 		})
+	metav1.AddToGroupVersion(api.Scheme, groupversion)
 	schemeBuilder.AddToScheme(api.Scheme)
 }
