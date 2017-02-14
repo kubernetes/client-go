@@ -110,9 +110,10 @@ existing users won't be broken.
 
 ### How to get it
 
-If you use `go get` to get client-go, **you will get the unstable master branch!** You can `git checkout` a stable branch.
-
-We recommend using a vendor tool, like [godep](https://github.com/tools/godep), [glide](https://github.com/Masterminds/glide), or [govendor](https://github.com/kardianos/govendor) to track a stable version of `client-go`.
+You can use `go get k8s.io/client-go/...` to get client-go, but **you will get
+the unstable master branch** and `client-go`'s vendored dependencies will not be
+added to your `$GOPATH`. So we think most users will want to use a dependency
+management system. See [INSTALL.md](/INSTALL.md) for detailed instructions.
 
 ### How to use it
 
