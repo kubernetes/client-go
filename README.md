@@ -77,7 +77,7 @@ We will backport bugfixes--but not new features--into older versions of
 |                | Kubernetes 1.3 | Kubernetes 1.4 | Kubernetes 1.5 | Kubernetes 1.6 (not released yet) |
 |----------------|----------------|----------------|----------------|----------------|
 | client-go 1.4  | +              | ✓              | -              | -              |
-| client-go 1.5  | +              | +              | ✓              | -              |
+| client-go 1.5  | +              | +              | -              | -              |
 | client-go 2.0  | +              | +              | ✓              | -              |
 | client-go HEAD | +              | +              | +              | ✓              |
 
