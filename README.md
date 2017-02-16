@@ -2,6 +2,10 @@
 
 Go clients for talking to a [kubernetes](http://kubernetes.io/) cluster.
 
+We currently recommend using the v2.0.0 tag. See [INSTALL.md](/INSTALL.md) for
+detailed installation instructions. `go get k8s.io/client-go/...` works, but
+will give you head and doesn't handle the dependencies well.
+
 ## Table of Contents
  
 - [What's included](#whats-included)
@@ -93,13 +97,25 @@ Key:
 See the [CHANGELOG](./CHANGELOG.md) for a detailed description of changes
 between client-go versions.
 
-|                | Canonical source code location                                       |
-|----------------|----------------------------------------------------------------------|
-| client-go 1.4  | Kubernetes main repo, 1.4 branch                                     |
-| client-go 1.5  | Kubernetes main repo, 1.5 branch                                     |
-| client-go 2.0  | Kubernetes main repo, 1.5 branch                                     |
-| client-go HEAD | Kubernetes main repo, master branch                                  |
+| Branch         | Canonical source code location       | Maintenance status            |
+|----------------|--------------------------------------|-------------------------------|
+| client-go 1.4  | Kubernetes main repo, 1.4 branch     | = -                           |
+| client-go 1.5  | Kubernetes main repo, 1.5 branch     | = -                           |
+| client-go 2.0  | Kubernetes main repo, 1.5 branch     | ✓                             |
+| client-go HEAD | Kubernetes main repo, master branch  | ✓                             |
 
+Key:
+
+* ✓ Changes in main Kubernetes repo are actively published to client-go by a bot
+* = Maintenance is manual, only severe security bugs will be patched.
+* - Deprecated; please upgrade.
+
+#### Deprecation policy
+
+We will maintain branches for at least six months after their first stable tag
+is cut. (E.g., the clock for the release-2.0 branch started ticking when we
+tagged v2.0.0, not when we made the first alpha.) This policy applies to
+every version greater than or equal to 2.0.
 
 #### Why do the 1.4 and 1.5 branch contain top-level folder named after the version?
 
