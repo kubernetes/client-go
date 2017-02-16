@@ -53,7 +53,7 @@ $ go install github.com/golang/dep/cmd
 
 # Make sure you have a go file in your directory which imports k8s.io/client-go
 # first--I suggest copying one of the examples.
-$ dep ensure k8s.io/client-go@^1.5.1
+$ dep ensure k8s.io/client-go@^2.0.0
 ```
 
 This will set up a /vendor directory in your current directory, add `k8s.io/client-go`
@@ -85,8 +85,8 @@ To install `client-go` and place its dependencies in your `$GOPATH`:
 ```sh
 go get k8s.io/client-go
 cd $GOPATH/src/k8s.io/client-go
-git checkout v1.5.1
-cd 1.5 # only necessary with 1.5 and 1.4 clients.
+git checkout v2.0.0
+# cd 1.5 # only necessary with 1.5 and 1.4 clients.
 godep restore ./...
 ```
 
@@ -116,8 +116,8 @@ can run this series of commands:
 ```sh
 go get k8s.io/client-go
 cd $GOPATH/src/k8s.io/client-go
-git checkout v1.5.1
-cd 1.5 # only necessary with 1.5 and 1.4 clients.
+git checkout v2.0.0
+# cd 1.5 # only necessary with 1.5 and 1.4 clients.
 glide init # Will import from godep format and produce glide.yaml
 ```
 
@@ -127,10 +127,10 @@ own project (change the `project: ` line at the top!), or, if you already have a
 
 At this point, your `glide.yaml` file has all the dependencies of the client
 library, but doesn't list the client itself. Running `glide install
---strip-vendor k8s.io/client-go#^1.5.1` will add `client-go` to the dependency
+--strip-vendor k8s.io/client-go#^2.0.0` will add `client-go` to the dependency
 list, and all the dependencies should resolve correctly.
 
-Note that simply running `glide install k8s.io/client-go#^1.5.1` without first
+Note that simply running `glide install k8s.io/client-go#^2.0.0` without first
 getting the dependencies sorted out doesn't seem to trigger glide's
 import-from-godep code, and as a consequence it doesn't resolve the dependencies
 correctly.
