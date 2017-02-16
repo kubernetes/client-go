@@ -73,7 +73,7 @@ ensure` again if you start importing a plugin that you weren't using before.
 
 ### Godep
 
-[godep](github.com/tools/godep) is an older dependency management tool, which is
+[godep](https://github.com/tools/godep) is an older dependency management tool, which is
 used by the main Kubernetes repo and `client-go` to manage dependencies.
 
 Before proceeding with the below instructions, you should ensure that your
