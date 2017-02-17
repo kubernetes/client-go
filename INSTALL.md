@@ -42,7 +42,7 @@ for each follows.
 
 ### Dep
 
-[dep](github.com/golang/dep) is an up-and-coming dependency management tool,
+[dep](https://github.com/golang/dep) is an up-and-coming dependency management tool,
 which has the goal of being accepted as part of the standard go toolchain. It
 is currently pre-alpha. However, it comes the closest to working easily out of
 the box.
