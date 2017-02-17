@@ -49,7 +49,7 @@ the box.
 
 ```sh
 $ go get github.com/golang/dep
-$ go install github.com/golang/dep/cmd
+$ go install github.com/golang/dep/cmd/dep
 
 # Make sure you have a go file in your directory which imports k8s.io/client-go
 # first--I suggest copying one of the examples.
