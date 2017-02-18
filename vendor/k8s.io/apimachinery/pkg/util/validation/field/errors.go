@@ -17,8 +17,8 @@ limitations under the License.
 package field
 
 import (
+	"encoding/json"
 	"fmt"
-	"reflect"
 	"strings"
 
 	utilerrors "k8s.io/apimachinery/pkg/util/errors"
@@ -49,30 +49,14 @@ func (v *Error) ErrorBody() string {
 	case ErrorTypeRequired, ErrorTypeForbidden, ErrorTypeTooLong, ErrorTypeInternal:
 		s = fmt.Sprintf("%s", v.Type)
 	default:
-		value := v.BadValue
-		if reflect.TypeOf(value).Kind() == reflect.Ptr {
-			if reflectValue := reflect.ValueOf(value); reflectValue.IsNil() {
-				value = "null"
-			} else {
-				value = reflectValue.Elem().Interface()
-			}
+		var bad string
+		badBytes, err := json.Marshal(v.BadValue)
+		if err != nil {
+			bad = err.Error()
+		} else {
+			bad = string(badBytes)
 		}
-		switch t := value.(type) {
-		case int64, int32, float64, float32, bool:
-			// use simple printer for simple types
-			s = fmt.Sprintf("%s: %v", v.Type, value)
-		case string:
-			s = fmt.Sprintf("%s: %q", v.Type, t)
-		case fmt.Stringer:
-			// anything that defines String() is better than raw struct
-			s = fmt.Sprintf("%s: %s", v.Type, t.String())
-		default:
-			// fallback to raw struct
-			// TODO: internal types have panic guards against json.Marshalling to prevent
-			// accidental use of internal types in external serialized form.  For now, use
-			// %#v, although it would be better to show a more expressive output in the future
-			s = fmt.Sprintf("%s: %#v", v.Type, value)
-		}
+		s = fmt.Sprintf("%s: %s", v.Type, bad)
 	}
 	if len(v.Detail) != 0 {
 		s += fmt.Sprintf(": %s", v.Detail)
