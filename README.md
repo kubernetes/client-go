@@ -17,7 +17,6 @@ will give you head and doesn't handle the dependencies well.
 - [How to get it](#how-to-get-it)
 - [How to use it](#how-to-use-it)
 - [Dependency management](#dependency-management)
-- [Reporting bugs](#reporting-bugs)
 - [Contributing code](#contributing-code)
 
 ### What's included
@@ -140,10 +139,6 @@ If your application runs in a Pod in the cluster, please refer to the in-cluster
 If your application depends on a package that client-go depends on, and you let the Go compiler find the dependency in `GOPATH`, you will end up with duplicated dependencies: one copy from the `GOPATH`, and one from the vendor folder of client-go. This will cause unexpected runtime error like flag redefinition, since the go compiler ends up importing both packages separately, even if they are exactly the same thing. If this happens, you can either
 * run `godep restore` ([godep](https://github.com/tools/godep)) in the client-go/ folder, then remove the vendor folder of client-go. Then the packages in your GOPATH will be the only copy
 * or run `godep save` in your application folder to flatten all dependencies.
-
-### Reporting bugs
-
-Please report bugs to the main Kubernetes [repository](https://github.com/kubernetes/kubernetes/issues/new).
 
 ### Contributing code
 Please send pull requests against the client packages in the Kubernetes main [repository](https://github.com/kubernetes/kubernetes), and run the `/staging/copy.sh` script to update the staging area in the main repository. Changes in the staging area will be published to this repository every day.
