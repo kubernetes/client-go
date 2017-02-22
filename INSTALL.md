@@ -126,11 +126,11 @@ own project (change the `project: ` line at the top!), or, if you already have a
 `glide.yaml` file, you'll need to merge this `glide.yaml` with it.
 
 At this point, your `glide.yaml` file has all the dependencies of the client
-library, but doesn't list the client itself. Running `glide install
+library, but doesn't list the client itself. Running `glide get
 --strip-vendor k8s.io/client-go#^2.0.0` will add `client-go` to the dependency
 list, and all the dependencies should resolve correctly.
 
-Note that simply running `glide install k8s.io/client-go#^2.0.0` without first
+Note that simply running `glide get k8s.io/client-go#^2.0.0` without first
 getting the dependencies sorted out doesn't seem to trigger glide's
 import-from-godep code, and as a consequence it doesn't resolve the dependencies
 correctly.
