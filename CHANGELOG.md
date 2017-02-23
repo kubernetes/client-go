@@ -4,6 +4,8 @@ fixing this.
 
 # HEAD (changes that will go into the next release)
 * Added dependency on k8s.io/apimachinery
+* Added generated listers and informers
+* CHANGED: pass typed options to dynamic client (https://github.com/kubernetes/kubernetes/pull/41887)
 
 # v2.0.0
 
