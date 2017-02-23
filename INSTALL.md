@@ -107,30 +107,60 @@ then `rm -rf vendor/` to remove `client-go`'s copy of its dependencies.
 
 ### Glide
 
-[glide](https://github.com/Masterminds/glide) is another popular dependency
-management tool for go. Glide will manage your /vendor directory, but unlike
-godep, will not modify your $GOPATH (there's no equivalent of `godep restore` or
-`godep save`). To get the `client-go` dependency list into glide's format, you
-can run this series of commands:
+[Glide](https://github.com/Masterminds/glide) is another popular dependency
+management tool for Go. Glide will manage your /vendor directory, but unlike
+godep, will not use or modify your $GOPATH (there's no equivalent of
+`godep restore` or `godep save`).
 
-```sh
-go get k8s.io/client-go
-cd $GOPATH/src/k8s.io/client-go
-git checkout v2.0.0
-# cd 1.5 # only necessary with 1.5 and 1.4 clients.
-glide init # Will import from godep format and produce glide.yaml
+Generally, it's best to avoid Glide's many subcommands, favoring modifying
+Glide's manifest file (`glide.yaml`) directly, then running
+`glide update --strip-vendor`. First create a `glide.yaml` file at the root of
+your project:
+
+```yaml
+package: ( your project's import path ) # e.g. github.com/foo/bar
+import:
+- package: k8s.io/client-go
+  version: v2.0.0
 ```
 
-Next there are two possibilities: you could copy the `glide.yaml` file into your
-own project (change the `project: ` line at the top!), or, if you already have a
-`glide.yaml` file, you'll need to merge this `glide.yaml` with it.
+Second, add a Go file that imports `client-go` somewhere in your project,
+otherwise `client-go`'s dependencies will not be added to your project's
+vendor/. Then run the following command in the same directory as `glide.yaml`:
 
-At this point, your `glide.yaml` file has all the dependencies of the client
-library, but doesn't list the client itself. Running `glide get
---strip-vendor k8s.io/client-go#^2.0.0` will add `client-go` to the dependency
-list, and all the dependencies should resolve correctly.
+```sh
+glide update --strip-vendor
+```
 
-Note that simply running `glide get k8s.io/client-go#^2.0.0` without first
-getting the dependencies sorted out doesn't seem to trigger glide's
-import-from-godep code, and as a consequence it doesn't resolve the dependencies
-correctly.
+This can also be abbreviated as:
+
+```sh
+glide up -v
+```
+
+At this point, `k8s.io/client-go` should be added to your project's vendor/.
+`client-go`'s dependencies should be flattened and be added to your project's
+vendor/ as well.
+
+Glide will detect the versions of dependencies `client-go` specified in
+`client-go`'s Godep.json file, and automatically set the versions of these
+imports in your /vendor directory. It will also record the detected version of
+all dependencies in the `glide.lock` file.
+
+Projects that require a different version of a dependency than `client-go`
+requests can override the version manually in `glide.yaml`. For example:
+
+```yaml
+package: ( your project's import path ) # e.g. github.com/foo/bar
+import:
+- package: k8s.io/client-go
+  version: v2.0.0
+# Use a newer version of go-spew even though client-go wants an old one.
+- package: github.com/davecgh/go-spew
+  version: v1.1.0
+```
+
+After modifying, run `glide up -v` again to re-populate your /vendor directory.
+
+Optionally, Glide users can also use [`glide-vc`](https://github.com/sgotti/glide-vc)
+after running `glide up -v` to remove unused files from /vendor.
