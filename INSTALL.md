@@ -83,7 +83,7 @@ and you have a copy of godep somewhere in your $PATH.
 To install `client-go` and place its dependencies in your `$GOPATH`:
 
 ```sh
-go get k8s.io/client-go
+go get k8s.io/client-go/...
 cd $GOPATH/src/k8s.io/client-go
 git checkout v2.0.0
 # cd 1.5 # only necessary with 1.5 and 1.4 clients.
