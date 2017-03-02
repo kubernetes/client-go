@@ -2,6 +2,9 @@
 
 ## For the casual user
 
+**This currently does not work. Dependencies must be flattened as described in
+the next section. Fixes are in progress.**
+
 If you want to write a simple script, don't care about a reproducible client
 library install, don't mind getting head (which may be less stable than a
 particular release) and don't share any dependencies with client-go, then
