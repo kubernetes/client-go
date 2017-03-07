@@ -36,11 +36,30 @@ the box.
 ```sh
 $ go get github.com/golang/dep
 $ go install github.com/golang/dep/cmd/dep
+```
 
-# Make sure you have a go file in your directory which imports k8s.io/client-go
-# first--I suggest copying one of the examples.
-$ dep init
-$ dep ensure k8s.io/client-go@^2.0.0
+First, make sure you have a go file in your directory which imports k8s.io/client-go -- I suggest copying one of the examples (from the same release version of client-go).
+
+Next, create a `manifest.json` file at the root of your project:
+
+```json
+{
+    "dependencies": {
+        "k8s.io/client-go": {
+            "version": "v2.0.0"
+        },
+        "github.com/emicklei/go-restful": {
+            "version": "v1.2"
+        }
+    }
+}
+
+```
+
+And finally, run:
+
+```sh
+$ dep ensure
 ```
 
 This will set up a `vendor` directory in your current directory, add `k8s.io/client-go`
