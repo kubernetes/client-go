@@ -29,9 +29,9 @@ for each follows.
 ### Dep
 
 [dep](https://github.com/golang/dep) is an up-and-coming dependency management tool,
-which has the goal of being accepted as part of the standard go toolchain. It
-is currently pre-alpha. However, it comes the closest to working easily out of
-the box.
+which has the goal of being accepted as part of the standard go toolchain. Its
+status is currently alpha. However, it comes the closest to working easily out
+of the box.
 
 ```sh
 $ go get github.com/golang/dep
@@ -42,6 +42,10 @@ $ go install github.com/golang/dep/cmd/dep
 $ dep init
 $ dep ensure k8s.io/client-go@^2.0.0
 ```
+
+Then you can try one of the
+[examples](https://github.com/kubernetes/client-go/tree/v2.0.0/examples/) from
+the 2.0.0 release.
 
 This will set up a `vendor` directory in your current directory, add `k8s.io/client-go`
 to it, and flatten all of `k8s.io/client-go`'s dependencies into that vendor directory,
