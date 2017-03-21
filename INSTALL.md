@@ -2,10 +2,33 @@
 
 ## For the casual user
 
-Currently, there is no super easy way to use client-go.  Hopefully this will
-change soon. Simply running `go get k8s.io/client-go/...` will leave you with a
-library that can't practically be used.  It is important to synchronize your
-dependencies with the ones that are required by the library.
+If you want to write a simple script, don't care about a reproducible client
+library install, don't mind getting head (which may be less stable than a
+particular release), then simply:
+
+```sh
+$ go get k8s.io/client-go/...
+```
+
+This will install `k8s.io/client-go` in your `$GOPATH`. `k8s.io/client-go`
+includes most of its own dependencies in its `k8s.io/client-go/vendor` path,
+except for `k8s.io/apimachinery` and `glog`. `go get` will recursively download
+these excluded repos to your `$GOPATH`, if they don't already exist. If
+`k8s.io/apimachinery` preexisted in `$GOPATH`, you also need to:
+
+```sh
+$ go get -u k8s.io/apimachinery/...
+```
+
+because the head of client-go is only guaranteed to work with the head of
+apimachinery.
+
+We excluded `k8s.io/apimachinery` and `glog` from `k8s.io/client-go/vendor` to
+prevent `go get` users from hitting issues like
+[#19](https://github.com/kubernetes/client-go/issues/19) and
+[#83](https://github.com/kubernetes/client-go/issues/83). If your project share
+other dependencies with client-go, and you hit issues similar to #19 or #83,
+then you'll need to look down at the next section.
 
 Note: the official go policy is that libraries should not vendor their
 dependencies. This is unworkable for us, since our dependencies change and HEAD
