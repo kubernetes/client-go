@@ -14,6 +14,7 @@ will give you head and doesn't handle the dependencies well.
   - [Compatibility: client-go <-> Kubernetes clusters](#compatibility-client-go---kubernetes-clusters)
   - [Compatibility matrix](#compatibility-matrix)
   - [Why do the 1.4 and 1.5 branch contain top-level folder named after the version?](#why-do-the-14-and-15-branch-contain-top-level-folder-named-after-the-version)
+- [Where does the code come from]
 - [How to get it](#how-to-get-it)
 - [How to use it](#how-to-use-it)
 - [Dependency management](#dependency-management)
@@ -122,6 +123,12 @@ For the initial release of client-go, we thought it would be easiest to keep
 separate directories for each minor version. That soon proved to be a mistake.
 We are keeping the top-level folders in the 1.4 and 1.5 branches so that
 existing users won't be broken.
+
+### Where does the code come from
+
+client-go is synced from https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/client-go. Code changes are made in that location, merged into k8s.io/kubernetes and later synced here.
+
+To help users who need to know from what version of kubernetes the client-go code is copied, we mark the commit that matches kubernetes `vX.Y.Z` tag with `kubernetes-vX.Y.Z` tag.
 
 ### How to get it
 
