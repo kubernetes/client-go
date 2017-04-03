@@ -8,18 +8,19 @@ will give you head and doesn't handle the dependencies well.
 
 ## Table of Contents
  
-- [What's included](#whats-included)
+- [What's included?](#whats-included)
 - [Versioning](#versioning)
   - [Compatibility: your code <-> client-go](#compatibility-your-code---client-go)
   - [Compatibility: client-go <-> Kubernetes clusters](#compatibility-client-go---kubernetes-clusters)
   - [Compatibility matrix](#compatibility-matrix)
   - [Why do the 1.4 and 1.5 branch contain top-level folder named after the version?](#why-do-the-14-and-15-branch-contain-top-level-folder-named-after-the-version)
-- [How to get it](#how-to-get-it)
-- [How to use it](#how-to-use-it)
+- [Where does the code come from?](#where-does-the-code-come-from)
+- [How to get it?](#how-to-get-it)
+- [How to use it?](#how-to-use-it)
 - [Dependency management](#dependency-management)
 - [Contributing code](#contributing-code)
 
-### What's included
+### What's included?
 
 * The `kubernetes` package contains the clientset to access Kubernetes API.
 * The `discovery` package is used to discover APIs supported by a Kubernetes API server.
@@ -46,7 +47,7 @@ changing the patch version.
 A consequence of this is that `client-go` version numbers will be unrelated to
 Kubernetes version numbers.
 
-#### Branches and tags.
+#### Branches and tags
 
 We will create a new branch and tag for each increment in the major version number or
 minor version number. We will create only a new tag for each increment in the patch
@@ -57,6 +58,15 @@ The master branch will track HEAD in the main Kubernetes repo and
 accumulate changes. Consider HEAD to have the version `x.(y+1).0-alpha` or
 `(x+1).0.0-alpha` (depending on whether it has accumulated a breaking change or
 not), where `x` and `y` are the current major and minor versions.
+
+#### What are the kubernetes-vX.Y.Z tags for?
+
+We make these tags to help users who need to know from what version of
+kubernetes the client-go code is copied. When kubernetes `vX.Y.Z` tag is
+created, if that version results in code changes in client-go,
+k8s.io/apimachinery, k8s.io/apiserver, k8s.io/sample-apiserver, or
+k8s.io/kube-aggregator, we will mark the matching commit in client-go with tag
+`kubernetes-vX.Y.Z`.
 
 #### Compatibility: your code <-> client-go
 
@@ -125,14 +135,14 @@ separate directories for each minor version. That soon proved to be a mistake.
 We are keeping the top-level folders in the 1.4 and 1.5 branches so that
 existing users won't be broken.
 
-### How to get it
+### How to get it?
 
 You can use `go get k8s.io/client-go/...` to get client-go, but **you will get
 the unstable master branch** and `client-go`'s vendored dependencies will not be
 added to your `$GOPATH`. So we think most users will want to use a dependency
 management system. See [INSTALL.md](/INSTALL.md) for detailed instructions.
 
-### How to use it
+### How to use it?
 
 If your application runs in a Pod in the cluster, please refer to the in-cluster [example](examples/in-cluster/main.go), otherwise please refer to the out-of-cluster [example](examples/out-of-cluster/main.go).
 
