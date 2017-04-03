@@ -3,8 +3,22 @@ TODO: This document was neglected and is currently not complete. Working on
 fixing this.
 
 # HEAD (changes that will go into the next release)
-* Added dependency on k8s.io/apimachinery
-* Added generated listers and informers
+
+# v3.0.0-beta.0
+
+* Added dependency on k8s.io/apimachinery. The impacts include changing import path of API objects like `ListOptions` from `k8s.io/client-go/pkg/api/v1` to `k8s.io/apimachinery/pkg/apis/meta/v1`.
+* Added generated listers (listers/) and informers (informers/)
+* Kubernetes API changes:
+  * Added client support for:
+    * authentication/v1
+    * authorization/v1
+    * autoscaling/v2alpha1
+    * rbac/v1beta1
+    * settings/v1alpha1
+    * storage/v1
+  * Changed client support for:
+    * certificates from v1alpha1 to v1beta1
+    * policy from v1alpha1 to v1beta1
 * CHANGED: pass typed options to dynamic client (https://github.com/kubernetes/kubernetes/pull/41887)
 
 # v2.0.0
@@ -18,7 +32,7 @@ fixing this.
   in separate branches.
 * Clientset supported multiple versions per API group
 * Added ThirdPartyResources example
-* API changes
+* Kubernetes API changes
   * Apps API group graduated to v1beta1 
   * Policy API group graduated to v1beta1
   * Added support for batch/v2alpha1/cronjob
