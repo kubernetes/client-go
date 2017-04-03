@@ -60,8 +60,8 @@ of the box.
 $ go get github.com/golang/dep
 $ go install github.com/golang/dep/cmd/dep
 
-# Make sure you have a go file in your directory which imports k8s.io/client-go
-# first--I suggest copying one of the examples.
+# Make sure you have a go file in your directory which imports a package of
+# k8s.io/client-go first--I suggest copying one of the examples.
 $ dep init
 $ dep ensure k8s.io/client-go@^2.0.0
 ```
