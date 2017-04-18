@@ -143,7 +143,7 @@ After modifying, run `glide up -v` again to re-populate your /vendor directory.
 Optionally, Glide users can also use [`glide-vc`](https://github.com/sgotti/glide-vc)
 after running `glide up -v` to remove unused files from /vendor.
 
-### Dep
+### Dep (Experimental)
 
 [dep](https://github.com/golang/dep) is an up-and-coming dependency management tool,
 which has the goal of being accepted as part of the standard go toolchain. Its
@@ -157,12 +157,23 @@ $ go install github.com/golang/dep/cmd/dep
 # Make sure you have a go file in your directory which imports a package of
 # k8s.io/client-go first--I suggest copying one of the examples.
 $ dep init
+
+# If you want to use client-go v2.0.0:
 $ dep ensure k8s.io/client-go@^2.0.0
+# client-go v2.0.0 doesn't depend on k8s.io/apimachinery, so no extra dep commands needed.
+
+# If you want to use client-go v3.0.0-beta.0:
+$ dep ensure k8s.io/client-go@v3.0.0-beta.0
+# Unfortunately dep doesn't interpret client-go/Godeps/Godeps.json, so you need
+to manually checkout the compatible k8s.io/apimachinery version: 
+$ dep ensure k8s.io/apimachinery@75b8dd260ef0469d96d578705a87cffd0e09dab8
 ```
 
 Then you can try one of the
 [examples](https://github.com/kubernetes/client-go/tree/v2.0.0/examples/) from
-the 2.0.0 release.
+the v2.0.0 or
+[those](https://github.com/kubernetes/client-go/tree/v3.0.0-beta.0/examples)
+from v3.0.0-beta.0.
 
 This will set up a `vendor` directory in your current directory, add `k8s.io/client-go`
 to it, and flatten all of `k8s.io/client-go`'s dependencies into that vendor directory,
