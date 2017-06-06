@@ -14,7 +14,7 @@ go_library(
     deps = [
         "//vendor/k8s.io/apimachinery/pkg/fields:go_default_library",
         "//vendor/k8s.io/apimachinery/pkg/runtime:go_default_library",
-        "//vendor/k8s.io/client-go/examples/third-party-resources/apis/tpr/v1:go_default_library",
+        "//vendor/k8s.io/client-go/examples/third-party-resources-deprecated/apis/tpr/v1:go_default_library",
         "//vendor/k8s.io/client-go/pkg/api/v1:go_default_library",
         "//vendor/k8s.io/client-go/rest:go_default_library",
         "//vendor/k8s.io/client-go/tools/cache:go_default_library",

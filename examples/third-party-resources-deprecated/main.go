@@ -32,9 +32,9 @@ import (
 	// Uncomment the following line to load the gcp plugin (only required to authenticate against GKE clusters).
 	// _ "k8s.io/client-go/plugin/pkg/client/auth/gcp"
 
-	tprv1 "k8s.io/client-go/examples/third-party-resources/apis/tpr/v1"
-	exampleclient "k8s.io/client-go/examples/third-party-resources/client"
-	examplecontroller "k8s.io/client-go/examples/third-party-resources/controller"
+	tprv1 "k8s.io/client-go/examples/third-party-resources-deprecated/apis/tpr/v1"
+	exampleclient "k8s.io/client-go/examples/third-party-resources-deprecated/client"
+	examplecontroller "k8s.io/client-go/examples/third-party-resources-deprecated/controller"
 )
 
 func main() {

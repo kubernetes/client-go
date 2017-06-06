@@ -1,4 +1,6 @@
-# Third Party Resources Example
+# Third Party Resources Example – Deprecated
+
+**Note:** ThirdPartyResources are deprecated since 1.7. The successor is CustomResourceDefinition in the apiextensions.k8s.io API group.
 
 This particular example demonstrates how to perform basic operations such as:
 
