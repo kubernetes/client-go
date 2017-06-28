@@ -3,7 +3,7 @@
 ## For the casual user
 
 If you want to write a simple script, don't care about a reproducible client
-library install, don't mind getting head (which may be less stable than a
+library install, don't mind `go get`ting HEAD (which may be less stable than a
 particular release), then simply:
 
 ```sh
