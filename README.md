@@ -93,8 +93,7 @@ Key:
 * `✓` Exactly the same features / API objects in both client-go and the Kubernetes
   version.
 * `+` client-go has features or api objects that may not be present in the
-  Kubernetes cluster. alpha/beta api present in the kubernetes cluster may not
-  be supported by client-go. Everything they have in common will work.
+  Kubernetes cluster, but everything they have in common will work.
 * `-` The Kubernetes cluster has features the client-go library can't use
   (additional API objects, etc).
 * `†` The cluster may be running APIs which are no longer included in the client,
