@@ -85,8 +85,8 @@ We will backport bugfixes--but not new features--into older versions of
 | client-go 1.4       | +              | ✓              | -              | -              | -              |
 | client-go 1.5       | +              | +              | -              | -              | -              |
 | client-go 2.0       | +              | +              | ✓              | -              | -              |
-| client-go 3.0       | +              | +              | +              | ✓              | -              |
-| client-go HEAD      | +              | +              | +              | +              | +              |
+| client-go 3.0       | + †            | +              | +              | ✓              | -              |
+| client-go HEAD      | + †            | + †            | +              | +              | +              |
 
 Key:
 
@@ -97,6 +97,8 @@ Key:
   be supported by client-go. Everything they have in common will work.
 * `-` The Kubernetes cluster has features the client-go library can't use
   (additional API objects, etc).
+* `†` The cluster may be running APIs which are no longer included in the client,
+  either because they were deprecated, or because they were alpha and abandoned.
 
 See the [CHANGELOG](./CHANGELOG.md) for a detailed description of changes
 between client-go versions.
