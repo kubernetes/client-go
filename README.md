@@ -80,20 +80,21 @@ We will backport bugfixes--but not new features--into older versions of
 
 #### Compatibility matrix
 
-|                     | Kubernetes 1.3 | Kubernetes 1.4 | Kubernetes 1.5 | Kubernetes 1.6 |
-|---------------------|----------------|----------------|----------------|----------------|
-| client-go 1.4       | +              | ✓              | -              | -              |
-| client-go 1.5       | +              | +              | -              | -              |
-| client-go 2.0       | +              | +              | ✓              | -              |
-| client-go 3.0 beta  | +              | +              | +              | ✓              |
-| client-go HEAD      | +              | +              | +              | +              |
+|                     | Kubernetes 1.3 | Kubernetes 1.4 | Kubernetes 1.5 | Kubernetes 1.6 | Kubernetes 1.7 |
+|---------------------|----------------|----------------|----------------|----------------|----------------|
+| client-go 1.4       | +              | ✓              | -              | -              | -              |
+| client-go 1.5       | +              | +              | -              | -              | -              |
+| client-go 2.0       | +              | +              | ✓              | -              | -              |
+| client-go 3.0       | +              | +              | +              | ✓              | -              |
+| client-go HEAD      | +              | +              | +              | +              | +              |
 
 Key:
 
 * `✓` Exactly the same features / API objects in both client-go and the Kubernetes
   version.
 * `+` client-go has features or api objects that may not be present in the
-  Kubernetes cluster, but everything they have in common will work.
+  Kubernetes cluster. alpha/beta api present in the kubernetes cluster may not
+  be supported by client-go. Everything they have in common will work.
 * `-` The Kubernetes cluster has features the client-go library can't use
   (additional API objects, etc).
 
