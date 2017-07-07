@@ -84,9 +84,9 @@ We will backport bugfixes--but not new features--into older versions of
 |---------------------|----------------|----------------|----------------|----------------|----------------|
 | client-go 1.4       | +              | ✓              | -              | -              | -              |
 | client-go 1.5       | +              | +              | -              | -              | -              |
-| client-go 2.0       | +              | +              | ✓              | -              | -              |
-| client-go 3.0       | †              | +              | +              | ✓              | -              |
-| client-go HEAD      | †              | †              | +              | +              | +              |
+| client-go 2.0       | †              | †              | ✓              | -              | -              |
+| client-go 3.0       | †              | †              | †              | ✓              | -              |
+| client-go HEAD      | †              | †              | †              | +              | +              |
 
 Key:
 
