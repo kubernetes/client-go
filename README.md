@@ -2,7 +2,7 @@
 
 Go clients for talking to a [kubernetes](http://kubernetes.io/) cluster.
 
-We currently recommend using the v2.0.0 tag. See [INSTALL.md](/INSTALL.md) for
+We currently recommend using the v3.0.0 tag. See [INSTALL.md](/INSTALL.md) for
 detailed installation instructions. `go get k8s.io/client-go/...` works, but
 will give you head and doesn't handle the dependencies well.
 
@@ -85,8 +85,9 @@ We will backport bugfixes--but not new features--into older versions of
 | client-go 1.4       | +              | ✓              | -              | -              | -              |
 | client-go 1.5       | +              | +              | -              | -              | -              |
 | client-go 2.0       | +              | +              | ✓              | -              | -              |
-| client-go 3.0       | †              | +              | +              | ✓              | -              |
-| client-go HEAD      | †              | †              | +              | +              | +              |
+| client-go 3.0       | †              | †              | †              | ✓              | -              |
+| client-go 4.0.beta.0| †              | †              | †              | +              | ✓              |
+| client-go HEAD      | †              | †              | †              | +              | +              |
 
 Key:
 
