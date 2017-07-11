@@ -2,7 +2,18 @@ TODO: This document was manually maintained so might be incomplete. The
 automation effort is tracked in
 https://github.com/kubernetes/client-go/issues/234.
 
-# HEAD (changes that will go into the next release)
+# HEAD (changes that will go into v5)
+
+** Breaking changes**
+
+pkg/api and pkg/apis are moved to
+[k8s.io/aip](https://github.com/kubernetes/api). Other kubernetes repositories
+also import types from there, so they are composable with client-go.
+
+Helper functions in pkg/api and pkg/apis are also removed. They are planned to
+be exported in other repos. The issue is tracked
+[here](https://github.com/kubernetes/kubernetes/issues/48209#issuecomment-314537745).
+During the transition, you'll have to copy the helper functions to your projects. 
 
 # v4.0.0-beta.0
 
