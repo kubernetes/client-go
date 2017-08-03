@@ -40,23 +40,23 @@
     },
     {
       "ImportPath": "github.com/coreos/go-oidc/http",
-      "Rev": "a4973d9a4225417aecf5d450a9522f00c1f7130f"
+      "Rev": "be73733bb8cc830d0205609b95d125215f8e9c70"
     },
     {
       "ImportPath": "github.com/coreos/go-oidc/jose",
-      "Rev": "a4973d9a4225417aecf5d450a9522f00c1f7130f"
+      "Rev": "be73733bb8cc830d0205609b95d125215f8e9c70"
     },
     {
       "ImportPath": "github.com/coreos/go-oidc/key",
-      "Rev": "a4973d9a4225417aecf5d450a9522f00c1f7130f"
+      "Rev": "be73733bb8cc830d0205609b95d125215f8e9c70"
     },
     {
       "ImportPath": "github.com/coreos/go-oidc/oauth2",
-      "Rev": "a4973d9a4225417aecf5d450a9522f00c1f7130f"
+      "Rev": "be73733bb8cc830d0205609b95d125215f8e9c70"
     },
     {
       "ImportPath": "github.com/coreos/go-oidc/oidc",
-      "Rev": "a4973d9a4225417aecf5d450a9522f00c1f7130f"
+      "Rev": "be73733bb8cc830d0205609b95d125215f8e9c70"
     },
     {
       "ImportPath": "github.com/coreos/pkg/health",
@@ -160,15 +160,15 @@
     },
     {
       "ImportPath": "github.com/googleapis/gnostic/OpenAPIv2",
-      "Rev": "0c5108395e2debce0d731cf0287ddf7242066aba"
+      "Rev": "68f4ded48ba9414dab2ae69b3f0d69971da73aa5"
     },
     {
       "ImportPath": "github.com/googleapis/gnostic/compiler",
-      "Rev": "0c5108395e2debce0d731cf0287ddf7242066aba"
+      "Rev": "68f4ded48ba9414dab2ae69b3f0d69971da73aa5"
     },
     {
       "ImportPath": "github.com/googleapis/gnostic/extensions",
-      "Rev": "0c5108395e2debce0d731cf0287ddf7242066aba"
+      "Rev": "68f4ded48ba9414dab2ae69b3f0d69971da73aa5"
     },
     {
       "ImportPath": "github.com/hashicorp/golang-lru",
@@ -272,7 +272,7 @@
     },
     {
       "ImportPath": "golang.org/x/sys/unix",
-      "Rev": "8f0908ab3b2457e2e15403d3697c9ef5cb4b57a9"
+      "Rev": "7a4fde3fda8ef580a89dbae8138c26041be14299"
     },
     {
       "ImportPath": "golang.org/x/text/cases",
@@ -471,10 +471,6 @@
       "Rev": "10097186a05f7d03ca925ad0912be6185f4a202c"
     },
     {
-      "ImportPath": "k8s.io/apimachinery/pkg/openapi",
-      "Rev": "10097186a05f7d03ca925ad0912be6185f4a202c"
-    },
-    {
       "ImportPath": "k8s.io/apimachinery/pkg/runtime",
       "Rev": "10097186a05f7d03ca925ad0912be6185f4a202c"
     },
@@ -609,6 +605,10 @@
     {
       "ImportPath": "k8s.io/apimachinery/third_party/forked/golang/reflect",
       "Rev": "10097186a05f7d03ca925ad0912be6185f4a202c"
+    },
+    {
+      "ImportPath": "k8s.io/kube-openapi/pkg/common",
+      "Rev": "80f07ef71bb4f781233c65aa8d0369e4ecafab87"
     }
   ]
 }

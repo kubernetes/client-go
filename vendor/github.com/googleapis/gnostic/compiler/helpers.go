@@ -19,27 +19,27 @@ import (
 	"gopkg.in/yaml.v2"
 	"regexp"
 	"sort"
-	"strconv"
+	"strings"
 )
 
 // compiler helper functions, usually called from generated code
 
-// UnpackMap gets a yaml.MapSlice if possible.
 func UnpackMap(in interface{}) (yaml.MapSlice, bool) {
 	m, ok := in.(yaml.MapSlice)
 	if ok {
-		return m, true
+		return m, ok
+	} else {
+		// do we have an empty array?
+		a, ok := in.([]interface{})
+		if ok && len(a) == 0 {
+			// if so, return an empty map
+			return yaml.MapSlice{}, ok
+		} else {
+			return nil, ok
+		}
 	}
-	// do we have an empty array?
-	a, ok := in.([]interface{})
-	if ok && len(a) == 0 {
-		// if so, return an empty map
-		return yaml.MapSlice{}, true
-	}
-	return nil, false
 }
 
-// SortedKeysForMap returns the sorted keys of a yaml.MapSlice.
 func SortedKeysForMap(m yaml.MapSlice) []string {
 	keys := make([]string, 0)
 	for _, item := range m {
@@ -49,7 +49,6 @@ func SortedKeysForMap(m yaml.MapSlice) []string {
 	return keys
 }
 
-// MapHasKey returns true if a yaml.MapSlice contains a specified key.
 func MapHasKey(m yaml.MapSlice, key string) bool {
 	for _, item := range m {
 		itemKey, ok := item.Key.(string)
@@ -60,7 +59,6 @@ func MapHasKey(m yaml.MapSlice, key string) bool {
 	return false
 }
 
-// MapValueForKey gets the value of a map value for a specified key.
 func MapValueForKey(m yaml.MapSlice, key string) interface{} {
 	for _, item := range m {
 		itemKey, ok := item.Key.(string)
@@ -71,7 +69,6 @@ func MapValueForKey(m yaml.MapSlice, key string) interface{} {
 	return nil
 }
 
-// ConvertInterfaceArrayToStringArray converts an array of interfaces to an array of strings, if possible.
 func ConvertInterfaceArrayToStringArray(interfaceArray []interface{}) []string {
 	stringArray := make([]string, 0)
 	for _, item := range interfaceArray {
@@ -83,7 +80,22 @@ func ConvertInterfaceArrayToStringArray(interfaceArray []interface{}) []string {
 	return stringArray
 }
 
-// MissingKeysInMap identifies which keys from a list of required keys are not in a map.
+func PatternMatches(pattern string, value string) bool {
+	// if pattern contains a subpattern like "{path}", replace it with ".*"
+	if pattern[0] != '^' {
+		subpatternPattern := regexp.MustCompile("^.*(\\{.*\\}).*$")
+		if matches := subpatternPattern.FindSubmatch([]byte(pattern)); matches != nil {
+			match := string(matches[1])
+			pattern = strings.Replace(pattern, match, ".*", -1)
+		}
+	}
+	matched, err := regexp.Match(pattern, []byte(value))
+	if err != nil {
+		panic(err)
+	}
+	return matched
+}
+
 func MissingKeysInMap(m yaml.MapSlice, requiredKeys []string) []string {
 	missingKeys := make([]string, 0)
 	for _, k := range requiredKeys {
@@ -94,8 +106,7 @@ func MissingKeysInMap(m yaml.MapSlice, requiredKeys []string) []string {
 	return missingKeys
 }
 
-// InvalidKeysInMap returns keys in a map that don't match a list of allowed keys and patterns.
-func InvalidKeysInMap(m yaml.MapSlice, allowedKeys []string, allowedPatterns []*regexp.Regexp) []string {
+func InvalidKeysInMap(m yaml.MapSlice, allowedKeys []string, allowedPatterns []string) []string {
 	invalidKeys := make([]string, 0)
 	for _, item := range m {
 		itemKey, ok := item.Key.(string)
@@ -112,7 +123,7 @@ func InvalidKeysInMap(m yaml.MapSlice, allowedKeys []string, allowedPatterns []*
 			if !found {
 				// does the key match an allowed pattern?
 				for _, allowedPattern := range allowedPatterns {
-					if allowedPattern.MatchString(key) {
+					if PatternMatches(allowedPattern, key) {
 						found = true
 						break
 					}
@@ -126,13 +137,13 @@ func InvalidKeysInMap(m yaml.MapSlice, allowedKeys []string, allowedPatterns []*
 	return invalidKeys
 }
 
-// DescribeMap describes a map (for debugging purposes).
+// describe a map (for debugging purposes)
 func DescribeMap(in interface{}, indent string) string {
 	description := ""
 	m, ok := in.(map[string]interface{})
 	if ok {
 		keys := make([]string, 0)
-		for k := range m {
+		for k, _ := range m {
 			keys = append(keys, k)
 		}
 		sort.Strings(keys)
@@ -155,15 +166,14 @@ func DescribeMap(in interface{}, indent string) string {
 	return description
 }
 
-// PluralProperties returns the string "properties" pluralized.
 func PluralProperties(count int) string {
 	if count == 1 {
 		return "property"
+	} else {
+		return "properties"
 	}
-	return "properties"
 }
 
-// StringArrayContainsValue returns true if a string array contains a specified value.
 func StringArrayContainsValue(array []string, value string) bool {
 	for _, item := range array {
 		if item == value {
@@ -173,7 +183,6 @@ func StringArrayContainsValue(array []string, value string) bool {
 	return false
 }
 
-// StringArrayContainsValues returns true if a string array contains all of a list of specified values.
 func StringArrayContainsValues(array []string, values []string) bool {
 	for _, value := range values {
 		if !StringArrayContainsValue(array, value) {
@@ -181,17 +190,4 @@ func StringArrayContainsValues(array []string, values []string) bool {
 		}
 	}
 	return true
-}
-
-// StringValue returns the string value of an item.
-func StringValue(item interface{}) (value string, ok bool) {
-	value, ok = item.(string)
-	if ok {
-		return value, ok
-	}
-	intValue, ok := item.(int)
-	if ok {
-		return strconv.Itoa(intValue), true
-	}
-	return "", false
 }

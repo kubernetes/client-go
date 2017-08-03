@@ -25,30 +25,29 @@ import (
 	"strings"
 )
 
-var fileCache map[string][]byte
-var infoCache map[string]interface{}
+var file_cache map[string][]byte
+var info_cache map[string]interface{}
 var count int64
 
-var verboseReader = false
+var VERBOSE_READER = false
 
 func initializeFileCache() {
-	if fileCache == nil {
-		fileCache = make(map[string][]byte, 0)
+	if file_cache == nil {
+		file_cache = make(map[string][]byte, 0)
 	}
 }
 
 func initializeInfoCache() {
-	if infoCache == nil {
-		infoCache = make(map[string]interface{}, 0)
+	if info_cache == nil {
+		info_cache = make(map[string]interface{}, 0)
 	}
 }
 
-// FetchFile gets a specified file from the local filesystem or a remote location.
 func FetchFile(fileurl string) ([]byte, error) {
 	initializeFileCache()
-	bytes, ok := fileCache[fileurl]
+	bytes, ok := file_cache[fileurl]
 	if ok {
-		if verboseReader {
+		if VERBOSE_READER {
 			log.Printf("Cache hit %s", fileurl)
 		}
 		return bytes, nil
@@ -57,17 +56,30 @@ func FetchFile(fileurl string) ([]byte, error) {
 	response, err := http.Get(fileurl)
 	if err != nil {
 		return nil, err
+	} else {
+		defer response.Body.Close()
+		bytes, err := ioutil.ReadAll(response.Body)
+		if err == nil {
+			file_cache[fileurl] = bytes
+		}
+		return bytes, err
 	}
-	defer response.Body.Close()
-	bytes, err = ioutil.ReadAll(response.Body)
-	if err == nil {
-		fileCache[fileurl] = bytes
-	}
-	return bytes, err
 }
 
-// ReadBytesForFile reads the bytes of a file.
-func ReadBytesForFile(filename string) ([]byte, error) {
+// read a file and unmarshal it as a yaml.MapSlice
+func ReadInfoForFile(filename string) (interface{}, error) {
+	initializeInfoCache()
+	info, ok := info_cache[filename]
+	if ok {
+		if VERBOSE_READER {
+			log.Printf("Cache hit info for file %s", filename)
+		}
+		return info, nil
+	}
+	if VERBOSE_READER {
+		log.Printf("Reading info for file %s", filename)
+	}
+
 	// is the filename a url?
 	fileurl, _ := url.Parse(filename)
 	if fileurl.Scheme != "" {
@@ -76,51 +88,43 @@ func ReadBytesForFile(filename string) ([]byte, error) {
 		if err != nil {
 			return nil, err
 		}
-		return bytes, nil
-	}
-	// no, it's a local filename
-	bytes, err := ioutil.ReadFile(filename)
-	if err != nil {
-		return nil, err
-	}
-	return bytes, nil
-}
-
-// ReadInfoFromBytes unmarshals a file as a yaml.MapSlice.
-func ReadInfoFromBytes(filename string, bytes []byte) (interface{}, error) {
-	initializeInfoCache()
-	cachedInfo, ok := infoCache[filename]
-	if ok {
-		if verboseReader {
-			log.Printf("Cache hit info for file %s", filename)
+		var info yaml.MapSlice
+		err = yaml.Unmarshal(bytes, &info)
+		if err != nil {
+			return nil, err
 		}
-		return cachedInfo, nil
+		info_cache[filename] = info
+		return info, nil
+	} else {
+		// no, it's a local filename
+		bytes, err := ioutil.ReadFile(filename)
+		if err != nil {
+			log.Printf("File error: %v\n", err)
+			return nil, err
+		}
+		var info yaml.MapSlice
+		err = yaml.Unmarshal(bytes, &info)
+		if err != nil {
+			return nil, err
+		}
+		info_cache[filename] = info
+		return info, nil
 	}
-	if verboseReader {
-		log.Printf("Reading info for file %s", filename)
-	}
-	var info yaml.MapSlice
-	err := yaml.Unmarshal(bytes, &info)
-	if err != nil {
-		return nil, err
-	}
-	infoCache[filename] = info
-	return info, nil
 }
 
-// ReadInfoForRef reads a file and return the fragment needed to resolve a $ref.
+// read a file and return the fragment needed to resolve a $ref
 func ReadInfoForRef(basefile string, ref string) (interface{}, error) {
 	initializeInfoCache()
 	{
-		info, ok := infoCache[ref]
+		info, ok := info_cache[ref]
 		if ok {
-			if verboseReader {
+			if VERBOSE_READER {
 				log.Printf("Cache hit for ref %s#%s", basefile, ref)
 			}
 			return info, nil
 		}
 	}
-	if verboseReader {
+	if VERBOSE_READER {
 		log.Printf("Reading info for ref %s#%s", basefile, ref)
 	}
 	count = count + 1
@@ -132,11 +136,7 @@ func ReadInfoForRef(basefile string, ref string) (interface{}, error) {
 	} else {
 		filename = basefile
 	}
-	bytes, err := ReadBytesForFile(filename)
-	if err != nil {
-		return nil, err
-	}
-	info, err := ReadInfoFromBytes(filename, bytes)
+	info, err := ReadInfoForFile(filename)
 	if err != nil {
 		log.Printf("File error: %v\n", err)
 	} else {
@@ -154,7 +154,7 @@ func ReadInfoForRef(basefile string, ref string) (interface{}, error) {
 							}
 						}
 						if !found {
-							infoCache[ref] = nil
+							info_cache[ref] = nil
 							return nil, NewError(nil, fmt.Sprintf("could not resolve %s", ref))
 						}
 					}
@@ -162,6 +162,6 @@ func ReadInfoForRef(basefile string, ref string) (interface{}, error) {
 			}
 		}
 	}
-	infoCache[ref] = info
+	info_cache[ref] = info
 	return info, nil
 }
