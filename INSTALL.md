@@ -164,6 +164,18 @@ Then you can try one of the
 [examples](https://github.com/kubernetes/client-go/tree/v2.0.0/examples/) from
 the 2.0.0 release.
 
+For client-go 3.0.0 must be defined `k8s.io/apimachinery` override in Gopkg.toml
+
+```
+[[constraint]]
+  name = "k8s.io/client-go"
+  version = "3.0.0"
+
+[[override]]
+  name = "k8s.io/apimachinery"
+  branch = "release-1.6"
+```
+
 This will set up a `vendor` directory in your current directory, add `k8s.io/client-go`
 to it, and flatten all of `k8s.io/client-go`'s dependencies into that vendor directory,
 so that your code and `client-go` will both get the same copy of each
