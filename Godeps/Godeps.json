@@ -40,23 +40,23 @@
     },
     {
       "ImportPath": "github.com/coreos/go-oidc/http",
-      "Rev": "be73733bb8cc830d0205609b95d125215f8e9c70"
+      "Rev": "a4973d9a4225417aecf5d450a9522f00c1f7130f"
     },
     {
       "ImportPath": "github.com/coreos/go-oidc/jose",
-      "Rev": "be73733bb8cc830d0205609b95d125215f8e9c70"
+      "Rev": "a4973d9a4225417aecf5d450a9522f00c1f7130f"
     },
     {
       "ImportPath": "github.com/coreos/go-oidc/key",
-      "Rev": "be73733bb8cc830d0205609b95d125215f8e9c70"
+      "Rev": "a4973d9a4225417aecf5d450a9522f00c1f7130f"
     },
     {
       "ImportPath": "github.com/coreos/go-oidc/oauth2",
-      "Rev": "be73733bb8cc830d0205609b95d125215f8e9c70"
+      "Rev": "a4973d9a4225417aecf5d450a9522f00c1f7130f"
     },
     {
       "ImportPath": "github.com/coreos/go-oidc/oidc",
-      "Rev": "be73733bb8cc830d0205609b95d125215f8e9c70"
+      "Rev": "a4973d9a4225417aecf5d450a9522f00c1f7130f"
     },
     {
       "ImportPath": "github.com/coreos/pkg/health",
@@ -155,20 +155,32 @@
       "Rev": "4bd1920723d7b7c925de087aa32e2187708897f7"
     },
     {
+      "ImportPath": "github.com/google/btree",
+      "Rev": "7d79101e329e5a3adf994758c578dab82b90c017"
+    },
+    {
       "ImportPath": "github.com/google/gofuzz",
       "Rev": "44d81051d367757e1c7c6a5a86423ece9afcf63c"
     },
     {
       "ImportPath": "github.com/googleapis/gnostic/OpenAPIv2",
-      "Rev": "68f4ded48ba9414dab2ae69b3f0d69971da73aa5"
+      "Rev": "0c5108395e2debce0d731cf0287ddf7242066aba"
     },
     {
       "ImportPath": "github.com/googleapis/gnostic/compiler",
-      "Rev": "68f4ded48ba9414dab2ae69b3f0d69971da73aa5"
+      "Rev": "0c5108395e2debce0d731cf0287ddf7242066aba"
     },
     {
       "ImportPath": "github.com/googleapis/gnostic/extensions",
-      "Rev": "68f4ded48ba9414dab2ae69b3f0d69971da73aa5"
+      "Rev": "0c5108395e2debce0d731cf0287ddf7242066aba"
+    },
+    {
+      "ImportPath": "github.com/gregjones/httpcache",
+      "Rev": "787624de3eb7bd915c329cba748687a3b22666a6"
+    },
+    {
+      "ImportPath": "github.com/gregjones/httpcache/diskcache",
+      "Rev": "787624de3eb7bd915c329cba748687a3b22666a6"
     },
     {
       "ImportPath": "github.com/hashicorp/golang-lru",
@@ -205,6 +217,10 @@
     {
       "ImportPath": "github.com/mailru/easyjson/jwriter",
       "Rev": "d5b7844b561a7bc640052f1b935f7b800330d7e0"
+    },
+    {
+      "ImportPath": "github.com/peterbourgon/diskv",
+      "Rev": "5dfcb07a075adbaaa4094cddfd160b1e1c77a043"
     },
     {
       "ImportPath": "github.com/pmezard/go-difflib/difflib",
