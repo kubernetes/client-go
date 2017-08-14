@@ -151,4 +151,4 @@ If your application depends on a package that client-go depends on, and you let 
 * or run `godep save` in your application folder to flatten all dependencies.
 
 ### Contributing code
-Please send pull requests against the client packages in the Kubernetes main [repository](https://github.com/kubernetes/kubernetes), and run the `./hack/update-staging-client-go.sh` script to update the staging area in the main repository. Changes in the staging area will be published to this repository every day.
+Please send pull requests against the client packages in the Kubernetes main [repository](https://github.com/kubernetes/kubernetes). Changes in the staging area will be published to this repository every day.
