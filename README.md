@@ -2,7 +2,7 @@
 
 Go clients for talking to a [kubernetes](http://kubernetes.io/) cluster.
 
-We currently recommend using the v3.0.0 tag. See [INSTALL.md](/INSTALL.md) for
+We currently recommend using the v4.0.0 tag. See [INSTALL.md](/INSTALL.md) for
 detailed installation instructions. `go get k8s.io/client-go/...` works, but
 will give you head and doesn't handle the dependencies well.
 
@@ -86,7 +86,7 @@ We will backport bugfixes--but not new features--into older versions of
 | client-go 1.5       | +              | +              | -              | -              | -              |
 | client-go 2.0       | +              | +              | ✓              | -              | -              |
 | client-go 3.0       | †              | †              | †              | ✓              | -              |
-| client-go 4.0.beta.0| †              | †              | †              | +              | ✓              |
+| client-go 4.0       | †              | †              | †              | +              | ✓              |
 | client-go HEAD      | †              | †              | †              | +              | +              |
 
 Key:
@@ -111,6 +111,7 @@ between client-go versions.
 | client-go 1.5  | Kubernetes main repo, 1.5 branch     | = -                           |
 | client-go 2.0  | Kubernetes main repo, 1.5 branch     | ✓                             |
 | client-go 3.0  | Kubernetes main repo, 1.6 branch     | ✓                             |
+| client-go 4.0  | Kubernetes main repo, 1.7 branch     | ✓                             |
 | client-go HEAD | Kubernetes main repo, master branch  | ✓                             |
 
 Key:
