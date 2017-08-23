@@ -678,8 +678,6 @@ func (b *builder) parseIndices() {
 	b.locale.parse(meta.DefaultContent.Locales)
 }
 
-// TODO: region inclusion data will probably not be use used in future matchers.
-
 func (b *builder) computeRegionGroups() {
 	b.groups = make(map[int]index)
 
@@ -688,11 +686,6 @@ func (b *builder) computeRegionGroups() {
 		b.groups[i] = index(len(b.groups))
 	}
 	for _, g := range b.supp.TerritoryContainment.Group {
-		// Skip UN and EURO zone as they are flattening the containment
-		// relationship.
-		if g.Type == "EZ" || g.Type == "UN" {
-			continue
-		}
 		group := b.region.index(g.Type)
 		if _, ok := b.groups[group]; !ok {
 			b.groups[group] = index(len(b.groups))
@@ -789,7 +782,6 @@ func (b *builder) writeLanguage() {
 	lang.updateLater("tw", "twi")
 	lang.updateLater("nb", "nob")
 	lang.updateLater("ak", "aka")
-	lang.updateLater("bh", "bih")
 
 	// Ensure that each 2-letter code is matched with a 3-letter code.
 	for _, v := range lang.s[1:] {
@@ -806,10 +798,10 @@ func (b *builder) writeLanguage() {
 		}
 	}
 
-	// Complete canonicalized language tags.
+	// Complete canonialized language tags.
 	lang.freeze()
 	for i, v := range lang.s {
-		// We can avoid these manual entries by using the IANA registry directly.
+		// We can avoid these manual entries by using the IANI registry directly.
 		// Seems easier to update the list manually, as changes are rare.
 		// The panic in this loop will trigger if we miss an entry.
 		add := ""
@@ -916,7 +908,7 @@ func (b *builder) writeRegion() {
 			i := b.region.index(s)
 			for _, d := range e.description {
 				if strings.Contains(d, "Private use") {
-					regionTypes[i] = iso3166UserAssigned
+					regionTypes[i] = iso3166UserAssgined
 				}
 			}
 			regionTypes[i] |= bcp47Region
@@ -1073,7 +1065,7 @@ const (
 )
 
 const (
-	iso3166UserAssigned = 1 << iota
+	iso3166UserAssgined = 1 << iota
 	ccTLD
 	bcp47Region
 )
@@ -1363,23 +1355,42 @@ func (b *builder) writeLikelyData() {
 
 type mutualIntelligibility struct {
 	want, have uint16
-	distance   uint8
+	conf       uint8
 	oneway     bool
 }
 
 type scriptIntelligibility struct {
-	wantLang, haveLang     uint16
-	wantScript, haveScript uint8
-	distance               uint8
-	// Always oneway
+	lang       uint16 // langID or 0 if *
+	want, have uint8
+	conf       uint8
 }
 
-type regionIntelligibility struct {
-	lang     uint16 // compact language id
-	script   uint8  // 0 means any
-	group    uint8  // 0 means any; if bit 7 is set it means inverse
-	distance uint8
-	// Always twoway.
+type sortByConf []mutualIntelligibility
+
+func (l sortByConf) Less(a, b int) bool {
+	return l[a].conf > l[b].conf
+}
+
+func (l sortByConf) Swap(a, b int) {
+	l[a], l[b] = l[b], l[a]
+}
+
+func (l sortByConf) Len() int {
+	return len(l)
+}
+
+// toConf converts a percentage value [0, 100] to a confidence class.
+func toConf(pct uint8) uint8 {
+	switch {
+	case pct == 100:
+		return 3 // Exact
+	case pct >= 90:
+		return 2 // High
+	case pct > 50:
+		return 1 // Low
+	default:
+		return 0 // No
+	}
 }
 
 // writeMatchData writes tables with languages and scripts for which there is
@@ -1389,50 +1400,13 @@ type regionIntelligibility struct {
 // We also drop all region-related data as we use a different algorithm to
 // determine region equivalence.
 func (b *builder) writeMatchData() {
-	lm := b.supp.LanguageMatching.LanguageMatches
-	cldr.MakeSlice(&lm).SelectAnyOf("type", "written_new")
-
-	regionHierarchy := map[string][]string{}
-	for _, g := range b.supp.TerritoryContainment.Group {
-		regions := strings.Split(g.Contains, " ")
-		regionHierarchy[g.Type] = append(regionHierarchy[g.Type], regions...)
-	}
-	regionToGroups := make([]uint8, len(b.region.s))
-
-	idToIndex := map[string]uint8{}
-	for i, mv := range lm[0].MatchVariable {
-		if i > 6 {
-			log.Fatalf("Too many groups: %d", i)
-		}
-		idToIndex[mv.Id] = uint8(i + 1)
-		// TODO: also handle '-'
-		for _, r := range strings.Split(mv.Value, "+") {
-			todo := []string{r}
-			for k := 0; k < len(todo); k++ {
-				r := todo[k]
-				regionToGroups[b.region.index(r)] |= 1 << uint8(i)
-				todo = append(todo, regionHierarchy[r]...)
-			}
-		}
-	}
-	b.writeSlice("regionToGroups", regionToGroups)
-
 	b.writeType(mutualIntelligibility{})
 	b.writeType(scriptIntelligibility{})
-	b.writeType(regionIntelligibility{})
+	lm := b.supp.LanguageMatching.LanguageMatches
+	cldr.MakeSlice(&lm).SelectAnyOf("type", "written")
 
-	matchLang := []mutualIntelligibility{{
-		// TODO: remove once CLDR is fixed.
-		want:     uint16(b.langIndex("sr")),
-		have:     uint16(b.langIndex("hr")),
-		distance: uint8(5),
-	}, {
-		want:     uint16(b.langIndex("sr")),
-		have:     uint16(b.langIndex("bs")),
-		distance: uint8(5),
-	}}
+	matchLang := []mutualIntelligibility{}
 	matchScript := []scriptIntelligibility{}
-	matchRegion := []regionIntelligibility{}
 	// Convert the languageMatch entries in lists keyed by desired language.
 	for _, m := range lm[0].LanguageMatch {
 		// Different versions of CLDR use different separators.
@@ -1440,38 +1414,33 @@ func (b *builder) writeMatchData() {
 		supported := strings.Replace(m.Supported, "-", "_", -1)
 		d := strings.Split(desired, "_")
 		s := strings.Split(supported, "_")
-		if len(d) != len(s) {
-			log.Fatalf("not supported: desired=%q; supported=%q", desired, supported)
+		if len(d) != len(s) || len(d) > 2 {
+			// Skip all entries with regions and work around CLDR bug.
 			continue
 		}
-		distance, _ := strconv.ParseInt(m.Distance, 10, 8)
-		switch len(d) {
-		case 2:
-			if desired == supported && desired == "*_*" {
-				continue
-			}
+		pct, _ := strconv.ParseInt(m.Percent, 10, 8)
+		if len(d) == 2 && d[0] == s[0] && len(d[1]) == 4 {
 			// language-script pair.
+			lang := uint16(0)
+			if d[0] != "*" {
+				lang = uint16(b.langIndex(d[0]))
+			}
 			matchScript = append(matchScript, scriptIntelligibility{
-				wantLang:   uint16(b.langIndex(d[0])),
-				haveLang:   uint16(b.langIndex(s[0])),
-				wantScript: uint8(b.script.index(d[1])),
-				haveScript: uint8(b.script.index(s[1])),
-				distance:   uint8(distance),
+				lang: lang,
+				want: uint8(b.script.index(d[1])),
+				have: uint8(b.script.index(s[1])),
+				conf: toConf(uint8(pct)),
 			})
 			if m.Oneway != "true" {
 				matchScript = append(matchScript, scriptIntelligibility{
-					wantLang:   uint16(b.langIndex(s[0])),
-					haveLang:   uint16(b.langIndex(d[0])),
-					wantScript: uint8(b.script.index(s[1])),
-					haveScript: uint8(b.script.index(d[1])),
-					distance:   uint8(distance),
+					lang: lang,
+					want: uint8(b.script.index(s[1])),
+					have: uint8(b.script.index(d[1])),
+					conf: toConf(uint8(pct)),
 				})
 			}
-		case 1:
-			if desired == supported && desired == "*" {
-				continue
-			}
-			if distance == 1 {
+		} else if len(d) == 1 && d[0] != "*" {
+			if pct == 100 {
 				// nb == no is already handled by macro mapping. Check there
 				// really is only this case.
 				if d[0] != "no" || s[0] != "nb" {
@@ -1479,57 +1448,28 @@ func (b *builder) writeMatchData() {
 				}
 				continue
 			}
-			// TODO: consider dropping oneway field and just doubling the entry.
 			matchLang = append(matchLang, mutualIntelligibility{
-				want:     uint16(b.langIndex(d[0])),
-				have:     uint16(b.langIndex(s[0])),
-				distance: uint8(distance),
-				oneway:   m.Oneway == "true",
+				want:   uint16(b.langIndex(d[0])),
+				have:   uint16(b.langIndex(s[0])),
+				conf:   uint8(pct),
+				oneway: m.Oneway == "true",
 			})
-		case 3:
-			if desired == supported && desired == "*_*_*" {
-				continue
+		} else {
+			// TODO: Handle other mappings.
+			a := []string{"*;*", "*_*;*_*", "es_MX;es_419"}
+			s := strings.Join([]string{desired, supported}, ";")
+			if i := sort.SearchStrings(a, s); i == len(a) || a[i] != s {
+				log.Printf("%q not handled", s)
 			}
-			if desired != supported { // (Weird but correct.)
-				log.Fatalf("not supported: desired=%q; supported=%q", desired, supported)
-				continue
-			}
-			ri := regionIntelligibility{
-				lang:     b.langIndex(d[0]),
-				distance: uint8(distance),
-			}
-			if d[1] != "*" {
-				ri.script = uint8(b.script.index(d[1]))
-			}
-			switch {
-			case d[2] == "*":
-				ri.group = 0x80 // not contained in anything
-			case strings.HasPrefix(d[2], "$!"):
-				ri.group = 0x80
-				d[2] = "$" + d[2][len("$!"):]
-				fallthrough
-			case strings.HasPrefix(d[2], "$"):
-				ri.group |= idToIndex[d[2]]
-			}
-			matchRegion = append(matchRegion, ri)
-		default:
-			log.Fatalf("not supported: desired=%q; supported=%q", desired, supported)
 		}
 	}
-	sort.SliceStable(matchLang, func(i, j int) bool {
-		return matchLang[i].distance < matchLang[j].distance
-	})
+	sort.Stable(sortByConf(matchLang))
+	// collapse percentage into confidence classes
+	for i, m := range matchLang {
+		matchLang[i].conf = toConf(m.conf)
+	}
 	b.writeSlice("matchLang", matchLang)
-
-	sort.SliceStable(matchScript, func(i, j int) bool {
-		return matchScript[i].distance < matchScript[j].distance
-	})
 	b.writeSlice("matchScript", matchScript)
-
-	sort.SliceStable(matchRegion, func(i, j int) bool {
-		return matchRegion[i].distance < matchRegion[j].distance
-	})
-	b.writeSlice("matchRegion", matchRegion)
 }
 
 func (b *builder) writeRegionInclusionData() {
@@ -1542,11 +1482,6 @@ func (b *builder) writeRegionInclusionData() {
 		containment = make(map[index][]index)
 	)
 	for _, g := range b.supp.TerritoryContainment.Group {
-		// Skip UN and EURO zone as they are flattening the containment
-		// relationship.
-		if g.Type == "EZ" || g.Type == "UN" {
-			continue
-		}
 		group := b.region.index(g.Type)
 		groupIdx := b.groups[group]
 		for _, mem := range strings.Split(g.Contains, " ") {
@@ -1573,6 +1508,7 @@ func (b *builder) writeRegionInclusionData() {
 		for _, v := range l {
 			regionContainment[g] |= 1 << v
 		}
+		// log.Printf("%d: %X", g, regionContainment[g])
 	}
 	b.writeSlice("regionContainment", regionContainment)
 
