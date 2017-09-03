@@ -495,6 +495,10 @@
       "Rev": "f65a69e51385565c76e8ccb7730f96d4c4dd96a6"
     },
     {
+      "ImportPath": "k8s.io/apimachinery/pkg/apis/meta/internalversion",
+      "Rev": "f65a69e51385565c76e8ccb7730f96d4c4dd96a6"
+    },
+    {
       "ImportPath": "k8s.io/apimachinery/pkg/apis/meta/v1",
       "Rev": "f65a69e51385565c76e8ccb7730f96d4c4dd96a6"
     },
