@@ -17,22 +17,22 @@ limitations under the License.
 package fake
 
 import (
-	v2alpha1 "k8s.io/client-go/kubernetes/typed/autoscaling/v2alpha1"
+	v2beta1 "k8s.io/client-go/kubernetes/typed/autoscaling/v2beta1"
 	rest "k8s.io/client-go/rest"
 	testing "k8s.io/client-go/testing"
 )
 
-type FakeAutoscalingV2alpha1 struct {
+type FakeAutoscalingV2beta1 struct {
 	*testing.Fake
 }
 
-func (c *FakeAutoscalingV2alpha1) HorizontalPodAutoscalers(namespace string) v2alpha1.HorizontalPodAutoscalerInterface {
+func (c *FakeAutoscalingV2beta1) HorizontalPodAutoscalers(namespace string) v2beta1.HorizontalPodAutoscalerInterface {
 	return &FakeHorizontalPodAutoscalers{c, namespace}
 }
 
 // RESTClient returns a RESTClient that is used to communicate
 // with API server by this client implementation.
-func (c *FakeAutoscalingV2alpha1) RESTClient() rest.Interface {
+func (c *FakeAutoscalingV2beta1) RESTClient() rest.Interface {
 	var ret *rest.RESTClient
 	return ret
 }

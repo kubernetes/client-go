@@ -14,31 +14,31 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package v2alpha1
+package v2beta1
 
 import (
-	v2alpha1 "k8s.io/api/autoscaling/v2alpha1"
+	v2beta1 "k8s.io/api/autoscaling/v2beta1"
 	serializer "k8s.io/apimachinery/pkg/runtime/serializer"
 	"k8s.io/client-go/kubernetes/scheme"
 	rest "k8s.io/client-go/rest"
 )
 
-type AutoscalingV2alpha1Interface interface {
+type AutoscalingV2beta1Interface interface {
 	RESTClient() rest.Interface
 	HorizontalPodAutoscalersGetter
 }
 
-// AutoscalingV2alpha1Client is used to interact with features provided by the autoscaling group.
-type AutoscalingV2alpha1Client struct {
+// AutoscalingV2beta1Client is used to interact with features provided by the autoscaling group.
+type AutoscalingV2beta1Client struct {
 	restClient rest.Interface
 }
 
-func (c *AutoscalingV2alpha1Client) HorizontalPodAutoscalers(namespace string) HorizontalPodAutoscalerInterface {
+func (c *AutoscalingV2beta1Client) HorizontalPodAutoscalers(namespace string) HorizontalPodAutoscalerInterface {
 	return newHorizontalPodAutoscalers(c, namespace)
 }
 
-// NewForConfig creates a new AutoscalingV2alpha1Client for the given config.
-func NewForConfig(c *rest.Config) (*AutoscalingV2alpha1Client, error) {
+// NewForConfig creates a new AutoscalingV2beta1Client for the given config.
+func NewForConfig(c *rest.Config) (*AutoscalingV2beta1Client, error) {
 	config := *c
 	if err := setConfigDefaults(&config); err != nil {
 		return nil, err
@@ -47,12 +47,12 @@ func NewForConfig(c *rest.Config) (*AutoscalingV2alpha1Client, error) {
 	if err != nil {
 		return nil, err
 	}
-	return &AutoscalingV2alpha1Client{client}, nil
+	return &AutoscalingV2beta1Client{client}, nil
 }
 
-// NewForConfigOrDie creates a new AutoscalingV2alpha1Client for the given config and
+// NewForConfigOrDie creates a new AutoscalingV2beta1Client for the given config and
 // panics if there is an error in the config.
-func NewForConfigOrDie(c *rest.Config) *AutoscalingV2alpha1Client {
+func NewForConfigOrDie(c *rest.Config) *AutoscalingV2beta1Client {
 	client, err := NewForConfig(c)
 	if err != nil {
 		panic(err)
@@ -60,13 +60,13 @@ func NewForConfigOrDie(c *rest.Config) *AutoscalingV2alpha1Client {
 	return client
 }
 
-// New creates a new AutoscalingV2alpha1Client for the given RESTClient.
-func New(c rest.Interface) *AutoscalingV2alpha1Client {
-	return &AutoscalingV2alpha1Client{c}
+// New creates a new AutoscalingV2beta1Client for the given RESTClient.
+func New(c rest.Interface) *AutoscalingV2beta1Client {
+	return &AutoscalingV2beta1Client{c}
 }
 
 func setConfigDefaults(config *rest.Config) error {
-	gv := v2alpha1.SchemeGroupVersion
+	gv := v2beta1.SchemeGroupVersion
 	config.GroupVersion = &gv
 	config.APIPath = "/apis"
 	config.NegotiatedSerializer = serializer.DirectCodecFactory{CodecFactory: scheme.Codecs}
@@ -80,7 +80,7 @@ func setConfigDefaults(config *rest.Config) error {
 
 // RESTClient returns a RESTClient that is used to communicate
 // with API server by this client implementation.
-func (c *AutoscalingV2alpha1Client) RESTClient() rest.Interface {
+func (c *AutoscalingV2beta1Client) RESTClient() rest.Interface {
 	if c == nil {
 		return nil
 	}
