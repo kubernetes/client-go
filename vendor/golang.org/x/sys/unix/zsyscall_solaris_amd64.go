@@ -43,7 +43,6 @@ import (
 //go:cgo_import_dynamic libc_fchown fchown "libc.so"
 //go:cgo_import_dynamic libc_fchownat fchownat "libc.so"
 //go:cgo_import_dynamic libc_fdatasync fdatasync "libc.so"
-//go:cgo_import_dynamic libc_flock flock "libc.so"
 //go:cgo_import_dynamic libc_fpathconf fpathconf "libc.so"
 //go:cgo_import_dynamic libc_fstat fstat "libc.so"
 //go:cgo_import_dynamic libc_fstatvfs fstatvfs "libc.so"
@@ -164,7 +163,6 @@ import (
 //go:linkname procFchown libc_fchown
 //go:linkname procFchownat libc_fchownat
 //go:linkname procFdatasync libc_fdatasync
-//go:linkname procFlock libc_flock
 //go:linkname procFpathconf libc_fpathconf
 //go:linkname procFstat libc_fstat
 //go:linkname procFstatvfs libc_fstatvfs
@@ -286,7 +284,6 @@ var (
 	procFchown,
 	procFchownat,
 	procFdatasync,
-	procFlock,
 	procFpathconf,
 	procFstat,
 	procFstatvfs,
@@ -699,14 +696,6 @@ func Fchownat(dirfd int, path string, uid int, gid int, flags int) (err error) {
 
 func Fdatasync(fd int) (err error) {
 	_, _, e1 := sysvicall6(uintptr(unsafe.Pointer(&procFdatasync)), 1, uintptr(fd), 0, 0, 0, 0, 0)
-	if e1 != 0 {
-		err = e1
-	}
-	return
-}
-
-func Flock(fd int, how int) (err error) {
-	_, _, e1 := sysvicall6(uintptr(unsafe.Pointer(&procFlock)), 2, uintptr(fd), uintptr(how), 0, 0, 0, 0)
 	if e1 != 0 {
 		err = e1
 	}
