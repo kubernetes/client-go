@@ -14,6 +14,22 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package v2alpha1
+package v1beta1
 
-type HorizontalPodAutoscalerExpansion interface{}
+import (
+	authorizationapi "k8s.io/api/authorization/v1beta1"
+)
+
+type SelfSubjectRulesReviewExpansion interface {
+	Create(srr *authorizationapi.SelfSubjectRulesReview) (result *authorizationapi.SelfSubjectRulesReview, err error)
+}
+
+func (c *selfSubjectRulesReviews) Create(srr *authorizationapi.SelfSubjectRulesReview) (result *authorizationapi.SelfSubjectRulesReview, err error) {
+	result = &authorizationapi.SelfSubjectRulesReview{}
+	err = c.client.Post().
+		Resource("selfsubjectrulesreviews").
+		Body(srr).
+		Do().
+		Into(result)
+	return
+}

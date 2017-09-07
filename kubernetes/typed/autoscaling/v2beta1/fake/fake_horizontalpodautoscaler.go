@@ -17,7 +17,7 @@ limitations under the License.
 package fake
 
 import (
-	v2alpha1 "k8s.io/api/autoscaling/v2alpha1"
+	v2beta1 "k8s.io/api/autoscaling/v2beta1"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	labels "k8s.io/apimachinery/pkg/labels"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
@@ -28,29 +28,29 @@ import (
 
 // FakeHorizontalPodAutoscalers implements HorizontalPodAutoscalerInterface
 type FakeHorizontalPodAutoscalers struct {
-	Fake *FakeAutoscalingV2alpha1
+	Fake *FakeAutoscalingV2beta1
 	ns   string
 }
 
-var horizontalpodautoscalersResource = schema.GroupVersionResource{Group: "autoscaling", Version: "v2alpha1", Resource: "horizontalpodautoscalers"}
+var horizontalpodautoscalersResource = schema.GroupVersionResource{Group: "autoscaling", Version: "v2beta1", Resource: "horizontalpodautoscalers"}
 
-var horizontalpodautoscalersKind = schema.GroupVersionKind{Group: "autoscaling", Version: "v2alpha1", Kind: "HorizontalPodAutoscaler"}
+var horizontalpodautoscalersKind = schema.GroupVersionKind{Group: "autoscaling", Version: "v2beta1", Kind: "HorizontalPodAutoscaler"}
 
 // Get takes name of the horizontalPodAutoscaler, and returns the corresponding horizontalPodAutoscaler object, and an error if there is any.
-func (c *FakeHorizontalPodAutoscalers) Get(name string, options v1.GetOptions) (result *v2alpha1.HorizontalPodAutoscaler, err error) {
+func (c *FakeHorizontalPodAutoscalers) Get(name string, options v1.GetOptions) (result *v2beta1.HorizontalPodAutoscaler, err error) {
 	obj, err := c.Fake.
-		Invokes(testing.NewGetAction(horizontalpodautoscalersResource, c.ns, name), &v2alpha1.HorizontalPodAutoscaler{})
+		Invokes(testing.NewGetAction(horizontalpodautoscalersResource, c.ns, name), &v2beta1.HorizontalPodAutoscaler{})
 
 	if obj == nil {
 		return nil, err
 	}
-	return obj.(*v2alpha1.HorizontalPodAutoscaler), err
+	return obj.(*v2beta1.HorizontalPodAutoscaler), err
 }
 
 // List takes label and field selectors, and returns the list of HorizontalPodAutoscalers that match those selectors.
-func (c *FakeHorizontalPodAutoscalers) List(opts v1.ListOptions) (result *v2alpha1.HorizontalPodAutoscalerList, err error) {
+func (c *FakeHorizontalPodAutoscalers) List(opts v1.ListOptions) (result *v2beta1.HorizontalPodAutoscalerList, err error) {
 	obj, err := c.Fake.
-		Invokes(testing.NewListAction(horizontalpodautoscalersResource, horizontalpodautoscalersKind, c.ns, opts), &v2alpha1.HorizontalPodAutoscalerList{})
+		Invokes(testing.NewListAction(horizontalpodautoscalersResource, horizontalpodautoscalersKind, c.ns, opts), &v2beta1.HorizontalPodAutoscalerList{})
 
 	if obj == nil {
 		return nil, err
@@ -60,8 +60,8 @@ func (c *FakeHorizontalPodAutoscalers) List(opts v1.ListOptions) (result *v2alph
 	if label == nil {
 		label = labels.Everything()
 	}
-	list := &v2alpha1.HorizontalPodAutoscalerList{}
-	for _, item := range obj.(*v2alpha1.HorizontalPodAutoscalerList).Items {
+	list := &v2beta1.HorizontalPodAutoscalerList{}
+	for _, item := range obj.(*v2beta1.HorizontalPodAutoscalerList).Items {
 		if label.Matches(labels.Set(item.Labels)) {
 			list.Items = append(list.Items, item)
 		}
@@ -77,43 +77,43 @@ func (c *FakeHorizontalPodAutoscalers) Watch(opts v1.ListOptions) (watch.Interfa
 }
 
 // Create takes the representation of a horizontalPodAutoscaler and creates it.  Returns the server's representation of the horizontalPodAutoscaler, and an error, if there is any.
-func (c *FakeHorizontalPodAutoscalers) Create(horizontalPodAutoscaler *v2alpha1.HorizontalPodAutoscaler) (result *v2alpha1.HorizontalPodAutoscaler, err error) {
+func (c *FakeHorizontalPodAutoscalers) Create(horizontalPodAutoscaler *v2beta1.HorizontalPodAutoscaler) (result *v2beta1.HorizontalPodAutoscaler, err error) {
 	obj, err := c.Fake.
-		Invokes(testing.NewCreateAction(horizontalpodautoscalersResource, c.ns, horizontalPodAutoscaler), &v2alpha1.HorizontalPodAutoscaler{})
+		Invokes(testing.NewCreateAction(horizontalpodautoscalersResource, c.ns, horizontalPodAutoscaler), &v2beta1.HorizontalPodAutoscaler{})
 
 	if obj == nil {
 		return nil, err
 	}
-	return obj.(*v2alpha1.HorizontalPodAutoscaler), err
+	return obj.(*v2beta1.HorizontalPodAutoscaler), err
 }
 
 // Update takes the representation of a horizontalPodAutoscaler and updates it. Returns the server's representation of the horizontalPodAutoscaler, and an error, if there is any.
-func (c *FakeHorizontalPodAutoscalers) Update(horizontalPodAutoscaler *v2alpha1.HorizontalPodAutoscaler) (result *v2alpha1.HorizontalPodAutoscaler, err error) {
+func (c *FakeHorizontalPodAutoscalers) Update(horizontalPodAutoscaler *v2beta1.HorizontalPodAutoscaler) (result *v2beta1.HorizontalPodAutoscaler, err error) {
 	obj, err := c.Fake.
-		Invokes(testing.NewUpdateAction(horizontalpodautoscalersResource, c.ns, horizontalPodAutoscaler), &v2alpha1.HorizontalPodAutoscaler{})
+		Invokes(testing.NewUpdateAction(horizontalpodautoscalersResource, c.ns, horizontalPodAutoscaler), &v2beta1.HorizontalPodAutoscaler{})
 
 	if obj == nil {
 		return nil, err
 	}
-	return obj.(*v2alpha1.HorizontalPodAutoscaler), err
+	return obj.(*v2beta1.HorizontalPodAutoscaler), err
 }
 
 // UpdateStatus was generated because the type contains a Status member.
 // Add a +genclient:noStatus comment above the type to avoid generating UpdateStatus().
-func (c *FakeHorizontalPodAutoscalers) UpdateStatus(horizontalPodAutoscaler *v2alpha1.HorizontalPodAutoscaler) (*v2alpha1.HorizontalPodAutoscaler, error) {
+func (c *FakeHorizontalPodAutoscalers) UpdateStatus(horizontalPodAutoscaler *v2beta1.HorizontalPodAutoscaler) (*v2beta1.HorizontalPodAutoscaler, error) {
 	obj, err := c.Fake.
-		Invokes(testing.NewUpdateSubresourceAction(horizontalpodautoscalersResource, "status", c.ns, horizontalPodAutoscaler), &v2alpha1.HorizontalPodAutoscaler{})
+		Invokes(testing.NewUpdateSubresourceAction(horizontalpodautoscalersResource, "status", c.ns, horizontalPodAutoscaler), &v2beta1.HorizontalPodAutoscaler{})
 
 	if obj == nil {
 		return nil, err
 	}
-	return obj.(*v2alpha1.HorizontalPodAutoscaler), err
+	return obj.(*v2beta1.HorizontalPodAutoscaler), err
 }
 
 // Delete takes name of the horizontalPodAutoscaler and deletes it. Returns an error if one occurs.
 func (c *FakeHorizontalPodAutoscalers) Delete(name string, options *v1.DeleteOptions) error {
 	_, err := c.Fake.
-		Invokes(testing.NewDeleteAction(horizontalpodautoscalersResource, c.ns, name), &v2alpha1.HorizontalPodAutoscaler{})
+		Invokes(testing.NewDeleteAction(horizontalpodautoscalersResource, c.ns, name), &v2beta1.HorizontalPodAutoscaler{})
 
 	return err
 }
@@ -122,17 +122,17 @@ func (c *FakeHorizontalPodAutoscalers) Delete(name string, options *v1.DeleteOpt
 func (c *FakeHorizontalPodAutoscalers) DeleteCollection(options *v1.DeleteOptions, listOptions v1.ListOptions) error {
 	action := testing.NewDeleteCollectionAction(horizontalpodautoscalersResource, c.ns, listOptions)
 
-	_, err := c.Fake.Invokes(action, &v2alpha1.HorizontalPodAutoscalerList{})
+	_, err := c.Fake.Invokes(action, &v2beta1.HorizontalPodAutoscalerList{})
 	return err
 }
 
 // Patch applies the patch and returns the patched horizontalPodAutoscaler.
-func (c *FakeHorizontalPodAutoscalers) Patch(name string, pt types.PatchType, data []byte, subresources ...string) (result *v2alpha1.HorizontalPodAutoscaler, err error) {
+func (c *FakeHorizontalPodAutoscalers) Patch(name string, pt types.PatchType, data []byte, subresources ...string) (result *v2beta1.HorizontalPodAutoscaler, err error) {
 	obj, err := c.Fake.
-		Invokes(testing.NewPatchSubresourceAction(horizontalpodautoscalersResource, c.ns, name, data, subresources...), &v2alpha1.HorizontalPodAutoscaler{})
+		Invokes(testing.NewPatchSubresourceAction(horizontalpodautoscalersResource, c.ns, name, data, subresources...), &v2beta1.HorizontalPodAutoscaler{})
 
 	if obj == nil {
 		return nil, err
 	}
-	return obj.(*v2alpha1.HorizontalPodAutoscaler), err
+	return obj.(*v2beta1.HorizontalPodAutoscaler), err
 }
