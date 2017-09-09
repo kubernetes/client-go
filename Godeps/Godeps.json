@@ -403,7 +403,7 @@
       "Rev": "926789af7ddda62752e08bc9b93f1d1ebbc7b2de"
     },
     {
-      "ImportPath": "k8s.io/api/autoscaling/v2alpha1",
+      "ImportPath": "k8s.io/api/autoscaling/v2beta1",
       "Rev": "926789af7ddda62752e08bc9b93f1d1ebbc7b2de"
     },
     {
