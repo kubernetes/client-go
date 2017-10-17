@@ -2,18 +2,77 @@ TODO: This document was manually maintained so might be incomplete. The
 automation effort is tracked in
 https://github.com/kubernetes/client-go/issues/234.
 
-# HEAD (changes that will go into v5)
+# v5.0.0
 
-** Breaking changes**
+**New features:**
 
-pkg/api and pkg/apis are moved to
-[k8s.io/api](https://github.com/kubernetes/api). Other kubernetes repositories
-also import types from there, so they are composable with client-go.
+* Add paging support
 
-Helper functions in pkg/api and pkg/apis are also removed. They are planned to
-be exported in other repos. The issue is tracked
-[here](https://github.com/kubernetes/kubernetes/issues/48209#issuecomment-314537745).
-During the transition, you'll have to copy the helper functions to your projects. 
+   * [https://github.com/kubernetes/kubernetes/pull/51876](https://github.com/kubernetes/kubernetes/pull/51876)
+
+* Add support for client-side spam filtering of events
+
+   * [https://github.com/kubernetes/kubernetes/pull/47367](https://github.com/kubernetes/kubernetes/pull/47367)
+
+* Support http etag and caching
+
+   * [https://github.com/kubernetes/kubernetes/pull/50404](https://github.com/kubernetes/kubernetes/pull/50404)
+
+* Adding priority queue support to informer cache
+
+   * [https://github.com/kubernetes/kubernetes/pull/49752](https://github.com/kubernetes/kubernetes/pull/49752)
+
+* Add openstack auth provider
+
+   * [https://github.com/kubernetes/kubernetes/pull/39587](https://github.com/kubernetes/kubernetes/pull/39587)
+
+* Adds metrics for checking reflector health.
+
+   * [https://github.com/kubernetes/kubernetes/pull/48224](https://github.com/kubernetes/kubernetes/pull/48224)
+
+* Client-go now includes the leaderelection package
+
+   * [https://github.com/kubernetes/kubernetes/pull/39173](https://github.com/kubernetes/kubernetes/pull/39173)
+
+**API changes:**
+
+* Autoscaling v2alpha1 graduated to v2beta1
+
+   * [https://github.com/kubernetes/kubernetes/pull/50708](https://github.com/kubernetes/kubernetes/pull/50708)
+
+* Promote CronJobs to batch/v1beta1
+
+   * [https://github.com/kubernetes/kubernetes/pull/41901](https://github.com/kubernetes/kubernetes/pull/41901)
+
+* Promote rbac.authorization.k8s.io/v1beta1 to rbac.authorization.k8s.io/v1
+
+   * [https://github.com/kubernetes/kubernetes/pull/49642](https://github.com/kubernetes/kubernetes/pull/49642)
+
+* Add a new API version apps/v1beta2
+
+   * [https://github.com/kubernetes/kubernetes/pull/48746](https://github.com/kubernetes/kubernetes/pull/48746)
+
+* Add a new API version scheduling/v1alpha1
+
+   * [https://github.com/kubernetes/kubernetes/pull/48377](https://github.com/kubernetes/kubernetes/pull/48377)
+
+**Breaking changes:**
+
+* pkg/api and pkg/apis are moved to [k8s.io/api](https://github.com/kubernetes/api). Other kubernetes repositories also import types from there, so they are composable with client-go.
+
+* Helper functions in pkg/api and pkg/apis are also removed. They are planned to be exported in other repos. The issue is tracked [here](https://github.com/kubernetes/kubernetes/issues/48209#issuecomment-314537745). During the transition, you'll have to copy the helper functions to your projects.
+
+* The discovery client now fetches the protobuf encoded OpenAPI schema and returns `openapi\_v2.Document`
+
+   * [https://github.com/kubernetes/kubernetes/pull/46803](https://github.com/kubernetes/kubernetes/pull/46803)
+
+* Enforce explicit references to API group client interfaces in clientsets to avoid ambiguity.
+
+   * [https://github.com/kubernetes/kubernetes/pull/49370](https://github.com/kubernetes/kubernetes/pull/49370)
+
+* The generic RESTClient type (`k8s.io/client-go/rest`) no longer exposes `LabelSelectorParam` or `FieldSelectorParam` methods - use `VersionedParams` with `metav1.ListOptions` instead. The `UintParam` method has been removed. The `timeout` parameter will no longer cause an error when using `Param()`.
+
+   * [https://github.com/kubernetes/kubernetes/pull/48991](https://github.com/kubernetes/kubernetes/pull/48991)
 
 # v4.0.0
 
