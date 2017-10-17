@@ -15,6 +15,98 @@ be exported in other repos. The issue is tracked
 [here](https://github.com/kubernetes/kubernetes/issues/48209#issuecomment-314537745).
 During the transition, you'll have to copy the helper functions to your projects. 
 
+**New features:**
+
+* Add paging support
+
+   * [https://github.com/kubernetes/kubernetes/pull/51876](https://github.com/kubernetes/kubernetes/pull/51876)
+
+* Add support for client-side spam filtering of events
+
+   * [https://github.com/kubernetes/kubernetes/pull/47367](https://github.com/kubernetes/kubernetes/pull/47367)
+
+* Support http etag and caching
+
+   * [https://github.com/kubernetes/kubernetes/pull/50404](https://github.com/kubernetes/kubernetes/pull/50404)
+
+* Extend SetHeader Requests method ito accept multiple values
+
+   * [https://github.com/kubernetes/kubernetes/pull/50639](https://github.com/kubernetes/kubernetes/pull/50639)
+
+* Add a heap to client-go
+
+   * [https://github.com/kubernetes/kubernetes/pull/49752](https://github.com/kubernetes/kubernetes/pull/49752)
+
+* Add openstack auth provider
+
+   * [https://github.com/kubernetes/kubernetes/pull/39587](https://github.com/kubernetes/kubernetes/pull/39587)
+
+* Make it possible to allow discovery errors for controllers
+
+   * [https://github.com/kubernetes/kubernetes/pull/49495](https://github.com/kubernetes/kubernetes/pull/49495)
+
+* Adds metrics for checking reflector health.
+
+   * [https://github.com/kubernetes/kubernetes/pull/48224](https://github.com/kubernetes/kubernetes/pull/48224)
+
+* Client-go now includes the leaderelection package
+
+   * [https://github.com/kubernetes/kubernetes/pull/39173](https://github.com/kubernetes/kubernetes/pull/39173)
+
+* OpenAPI downloads protobuf rather than Json to improve performance
+
+   * [https://github.com/kubernetes/kubernetes/pull/46803](https://github.com/kubernetes/kubernetes/pull/46803)
+
+**API changes:**
+
+* Autoscaling v2alpha1 graduated to v2beta1
+
+   * [https://github.com/kubernetes/kubernetes/pull/50708](https://github.com/kubernetes/kubernetes/pull/50708)
+
+* Copy list expansions for DaemonSet, Deployment, ReplicaSet, and StatefulSet to apps/v1beta2 from extensions/v1beta1 and apps/v1beta1
+
+   * [https://github.com/kubernetes/kubernetes/pull/50871](https://github.com/kubernetes/kubernetes/pull/50871)
+
+* Add ControllerRevision to apps/v1beta2
+
+   * [https://github.com/kubernetes/kubernetes/pull/50698](https://github.com/kubernetes/kubernetes/pull/50698)
+
+* Promote CronJobs to batch/v1beta1
+
+   * [https://github.com/kubernetes/kubernetes/pull/41901](https://github.com/kubernetes/kubernetes/pull/41901)
+
+* Promote rbac.authorization.k8s.io/v1beta1 to rbac.authorization.k8s.io/v1 with no changes. The rbac.authorization.k8s.io/v1alpha1 version is deprecated and will be removed in a future release.
+
+   * [https://github.com/kubernetes/kubernetes/pull/49642](https://github.com/kubernetes/kubernetes/pull/49642)
+
+* Enforce explicit references to API group client interfaces in clientsets to avoid ambiguity.
+
+   * [https://github.com/kubernetes/kubernetes/pull/49370](https://github.com/kubernetes/kubernetes/pull/49370)
+
+* The 504 timeout error was returning a JSON error body that indicated it was a 500. The body contents now correctly report a 500 error.
+
+   * [https://github.com/kubernetes/kubernetes/pull/49678](https://github.com/kubernetes/kubernetes/pull/49678)
+
+* Add a new API object apps/v1beta2.ReplicaSet
+
+   * [https://github.com/kubernetes/kubernetes/pull/49238](https://github.com/kubernetes/kubernetes/pull/49238)
+
+* Adding type apps/v1beta2.DaemonSet
+
+   * [https://github.com/kubernetes/kubernetes/pull/49071](https://github.com/kubernetes/kubernetes/pull/49071)
+
+* Add a new API version apps/v1beta2
+
+   * [https://github.com/kubernetes/kubernetes/pull/48746](https://github.com/kubernetes/kubernetes/pull/48746)
+
+* Add PriorityClass API object under new "scheduling" API group
+
+   * [https://github.com/kubernetes/kubernetes/pull/48377](https://github.com/kubernetes/kubernetes/pull/48377)
+
+* The generic RESTClient type (`k8s.io/client-go/rest`) no longer exposes `LabelSelectorParam` or `FieldSelectorParam` methods - use `VersionedParams` with `metav1.ListOptions` instead. The `UintParam` method has been removed. The `timeout` parameter will no longer cause an error when using `Param()`.
+
+   * [https://github.com/kubernetes/kubernetes/pull/48991](https://github.com/kubernetes/kubernetes/pull/48991)
+
 # v4.0.0
 
 No significant changes since v4.0.0-beta.0.
