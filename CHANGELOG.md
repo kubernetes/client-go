@@ -2,6 +2,10 @@ TODO: This document was manually maintained so might be incomplete. The
 automation effort is tracked in
 https://github.com/kubernetes/client-go/issues/234.
 
+# v5.0.1
+
+Bug fix: picked up a security fix [kubernetes/kubernetes#53443](https://github.com/kubernetes/kubernetes/pull/53443) for `PodSecurityPolicy`.
+
 # v5.0.0
 
 **New features:**
