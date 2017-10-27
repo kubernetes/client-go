@@ -63,7 +63,7 @@ To install `client-go` and place its dependencies in your `$GOPATH`:
 ```sh
 go get k8s.io/client-go/...
 cd $GOPATH/src/k8s.io/client-go
-git checkout v2.0.0
+git checkout v4.0.0
 # cd 1.5 # only necessary with 1.5 and 1.4 clients.
 godep restore ./...
 ```
@@ -99,7 +99,7 @@ your project:
 package: ( your project's import path ) # e.g. github.com/foo/bar
 import:
 - package: k8s.io/client-go
-  version: v2.0.0
+  version: v4.0.0
 ```
 
 Second, add a Go file that imports `client-go` somewhere in your project,
@@ -132,7 +132,7 @@ requests can override the version manually in `glide.yaml`. For example:
 package: ( your project's import path ) # e.g. github.com/foo/bar
 import:
 - package: k8s.io/client-go
-  version: v2.0.0
+  version: v4.0.0
 # Use a newer version of go-spew even though client-go wants an old one.
 - package: github.com/davecgh/go-spew
   version: v1.1.0
@@ -157,12 +157,12 @@ $ go install github.com/golang/dep/cmd/dep
 # Make sure you have a go file in your directory which imports a package of
 # k8s.io/client-go first--I suggest copying one of the examples.
 $ dep init
-$ dep ensure k8s.io/client-go@^2.0.0
+$ dep ensure -add k8s.io/client-go@^4.0.0
 ```
 
 Then you can try one of the
-[examples](https://github.com/kubernetes/client-go/tree/v2.0.0/examples/) from
-the 2.0.0 release.
+[examples](https://github.com/kubernetes/client-go/tree/v4.0.0/examples/) from
+the 4.0.0 release.
 
 This will set up a `vendor` directory in your current directory, add `k8s.io/client-go`
 to it, and flatten all of `k8s.io/client-go`'s dependencies into that vendor directory,
