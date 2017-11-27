@@ -14,7 +14,25 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-// +k8s:conversion-gen=k8s.io/kubernetes/vendor/k8s.io/client-go/scale/scheme
-// +k8s:conversion-gen-external-types=k8s.io/api/autoscaling/v1
+package fake
 
-package autoscalingv1 // import "k8s.io/client-go/scale/scheme/autoscalingv1"
+import (
+	v1beta1 "k8s.io/client-go/kubernetes/typed/events/v1beta1"
+	rest "k8s.io/client-go/rest"
+	testing "k8s.io/client-go/testing"
+)
+
+type FakeEventsV1beta1 struct {
+	*testing.Fake
+}
+
+func (c *FakeEventsV1beta1) Events(namespace string) v1beta1.EventInterface {
+	return &FakeEvents{c, namespace}
+}
+
+// RESTClient returns a RESTClient that is used to communicate
+// with API server by this client implementation.
+func (c *FakeEventsV1beta1) RESTClient() rest.Interface {
+	var ret *rest.RESTClient
+	return ret
+}
