@@ -16,6 +16,7 @@ will give you head and doesn't handle the dependencies well.
   - [Compatibility: your code <-> client-go](#compatibility-your-code---client-go)
   - [Compatibility: client-go <-> Kubernetes clusters](#compatibility-client-go---kubernetes-clusters)
   - [Compatibility matrix](#compatibility-matrix)
+  - [Dependency matrix](#dependency-matrix)
   - [Why do the 1.4 and 1.5 branch contain top-level folder named after the version?](#why-do-the-14-and-15-branch-contain-top-level-folder-named-after-the-version)
 - [Kuberentes tags](#kubernetes-tags)
 - [How to get it](#how-to-get-it)
@@ -123,6 +124,41 @@ Key:
 * `✓` Changes in main Kubernetes repo are actively published to client-go by a bot
 * `=` Maintenance is manual, only severe security bugs will be patched.
 * `-` Deprecated; please upgrade.
+
+#### Dependency Matrix
+Since there are multiple libraries that client-go is either required to, or can work
+with, this is a list of all the libraries and versions that work with each other.
+
+| client-go    | [apimachinery](https://github.com/kubernetes/apimachinery) | [apiextensions-apiserver](https://github.com/kubernetes/apiextensions-apiserver)<sup>*</sup> | [code-generator](https://github.com/kubernetes/code-generator)<sup>+</sup> |
+| ----------------------------------| -----------------------------------------------------------|----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------|
+| tag: v5.0.x  | tag: kubernetes-1.8.x  | tag: kubernetes-1.8.x | tag: kubernetes-1.8.x |
+| tag: v6.0.x  | tag: kubernetes-1.9.x  | tag: kubernetes-1.9.x | tag: kubernetes-1.9.x |
+
+<sup>*</sup> optional library that exposes the Extensions API, for example, for 
+Custom Resource Definitions.  
+<sup>+</sup> optional library for generating Kubernetes style API types. Typically 
+used with Custom Resource Definitions.
+
+Note that `x` versions need to align. For example tag v.5.0.1 in client-go, will be
+supported with tag kubernetes-1.8.1 in apimachinery and other repositories
+
+Using the git tag versions is the preferred way of managing dependencies for newer 
+releases of client-go, and since client-go is backward compatible, it is recommended that
+developers always use the latest version.
+
+For releases <= v4.0.x of client-go (kubernetes-1.7.x), it is required to use one of these
+tools to get a supported version of client-go and associated libraries if you have a
+requirement to do so.
+
+Client-go specifies non-optional libraries in its Godeps/Godeps.json file. While
+[Glide](https://glide.sh) will respect these automatically, with 
+[godep](https://github.com/tools/godep) you have to manually `godep restore` 
+them from client-go's directory and then `godep save` them in your project.
+
+Note that [golang/dep](https://github.com/golang/dep) currently 
+**does not respect the specified dependencies in client-go**. 
+You have to manually add them as constraints in your `Gopkg.toml` for all its 
+dependencies (not only for k8s.io/api and k8s.io/apimachinery!).
 
 #### Deprecation policy
 
