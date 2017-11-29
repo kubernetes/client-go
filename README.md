@@ -16,6 +16,7 @@ will give you head and doesn't handle the dependencies well.
   - [Compatibility: your code <-> client-go](#compatibility-your-code---client-go)
   - [Compatibility: client-go <-> Kubernetes clusters](#compatibility-client-go---kubernetes-clusters)
   - [Compatibility matrix](#compatibility-matrix)
+  - [Dependency matrix](#dependency-matrix)
   - [Why do the 1.4 and 1.5 branch contain top-level folder named after the version?](#why-do-the-14-and-15-branch-contain-top-level-folder-named-after-the-version)
 - [Kuberentes tags](#kubernetes-tags)
 - [How to get it](#how-to-get-it)
@@ -123,6 +124,20 @@ Key:
 * `✓` Changes in main Kubernetes repo are actively published to client-go by a bot
 * `=` Maintenance is manual, only severe security bugs will be patched.
 * `-` Deprecated; please upgrade.
+
+#### Dependency Matrix
+Since there are multiple libraries that client-go is either required to, or can work
+with, this is a list of all the libraries and versions that work with each other.
+
+| client-go                         | [apimachinery](https://github.com/kubernetes/apimachinery) | [apiextensions-apiserver](https://github.com/kubernetes/apiextensions-apiserver)<sup>*</sup> | [code-generator](https://github.com/kubernetes/code-generator)<sup>+</sup> |
+| ----------------------------------| -----------------------------------------------------------|----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------|
+| tag: v2.0.x / branch: release-2.0 | -                                                          | -                                                                                            | -                                                                          |
+| tag: v3.0.x / branch: release-3.0 | branch: release-1.6                                        | -                                                                                            | -                                                                          |
+| tag: v4.0.x / branch: release-4.0 | branch: release-1.7                                        | branch: release-1.7                                                                          | branch: release-1.7                                                        |
+| tag: v5.0.x / branch: release-5.0 | branch: release-1.8                                        | branch: release-1.8                                                                          | branch: release-1.8                                                        |
+
+<sup>*</sup> optional library that exposes the Extensions API, for example, for Custom Resource Definitions.  
+<sup>+</sup> optional library for generating Kubernetes style API types. Typically used with Custom Resource Definitions.
 
 #### Deprecation policy
 
