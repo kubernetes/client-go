@@ -129,15 +129,42 @@ Key:
 Since there are multiple libraries that client-go is either required to, or can work
 with, this is a list of all the libraries and versions that work with each other.
 
+If you are using [Glide](https://glide.sh) or [godep](https://github.com/tools/godep) 
+to manage your Go dependencies, this will manage the non-optional libraries automatically.
+
+There are two ways of lining up dependencies - via the repository version *tags* 
+or via the repository *branches*.
+
+Do not mix dependencies with tags and branches between repositories, it is not supported.
+
+##### Tag Version Dependencies
+
+Using the git tag versions is the preferred way of managing dependencies for newer 
+releases of client-go
+
+| client-go    | [apimachinery](https://github.com/kubernetes/apimachinery) | [apiextensions-apiserver](https://github.com/kubernetes/apiextensions-apiserver)<sup>*</sup> | [code-generator](https://github.com/kubernetes/code-generator)<sup>+</sup> |
+| ----------------------------------| -----------------------------------------------------------|----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------|
+| tag: v5.0.x  | tag: kubernetes-1.8.x  | tag: kubernetes-1.8.x | tag: kubernetes-1.8.x |
+| tag: v6.0.x  | tag: kubernetes-1.9.x  | tag: kubernetes-1.9.x | tag: kubernetes-1.9.x |
+
+Note that `x` versions need to align. For example tag v.5.0.1 in client-go, will be
+supported with tag kubernetes-1.8.1 in apimachinery and other repositories
+
+##### Branch Versions Dependencies
+
+For versions of client-go based on Kubernetes <= 1.7, the HEAD of each release 
+branch is supported.
+
 | client-go                         | [apimachinery](https://github.com/kubernetes/apimachinery) | [apiextensions-apiserver](https://github.com/kubernetes/apiextensions-apiserver)<sup>*</sup> | [code-generator](https://github.com/kubernetes/code-generator)<sup>+</sup> |
 | ----------------------------------| -----------------------------------------------------------|----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------|
-| tag: v2.0.x / branch: release-2.0 | -                                                          | -                                                                                            | -                                                                          |
-| tag: v3.0.x / branch: release-3.0 | branch: release-1.6                                        | -                                                                                            | -                                                                          |
-| tag: v4.0.x / branch: release-4.0 | branch: release-1.7                                        | branch: release-1.7                                                                          | branch: release-1.7                                                        |
-| tag: v5.0.x / branch: release-5.0 | branch: release-1.8                                        | branch: release-1.8                                                                          | branch: release-1.8                                                        |
+| branch: release-2.0 | -                   | -                   | -                   |
+| branch: release-3.0 | branch: release-1.6 | -                   | -                   |
+| branch: release-4.0 | branch: release-1.7 | branch: release-1.7 | branch: release-1.7 |
 
-<sup>*</sup> optional library that exposes the Extensions API, for example, for Custom Resource Definitions.  
-<sup>+</sup> optional library for generating Kubernetes style API types. Typically used with Custom Resource Definitions.
+<sup>*</sup> optional library that exposes the Extensions API, for example, for 
+Custom Resource Definitions.  
+<sup>+</sup> optional library for generating Kubernetes style API types. Typically 
+used with Custom Resource Definitions.
 
 #### Deprecation policy
 
