@@ -6,8 +6,18 @@ We currently recommend using the v6.0.0 tag. See [INSTALL.md](/INSTALL.md) for
 detailed installation instructions. `go get k8s.io/client-go/...` works, but
 will give you head and doesn't handle the dependencies well.
 
-[![Build Status](https://travis-ci.org/kubernetes/client-go.svg?branch=master)](https://travis-ci.org/kubernetes/client-go)
-[![GoDoc](https://godoc.org/k8s.io/client-go?status.svg)](https://godoc.org/k8s.io/client-go)
+[![BuildStatus Widget]][BuildStatus Result]
+[![GoReport Widget]][GoReport Status]
+[![GoDocWidget]][GoDocReference]
+
+[BuildStatus Result]: https://travis-ci.org/kubernetes/client-go
+[BuildStatus Widget]: https://travis-ci.org/kubernetes/client-go.svg?branch=master
+
+[GoReport Status]: https://goreportcard.com/report/github.com/kubernetes/client-go
+[GoReport Widget]: https://goreportcard.com/badge/github.com/kubernetes/client-go
+
+[GoDocWidget]: https://godoc.org/k8s.io/client-go?status.svg
+[GoDocReference]:https://godoc.org/k8s.io/client-go 
 
 ## Table of Contents
 
