@@ -4,7 +4,7 @@ Go clients for talking to a [kubernetes](http://kubernetes.io/) cluster.
 
 We currently recommend using the v7.0.0 tag. See [INSTALL.md](/INSTALL.md) for
 detailed installation instructions. `go get k8s.io/client-go/...` works, but
-will give you head and doesn't handle the dependencies well.
+will build `master`, which doesn't handle the dependencies well.
 
 [![BuildStatus Widget]][BuildStatus Result]
 [![GoReport Widget]][GoReport Status]
