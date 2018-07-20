@@ -12,7 +12,7 @@ $ go get k8s.io/client-go/...
 
 This will install `k8s.io/client-go` in your `$GOPATH`. `k8s.io/client-go`
 includes most of its own dependencies in its `k8s.io/client-go/vendor` path,
-except for `k8s.io/apimachinery` and `glog`. `go get` will recursively download
+except for `k8s.io/apimachinery` and `k8s.io/api` and `glog`. `go get` will recursively download
 these excluded repos to your `$GOPATH`, if they don't already exist. If
 `k8s.io/apimachinery` preexisted in `$GOPATH`, you also need to:
 
