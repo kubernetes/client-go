@@ -191,3 +191,8 @@ If your application depends on a package that client-go depends on, and you let 
 
 ### Contributing code
 Please send pull requests against the client packages in the Kubernetes main [repository](https://github.com/kubernetes/kubernetes). Changes in the staging area will be published to this repository every day.
+
+
+## License
+
+This program follows the Apache License version 2.0 (http://www.apache.org/licenses/ ).  See LICENSE included with the distribution for details.
