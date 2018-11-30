@@ -21,7 +21,7 @@ import (
 	"net/http"
 	"strings"
 	"time"
-
+	"bytes"
 	"k8s.io/klog"
 
 	utilnet "k8s.io/apimachinery/pkg/util/net"
@@ -434,7 +434,7 @@ func shouldEscape(b byte) bool {
 }
 
 func headerKeyEscape(key string) string {
-	buf := strings.Builder{}
+	buf := bytes.Buffer{}
 	for i := 0; i < len(key); i++ {
 		b := key[i]
 		if shouldEscape(b) {
