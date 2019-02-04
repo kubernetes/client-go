@@ -6,4 +6,4 @@ Please follow the same [contributing guide](https://git.k8s.io/kubernetes/CONTRI
 
 This repository is published from [kubernetes/kubernetes/staging/src/k8s.io/client-go](https://git.k8s.io/kubernetes/staging/src/k8s.io/client-go) by the [kubernetes publishing-bot](https://git.k8s.io/publishing-bot). 
 
-Please see [Staging Directory and Publishing](https://git.k8s.io/community/contributors/devel/staging.md) for more information
+Please see [Staging Directory and Publishing](https://git.k8s.io/community/contributors/devel/sig-architecture/staging.md) for more information
