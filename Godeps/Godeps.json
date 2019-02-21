@@ -363,6 +363,10 @@
 			"Rev": "752ecd54e1b6eff9003e9c8aa06ab351810d4108"
 		},
 		{
+			"ImportPath": "k8s.io/api/networking/v1beta1",
+			"Rev": "752ecd54e1b6eff9003e9c8aa06ab351810d4108"
+		},
+		{
 			"ImportPath": "k8s.io/api/policy/v1beta1",
 			"Rev": "752ecd54e1b6eff9003e9c8aa06ab351810d4108"
 		},
