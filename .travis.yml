@@ -3,7 +3,7 @@ language: go
 go_import_path: k8s.io/client-go
 
 go:
-  - 1.11.2
+  - 1.12.1
 
 script:
-  - go build ./...
+  - GO111MODULE=on go build ./...
