@@ -27,8 +27,8 @@ require (
 	golang.org/x/oauth2 v0.0.0-20170412232759-a6bd8cefa181
 	golang.org/x/time v0.0.0-20161028155119-f51c12702a4d
 	google.golang.org/appengine v1.5.0 // indirect
-	k8s.io/api v0.0.0-20190408172450-b1350b9e3bc2
-	k8s.io/apimachinery v0.0.0-20190408172355-3115ef20f323
+	k8s.io/api v0.0.0
+	k8s.io/apimachinery v0.0.0
 	k8s.io/klog v0.0.0-20190306015804-8e90cee79f82
 	k8s.io/utils v0.0.0-20190221042446-c2654d5206da
 	sigs.k8s.io/yaml v1.1.0
@@ -37,7 +37,7 @@ require (
 replace (
 	cloud.google.com/go => cloud.google.com/go v0.0.0-20160913182117-3b1ae45394a2
 	github.com/Azure/go-autorest => github.com/Azure/go-autorest v11.1.0+incompatible
-	github.com/davecgh/go-spew => github.com/davecgh/go-spew v0.0.0-20170626231645-782f4967f2dc
+	github.com/davecgh/go-spew => github.com/davecgh/go-spew v1.1.1
 	github.com/dgrijalva/jwt-go => github.com/dgrijalva/jwt-go v0.0.0-20160705203006-01aeca54ebda
 	github.com/docker/spdystream => github.com/docker/spdystream v0.0.0-20160310174837-449fdfce4d96
 	github.com/elazarl/goproxy => github.com/elazarl/goproxy v0.0.0-20170405201442-c4fc26588b6e
@@ -78,10 +78,30 @@ replace (
 	gopkg.in/inf.v0 => gopkg.in/inf.v0 v0.9.0
 	gopkg.in/tomb.v1 => gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7
 	gopkg.in/yaml.v2 => gopkg.in/yaml.v2 v2.2.1
-	k8s.io/api => k8s.io/api v0.0.0-20190408172450-b1350b9e3bc2
-	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20190408172355-3115ef20f323
+	k8s.io/api => ../api
+	k8s.io/apiextensions-apiserver => ../apiextensions-apiserver
+	k8s.io/apimachinery => ../apimachinery
+	k8s.io/apiserver => ../apiserver
+	k8s.io/cli-runtime => ../cli-runtime
+	k8s.io/client-go => ../client-go
+	k8s.io/cloud-provider => ../cloud-provider
+	k8s.io/cluster-bootstrap => ../cluster-bootstrap
+	k8s.io/code-generator => ../code-generator
+	k8s.io/component-base => ../component-base
+	k8s.io/cri-api => ../cri-api
+	k8s.io/csi-translation-lib => ../csi-translation-lib
 	k8s.io/klog => k8s.io/klog v0.0.0-20190306015804-8e90cee79f82
+	k8s.io/kube-aggregator => ../kube-aggregator
+	k8s.io/kube-controller-manager => ../kube-controller-manager
 	k8s.io/kube-openapi => k8s.io/kube-openapi v0.0.0-20190228160746-b3a7cee44a30
+	k8s.io/kube-proxy => ../kube-proxy
+	k8s.io/kube-scheduler => ../kube-scheduler
+	k8s.io/kubelet => ../kubelet
+	k8s.io/metrics => ../metrics
+	k8s.io/node-api => ../node-api
+	k8s.io/sample-apiserver => ../sample-apiserver
+	k8s.io/sample-cli-plugin => ../sample-cli-plugin
+	k8s.io/sample-controller => ../sample-controller
 	k8s.io/utils => k8s.io/utils v0.0.0-20190221042446-c2654d5206da
 	sigs.k8s.io/yaml => sigs.k8s.io/yaml v1.1.0
 )
