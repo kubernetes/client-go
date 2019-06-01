@@ -91,8 +91,8 @@ gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7 h1:uRGJdciOHaEIrze2W8Q3AKkep
 gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7/go.mod h1:dt/ZhP58zS4L8KSrWDmTeBkI65Dw0HsyUHuEVlX15mw=
 gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91YhliOondGd6ZrsDBHQE=
 gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-k8s.io/api v0.0.0-20190531132109-d3f5f50bdd94/go.mod h1:6MLSFN0Tl4sFDV6wvMXrHhny4RHx1A3U4l5/v3arnwE=
-k8s.io/apimachinery v0.0.0-20190531131812-859a0ba5e71a/go.mod h1:u/2VL7tgEMV0FFTV9q0JO+7cnTsV44LP8Pmx41R4AQ4=
+k8s.io/api v0.0.0-20190602125759-c1e9adbde704/go.mod h1:8b8mSgV/I0gJKSPkwXL06YqDsRGS+n5mviEfpVnf4l4=
+k8s.io/apimachinery v0.0.0-20190602125621-c0632ccbde11/go.mod h1:u/2VL7tgEMV0FFTV9q0JO+7cnTsV44LP8Pmx41R4AQ4=
 k8s.io/klog v0.3.2 h1:qvP/U6CcZ6qyi/qSHlJKdlAboCzo3mT0DAm0XAarpz4=
 k8s.io/klog v0.3.2/go.mod h1:Gq+BEi5rUBO/HRz0bTSXDUcqjScdoY3a9IHpCEIOOfk=
 k8s.io/kube-openapi v0.0.0-20190228160746-b3a7cee44a30 h1:TRb4wNWoBVrH9plmkp2q86FIDppkbrEXdXlxU3a3BMI=

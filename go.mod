@@ -26,8 +26,8 @@ require (
 	golang.org/x/oauth2 v0.0.0-20190402181905-9f3314589c9a
 	golang.org/x/time v0.0.0-20161028155119-f51c12702a4d
 	google.golang.org/appengine v1.5.0 // indirect
-	k8s.io/api v0.0.0-20190531132109-d3f5f50bdd94
-	k8s.io/apimachinery v0.0.0-20190531131812-859a0ba5e71a
+	k8s.io/api v0.0.0-20190602125759-c1e9adbde704
+	k8s.io/apimachinery v0.0.0-20190602125621-c0632ccbde11
 	k8s.io/klog v0.3.2
 	k8s.io/utils v0.0.0-20190221042446-c2654d5206da
 	sigs.k8s.io/yaml v1.1.0
@@ -37,6 +37,6 @@ replace (
 	golang.org/x/sync => golang.org/x/sync v0.0.0-20181108010431-42b317875d0f
 	golang.org/x/sys => golang.org/x/sys v0.0.0-20190209173611-3b5209105503
 	golang.org/x/tools => golang.org/x/tools v0.0.0-20190313210603-aa82965741a9
-	k8s.io/api => k8s.io/api v0.0.0-20190531132109-d3f5f50bdd94
-	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20190531131812-859a0ba5e71a
+	k8s.io/api => k8s.io/api v0.0.0-20190602125759-c1e9adbde704
+	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20190602125621-c0632ccbde11
 )
