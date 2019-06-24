@@ -64,7 +64,7 @@
 		},
 		{
 			"ImportPath": "github.com/google/uuid",
-			"Rev": "v1.0.0"
+			"Rev": "v1.1.1"
 		},
 		{
 			"ImportPath": "github.com/googleapis/gnostic",
@@ -192,11 +192,11 @@
 		},
 		{
 			"ImportPath": "k8s.io/api",
-			"Rev": "dcce3486da33"
+			"Rev": "95846d7ef82a"
 		},
 		{
 			"ImportPath": "k8s.io/apimachinery",
-			"Rev": "d16981aedf33"
+			"Rev": "961b39a1baa0"
 		},
 		{
 			"ImportPath": "k8s.io/klog",
