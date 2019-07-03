@@ -282,25 +282,25 @@ func TestHttpMethods(t *testing.T) {
 
 func TestCreateBackoffManager(t *testing.T) {
 
-	theUrl, _ := url.Parse("http://localhost")
+	theURL, _ := url.Parse("http://localhost")
 
 	// 1 second base backoff + duration of 2 seconds -> exponential backoff for requests.
 	os.Setenv(envBackoffBase, "1")
 	os.Setenv(envBackoffDuration, "2")
 	backoff := readExpBackoffConfig()
-	backoff.UpdateBackoff(theUrl, nil, 500)
-	backoff.UpdateBackoff(theUrl, nil, 500)
-	if backoff.CalculateBackoff(theUrl)/time.Second != 2 {
+	backoff.UpdateBackoff(theURL, nil, 500)
+	backoff.UpdateBackoff(theURL, nil, 500)
+	if backoff.CalculateBackoff(theURL)/time.Second != 2 {
 		t.Errorf("Backoff env not working.")
 	}
 
 	// 0 duration -> no backoff.
 	os.Setenv(envBackoffBase, "1")
 	os.Setenv(envBackoffDuration, "0")
-	backoff.UpdateBackoff(theUrl, nil, 500)
-	backoff.UpdateBackoff(theUrl, nil, 500)
+	backoff.UpdateBackoff(theURL, nil, 500)
+	backoff.UpdateBackoff(theURL, nil, 500)
 	backoff = readExpBackoffConfig()
-	if backoff.CalculateBackoff(theUrl)/time.Second != 0 {
+	if backoff.CalculateBackoff(theURL)/time.Second != 0 {
 		t.Errorf("Zero backoff duration, but backoff still occurring.")
 	}
 
@@ -308,9 +308,9 @@ func TestCreateBackoffManager(t *testing.T) {
 	os.Setenv(envBackoffBase, "")
 	os.Setenv(envBackoffDuration, "")
 	backoff = readExpBackoffConfig()
-	backoff.UpdateBackoff(theUrl, nil, 500)
-	backoff.UpdateBackoff(theUrl, nil, 500)
-	if backoff.CalculateBackoff(theUrl)/time.Second != 0 {
+	backoff.UpdateBackoff(theURL, nil, 500)
+	backoff.UpdateBackoff(theURL, nil, 500)
+	if backoff.CalculateBackoff(theURL)/time.Second != 0 {
 		t.Errorf("Backoff should have been 0.")
 	}
 
