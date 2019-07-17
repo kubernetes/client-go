@@ -15,6 +15,18 @@
 			"Rev": "v11.1.2"
 		},
 		{
+			"ImportPath": "github.com/NYTimes/gziphandler",
+			"Rev": "56545f4a5d46"
+		},
+		{
+			"ImportPath": "github.com/PuerkitoBio/purell",
+			"Rev": "v1.0.0"
+		},
+		{
+			"ImportPath": "github.com/PuerkitoBio/urlesc",
+			"Rev": "5bd2802263f2"
+		},
+		{
 			"ImportPath": "github.com/davecgh/go-spew",
 			"Rev": "v1.1.1"
 		},
@@ -31,12 +43,36 @@
 			"Rev": "c4fc26588b6e"
 		},
 		{
+			"ImportPath": "github.com/emicklei/go-restful",
+			"Rev": "ff4f55a20633"
+		},
+		{
 			"ImportPath": "github.com/evanphx/json-patch",
 			"Rev": "v4.2.0"
 		},
 		{
 			"ImportPath": "github.com/fsnotify/fsnotify",
 			"Rev": "v1.4.7"
+		},
+		{
+			"ImportPath": "github.com/ghodss/yaml",
+			"Rev": "73d445a93680"
+		},
+		{
+			"ImportPath": "github.com/go-openapi/jsonpointer",
+			"Rev": "46af16f9f7b1"
+		},
+		{
+			"ImportPath": "github.com/go-openapi/jsonreference",
+			"Rev": "13c6e3589ad9"
+		},
+		{
+			"ImportPath": "github.com/go-openapi/spec",
+			"Rev": "6aced65f8501"
+		},
+		{
+			"ImportPath": "github.com/go-openapi/swag",
+			"Rev": "1d0bd113de87"
 		},
 		{
 			"ImportPath": "github.com/gogo/protobuf",
@@ -107,12 +143,20 @@
 			"Rev": "v0.1.0"
 		},
 		{
+			"ImportPath": "github.com/mailru/easyjson",
+			"Rev": "d5b7844b561a"
+		},
+		{
 			"ImportPath": "github.com/modern-go/concurrent",
 			"Rev": "bacd9c7ef1dd"
 		},
 		{
 			"ImportPath": "github.com/modern-go/reflect2",
 			"Rev": "v1.0.1"
+		},
+		{
+			"ImportPath": "github.com/munnerz/goautoneg",
+			"Rev": "a547fc61f48d"
 		},
 		{
 			"ImportPath": "github.com/mxk/go-flowrate",
@@ -208,11 +252,15 @@
 		},
 		{
 			"ImportPath": "k8s.io/api",
-			"Rev": "31fe033ae6f9"
+			"Rev": "653c86b0609b"
 		},
 		{
 			"ImportPath": "k8s.io/apimachinery",
-			"Rev": "6171873045ff"
+			"Rev": "0bb8574e0887"
+		},
+		{
+			"ImportPath": "k8s.io/gengo",
+			"Rev": "0689ccc1d7d6"
 		},
 		{
 			"ImportPath": "k8s.io/klog",
@@ -220,11 +268,15 @@
 		},
 		{
 			"ImportPath": "k8s.io/kube-openapi",
-			"Rev": "b3a7cee44a30"
+			"Rev": "33be087ad058"
 		},
 		{
 			"ImportPath": "k8s.io/utils",
 			"Rev": "c55fbcfc754a"
+		},
+		{
+			"ImportPath": "sigs.k8s.io/structured-merge-diff",
+			"Rev": "15d366b2352e"
 		},
 		{
 			"ImportPath": "sigs.k8s.io/yaml",
