@@ -22,13 +22,13 @@ require (
 	github.com/spf13/pflag v1.0.3
 	github.com/stretchr/testify v1.3.0
 	golang.org/x/crypto v0.0.0-20190611184440-5c40567a22f8
-	golang.org/x/net v0.0.0-20190613194153-d28f0bde5980
+	golang.org/x/net v0.0.0-20190812203447-cdfb69ac37fc
 	golang.org/x/oauth2 v0.0.0-20190402181905-9f3314589c9a
 	golang.org/x/time v0.0.0-20161028155119-f51c12702a4d
 	google.golang.org/appengine v1.5.0 // indirect
-	k8s.io/api v0.0.0-20190809220925-3ab596449d6f
-	k8s.io/apimachinery v0.0.0-20190809020650-423f5d784010
-	k8s.io/klog v0.3.1
+	k8s.io/api v0.0.0-20190816101143-8eee47dbc9ed
+	k8s.io/apimachinery v0.0.0-20190816100904-d4a3b9129e40
+	k8s.io/klog v0.4.0
 	k8s.io/utils v0.0.0-20190801114015-581e00157fb1
 	sigs.k8s.io/yaml v1.1.0
 )
@@ -40,6 +40,6 @@ replace (
 	golang.org/x/sys => golang.org/x/sys v0.0.0-20190209173611-3b5209105503
 	golang.org/x/text => golang.org/x/text v0.3.1-0.20181227161524-e6919f6577db
 	golang.org/x/tools => golang.org/x/tools v0.0.0-20190313210603-aa82965741a9
-	k8s.io/api => k8s.io/api v0.0.0-20190809220925-3ab596449d6f
-	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20190809020650-423f5d784010
+	k8s.io/api => k8s.io/api v0.0.0-20190816101143-8eee47dbc9ed
+	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20190816100904-d4a3b9129e40
 )
