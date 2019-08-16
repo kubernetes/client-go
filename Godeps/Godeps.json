@@ -11,8 +11,28 @@
 			"Rev": "v0.34.0"
 		},
 		{
-			"ImportPath": "github.com/Azure/go-autorest",
-			"Rev": "v11.1.2"
+			"ImportPath": "github.com/Azure/go-autorest/autorest",
+			"Rev": "v0.9.0"
+		},
+		{
+			"ImportPath": "github.com/Azure/go-autorest/autorest/adal",
+			"Rev": "v0.5.0"
+		},
+		{
+			"ImportPath": "github.com/Azure/go-autorest/autorest/date",
+			"Rev": "v0.1.0"
+		},
+		{
+			"ImportPath": "github.com/Azure/go-autorest/autorest/mocks",
+			"Rev": "v0.2.0"
+		},
+		{
+			"ImportPath": "github.com/Azure/go-autorest/logger",
+			"Rev": "v0.1.0"
+		},
+		{
+			"ImportPath": "github.com/Azure/go-autorest/tracing",
+			"Rev": "v0.5.0"
 		},
 		{
 			"ImportPath": "github.com/NYTimes/gziphandler",
@@ -32,7 +52,7 @@
 		},
 		{
 			"ImportPath": "github.com/dgrijalva/jwt-go",
-			"Rev": "01aeca54ebda"
+			"Rev": "v3.2.0"
 		},
 		{
 			"ImportPath": "github.com/docker/spdystream",
