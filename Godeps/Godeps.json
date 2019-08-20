@@ -256,7 +256,7 @@
 		},
 		{
 			"ImportPath": "golang.org/x/tools",
-			"Rev": "aa82965741a9"
+			"Rev": "6c7e314b6563"
 		},
 		{
 			"ImportPath": "google.golang.org/appengine",
@@ -284,11 +284,11 @@
 		},
 		{
 			"ImportPath": "k8s.io/api",
-			"Rev": "0772a1bdf941"
+			"Rev": "d651a1528133"
 		},
 		{
 			"ImportPath": "k8s.io/apimachinery",
-			"Rev": "533d101be9a6"
+			"Rev": "21ddcbbef9e1"
 		},
 		{
 			"ImportPath": "k8s.io/gengo",
