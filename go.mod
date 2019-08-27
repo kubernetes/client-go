@@ -11,7 +11,7 @@ require (
 	github.com/evanphx/json-patch v4.2.0+incompatible
 	github.com/gogo/protobuf v1.2.2-0.20190723190241-65acae22fc9d
 	github.com/golang/groupcache v0.0.0-20160516000752-02826c3e7903
-	github.com/golang/protobuf v1.2.0
+	github.com/golang/protobuf v1.3.1
 	github.com/google/btree v0.0.0-20160524151835-7d79101e329e // indirect
 	github.com/google/gofuzz v1.0.0
 	github.com/googleapis/gnostic v0.0.0-20170729233727-0c5108395e2d
@@ -26,8 +26,8 @@ require (
 	golang.org/x/oauth2 v0.0.0-20190402181905-9f3314589c9a
 	golang.org/x/time v0.0.0-20161028155119-f51c12702a4d
 	google.golang.org/appengine v1.5.0 // indirect
-	k8s.io/api v0.0.0-20190827050453-50fa2e9843ff
-	k8s.io/apimachinery v0.0.0-20190827050453-a43f8d6163d1
+	k8s.io/api v0.0.0-20190828114644-535404967fc8
+	k8s.io/apimachinery v0.0.0-20190828114644-35bd9ae31030
 	k8s.io/klog v0.4.0
 	k8s.io/utils v0.0.0-20190801114015-581e00157fb1
 	sigs.k8s.io/yaml v1.1.0
@@ -38,6 +38,6 @@ replace (
 	golang.org/x/sync => golang.org/x/sync v0.0.0-20181108010431-42b317875d0f
 	golang.org/x/sys => golang.org/x/sys v0.0.0-20190209173611-3b5209105503
 	golang.org/x/text => golang.org/x/text v0.3.1-0.20181227161524-e6919f6577db
-	k8s.io/api => k8s.io/api v0.0.0-20190827050453-50fa2e9843ff
-	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20190827050453-a43f8d6163d1
+	k8s.io/api => k8s.io/api v0.0.0-20190828114644-535404967fc8
+	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20190828114644-35bd9ae31030
 )

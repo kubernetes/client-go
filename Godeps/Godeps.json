@@ -108,7 +108,7 @@
 		},
 		{
 			"ImportPath": "github.com/golang/protobuf",
-			"Rev": "v1.2.0"
+			"Rev": "v1.3.1"
 		},
 		{
 			"ImportPath": "github.com/google/btree",
@@ -140,7 +140,7 @@
 		},
 		{
 			"ImportPath": "github.com/hashicorp/golang-lru",
-			"Rev": "v0.5.0"
+			"Rev": "v0.5.1"
 		},
 		{
 			"ImportPath": "github.com/hpcloud/tail",
@@ -284,11 +284,11 @@
 		},
 		{
 			"ImportPath": "k8s.io/api",
-			"Rev": "50fa2e9843ff"
+			"Rev": "535404967fc8"
 		},
 		{
 			"ImportPath": "k8s.io/apimachinery",
-			"Rev": "a43f8d6163d1"
+			"Rev": "35bd9ae31030"
 		},
 		{
 			"ImportPath": "k8s.io/gengo",
