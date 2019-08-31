@@ -344,11 +344,11 @@
 		},
 		{
 			"ImportPath": "k8s.io/api",
-			"Rev": "c43c3e1d5a79"
+			"Rev": "7364b6bdad65"
 		},
 		{
 			"ImportPath": "k8s.io/apimachinery",
-			"Rev": "f1cbc0c8ff07"
+			"Rev": "461753078381"
 		},
 		{
 			"ImportPath": "k8s.io/gengo",
@@ -360,7 +360,7 @@
 		},
 		{
 			"ImportPath": "k8s.io/kube-openapi",
-			"Rev": "33be087ad058"
+			"Rev": "743ec37842bf"
 		},
 		{
 			"ImportPath": "k8s.io/utils",
