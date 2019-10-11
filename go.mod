@@ -14,6 +14,7 @@ require (
 	github.com/golang/groupcache v0.0.0-20160516000752-02826c3e7903
 	github.com/golang/protobuf v1.3.1
 	github.com/google/gofuzz v1.0.0
+	github.com/google/uuid v1.1.1
 	github.com/googleapis/gnostic v0.0.0-20170729233727-0c5108395e2d
 	github.com/gophercloud/gophercloud v0.1.0
 	github.com/gregjones/httpcache v0.0.0-20170728041850-787624de3eb7
@@ -27,7 +28,7 @@ require (
 	golang.org/x/time v0.0.0-20181108054448-85acf8d2951c
 	google.golang.org/appengine v1.5.0 // indirect
 	k8s.io/api v0.0.0-20191010143144-fbf594f18f80
-	k8s.io/apimachinery v0.0.0-20191006235458-f9f2f3f8ab02
+	k8s.io/apimachinery v0.0.0-20191014065749-fb3eea214746
 	k8s.io/klog v1.0.0
 	k8s.io/utils v0.0.0-20190920012459-5008bf6f8cd6
 	sigs.k8s.io/yaml v1.1.0
@@ -42,5 +43,5 @@ replace (
 	golang.org/x/text => golang.org/x/text v0.3.1-0.20181227161524-e6919f6577db
 	golang.org/x/time => golang.org/x/time v0.0.0-20161028155119-f51c12702a4d
 	k8s.io/api => k8s.io/api v0.0.0-20191010143144-fbf594f18f80
-	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20191006235458-f9f2f3f8ab02
+	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20191014065749-fb3eea214746
 )
