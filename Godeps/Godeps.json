@@ -248,7 +248,7 @@
 		},
 		{
 			"ImportPath": "github.com/spf13/pflag",
-			"Rev": "v1.0.3"
+			"Rev": "v1.0.5"
 		},
 		{
 			"ImportPath": "github.com/stretchr/objx",
@@ -328,7 +328,7 @@
 		},
 		{
 			"ImportPath": "gopkg.in/inf.v0",
-			"Rev": "v0.9.0"
+			"Rev": "v0.9.1"
 		},
 		{
 			"ImportPath": "gopkg.in/tomb.v1",
@@ -344,11 +344,11 @@
 		},
 		{
 			"ImportPath": "k8s.io/api",
-			"Rev": "ccca0f5a3d9c"
+			"Rev": "43b1ad33cf6f"
 		},
 		{
 			"ImportPath": "k8s.io/apimachinery",
-			"Rev": "e1faffd14b0f"
+			"Rev": "9c5262af35ca"
 		},
 		{
 			"ImportPath": "k8s.io/gengo",
