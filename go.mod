@@ -29,7 +29,7 @@ require (
 	golang.org/x/time v0.0.0-20190308202827-9d24e82272b4
 	google.golang.org/appengine v1.5.0 // indirect
 	k8s.io/api v0.0.0-20191107030003-665c8a257c1a
-	k8s.io/apimachinery v0.0.0-20191107025710-670e6d490571
+	k8s.io/apimachinery v0.0.0-20191107105744-2c7f8d2b0fd8
 	k8s.io/klog v1.0.0
 	k8s.io/utils v0.0.0-20191030222137-2b95a09bc58d
 	sigs.k8s.io/yaml v1.1.0
@@ -39,5 +39,5 @@ replace (
 	golang.org/x/sys => golang.org/x/sys v0.0.0-20190813064441-fde4db37ae7a
 	golang.org/x/tools => golang.org/x/tools v0.0.0-20190821162956-65e3620a7ae7
 	k8s.io/api => k8s.io/api v0.0.0-20191107030003-665c8a257c1a
-	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20191107025710-670e6d490571
+	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20191107105744-2c7f8d2b0fd8
 )
