@@ -31,7 +31,7 @@ require (
 	k8s.io/api v0.0.0-20191115142644-28bee1a9beb0
 	k8s.io/apimachinery v0.0.0-20191116161330-89d410bde4ec
 	k8s.io/klog v1.0.0
-	k8s.io/utils v0.0.0-20191030222137-2b95a09bc58d
+	k8s.io/utils v0.0.0-20191114184206-e782cd3c129f
 	sigs.k8s.io/yaml v1.1.0
 )
 
