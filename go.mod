@@ -2,7 +2,7 @@
 
 module k8s.io/client-go
 
-go 1.13
+go 1.12
 
 require (
 	cloud.google.com/go v0.38.0 // indirect
@@ -28,16 +28,17 @@ require (
 	golang.org/x/oauth2 v0.0.0-20190604053449-0f29369cfe45
 	golang.org/x/time v0.0.0-20190308202827-9d24e82272b4
 	google.golang.org/appengine v1.5.0 // indirect
-	k8s.io/api v0.0.0-20191230033939-7dc09db16fb8
-	k8s.io/apimachinery v0.0.0-20200106233518-8f98b2385567
+	k8s.io/api v0.0.0
+	k8s.io/apimachinery v0.0.0
 	k8s.io/klog v1.0.0
-	k8s.io/utils v0.0.0-20191217005138-9e5e9d854fcc
+	k8s.io/utils v0.0.0-20191114184206-e782cd3c129f
 	sigs.k8s.io/yaml v1.1.0
 )
 
 replace (
 	golang.org/x/sys => golang.org/x/sys v0.0.0-20190813064441-fde4db37ae7a // pinned to release-branch.go1.13
 	golang.org/x/tools => golang.org/x/tools v0.0.0-20190821162956-65e3620a7ae7 // pinned to release-branch.go1.13
-	k8s.io/api => k8s.io/api v0.0.0-20191230033939-7dc09db16fb8
-	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20200106233518-8f98b2385567
+	k8s.io/api => ../api
+	k8s.io/apimachinery => ../apimachinery
+	k8s.io/client-go => ../client-go
 )
