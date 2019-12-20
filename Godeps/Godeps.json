@@ -228,7 +228,7 @@
 		},
 		{
 			"ImportPath": "github.com/onsi/ginkgo",
-			"Rev": "v1.10.1"
+			"Rev": "v1.11.0"
 		},
 		{
 			"ImportPath": "github.com/onsi/gomega",
@@ -348,11 +348,11 @@
 		},
 		{
 			"ImportPath": "k8s.io/api",
-			"Rev": "ca1d04f8b0d3"
+			"Rev": "5011a43dca10"
 		},
 		{
 			"ImportPath": "k8s.io/apimachinery",
-			"Rev": "0ee8b4573e3a"
+			"Rev": "c48e860b1320"
 		},
 		{
 			"ImportPath": "k8s.io/gengo",
