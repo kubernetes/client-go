@@ -156,7 +156,7 @@
 		},
 		{
 			"ImportPath": "github.com/googleapis/gnostic",
-			"Rev": "0c5108395e2d"
+			"Rev": "v0.1.0"
 		},
 		{
 			"ImportPath": "github.com/gophercloud/gophercloud",
@@ -348,11 +348,11 @@
 		},
 		{
 			"ImportPath": "k8s.io/api",
-			"Rev": "49d983e9bac5"
+			"Rev": "3946df5ca773"
 		},
 		{
 			"ImportPath": "k8s.io/apimachinery",
-			"Rev": "51168acb8295"
+			"Rev": "44bd77c24ef9"
 		},
 		{
 			"ImportPath": "k8s.io/gengo",
