@@ -222,7 +222,7 @@ The VolumeScheduling beta feature gate is still required for this feature.
 ([#67432](https://github.com/kubernetes/kubernetes/pull/67432))
 
 * The CSI file system type is no longer defaulted to ext4.
-All the production drivers listed under https://kubernetes-csi.github.io/docs/Drivers.html
+All the production drivers listed under https://kubernetes-csi.github.io/docs/drivers.html
 were inspected and should not be impacted after this change.
 If you are using a driver not in that list,
 please test the drivers on an updated test cluster first.
