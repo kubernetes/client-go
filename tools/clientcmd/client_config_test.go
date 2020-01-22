@@ -691,6 +691,42 @@ func TestNamespaceOverride(t *testing.T) {
 	matchStringArg("foo", ns, t)
 }
 
+func TestContextNameOverride(t *testing.T) {
+	contexts := map[string]*clientcmdapi.Context{}
+	contexts["foo"] = &clientcmdapi.Context{}
+
+	config := &DirectClientConfig{
+		config: clientcmdapi.Config{
+			CurrentContext: "bar",
+			Contexts:       contexts,
+		},
+	}
+
+	rawConfig, err := config.RawConfig()
+	if err != nil {
+		t.Errorf("Unexpected error: %v", err)
+	}
+
+	matchStringArg("bar", rawConfig.CurrentContext, t)
+
+	config = &DirectClientConfig{
+		config: clientcmdapi.Config{
+			CurrentContext: "bar",
+			Contexts:       contexts,
+		},
+		overrides: &ConfigOverrides{
+			CurrentContext: "foo",
+		},
+	}
+
+	rawConfig, err = config.RawConfig()
+	if err != nil {
+		t.Errorf("Unexpected error: %v", err)
+	}
+
+	matchStringArg("foo", rawConfig.CurrentContext, t)
+}
+
 func TestAuthConfigMerge(t *testing.T) {
 	content := `
 apiVersion: v1
