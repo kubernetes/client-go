@@ -136,7 +136,7 @@
 		},
 		{
 			"ImportPath": "github.com/google/gofuzz",
-			"Rev": "v1.0.0"
+			"Rev": "v1.1.0"
 		},
 		{
 			"ImportPath": "github.com/google/martian",
@@ -348,11 +348,11 @@
 		},
 		{
 			"ImportPath": "k8s.io/api",
-			"Rev": "924612ff3bca"
+			"Rev": "812149543c99"
 		},
 		{
 			"ImportPath": "k8s.io/apimachinery",
-			"Rev": "6e7abe710169"
+			"Rev": "845a0cbf0d16"
 		},
 		{
 			"ImportPath": "k8s.io/gengo",
