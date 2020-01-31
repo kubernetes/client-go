@@ -184,15 +184,15 @@
 		},
 		{
 			"ImportPath": "gopkg.in/yaml.v2",
-			"Rev": "v2.2.4"
+			"Rev": "v2.2.8"
 		},
 		{
 			"ImportPath": "k8s.io/api",
-			"Rev": "3a12735a829a"
+			"Rev": "e3a917c59b04"
 		},
 		{
 			"ImportPath": "k8s.io/apimachinery",
-			"Rev": "31ade1b30762"
+			"Rev": "0cd702f8b7f4"
 		},
 		{
 			"ImportPath": "k8s.io/klog",
