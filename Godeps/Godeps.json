@@ -348,11 +348,11 @@
 		},
 		{
 			"ImportPath": "k8s.io/api",
-			"Rev": "d5ab0ddd8b73"
+			"Rev": "ecbd4af0fc33"
 		},
 		{
 			"ImportPath": "k8s.io/apimachinery",
-			"Rev": "fb45917aae8b"
+			"Rev": "7490b3ed6e92"
 		},
 		{
 			"ImportPath": "k8s.io/gengo",
@@ -368,7 +368,7 @@
 		},
 		{
 			"ImportPath": "k8s.io/utils",
-			"Rev": "9e5e9d854fcc"
+			"Rev": "5f6fbceb4c31"
 		},
 		{
 			"ImportPath": "sigs.k8s.io/structured-merge-diff/v3",
