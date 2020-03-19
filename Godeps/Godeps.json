@@ -159,10 +159,6 @@
 			"Rev": "v0.1.0"
 		},
 		{
-			"ImportPath": "github.com/gophercloud/gophercloud",
-			"Rev": "v0.1.0"
-		},
-		{
 			"ImportPath": "github.com/gregjones/httpcache",
 			"Rev": "9cad4c3443a7"
 		},
