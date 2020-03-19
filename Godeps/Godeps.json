@@ -132,7 +132,7 @@
 		},
 		{
 			"ImportPath": "github.com/google/go-cmp",
-			"Rev": "v0.3.0"
+			"Rev": "v0.3.1"
 		},
 		{
 			"ImportPath": "github.com/google/gofuzz",
@@ -344,11 +344,11 @@
 		},
 		{
 			"ImportPath": "k8s.io/api",
-			"Rev": "c322e7106b58"
+			"Rev": "eb909d5fe0e7"
 		},
 		{
 			"ImportPath": "k8s.io/apimachinery",
-			"Rev": "1a505bc60c6d"
+			"Rev": "147abd67b880"
 		},
 		{
 			"ImportPath": "k8s.io/gengo",
