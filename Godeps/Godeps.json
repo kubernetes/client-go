@@ -364,7 +364,7 @@
 		},
 		{
 			"ImportPath": "k8s.io/utils",
-			"Rev": "327a8059b905"
+			"Rev": "a9aa75ae1b89"
 		},
 		{
 			"ImportPath": "sigs.k8s.io/structured-merge-diff/v3",
