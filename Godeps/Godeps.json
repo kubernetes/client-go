@@ -84,7 +84,7 @@
 		},
 		{
 			"ImportPath": "github.com/fsnotify/fsnotify",
-			"Rev": "v1.4.7"
+			"Rev": "v1.4.9"
 		},
 		{
 			"ImportPath": "github.com/ghodss/yaml",
@@ -348,11 +348,11 @@
 		},
 		{
 			"ImportPath": "k8s.io/api",
-			"Rev": "fa879b399cd0"
+			"Rev": "0200c590acbd"
 		},
 		{
 			"ImportPath": "k8s.io/apimachinery",
-			"Rev": "4c6179225362"
+			"Rev": "c01355f0e896"
 		},
 		{
 			"ImportPath": "k8s.io/gengo",
