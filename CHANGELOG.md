@@ -85,7 +85,7 @@ namespace using the `spec.glusterfs.endpointsNamespace` field.
 Ensure all kubelets are upgraded to 1.13+ before using this capability.
 ([#60195](https://github.com/kubernetes/kubernetes/pull/60195))
 
-* The [dynamic audit configuration](https://github.com/kubernetes/community/blob/master/keps/sig-auth/0014-dynamic-audit-configuration.md)
+* The [dynamic audit configuration](https://github.com/kubernetes/community/blob/36d4f7d32665033366448989bb12d0633d546c92/keps/sig-auth/0014-dynamic-audit-configuration.md)
 API is added. ([#67547](https://github.com/kubernetes/kubernetes/pull/67547))
 
 * A new field `EnableServiceLinks` is added to the `PodSpec` to indicate whether
