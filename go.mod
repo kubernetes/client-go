@@ -12,7 +12,7 @@ require (
 	github.com/evanphx/json-patch v4.2.0+incompatible
 	github.com/gogo/protobuf v1.3.1
 	github.com/golang/groupcache v0.0.0-20191227052852-215e87163ea7
-	github.com/golang/protobuf v1.3.3
+	github.com/golang/protobuf v1.4.0
 	github.com/google/go-cmp v0.4.0
 	github.com/google/gofuzz v1.1.0
 	github.com/google/uuid v1.1.1
@@ -26,16 +26,19 @@ require (
 	golang.org/x/net v0.0.0-20200324143707-d3edc9973b7e
 	golang.org/x/oauth2 v0.0.0-20191202225959-858c2ad4c8b6
 	golang.org/x/time v0.0.0-20191024005414-555d28b269f0
-	k8s.io/api v0.0.0-20200517042100-2490600588fc
-	k8s.io/apimachinery v0.0.0-20200517041843-561e5e9b265b
+	k8s.io/api v0.0.0
+	k8s.io/apimachinery v0.0.0
 	k8s.io/klog/v2 v2.0.0
 	k8s.io/utils v0.0.0-20200414100711-2df71ebbae66
 	sigs.k8s.io/yaml v1.2.0
 )
 
 replace (
+	github.com/golang/protobuf => github.com/golang/protobuf v1.3.3
+	github.com/json-iterator/go => github.com/json-iterator/go v1.1.8
 	golang.org/x/sys => golang.org/x/sys v0.0.0-20190813064441-fde4db37ae7a // pinned to release-branch.go1.13
 	golang.org/x/tools => golang.org/x/tools v0.0.0-20190821162956-65e3620a7ae7 // pinned to release-branch.go1.13
-	k8s.io/api => k8s.io/api v0.0.0-20200517042100-2490600588fc
-	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20200517041843-561e5e9b265b
+	k8s.io/api => ../api
+	k8s.io/apimachinery => ../apimachinery
+	k8s.io/client-go => ../client-go
 )
