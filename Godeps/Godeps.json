@@ -180,7 +180,7 @@
 		},
 		{
 			"ImportPath": "github.com/golang/protobuf",
-			"Rev": "v1.3.3"
+			"Rev": "v1.4.2"
 		},
 		{
 			"ImportPath": "github.com/google/btree",
@@ -240,7 +240,7 @@
 		},
 		{
 			"ImportPath": "github.com/json-iterator/go",
-			"Rev": "v1.1.8"
+			"Rev": "v1.1.9"
 		},
 		{
 			"ImportPath": "github.com/jstemmer/go-junit-report",
@@ -403,6 +403,10 @@
 			"Rev": "v1.26.0"
 		},
 		{
+			"ImportPath": "google.golang.org/protobuf",
+			"Rev": "v1.23.0"
+		},
+		{
 			"ImportPath": "gopkg.in/check.v1",
 			"Rev": "41f04d3bba15"
 		},
@@ -432,11 +436,11 @@
 		},
 		{
 			"ImportPath": "k8s.io/api",
-			"Rev": "2490600588fc"
+			"Rev": "2543aba0e237"
 		},
 		{
 			"ImportPath": "k8s.io/apimachinery",
-			"Rev": "561e5e9b265b"
+			"Rev": "bdcc9f4ab675"
 		},
 		{
 			"ImportPath": "k8s.io/gengo",
