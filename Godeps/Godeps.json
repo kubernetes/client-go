@@ -128,7 +128,7 @@
 		},
 		{
 			"ImportPath": "github.com/evanphx/json-patch",
-			"Rev": "v4.2.0"
+			"Rev": "e83c0a1c26c8"
 		},
 		{
 			"ImportPath": "github.com/fsnotify/fsnotify",
@@ -299,6 +299,10 @@
 			"Rev": "v2.0.1"
 		},
 		{
+			"ImportPath": "github.com/pkg/errors",
+			"Rev": "v0.9.1"
+		},
+		{
 			"ImportPath": "github.com/pmezard/go-difflib",
 			"Rev": "v1.0.0"
 		},
@@ -436,11 +440,11 @@
 		},
 		{
 			"ImportPath": "k8s.io/api",
-			"Rev": "96dd8b8608bc"
+			"Rev": "8dc28b782f8e"
 		},
 		{
 			"ImportPath": "k8s.io/apimachinery",
-			"Rev": "d8530e6c952f"
+			"Rev": "c1bd2c2a276f"
 		},
 		{
 			"ImportPath": "k8s.io/gengo",
