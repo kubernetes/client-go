@@ -460,7 +460,7 @@
 		},
 		{
 			"ImportPath": "k8s.io/utils",
-			"Rev": "2df71ebbae66"
+			"Rev": "6e3d28b6ed19"
 		},
 		{
 			"ImportPath": "rsc.io/binaryregexp",
