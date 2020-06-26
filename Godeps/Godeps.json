@@ -372,7 +372,7 @@
 		},
 		{
 			"ImportPath": "golang.org/x/sys",
-			"Rev": "915c9c3d4ccf"
+			"Rev": "ed371f2e16b4"
 		},
 		{
 			"ImportPath": "golang.org/x/text",
@@ -400,15 +400,15 @@
 		},
 		{
 			"ImportPath": "google.golang.org/genproto",
-			"Rev": "f3c370f40bfb"
+			"Rev": "cb27e3aa2013"
 		},
 		{
 			"ImportPath": "google.golang.org/grpc",
-			"Rev": "v1.26.0"
+			"Rev": "v1.27.0"
 		},
 		{
 			"ImportPath": "google.golang.org/protobuf",
-			"Rev": "v1.23.0"
+			"Rev": "v1.24.0"
 		},
 		{
 			"ImportPath": "gopkg.in/check.v1",
@@ -440,11 +440,11 @@
 		},
 		{
 			"ImportPath": "k8s.io/api",
-			"Rev": "6f8e0fa87f2f"
+			"Rev": "f849118f70f6"
 		},
 		{
 			"ImportPath": "k8s.io/apimachinery",
-			"Rev": "eed6a5257d68"
+			"Rev": "3b98a76529ae"
 		},
 		{
 			"ImportPath": "k8s.io/gengo",
