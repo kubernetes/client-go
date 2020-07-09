@@ -332,7 +332,7 @@ honnef.co/go/tools v0.0.0-20190106161140-3f1c8253044a/go.mod h1:rf3lG4BRIbNafJWh
 honnef.co/go/tools v0.0.0-20190418001031-e561f6794a2a/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
 honnef.co/go/tools v0.0.0-20190523083050-ea95bdfd59fc/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
 honnef.co/go/tools v0.0.1-2019.2.3/go.mod h1:a3bituU0lyd329TUQxRnasdCoJDkEUEAqEt0JzvZhAg=
-k8s.io/api v0.0.0-20200706140252-6943fd7f818f/go.mod h1:PFJ2b4cud2iXU+DzN8Tf+HsJsN2KKcJUfbMmckp2bhI=
+k8s.io/api v0.0.0-20200709130929-984543161440/go.mod h1:PFJ2b4cud2iXU+DzN8Tf+HsJsN2KKcJUfbMmckp2bhI=
 k8s.io/apimachinery v0.0.0-20200702090251-3c2682fedbf2/go.mod h1:87+lSRzC+mGLZTTwIcPY67sorIVlqPhdNrvsToaUUns=
 k8s.io/gengo v0.0.0-20200413195148-3a45101e95ac/go.mod h1:ezvh/TsK7cY6rbqRK0oQQ8IAqLxYwwyPxAX1Pzy0ii0=
 k8s.io/klog/v2 v2.0.0 h1:Foj74zO6RbjjP4hBEKjnYtjjAhGg4jNynUdYF6fJrok=
