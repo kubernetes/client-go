@@ -35,5 +35,5 @@ require (
 
 replace (
 	k8s.io/api => k8s.io/api v0.0.0-20200711010759-67a68481e276
-	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20200711010416-9894919f2c6e
+	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20200711010416-8e134319f815
 )
