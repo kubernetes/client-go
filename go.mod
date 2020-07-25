@@ -22,18 +22,18 @@ require (
 	github.com/peterbourgon/diskv v2.0.1+incompatible
 	github.com/spf13/pflag v1.0.5
 	github.com/stretchr/testify v1.4.0
-	golang.org/x/crypto v0.0.0-20200220183623-bac4c82f6975
-	golang.org/x/net v0.0.0-20200324143707-d3edc9973b7e
+	golang.org/x/crypto v0.0.0-20200622213623-75b288015ac9
+	golang.org/x/net v0.0.0-20200707034311-ab3426394381
 	golang.org/x/oauth2 v0.0.0-20191202225959-858c2ad4c8b6
 	golang.org/x/time v0.0.0-20191024005414-555d28b269f0
-	k8s.io/api v0.0.0-20200717102341-0bfda2331c3c
-	k8s.io/apimachinery v0.0.0-20200722125135-a6609cbba4fc
+	k8s.io/api v0.0.0-20200727091507-83df1b82c014
+	k8s.io/apimachinery v0.0.0-20200727091313-7efdc26a675c
 	k8s.io/klog/v2 v2.2.0
 	k8s.io/utils v0.0.0-20200720150651-0bdb4ca86cbc
 	sigs.k8s.io/yaml v1.2.0
 )
 
 replace (
-	k8s.io/api => k8s.io/api v0.0.0-20200717102341-0bfda2331c3c
-	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20200722125135-a6609cbba4fc
+	k8s.io/api => k8s.io/api v0.0.0-20200727091507-83df1b82c014
+	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20200727091313-7efdc26a675c
 )

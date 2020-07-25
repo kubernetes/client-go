@@ -336,7 +336,7 @@
 		},
 		{
 			"ImportPath": "golang.org/x/crypto",
-			"Rev": "bac4c82f6975"
+			"Rev": "75b288015ac9"
 		},
 		{
 			"ImportPath": "golang.org/x/exp",
@@ -360,7 +360,7 @@
 		},
 		{
 			"ImportPath": "golang.org/x/net",
-			"Rev": "d3edc9973b7e"
+			"Rev": "ab3426394381"
 		},
 		{
 			"ImportPath": "golang.org/x/oauth2",
@@ -440,11 +440,11 @@
 		},
 		{
 			"ImportPath": "k8s.io/api",
-			"Rev": "0bfda2331c3c"
+			"Rev": "83df1b82c014"
 		},
 		{
 			"ImportPath": "k8s.io/apimachinery",
-			"Rev": "a6609cbba4fc"
+			"Rev": "7efdc26a675c"
 		},
 		{
 			"ImportPath": "k8s.io/gengo",
