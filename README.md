@@ -174,7 +174,7 @@ you care about backwards compatibility.
 Use go1.11+ and fetch the desired version using the `go get` command. For example:
 
 ```
-go get k8s.io/client-go@v0.17.0
+go get k8s.io/client-go@v0.18.0
 ```
 
 See [INSTALL.md](/INSTALL.md) for detailed instructions.
