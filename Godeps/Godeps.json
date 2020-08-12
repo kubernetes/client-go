@@ -76,7 +76,7 @@
 		},
 		{
 			"ImportPath": "github.com/evanphx/json-patch",
-			"Rev": "v4.2.0"
+			"Rev": "162e5629780b"
 		},
 		{
 			"ImportPath": "github.com/fsnotify/fsnotify",
@@ -179,6 +179,10 @@
 			"Rev": "v0.3.5"
 		},
 		{
+			"ImportPath": "github.com/jessevdk/go-flags",
+			"Rev": "v1.4.0"
+		},
+		{
 			"ImportPath": "github.com/json-iterator/go",
 			"Rev": "v1.1.7"
 		},
@@ -237,6 +241,10 @@
 		{
 			"ImportPath": "github.com/peterbourgon/diskv",
 			"Rev": "v2.0.1"
+		},
+		{
+			"ImportPath": "github.com/pkg/errors",
+			"Rev": "v0.8.1"
 		},
 		{
 			"ImportPath": "github.com/pmezard/go-difflib",
@@ -348,11 +356,11 @@
 		},
 		{
 			"ImportPath": "k8s.io/api",
-			"Rev": "34b661834646"
+			"Rev": "0f665c80805a"
 		},
 		{
 			"ImportPath": "k8s.io/apimachinery",
-			"Rev": "17ad11ffb845"
+			"Rev": "79e0efc2a654"
 		},
 		{
 			"ImportPath": "k8s.io/gengo",
