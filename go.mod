@@ -6,8 +6,8 @@ go 1.15
 
 require (
 	cloud.google.com/go v0.51.0 // indirect
-	github.com/Azure/go-autorest/autorest v0.9.6
-	github.com/Azure/go-autorest/autorest/adal v0.8.2
+	github.com/Azure/go-autorest/autorest v0.11.1
+	github.com/Azure/go-autorest/autorest/adal v0.9.0
 	github.com/davecgh/go-spew v1.1.1
 	github.com/evanphx/json-patch v4.9.0+incompatible
 	github.com/gogo/protobuf v1.3.1
@@ -26,14 +26,14 @@ require (
 	golang.org/x/net v0.0.0-20200707034311-ab3426394381
 	golang.org/x/oauth2 v0.0.0-20191202225959-858c2ad4c8b6
 	golang.org/x/time v0.0.0-20191024005414-555d28b269f0
-	k8s.io/api v0.0.0-20200831211624-9a1561067c54
-	k8s.io/apimachinery v0.0.0-20200830011411-94222d04a590
+	k8s.io/api v0.0.0-20200902051604-73d7eb3bb026
+	k8s.io/apimachinery v0.0.0-20200902131538-ba0f2f062330
 	k8s.io/klog/v2 v2.2.0
 	k8s.io/utils v0.0.0-20200729134348-d5654de09c73
 	sigs.k8s.io/yaml v1.2.0
 )
 
 replace (
-	k8s.io/api => k8s.io/api v0.0.0-20200831211624-9a1561067c54
-	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20200830011411-94222d04a590
+	k8s.io/api => k8s.io/api v0.0.0-20200902051604-73d7eb3bb026
+	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20200902131538-ba0f2f062330
 )
