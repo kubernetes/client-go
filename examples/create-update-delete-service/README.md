@@ -35,7 +35,7 @@ Running this command will execute the following operations on your cluster:
    previous step by changing the type of servicr
    `kubectl describe service demo`.
 3. **List Services:** This will retrieve Services in the `default`
-   namespace and print their names and replica counts.
+   namespace and print their names and type.
 4. **Delete Service:** This will delete the Service object. Verify with `kubectl get services`.
 
 Each step is separated by an interactive prompt. You must hit the
@@ -55,7 +55,7 @@ Updated service...
 -> Press Return key to continue.
 
 Listing services in namespace "default":
- * demo-services (1 replicas)
+ * demo-services (NodePort)
 -> Press Return key to continue.
 
 Deleting service...
