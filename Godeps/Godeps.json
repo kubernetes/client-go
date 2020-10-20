@@ -40,7 +40,7 @@
 		},
 		{
 			"ImportPath": "github.com/Azure/go-autorest/autorest/adal",
-			"Rev": "v0.9.0"
+			"Rev": "v0.9.5"
 		},
 		{
 			"ImportPath": "github.com/Azure/go-autorest/autorest/date",
@@ -48,7 +48,7 @@
 		},
 		{
 			"ImportPath": "github.com/Azure/go-autorest/autorest/mocks",
-			"Rev": "v0.4.0"
+			"Rev": "v0.4.1"
 		},
 		{
 			"ImportPath": "github.com/Azure/go-autorest/logger",
@@ -133,6 +133,10 @@
 		{
 			"ImportPath": "github.com/evanphx/json-patch",
 			"Rev": "v4.9.0"
+		},
+		{
+			"ImportPath": "github.com/form3tech-oss/jwt-go",
+			"Rev": "v3.2.2"
 		},
 		{
 			"ImportPath": "github.com/fsnotify/fsnotify",
@@ -340,7 +344,7 @@
 		},
 		{
 			"ImportPath": "golang.org/x/crypto",
-			"Rev": "75b288015ac9"
+			"Rev": "7f63de1d35b0"
 		},
 		{
 			"ImportPath": "golang.org/x/exp",
@@ -444,11 +448,11 @@
 		},
 		{
 			"ImportPath": "k8s.io/api",
-			"Rev": "2c3c141c931c"
+			"Rev": "54bcc311e327"
 		},
 		{
 			"ImportPath": "k8s.io/apimachinery",
-			"Rev": "d4f471b82f0a"
+			"Rev": "554eef9dbf66"
 		},
 		{
 			"ImportPath": "k8s.io/gengo",
