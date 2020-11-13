@@ -456,11 +456,11 @@
 		},
 		{
 			"ImportPath": "k8s.io/api",
-			"Rev": "88ad409c1fcc"
+			"Rev": "9e320febc26e"
 		},
 		{
 			"ImportPath": "k8s.io/apimachinery",
-			"Rev": "000b5f4f8623"
+			"Rev": "671277bf9349"
 		},
 		{
 			"ImportPath": "k8s.io/gengo",
