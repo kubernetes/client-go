@@ -669,6 +669,9 @@ func Example_noMergingOnExplicitPaths() {
 	}
 
 	mergedConfig, err := loadingRules.Load()
+	if err != nil {
+		fmt.Printf("Unexpected error: %v", err)
+	}
 
 	json, err := runtime.Encode(clientcmdlatest.Codec, mergedConfig)
 	if err != nil {
@@ -715,6 +718,9 @@ func Example_mergingSomeWithConflict() {
 	}
 
 	mergedConfig, err := loadingRules.Load()
+	if err != nil {
+		fmt.Printf("Unexpected error: %v", err)
+	}
 
 	json, err := runtime.Encode(clientcmdlatest.Codec, mergedConfig)
 	if err != nil {
@@ -774,6 +780,9 @@ func Example_mergingEverythingNoConflicts() {
 	}
 
 	mergedConfig, err := loadingRules.Load()
+	if err != nil {
+		fmt.Printf("Unexpected error: %v", err)
+	}
 
 	json, err := runtime.Encode(clientcmdlatest.Codec, mergedConfig)
 	if err != nil {
