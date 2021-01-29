@@ -107,10 +107,6 @@
 			"Rev": "v1.1.1"
 		},
 		{
-			"ImportPath": "github.com/docker/spdystream",
-			"Rev": "449fdfce4d96"
-		},
-		{
 			"ImportPath": "github.com/docopt/docopt-go",
 			"Rev": "ee0de3bc6815"
 		},
@@ -231,6 +227,10 @@
 			"Rev": "v0.4.1"
 		},
 		{
+			"ImportPath": "github.com/gorilla/websocket",
+			"Rev": "v1.4.2"
+		},
+		{
 			"ImportPath": "github.com/gregjones/httpcache",
 			"Rev": "9cad4c3443a7"
 		},
@@ -285,6 +285,10 @@
 		{
 			"ImportPath": "github.com/mitchellh/mapstructure",
 			"Rev": "v1.1.2"
+		},
+		{
+			"ImportPath": "github.com/moby/spdystream",
+			"Rev": "v0.2.0"
 		},
 		{
 			"ImportPath": "github.com/modern-go/concurrent",
@@ -460,11 +464,11 @@
 		},
 		{
 			"ImportPath": "k8s.io/api",
-			"Rev": "9b864a59b88a"
+			"Rev": "cfb031d9922e"
 		},
 		{
 			"ImportPath": "k8s.io/apimachinery",
-			"Rev": "87c8a9682ad2"
+			"Rev": "d656fe577b19"
 		},
 		{
 			"ImportPath": "k8s.io/gengo",
