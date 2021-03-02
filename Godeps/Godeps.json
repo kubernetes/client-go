@@ -136,7 +136,7 @@
 		},
 		{
 			"ImportPath": "github.com/fsnotify/fsnotify",
-			"Rev": "v1.4.9"
+			"Rev": "v1.4.7"
 		},
 		{
 			"ImportPath": "github.com/ghodss/yaml",
@@ -360,7 +360,7 @@
 		},
 		{
 			"ImportPath": "golang.org/x/crypto",
-			"Rev": "7f63de1d35b0"
+			"Rev": "5ea612d1eb83"
 		},
 		{
 			"ImportPath": "golang.org/x/exp",
@@ -384,7 +384,7 @@
 		},
 		{
 			"ImportPath": "golang.org/x/net",
-			"Rev": "69a78807bb2b"
+			"Rev": "3d97a244fca7"
 		},
 		{
 			"ImportPath": "golang.org/x/oauth2",
@@ -396,7 +396,11 @@
 		},
 		{
 			"ImportPath": "golang.org/x/sys",
-			"Rev": "5cba982894dd"
+			"Rev": "a50acf3fe073"
+		},
+		{
+			"ImportPath": "golang.org/x/term",
+			"Rev": "6a3ed077a48d"
 		},
 		{
 			"ImportPath": "golang.org/x/text",
@@ -404,7 +408,7 @@
 		},
 		{
 			"ImportPath": "golang.org/x/time",
-			"Rev": "3af7569d3a1e"
+			"Rev": "f8bda1e9f3ba"
 		},
 		{
 			"ImportPath": "golang.org/x/tools",
@@ -468,11 +472,11 @@
 		},
 		{
 			"ImportPath": "k8s.io/api",
-			"Rev": "b852e500ef89"
+			"Rev": "9a813edcaca0"
 		},
 		{
 			"ImportPath": "k8s.io/apimachinery",
-			"Rev": "603e04655e9f"
+			"Rev": "317ebe7c2dbd"
 		},
 		{
 			"ImportPath": "k8s.io/gengo",
