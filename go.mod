@@ -27,14 +27,14 @@ require (
 	golang.org/x/oauth2 v0.0.0-20200107190931-bf48bf16ab8d
 	golang.org/x/term v0.0.0-20210220032956-6a3ed077a48d
 	golang.org/x/time v0.0.0-20210220033141-f8bda1e9f3ba
-	k8s.io/api v0.0.0-20210303092247-9a813edcaca0
-	k8s.io/apimachinery v0.0.0-20210303091935-317ebe7c2dbd
+	k8s.io/api v0.0.0-20210304012009-c218b228ac09
+	k8s.io/apimachinery v0.0.0-20210303224021-086982076e5b
 	k8s.io/klog/v2 v2.5.0
 	k8s.io/utils v0.0.0-20201110183641-67b214c5f920
 	sigs.k8s.io/yaml v1.2.0
 )
 
 replace (
-	k8s.io/api => k8s.io/api v0.0.0-20210303092247-9a813edcaca0
-	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20210303091935-317ebe7c2dbd
+	k8s.io/api => k8s.io/api v0.0.0-20210304012009-c218b228ac09
+	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20210303224021-086982076e5b
 )
