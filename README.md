@@ -4,8 +4,9 @@ Go clients for talking to a [kubernetes](http://kubernetes.io/) cluster.
 
 We recommend using the `v0.x.y` tags for Kubernetes releases >= `v1.17.0` and
 `kubernetes-1.x.y` tags for Kubernetes releases < `v1.17.0`.
-See [INSTALL.md](/INSTALL.md) for detailed installation instructions.
-`go get k8s.io/client-go@master` works, but will fetch `master`, which may be less stable than a tagged release.
+
+The fastest way to add this library to a project is to run `go get k8s.io/client-go@latest` with go1.16+.
+See [INSTALL.md](/INSTALL.md) for detailed installation instructions and troubleshooting.
 
 [![BuildStatus Widget]][BuildStatus Result]
 [![GoReport Widget]][GoReport Status]
@@ -175,13 +176,19 @@ you care about backwards compatibility.
 
 ### How to get it
 
-Use go1.11+ and fetch the desired version using the `go get` command. For example:
+To get the latest version, use go1.16+ and fetch using the `go get` command. For example:
 
 ```
-go get k8s.io/client-go@v0.20.0
+go get k8s.io/client-go@latest
 ```
 
-See [INSTALL.md](/INSTALL.md) for detailed instructions.
+To get a specific version, use go1.11+ and fetch the desired version using the `go get` command. For example:
+
+```
+go get k8s.io/client-go@v0.20.4
+```
+
+See [INSTALL.md](/INSTALL.md) for detailed instructions and troubleshooting.
 
 ### How to use it
 
