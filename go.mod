@@ -28,7 +28,7 @@ require (
 	golang.org/x/term v0.0.0-20210220032956-6a3ed077a48d
 	golang.org/x/time v0.0.0-20210220033141-f8bda1e9f3ba
 	k8s.io/api v0.0.0-20210309104524-a61f0c601351
-	k8s.io/apimachinery v0.0.0-20210309103648-79c4f8795d25
+	k8s.io/apimachinery v0.0.0-20210309143504-98d3ae9509fd
 	k8s.io/klog/v2 v2.5.0
 	k8s.io/utils v0.0.0-20201110183641-67b214c5f920
 	sigs.k8s.io/yaml v1.2.0
@@ -36,5 +36,5 @@ require (
 
 replace (
 	k8s.io/api => k8s.io/api v0.0.0-20210309104524-a61f0c601351
-	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20210309103648-79c4f8795d25
+	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20210309143504-98d3ae9509fd
 )
