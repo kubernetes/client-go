@@ -16,7 +16,7 @@ require (
 	github.com/google/go-cmp v0.5.2
 	github.com/google/gofuzz v1.1.0
 	github.com/google/uuid v1.1.2
-	github.com/googleapis/gnostic v0.4.1
+	github.com/googleapis/gnostic v0.5.1
 	github.com/gregjones/httpcache v0.0.0-20180305231024-9cad4c3443a7
 	github.com/imdario/mergo v0.3.5
 	github.com/peterbourgon/diskv v2.0.1+incompatible
@@ -27,8 +27,9 @@ require (
 	golang.org/x/oauth2 v0.0.0-20200107190931-bf48bf16ab8d
 	golang.org/x/term v0.0.0-20210220032956-6a3ed077a48d
 	golang.org/x/time v0.0.0-20210220033141-f8bda1e9f3ba
-	k8s.io/api v0.0.0-20210417155159-648b77825832
-	k8s.io/apimachinery v0.0.0-20210417144234-8daf28983e6e
+	google.golang.org/protobuf v1.25.0
+	k8s.io/api v0.0.0
+	k8s.io/apimachinery v0.0.0
 	k8s.io/klog/v2 v2.8.0
 	k8s.io/utils v0.0.0-20201110183641-67b214c5f920
 	sigs.k8s.io/structured-merge-diff/v4 v4.1.1
@@ -36,6 +37,7 @@ require (
 )
 
 replace (
-	k8s.io/api => k8s.io/api v0.0.0-20210417155159-648b77825832
-	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20210417144234-8daf28983e6e
+	k8s.io/api => ../api
+	k8s.io/apimachinery => ../apimachinery
+	k8s.io/client-go => ../client-go
 )
