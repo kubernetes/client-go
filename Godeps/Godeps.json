@@ -108,7 +108,7 @@
 		},
 		{
 			"ImportPath": "github.com/gogo/protobuf",
-			"Rev": "v1.3.1"
+			"Rev": "v1.3.2"
 		},
 		{
 			"ImportPath": "github.com/golang/glog",
@@ -188,7 +188,7 @@
 		},
 		{
 			"ImportPath": "github.com/kisielk/errcheck",
-			"Rev": "v1.2.0"
+			"Rev": "v1.5.0"
 		},
 		{
 			"ImportPath": "github.com/kisielk/gotool",
@@ -352,11 +352,11 @@
 		},
 		{
 			"ImportPath": "k8s.io/api",
-			"Rev": "828bab7a24bb"
+			"Rev": "b13e135d81e8"
 		},
 		{
 			"ImportPath": "k8s.io/apimachinery",
-			"Rev": "c68ad1a85ac1"
+			"Rev": "937f6a48eb33"
 		},
 		{
 			"ImportPath": "k8s.io/gengo",
