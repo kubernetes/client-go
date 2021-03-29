@@ -19,6 +19,7 @@ package clientcmd
 import (
 	"errors"
 	"fmt"
+	"k8s.io/klog/v2"
 	"os"
 	"reflect"
 	"strings"
@@ -288,7 +289,11 @@ func validateAuthInfo(authInfoName string, authInfo clientcmdapi.AuthInfo) []err
 			if err != nil {
 				validationErrors = append(validationErrors, fmt.Errorf("unable to read client-key %v for %v due to %v", authInfo.ClientKey, authInfoName, err))
 			} else {
-				defer clientKeyFile.Close()
+				defer func() {
+					if err := clientKeyFile.Close(); err != nil {
+						klog.Errorf("Failed to close clientKeyFile: %v", err)
+					}
+				}()
 			}
 		}
 	}
