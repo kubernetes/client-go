@@ -197,7 +197,12 @@ func (s *fileStore) Update(certData, keyData []byte) (*tls.Certificate, error) {
 	if err != nil {
 		return nil, fmt.Errorf("could not open %q: %v", certPath, err)
 	}
-	defer f.Close()
+
+	defer func() {
+		if err := f.Close(); err != nil {
+			klog.Errorf("Failed to close file: %v", err)
+		}
+	}()
 
 	// First cert is leaf, remainder are intermediates
 	certs, err := certutil.ParseCertsPEM(certData)
