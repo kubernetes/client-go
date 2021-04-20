@@ -224,7 +224,7 @@
 		},
 		{
 			"ImportPath": "github.com/googleapis/gnostic",
-			"Rev": "v0.4.1"
+			"Rev": "v0.5.1"
 		},
 		{
 			"ImportPath": "github.com/gorilla/websocket",
@@ -345,6 +345,10 @@
 		{
 			"ImportPath": "github.com/spf13/pflag",
 			"Rev": "v1.0.5"
+		},
+		{
+			"ImportPath": "github.com/stoewer/go-strcase",
+			"Rev": "v1.2.0"
 		},
 		{
 			"ImportPath": "github.com/stretchr/objx",
@@ -468,7 +472,7 @@
 		},
 		{
 			"ImportPath": "gopkg.in/yaml.v3",
-			"Rev": "9f266ea9e77c"
+			"Rev": "eeeca48fe776"
 		},
 		{
 			"ImportPath": "honnef.co/go/tools",
@@ -476,11 +480,11 @@
 		},
 		{
 			"ImportPath": "k8s.io/api",
-			"Rev": "648b77825832"
+			"Rev": "e993e0004b6d"
 		},
 		{
 			"ImportPath": "k8s.io/apimachinery",
-			"Rev": "8daf28983e6e"
+			"Rev": "37b6f01a7c3f"
 		},
 		{
 			"ImportPath": "k8s.io/gengo",
@@ -492,7 +496,7 @@
 		},
 		{
 			"ImportPath": "k8s.io/kube-openapi",
-			"Rev": "591a79e4bda7"
+			"Rev": "1a6458611d18"
 		},
 		{
 			"ImportPath": "k8s.io/utils",
