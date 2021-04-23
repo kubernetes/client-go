@@ -36,11 +36,11 @@
 		},
 		{
 			"ImportPath": "github.com/Azure/go-autorest/autorest",
-			"Rev": "v0.11.12"
+			"Rev": "v0.11.17"
 		},
 		{
 			"ImportPath": "github.com/Azure/go-autorest/autorest/adal",
-			"Rev": "v0.9.5"
+			"Rev": "v0.9.10"
 		},
 		{
 			"ImportPath": "github.com/Azure/go-autorest/autorest/date",
