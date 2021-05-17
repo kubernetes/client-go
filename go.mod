@@ -13,7 +13,7 @@ require (
 	github.com/gogo/protobuf v1.3.2
 	github.com/golang/groupcache v0.0.0-20200121045136-8c9f03a8e57e
 	github.com/golang/protobuf v1.4.3
-	github.com/google/go-cmp v0.5.2
+	github.com/google/go-cmp v0.5.4
 	github.com/google/gofuzz v1.1.0
 	github.com/google/uuid v1.1.2
 	github.com/googleapis/gnostic v0.5.1
@@ -28,8 +28,8 @@ require (
 	golang.org/x/term v0.0.0-20210220032956-6a3ed077a48d
 	golang.org/x/time v0.0.0-20210220033141-f8bda1e9f3ba
 	google.golang.org/protobuf v1.25.0
-	k8s.io/api v0.0.0-20210518101624-8672a591239a
-	k8s.io/apimachinery v0.0.0-20210518100458-4c2cee4b928c
+	k8s.io/api v0.0.0-20210518101626-c10867da44cc
+	k8s.io/apimachinery v0.0.0-20210518100459-e1b4d3faae10
 	k8s.io/klog/v2 v2.8.0
 	k8s.io/utils v0.0.0-20201110183641-67b214c5f920
 	sigs.k8s.io/structured-merge-diff/v4 v4.1.1
@@ -37,6 +37,6 @@ require (
 )
 
 replace (
-	k8s.io/api => k8s.io/api v0.0.0-20210518101624-8672a591239a
-	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20210518100458-4c2cee4b928c
+	k8s.io/api => k8s.io/api v0.0.0-20210518101626-c10867da44cc
+	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20210518100459-e1b4d3faae10
 )
