@@ -140,7 +140,7 @@
 		},
 		{
 			"ImportPath": "github.com/fsnotify/fsnotify",
-			"Rev": "v1.4.7"
+			"Rev": "v1.4.9"
 		},
 		{
 			"ImportPath": "github.com/go-gl/glfw",
@@ -307,12 +307,16 @@
 			"Rev": "a10e7caefd8e"
 		},
 		{
+			"ImportPath": "github.com/nxadm/tail",
+			"Rev": "v1.4.4"
+		},
+		{
 			"ImportPath": "github.com/onsi/ginkgo",
-			"Rev": "v1.11.0"
+			"Rev": "v1.14.0"
 		},
 		{
 			"ImportPath": "github.com/onsi/gomega",
-			"Rev": "v1.7.0"
+			"Rev": "v1.10.1"
 		},
 		{
 			"ImportPath": "github.com/peterbourgon/diskv",
@@ -352,7 +356,7 @@
 		},
 		{
 			"ImportPath": "github.com/stretchr/testify",
-			"Rev": "v1.6.1"
+			"Rev": "v1.7.0"
 		},
 		{
 			"ImportPath": "github.com/yuin/goldmark",
@@ -476,11 +480,11 @@
 		},
 		{
 			"ImportPath": "k8s.io/api",
-			"Rev": "bb4775a810cf"
+			"Rev": "d5fda5562a2e"
 		},
 		{
 			"ImportPath": "k8s.io/apimachinery",
-			"Rev": "2540c63454fb"
+			"Rev": "c7322e849168"
 		},
 		{
 			"ImportPath": "k8s.io/gengo",
