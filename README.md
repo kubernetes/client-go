@@ -112,14 +112,14 @@ between client-go versions.
 
 | Branch         | Canonical source code location       | Maintenance status            |
 |----------------|--------------------------------------|-------------------------------|
-| `release-1.4`  | Kubernetes main repo, 1.4 branch     | = -                           |
-| `release-1.5`  | Kubernetes main repo, 1.5 branch     | = -                           |
-| `release-2.0`  | Kubernetes main repo, 1.5 branch     | = -                           |
-| `release-3.0`  | Kubernetes main repo, 1.6 branch     | = -                           |
-| `release-4.0`  | Kubernetes main repo, 1.7 branch     | = -                           |
-| `release-5.0`  | Kubernetes main repo, 1.8 branch     | = -                           |
-| `release-6.0`  | Kubernetes main repo, 1.9 branch     | = -                           |
-| `release-7.0`  | Kubernetes main repo, 1.10 branch    | = -                           |
+| `release-1.4`  | Kubernetes main repo, 1.4 branch     | =-                            |
+| `release-1.5`  | Kubernetes main repo, 1.5 branch     | =-                            |
+| `release-2.0`  | Kubernetes main repo, 1.5 branch     | =-                            |
+| `release-3.0`  | Kubernetes main repo, 1.6 branch     | =-                            |
+| `release-4.0`  | Kubernetes main repo, 1.7 branch     | =-                            |
+| `release-5.0`  | Kubernetes main repo, 1.8 branch     | =-                            |
+| `release-6.0`  | Kubernetes main repo, 1.9 branch     | =-                            |
+| `release-7.0`  | Kubernetes main repo, 1.10 branch    | =-                            |
 | `release-8.0`  | Kubernetes main repo, 1.11 branch    | =-                            |
 | `release-9.0`  | Kubernetes main repo, 1.12 branch    | =-                            |
 | `release-10.0` | Kubernetes main repo, 1.13 branch    | =-                            |
