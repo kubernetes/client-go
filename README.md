@@ -8,15 +8,7 @@ We recommend using the `v0.x.y` tags for Kubernetes releases >= `v1.17.0` and
 The fastest way to add this library to a project is to run `go get k8s.io/client-go@latest` with go1.16+.
 See [INSTALL.md](/INSTALL.md) for detailed installation instructions and troubleshooting.
 
-[![BuildStatus Widget]][BuildStatus Result]
-[![GoReport Widget]][GoReport Status]
 [![GoDocWidget]][GoDocReference]
-
-[BuildStatus Result]: https://travis-ci.org/kubernetes/client-go
-[BuildStatus Widget]: https://travis-ci.org/kubernetes/client-go.svg?branch=master
-
-[GoReport Status]: https://goreportcard.com/report/github.com/kubernetes/client-go
-[GoReport Widget]: https://goreportcard.com/badge/github.com/kubernetes/client-go
 
 [GoDocWidget]: https://godoc.org/k8s.io/client-go?status.svg
 [GoDocReference]:https://godoc.org/k8s.io/client-go 
