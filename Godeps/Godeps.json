@@ -132,7 +132,7 @@
 		},
 		{
 			"ImportPath": "github.com/evanphx/json-patch",
-			"Rev": "v4.9.0"
+			"Rev": "v4.11.0"
 		},
 		{
 			"ImportPath": "github.com/form3tech-oss/jwt-go",
@@ -480,11 +480,11 @@
 		},
 		{
 			"ImportPath": "k8s.io/api",
-			"Rev": "0b55fc9ab6bb"
+			"Rev": "597d8a9937fd"
 		},
 		{
 			"ImportPath": "k8s.io/apimachinery",
-			"Rev": "1e82f3b632c6"
+			"Rev": "aec8116c445f"
 		},
 		{
 			"ImportPath": "k8s.io/gengo",
