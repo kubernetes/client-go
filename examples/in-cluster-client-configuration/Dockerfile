@@ -12,6 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM debian
-COPY ./app /app
-ENTRYPOINT /app
+FROM golang:alpine as builder
+RUN mkdir -p /app
+COPY . /app
+WORKDIR /app
+RUN go mod init cluster
+RUN go mod tidy && go mod vendor
+RUN go build -mod=vendor -o app
+
+FROM alpine
+COPY --from=builder /app/app /usr/bin/app
+ENTRYPOINT /usr/bin/app

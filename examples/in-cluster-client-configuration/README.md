@@ -9,13 +9,11 @@ client-go uses the [Service Account token][sa] mounted inside the Pod at the
 
 ## Running this example
 
-First compile the application for Linux:
+First:
 
     cd in-cluster-client-configuration
-    GOOS=linux go build -o ./app .
 
-Then package it to a docker image using the provided Dockerfile to run it on
-Kubernetes.
+Then using the provided Dockerfile to run it on Kubernetes.
 
 If you are running a [Minikube][mk] cluster, you can build this image directly
 on the Docker engine of the Minikube node without pushing it to a registry. To
@@ -25,7 +23,8 @@ build the image on Minikube:
     docker build -t in-cluster .
 
 If you are not using Minikube, you should build this image and push it to a registry
-that your Kubernetes cluster can pull from.
+that your Kubernetes cluster can pull from. In China, you may need to set GOPROXY
+in the Dockerfile.
 
 If you have RBAC enabled on your cluster, use the following
 snippet to create role binding which will grant the default service account view
@@ -37,7 +36,7 @@ kubectl create clusterrolebinding default-view --clusterrole=view --serviceaccou
 
 Then, run the image in a Pod with a single instance Deployment:
 
-    kubectl run --rm -i demo --image=in-cluster
+    kubectl run --rm -i demo --image=in-cluster --image-pull-policy=IfNotPresent
 
     There are 4 pods in the cluster
     There are 4 pods in the cluster
