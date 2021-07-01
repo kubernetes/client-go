@@ -25,13 +25,13 @@ require (
 	github.com/spf13/pflag v1.0.5
 	github.com/stretchr/testify v1.7.0
 	golang.org/x/crypto v0.0.0-20210220033148-5ea612d1eb83 // indirect
-	golang.org/x/net v0.0.0-20210405180319-a5a99cb37ef4
+	golang.org/x/net v0.0.0-20210520170846-37e1c6afe023
 	golang.org/x/oauth2 v0.0.0-20200107190931-bf48bf16ab8d
 	golang.org/x/term v0.0.0-20210220032956-6a3ed077a48d
 	golang.org/x/time v0.0.0-20210220033141-f8bda1e9f3ba
 	google.golang.org/protobuf v1.26.0
-	k8s.io/api v0.0.0-20210630214335-e14d3f91c1fb
-	k8s.io/apimachinery v0.0.0-20210630214150-3272933c38f1
+	k8s.io/api v0.0.0-20210701054328-f75dde501d56
+	k8s.io/apimachinery v0.0.0-20210701054147-830375057167
 	k8s.io/klog/v2 v2.9.0
 	k8s.io/utils v0.0.0-20210521133846-da695404a2bc
 	sigs.k8s.io/structured-merge-diff/v4 v4.1.2
@@ -39,6 +39,6 @@ require (
 )
 
 replace (
-	k8s.io/api => k8s.io/api v0.0.0-20210630214335-e14d3f91c1fb
-	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20210630214150-3272933c38f1
+	k8s.io/api => k8s.io/api v0.0.0-20210701054328-f75dde501d56
+	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20210701054147-830375057167
 )
