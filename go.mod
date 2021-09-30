@@ -30,16 +30,17 @@ require (
 	golang.org/x/term v0.0.0-20210615171337-6886f2dfbf5b
 	golang.org/x/time v0.0.0-20210723032227-1f47c861a9ac
 	google.golang.org/protobuf v1.26.0
-	k8s.io/api v0.0.0-20210930003342-a77149894ddd
-	k8s.io/apimachinery v0.0.0-20210929223456-0eeeaa3fc293
+	k8s.io/api v0.0.0
+	k8s.io/apimachinery v0.0.0
 	k8s.io/klog/v2 v2.20.0
 	k8s.io/kube-openapi v0.0.0-20210817084001-7fbd8d59e5b8
-	k8s.io/utils v0.0.0-20210819203725-bdf08cb9a70a
+	k8s.io/utils v0.0.0-20210930125809-cb0fa318a74b
 	sigs.k8s.io/structured-merge-diff/v4 v4.1.2
 	sigs.k8s.io/yaml v1.2.0
 )
 
 replace (
-	k8s.io/api => k8s.io/api v0.0.0-20210930003342-a77149894ddd
-	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20210929223456-0eeeaa3fc293
+	k8s.io/api => ../api
+	k8s.io/apimachinery => ../apimachinery
+	k8s.io/client-go => ../client-go
 )
