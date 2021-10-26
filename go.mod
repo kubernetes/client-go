@@ -9,7 +9,7 @@ require (
 	github.com/Azure/go-autorest/autorest v0.11.18
 	github.com/Azure/go-autorest/autorest/adal v0.9.13
 	github.com/davecgh/go-spew v1.1.1
-	github.com/evanphx/json-patch v4.11.0+incompatible
+	github.com/evanphx/json-patch v4.12.0+incompatible
 	github.com/form3tech-oss/jwt-go v3.2.3+incompatible // indirect
 	github.com/gogo/protobuf v1.3.2
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da
@@ -30,8 +30,8 @@ require (
 	golang.org/x/term v0.0.0-20210615171337-6886f2dfbf5b
 	golang.org/x/time v0.0.0-20210723032227-1f47c861a9ac
 	google.golang.org/protobuf v1.26.0
-	k8s.io/api v0.0.0-20211022203536-7d47955f01bd
-	k8s.io/apimachinery v0.0.0-20211022203306-153f11a7f300
+	k8s.io/api v0.0.0
+	k8s.io/apimachinery v0.0.0
 	k8s.io/klog/v2 v2.30.0
 	k8s.io/kube-openapi v0.0.0-20210817084001-7fbd8d59e5b8
 	k8s.io/utils v0.0.0-20210930125809-cb0fa318a74b
@@ -40,6 +40,7 @@ require (
 )
 
 replace (
-	k8s.io/api => k8s.io/api v0.0.0-20211022203536-7d47955f01bd
-	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20211022203306-153f11a7f300
+	k8s.io/api => ../api
+	k8s.io/apimachinery => ../apimachinery
+	k8s.io/client-go => ../client-go
 )
