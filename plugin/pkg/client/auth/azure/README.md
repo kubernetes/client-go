@@ -13,9 +13,9 @@ This plugin provides an integration with Azure Active Directory device flow. If 
 4. Configure the `apiserver` to use the Azure Active Directory as an OIDC provider with following options
 
    ```
-   --oidc-client-id="spn:APISERVER_APPLICATION_ID" \
-   --oidc-issuer-url="https://sts.windows.net/TENANT_ID/"
-   --oidc-username-claim="sub"
+   - --oidc-client-id="spn:APISERVER_APPLICATION_ID"
+   - --oidc-issuer-url="https://sts.windows.net/TENANT_ID/"
+   - --oidc-username-claim="sub"
    ```
 
    * Replace the `APISERVER_APPLICATION_ID` with the application ID of `apiserver` application
