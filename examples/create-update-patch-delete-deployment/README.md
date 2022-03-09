@@ -1,4 +1,4 @@
-# Create, Update & Delete Deployment
+# Create, Update, Patch & Delete Deployment
 
 This example program demonstrates the fundamental operations for managing on
 [Deployment][1] resources, such as `Create`, `List`, `Update` and `Delete`.

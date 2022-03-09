@@ -20,6 +20,7 @@ package main
 import (
 	"bufio"
 	"context"
+	"encoding/json"
 	"flag"
 	"fmt"
 	"os"
@@ -28,6 +29,8 @@ import (
 	appsv1 "k8s.io/api/apps/v1"
 	apiv1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/apimachinery/pkg/types"
+	"k8s.io/apimachinery/pkg/util/strategicpatch"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/tools/clientcmd"
 	"k8s.io/client-go/util/homedir"
@@ -151,6 +154,40 @@ func main() {
 	for _, d := range list.Items {
 		fmt.Printf(" * %s (%d replicas)\n", d.Name, *d.Spec.Replicas)
 	}
+
+	// Patch Deployments
+	prompt()
+	fmt.Println("Patching deployment...")
+	oldDeployment, err := deploymentsClient.Get(context.TODO(), "demo-deployment", metav1.GetOptions{})
+	if err != nil {
+		panic(err)
+	}
+
+	patchDeployment := oldDeployment.DeepCopy()
+	patchDeployment.Spec.Replicas = int32Ptr(2)                           // reduce replica count
+	patchDeployment.Spec.Template.Spec.Containers[0].Image = "nginx:1.12" // change nginx Version
+
+	oldDeploymentJson, err := json.Marshal(oldDeployment)
+	if err != nil {
+		panic(err)
+	}
+	patchDeploymentJson, err := json.Marshal(patchDeployment)
+	if err != nil {
+		panic(err)
+	}
+
+	patchData, err := strategicpatch.CreateTwoWayMergePatch(oldDeploymentJson, patchDeploymentJson, appsv1.Deployment{})
+	if err != nil {
+		panic(err)
+	}
+
+	_, err = deploymentsClient.Patch(
+		context.TODO(), "demo-deployment", types.StrategicMergePatchType, patchData, metav1.PatchOptions{},
+	)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println("Patched deployment...")
 
 	// Delete Deployment
 	prompt()
