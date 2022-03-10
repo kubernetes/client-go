@@ -10,8 +10,8 @@ See [INSTALL.md](/INSTALL.md) for detailed installation instructions and trouble
 
 [![GoDocWidget]][GoDocReference]
 
-[GoDocWidget]: https://godoc.org/k8s.io/client-go?status.svg
-[GoDocReference]:https://godoc.org/k8s.io/client-go 
+[GoDocWidget]:https://pkg.go.dev/badge/k8s.io/client-go
+[GoDocReference]:https://pkg.go.dev/k8s.io/client-go
 
 ## Table of Contents
 
