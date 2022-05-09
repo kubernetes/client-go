@@ -26,8 +26,8 @@ require (
 	golang.org/x/term v0.0.0-20210927222741-03fcf44c2211
 	golang.org/x/time v0.0.0-20220210224613-90d013bbcef8
 	google.golang.org/protobuf v1.27.1
-	k8s.io/api v0.0.0-20220507182958-548c53c6e4e7
-	k8s.io/apimachinery v0.0.0-20220507150116-b85d88926e14
+	k8s.io/api v0.0.0-20220509182417-9b88471ea2b1
+	k8s.io/apimachinery v0.0.0-20220509181918-47789511e916
 	k8s.io/klog/v2 v2.60.1
 	k8s.io/kube-openapi v0.0.0-20220328201542-3ee0da9b0b42
 	k8s.io/utils v0.0.0-20220210201930-3a6ce19ff2f9
@@ -46,7 +46,7 @@ require (
 	github.com/emicklei/go-restful v2.9.5+incompatible // indirect
 	github.com/form3tech-oss/jwt-go v3.2.3+incompatible // indirect
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
-	github.com/go-logr/logr v1.2.0 // indirect
+	github.com/go-logr/logr v1.2.3 // indirect
 	github.com/go-openapi/jsonpointer v0.19.5 // indirect
 	github.com/go-openapi/jsonreference v0.19.5 // indirect
 	github.com/go-openapi/swag v0.19.14 // indirect
@@ -72,6 +72,6 @@ require (
 )
 
 replace (
-	k8s.io/api => k8s.io/api v0.0.0-20220507182958-548c53c6e4e7
-	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20220507150116-b85d88926e14
+	k8s.io/api => k8s.io/api v0.0.0-20220509182417-9b88471ea2b1
+	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20220509181918-47789511e916
 )
