@@ -66,6 +66,8 @@ type ObjectTracker interface {
 	// Watch watches objects from the tracker. Watch returns a channel
 	// which will push added / modified / deleted object.
 	Watch(gvr schema.GroupVersionResource, ns string) (watch.Interface, error)
+
+	ExchangeWatcher(watcher ExchangeWatcher)
 }
 
 // ObjectScheme abstracts the implementation of common operations on objects.
@@ -195,6 +197,18 @@ func ObjectReaction(tracker ObjectTracker) ReactionFunc {
 	}
 }
 
+type ExchangeWatcher interface {
+	NewFakeWatch() Watcher
+}
+
+type Watcher interface {
+	Stop()
+	ResultChan() <-chan watch.Event
+	Modify(obj runtime.Object)
+	Add(obj runtime.Object)
+	Delete(lastValue runtime.Object)
+}
+
 type tracker struct {
 	scheme  ObjectScheme
 	decoder runtime.Decoder
@@ -205,7 +219,9 @@ type tracker struct {
 	// Manipulations on resources will broadcast the notification events into the
 	// watchers' channel. Note that too many unhandled events (currently 100,
 	// see apimachinery/pkg/watch.DefaultChanSize) will cause a panic.
-	watchers map[schema.GroupVersionResource]map[string][]*watch.RaceFreeFakeWatcher
+	watchers        map[schema.GroupVersionResource]map[string][]Watcher
+	// exchange tracker  watcher.
+	exchangeWatcher ExchangeWatcher
 }
 
 var _ ObjectTracker = &tracker{}
@@ -217,8 +233,12 @@ func NewObjectTracker(scheme ObjectScheme, decoder runtime.Decoder) ObjectTracke
 		scheme:   scheme,
 		decoder:  decoder,
 		objects:  make(map[schema.GroupVersionResource]map[types.NamespacedName]runtime.Object),
-		watchers: make(map[schema.GroupVersionResource]map[string][]*watch.RaceFreeFakeWatcher),
+		watchers: make(map[schema.GroupVersionResource]map[string][]Watcher),
 	}
+}
+
+func (t *tracker) ExchangeWatcher(watcher ExchangeWatcher) {
+	t.exchangeWatcher = watcher
 }
 
 func (t *tracker) List(gvr schema.GroupVersionResource, gvk schema.GroupVersionKind, ns string) (runtime.Object, error) {
@@ -264,10 +284,16 @@ func (t *tracker) Watch(gvr schema.GroupVersionResource, ns string) (watch.Inter
 	t.lock.Lock()
 	defer t.lock.Unlock()
 
-	fakewatcher := watch.NewRaceFreeFake()
+	var fakewatcher Watcher
+
+	fakewatcher = watch.NewRaceFreeFake()
+
+	if t.exchangeWatcher != nil {
+		fakewatcher = t.exchangeWatcher.NewFakeWatch()
+	}
 
 	if _, exists := t.watchers[gvr]; !exists {
-		t.watchers[gvr] = make(map[string][]*watch.RaceFreeFakeWatcher)
+		t.watchers[gvr] = make(map[string][]Watcher)
 	}
 	t.watchers[gvr][ns] = append(t.watchers[gvr][ns], fakewatcher)
 	return fakewatcher, nil
@@ -350,8 +376,9 @@ func (t *tracker) Update(gvr schema.GroupVersionResource, obj runtime.Object, ns
 	return t.add(gvr, obj, ns, true)
 }
 
-func (t *tracker) getWatches(gvr schema.GroupVersionResource, ns string) []*watch.RaceFreeFakeWatcher {
-	watches := []*watch.RaceFreeFakeWatcher{}
+func (t *tracker) getWatches(gvr schema.GroupVersionResource, ns string) []Watcher {
+	watches := []Watcher{}
+
 	if t.watchers[gvr] != nil {
 		if w := t.watchers[gvr][ns]; w != nil {
 			watches = append(watches, w...)
