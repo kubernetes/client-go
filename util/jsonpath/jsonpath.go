@@ -22,6 +22,7 @@ import (
 	"fmt"
 	"io"
 	"reflect"
+	"regexp"
 	"strings"
 
 	"k8s.io/client-go/third_party/forked/golang/template"
@@ -553,6 +554,9 @@ func (j *JSONPath) evalFilter(input []reflect.Value, node *FilterNode) ([]reflec
 				pass, err = template.LessEqual(left, right)
 			case ">=":
 				pass, err = template.GreaterEqual(left, right)
+			case "=~":
+				pass, err = reMatch(left, right)
+
 			default:
 				return results, fmt.Errorf("unrecognized filter operator %s", node.Operator)
 			}
@@ -566,6 +570,24 @@ func (j *JSONPath) evalFilter(input []reflect.Value, node *FilterNode) ([]reflec
 	}
 	return results, nil
 }
+
+//TODO: support other types like int float etc
+func reMatch(left interface{}, right interface{}) (bool, error) {
+	reMatchTypeError := fmt.Errorf("regexp search only support string now but getting pattern: %#v, data: %#v",right,left)
+
+	pattern,ok := right.(string)
+	if !ok{
+		return false,reMatchTypeError
+	}
+
+	data,ok := left.(string)
+	if !ok{
+		return false,reMatchTypeError
+	}
+	return regexp.MatchString(pattern, data)
+}
+
+
 
 // evalToText translates reflect value to corresponding text
 func (j *JSONPath) evalToText(v reflect.Value) ([]byte, error) {

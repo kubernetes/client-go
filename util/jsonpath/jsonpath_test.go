@@ -274,6 +274,14 @@ func TestStructInput(t *testing.T) {
 		{"recurarray", "{..Book[2]}", storeData,
 			`{"Category":"fiction","Author":"Herman Melville","Title":"Moby Dick","Price":8.99}`, false},
 		{"bool", "{.Bicycle[?(@.IsNew==true)]}", storeData, `{"Color":"red","Price":19.95,"IsNew":true}`, false},
+		{"regexp match get red bicycle", "{.Bicycle[?(@.Color=~'.*ed.*')]}", storeData, `{"Color":"red","Price":19.95,"IsNew":true}`, false},
+		{"regexp match get green bicycle", "{.Bicycle[?(@.Color=~'^g.*en.*')]}", storeData, `{"Color":"green","Price":20.01,"IsNew":false}`, false},
+		{"regexp match get all bicycle", "{.Bicycle[?(@.Color=~'.*e.*')]}", storeData, `{"Color":"red","Price":19.95,"IsNew":true} {"Color":"green","Price":20.01,"IsNew":false}`, false},
+
+		{"regexp match with bool is not supported", "{.Bicycle[?(@.IsNew=~'.*ue')]}", storeData, ``, true},
+		{"regexp match with number is not supported", "{.Bicycle[?(@.Price=~'.*95')]}", storeData, ``, true},
+
+
 	}
 
 	testJSONPath(storeTests, false, t)
