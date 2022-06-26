@@ -24,6 +24,11 @@ build the image on Minikube:
     eval $(minikube docker-env)
     docker build -t in-cluster .
 
+Also for minikube you may need to add a imagePullPolicy=Never option, to 
+prevent attempting to download from an external repository:
+
+    kubectl run --rm -i demo --image=in-cluster --image-pull-policy=Never
+
 If you are not using Minikube, you should build this image and push it to a registry
 that your Kubernetes cluster can pull from.
 
