@@ -23,6 +23,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/stretchr/testify/assert"
+
 	"k8s.io/apimachinery/pkg/util/wait"
 	"k8s.io/client-go/util/workqueue"
 )
@@ -149,6 +151,55 @@ func TestAddWhileProcessing(t *testing.T) {
 			t.Errorf("Expected the queue to be empty, had: %v items", test.queue.Len())
 		}
 	}
+}
+
+func TestAdd(t *testing.T) {
+
+	q := workqueue.New()
+
+	var added bool
+	var shutdown bool
+
+	firstItem := "foo"
+	secondItem := "bar"
+
+	t.Run("Add new item into the queue", func(t *testing.T) {
+		added, shutdown = q.Add(firstItem)
+		assert.True(t, added)
+		assert.False(t, shutdown)
+	})
+
+	t.Run("Add an existing item into the queue", func(t *testing.T) {
+		added, shutdown = q.Add(firstItem)
+		assert.False(t, added)
+		assert.False(t, shutdown)
+	})
+
+	finishedWG := sync.WaitGroup{}
+	finishedWG.Add(1)
+	go func() {
+		defer finishedWG.Done()
+		q.ShutDownWithDrain()
+	}()
+
+	// This is done as to simulate a sequence of events where ShutDownWithDrain
+	// is called before we start marking all items as done - thus simulating a
+	// drain where we wait for all items to finish processing.
+	shuttingDown := false
+	for !shuttingDown {
+		_, shuttingDown = q.Get()
+	}
+
+	t.Run("Add an  and item when queue is in shutdown mode", func(t *testing.T) {
+		added, shutdown = q.Add(secondItem)
+		assert.False(t, added)
+		assert.True(t, shutdown)
+	})
+
+	// Mark the firstItem as done, as to finish up
+	q.Done(firstItem)
+
+	finishedWG.Wait()
 }
 
 func TestLen(t *testing.T) {
