@@ -24,7 +24,7 @@ import (
 )
 
 type Interface interface {
-	Add(item interface{})
+	Add(item interface{}) (added bool, shutdown bool)
 	Len() int
 	Get() (item interface{}, shutdown bool)
 	Done(item interface{})
@@ -117,25 +117,26 @@ func (s set) len() int {
 }
 
 // Add marks item as needing processing.
-func (q *Type) Add(item interface{}) {
+func (q *Type) Add(item interface{}) (added bool, shutdown bool) {
 	q.cond.L.Lock()
 	defer q.cond.L.Unlock()
 	if q.shuttingDown {
-		return
+		return false, true
 	}
 	if q.dirty.has(item) {
-		return
+		return false, false
 	}
 
 	q.metrics.add(item)
 
 	q.dirty.insert(item)
 	if q.processing.has(item) {
-		return
+		return false, false
 	}
 
 	q.queue = append(q.queue, item)
 	q.cond.Signal()
+	return true, false
 }
 
 // Len returns the current queue length, for informational purposes only. You
