@@ -242,7 +242,7 @@ func (q *delayingType) waitingLoop() {
 
 		case waitEntry := <-q.waitingForAddCh:
 			if waitEntry.readyAt.After(q.clock.Now()) {
-				insert(waitingForQueue, waitingEntryByData, waitEntry)
+				q.insert(waitingForQueue, waitingEntryByData, waitEntry)
 			} else {
 				q.Add(waitEntry.data)
 			}
@@ -252,7 +252,7 @@ func (q *delayingType) waitingLoop() {
 				select {
 				case waitEntry := <-q.waitingForAddCh:
 					if waitEntry.readyAt.After(q.clock.Now()) {
-						insert(waitingForQueue, waitingEntryByData, waitEntry)
+						q.insert(waitingForQueue, waitingEntryByData, waitEntry)
 					} else {
 						q.Add(waitEntry.data)
 					}
@@ -265,18 +265,25 @@ func (q *delayingType) waitingLoop() {
 }
 
 // insert adds the entry to the priority queue, or updates the readyAt if it already exists in the queue
-func insert(q *waitForPriorityQueue, knownEntries map[t]*waitFor, entry *waitFor) {
+func (q *delayingType) insert(pq *waitForPriorityQueue, knownEntries map[t]*waitFor, entry *waitFor) {
+	// Ignore adding item to FIFO if
+	// - Item is already added to the queue.
+	// - Queue is in shutdown mode.
+	if found, shutdown := q.Find(entry.data); found || shutdown {
+		return
+	}
+
 	// if the entry already exists, update the time only if it would cause the item to be queued sooner
 	existing, exists := knownEntries[entry.data]
 	if exists {
 		if existing.readyAt.After(entry.readyAt) {
 			existing.readyAt = entry.readyAt
-			heap.Fix(q, existing.index)
+			heap.Fix(pq, existing.index)
 		}
 
 		return
 	}
 
-	heap.Push(q, entry)
+	heap.Push(pq, entry)
 	knownEntries[entry.data] = entry
 }

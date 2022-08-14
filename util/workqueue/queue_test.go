@@ -23,6 +23,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/stretchr/testify/assert"
+
 	"k8s.io/apimachinery/pkg/util/wait"
 	"k8s.io/client-go/util/workqueue"
 )
@@ -149,6 +151,35 @@ func TestAddWhileProcessing(t *testing.T) {
 			t.Errorf("Expected the queue to be empty, had: %v items", test.queue.Len())
 		}
 	}
+}
+
+func TestFind(t *testing.T) {
+	q := workqueue.New()
+	firstItem := "foo"
+
+	t.Run("Queue is empty", func(t *testing.T) {
+		found, shutdown := q.Find(firstItem)
+		assert.False(t, found)
+		assert.False(t, shutdown)
+	})
+
+	t.Run("Queue contains an item", func(t *testing.T) {
+		q.Add(firstItem)
+		// Check if item found in dirty list.
+		found, shutdown := q.Find(firstItem)
+		assert.True(t, found)
+		assert.False(t, shutdown)
+
+		// Start processing and check if item is processing.
+		i, _ := q.Get()
+		assert.Equal(t, firstItem, i)
+		found, shutdown = q.Find(firstItem)
+		assert.True(t, found)
+		assert.False(t, shutdown)
+
+		// Finish it up
+		q.Done(i)
+	})
 }
 
 func TestLen(t *testing.T) {

@@ -25,6 +25,7 @@ import (
 
 type Interface interface {
 	Add(item interface{})
+	Find(item interface{}) (found bool, shutdown bool)
 	Len() int
 	Get() (item interface{}, shutdown bool)
 	Done(item interface{})
@@ -214,6 +215,19 @@ func (q *Type) ShutDownWithDrain() {
 	for q.isProcessing() && q.shouldDrain() {
 		q.waitForProcessing()
 	}
+}
+
+// Find checks if item is present in the queue. If shutdown = true,
+// the caller should end their goroutine.
+func (q *Type) Find(item interface{}) (found bool, shutdown bool) {
+	q.cond.L.Lock()
+	defer q.cond.L.Unlock()
+
+	if q.dirty.has(item) {
+		return true, q.shuttingDown
+	}
+
+	return q.processing.has(item), q.shuttingDown
 }
 
 // isProcessing indicates if there are still items on the work queue being

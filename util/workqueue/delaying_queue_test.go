@@ -23,6 +23,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/stretchr/testify/assert"
+
 	"k8s.io/apimachinery/pkg/util/wait"
 	testingclock "k8s.io/utils/clock/testing"
 )
@@ -123,6 +125,15 @@ func TestDeduping(t *testing.T) {
 	if q.Len() != 0 {
 		t.Errorf("should not have added")
 	}
+
+	// test again, but this time item is being processed in FIFO
+	q.Add(first)
+	i, _ := q.Get()
+	assert.Equal(t, first, i)
+	q.AddAfter(first, 5*time.Millisecond)
+	found, _ := q.Find(first)
+	assert.True(t, found)
+	q.Done(first)
 }
 
 func TestAddTwoFireEarly(t *testing.T) {
