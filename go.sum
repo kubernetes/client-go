@@ -477,12 +477,12 @@ honnef.co/go/tools v0.0.1-2020.1.3/go.mod h1:X/FiERA/W4tHapMX5mGpAtMSVEeEUOyHaw9
 honnef.co/go/tools v0.0.1-2020.1.4/go.mod h1:X/FiERA/W4tHapMX5mGpAtMSVEeEUOyHaw9vFzvIQ3k=
 k8s.io/api v0.0.0-20221012115127-0184bd884c5e h1:N2+121lkGMNfLeos4/AlwuujPJd5xJfFkyi15BUzob8=
 k8s.io/api v0.0.0-20221012115127-0184bd884c5e/go.mod h1:Q2jmki3lhHeeAyYtbIiEe/2JoGg2Ge1cJoMgpFkjtzg=
-k8s.io/apimachinery v0.0.0-20221014074937-b839e82f5d70 h1:KanbtZhq7b6XZdelWQ5I/9nRvJGm13rP6Fs4IyEo+ZM=
-k8s.io/apimachinery v0.0.0-20221014074937-b839e82f5d70/go.mod h1:KfXIQuTTvC9rk152WjCLO9zJQto8eWiQ0tnCzTLS97w=
+k8s.io/apimachinery v0.0.0-20221015034908-7b5633b03212 h1:HcoH5NeBWJ7obDAXrThUtbo+Q+jGAaql/4smFD+z87U=
+k8s.io/apimachinery v0.0.0-20221015034908-7b5633b03212/go.mod h1:CqUXjvKJm3aVA98PFcZKJbXwfX3QrYZNqXnRfqIswcM=
 k8s.io/klog/v2 v2.80.1 h1:atnLQ121W371wYYFawwYx1aEY2eUfs4l3J72wtgAwV4=
 k8s.io/klog/v2 v2.80.1/go.mod h1:y1WjHnz7Dj687irZUWR/WLkLc5N1YHtjLdmgWjndZn0=
-k8s.io/kube-openapi v0.0.0-20220803162953-67bda5d908f1 h1:MQ8BAZPZlWk3S9K4a9NCkIFQtZShWqoha7snGixVgEA=
-k8s.io/kube-openapi v0.0.0-20220803162953-67bda5d908f1/go.mod h1:C/N6wCaBHeBHkHUesQOQy2/MZqGgMAFPqGsGQLdbZBU=
+k8s.io/kube-openapi v0.0.0-20221012153701-172d655c2280 h1:+70TFaan3hfJzs+7VK2o+OGxg8HsuBr/5f6tVAjDu6E=
+k8s.io/kube-openapi v0.0.0-20221012153701-172d655c2280/go.mod h1:+Axhij7bCpeqhklhUTe3xmOn6bWxolyZEeyaFpjGtl4=
 k8s.io/utils v0.0.0-20220922133306-665eaaec4324 h1:i+xdFemcSNuJvIfBlaYuXgRondKxK4z4prVPKzEaelI=
 k8s.io/utils v0.0.0-20220922133306-665eaaec4324/go.mod h1:OLgZIPagt7ERELqWJFomSt595RzquPNLL48iOWgYOg0=
 rsc.io/binaryregexp v0.2.0/go.mod h1:qTv7/COck+e2FymRvadv62gMdZztPaShugOCi3I+8D8=
