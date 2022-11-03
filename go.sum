@@ -478,8 +478,8 @@ honnef.co/go/tools v0.0.1-2020.1.3/go.mod h1:X/FiERA/W4tHapMX5mGpAtMSVEeEUOyHaw9
 honnef.co/go/tools v0.0.1-2020.1.4/go.mod h1:X/FiERA/W4tHapMX5mGpAtMSVEeEUOyHaw9vFzvIQ3k=
 k8s.io/api v0.0.0-20221103075246-5448eb39ae20 h1:L4yzu0YYenWmYNm1WG/jJy/6ioJxAlgDewudcjz0uUE=
 k8s.io/api v0.0.0-20221103075246-5448eb39ae20/go.mod h1:G/3aN5AoXC2S2FQkBj1R024v+pPQBOzaaOCf3qJdj+A=
-k8s.io/apimachinery v0.0.0-20221028155017-b03a432a2a6d h1:fg/DbLqFKxFESf3AnU5iwCexZWOUnFFLb0JraG20wZo=
-k8s.io/apimachinery v0.0.0-20221028155017-b03a432a2a6d/go.mod h1:zSkBXgO5G/dSQOe256tx5Yo2OJytojpY3bsXu/4/ZJE=
+k8s.io/apimachinery v0.0.0-20221103075033-9e85d3af4ae2 h1:0nhI6fiyouN4H8MXOcMcCOybGhw4FgxwQbadTKPIRlA=
+k8s.io/apimachinery v0.0.0-20221103075033-9e85d3af4ae2/go.mod h1:zSkBXgO5G/dSQOe256tx5Yo2OJytojpY3bsXu/4/ZJE=
 k8s.io/klog/v2 v2.80.1 h1:atnLQ121W371wYYFawwYx1aEY2eUfs4l3J72wtgAwV4=
 k8s.io/klog/v2 v2.80.1/go.mod h1:y1WjHnz7Dj687irZUWR/WLkLc5N1YHtjLdmgWjndZn0=
 k8s.io/kube-openapi v0.0.0-20221012153701-172d655c2280 h1:+70TFaan3hfJzs+7VK2o+OGxg8HsuBr/5f6tVAjDu6E=
