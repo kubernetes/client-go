@@ -14,6 +14,5 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-// Package kubernetes holds packages which implement a clientset for Kubernetes
-// APIs.
-package kubernetes
+// Package listers provides generated listers for Kubernetes APIs.
+package listers
