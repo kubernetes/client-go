@@ -101,7 +101,7 @@ func TestFilteredDynamicSharedInformerFactory(t *testing.T) {
 				{Group: "apps", Version: "v1", Resource: "deployments"}: "DeploymentList",
 			}
 			fakeClient := fake.NewSimpleDynamicClientWithCustomListKinds(scheme, gvrToListKind, objs...)
-			target := dynamicinformer.NewFilteredDynamicSharedInformerFactory(fakeClient, 0, ts.informNS, false, nil)
+			target := dynamicinformer.NewFilteredDynamicSharedInformerFactory(fakeClient, 0, ts.informNS, nil)
 
 			// act
 			informerListerForGvr := target.ForResource(ts.gvr)
@@ -225,7 +225,7 @@ func TestDynamicSharedInformerFactory(t *testing.T) {
 				{Group: "extensions", Version: "v1beta1", Resource: "deployments"}: "DeploymentList",
 			}
 			fakeClient := fake.NewSimpleDynamicClientWithCustomListKinds(scheme, gvrToListKind, objs...)
-			target := dynamicinformer.NewDynamicSharedInformerFactory(fakeClient, 0, false)
+			target := dynamicinformer.NewDynamicSharedInformerFactory(fakeClient, 0)
 
 			// act
 			informerListerForGvr := target.ForResource(ts.gvr)
