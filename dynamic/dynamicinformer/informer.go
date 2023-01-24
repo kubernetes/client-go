@@ -37,6 +37,18 @@ func NewDynamicSharedInformerFactory(client dynamic.Interface, defaultResync tim
 	return NewFilteredDynamicSharedInformerFactory(client, defaultResync, metav1.NamespaceAll, emitAllDeleteEvents, nil)
 }
 
+// NewDynamicSharedInformerFactoryWithAllDeleteEvents constructs a new instance of dynamicSharedInformerFactory with all delete events.
+func NewDynamicSharedInformerFactoryWithAllDeleteEvents(client dynamic.Interface, defaultResync time.Duration, namespace string, emitAllDeleteEvents bool, tweakListOptions TweakListOptionsFunc) DynamicSharedInformerFactory {
+	return &dynamicSharedInformerFactory{
+		client:           client,
+		defaultResync:    defaultResync,
+		namespace:        namespace,
+		informers:        map[schema.GroupVersionResource]informers.GenericInformer{},
+		startedInformers: make(map[schema.GroupVersionResource]bool),
+		tweakListOptions: tweakListOptions,
+	}
+}
+
 // NewFilteredDynamicSharedInformerFactory constructs a new instance of dynamicSharedInformerFactory.
 // Listers obtained via this factory will be subject to the same filters as specified here.
 func NewFilteredDynamicSharedInformerFactory(client dynamic.Interface, defaultResync time.Duration, namespace string, emitAllDeleteEvents bool, tweakListOptions TweakListOptionsFunc) DynamicSharedInformerFactory {
