@@ -33,20 +33,21 @@ import (
 )
 
 // NewDynamicSharedInformerFactory constructs a new instance of dynamicSharedInformerFactory for all namespaces.
-func NewDynamicSharedInformerFactory(client dynamic.Interface, defaultResync time.Duration) DynamicSharedInformerFactory {
-	return NewFilteredDynamicSharedInformerFactory(client, defaultResync, metav1.NamespaceAll, nil)
+func NewDynamicSharedInformerFactory(client dynamic.Interface, defaultResync time.Duration, emitAllDeleteEvents bool) DynamicSharedInformerFactory {
+	return NewFilteredDynamicSharedInformerFactory(client, defaultResync, metav1.NamespaceAll, emitAllDeleteEvents, nil)
 }
 
 // NewFilteredDynamicSharedInformerFactory constructs a new instance of dynamicSharedInformerFactory.
 // Listers obtained via this factory will be subject to the same filters as specified here.
-func NewFilteredDynamicSharedInformerFactory(client dynamic.Interface, defaultResync time.Duration, namespace string, tweakListOptions TweakListOptionsFunc) DynamicSharedInformerFactory {
+func NewFilteredDynamicSharedInformerFactory(client dynamic.Interface, defaultResync time.Duration, namespace string, emitAllDeleteEvents bool, tweakListOptions TweakListOptionsFunc) DynamicSharedInformerFactory {
 	return &dynamicSharedInformerFactory{
-		client:           client,
-		defaultResync:    defaultResync,
-		namespace:        namespace,
-		informers:        map[schema.GroupVersionResource]informers.GenericInformer{},
-		startedInformers: make(map[schema.GroupVersionResource]bool),
-		tweakListOptions: tweakListOptions,
+		client:              client,
+		defaultResync:       defaultResync,
+		namespace:           namespace,
+		informers:           map[schema.GroupVersionResource]informers.GenericInformer{},
+		startedInformers:    make(map[schema.GroupVersionResource]bool),
+		EmitAllDeleteEvents: emitAllDeleteEvents,
+		tweakListOptions:    tweakListOptions,
 	}
 }
 
@@ -60,7 +61,9 @@ type dynamicSharedInformerFactory struct {
 	// startedInformers is used for tracking which informers have been started.
 	// This allows Start() to be called multiple times safely.
 	startedInformers map[schema.GroupVersionResource]bool
-	tweakListOptions TweakListOptionsFunc
+	// EmitAllDeleteEvents set to true forces watch handler to use deleteWithNotification method which sends all delete events to handler even though object is not present in cache.
+	EmitAllDeleteEvents bool
+	tweakListOptions    TweakListOptionsFunc
 }
 
 var _ DynamicSharedInformerFactory = &dynamicSharedInformerFactory{}
@@ -75,7 +78,7 @@ func (f *dynamicSharedInformerFactory) ForResource(gvr schema.GroupVersionResour
 		return informer
 	}
 
-	informer = NewFilteredDynamicInformer(f.client, gvr, f.namespace, f.defaultResync, cache.Indexers{cache.NamespaceIndex: cache.MetaNamespaceIndexFunc}, f.tweakListOptions)
+	informer = NewFilteredDynamicInformer(f.client, gvr, f.namespace, f.defaultResync, cache.Indexers{cache.NamespaceIndex: cache.MetaNamespaceIndexFunc}, f.EmitAllDeleteEvents, f.tweakListOptions)
 	f.informers[key] = informer
 
 	return informer
@@ -117,7 +120,7 @@ func (f *dynamicSharedInformerFactory) WaitForCacheSync(stopCh <-chan struct{}) 
 }
 
 // NewFilteredDynamicInformer constructs a new informer for a dynamic type.
-func NewFilteredDynamicInformer(client dynamic.Interface, gvr schema.GroupVersionResource, namespace string, resyncPeriod time.Duration, indexers cache.Indexers, tweakListOptions TweakListOptionsFunc) informers.GenericInformer {
+func NewFilteredDynamicInformer(client dynamic.Interface, gvr schema.GroupVersionResource, namespace string, resyncPeriod time.Duration, indexers cache.Indexers, emitAllDeleteEvents bool, tweakListOptions TweakListOptionsFunc) informers.GenericInformer {
 	return &dynamicInformer{
 		gvr: gvr,
 		informer: cache.NewSharedIndexInformerWithOptions(
@@ -137,9 +140,10 @@ func NewFilteredDynamicInformer(client dynamic.Interface, gvr schema.GroupVersio
 			},
 			&unstructured.Unstructured{},
 			cache.SharedIndexInformerOptions{
-				ResyncPeriod:      resyncPeriod,
-				Indexers:          indexers,
-				ObjectDescription: gvr.String(),
+				ResyncPeriod:        resyncPeriod,
+				Indexers:            indexers,
+				ObjectDescription:   gvr.String(),
+				EmitAllDeleteEvents: emitAllDeleteEvents,
 			},
 		),
 	}

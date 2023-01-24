@@ -51,6 +51,8 @@ type DeltaFIFOOptions struct {
 	// When true, `Replaced` events will be sent for items passed to a Replace() call.
 	// When false, `Sync` events will be sent instead.
 	EmitDeltaTypeReplaced bool
+	// UseDeleteWithNotification set to true forces watch handler to use deleteWithNotification method which sends all delete events to handler even though object is not present in cache.
+	EmitAllDeleteEvents bool
 }
 
 // DeltaFIFO is like FIFO, but differs in two ways.  One is that the
@@ -129,6 +131,8 @@ type DeltaFIFO struct {
 	// emitDeltaTypeReplaced is whether to emit the Replaced or Sync
 	// DeltaType when Replace() is called (to preserve backwards compat).
 	emitDeltaTypeReplaced bool
+	// UseDeleteWithNotification set to true forces watch handler to use deleteWithNotification method which sends all delete events to handler even though object is not present in cache.
+	EmitAllDeleteEvents bool
 }
 
 // DeltaType is the type of a change (addition, deletion, etc)
@@ -227,6 +231,7 @@ func NewDeltaFIFOWithOptions(opts DeltaFIFOOptions) *DeltaFIFO {
 		knownObjects: opts.KnownObjects,
 
 		emitDeltaTypeReplaced: opts.EmitDeltaTypeReplaced,
+		EmitAllDeleteEvents:   opts.EmitAllDeleteEvents,
 	}
 	f.cond.L = &f.lock
 	return f
@@ -307,27 +312,28 @@ func (f *DeltaFIFO) Delete(obj interface{}) error {
 	}
 	f.lock.Lock()
 	defer f.lock.Unlock()
-	f.populated = true
-	if f.knownObjects == nil {
-		if _, exists := f.items[id]; !exists {
-			// Presumably, this was deleted when a relist happened.
-			// Don't provide a second report of the same deletion.
-			return nil
-		}
-	} else {
-		// We only want to skip the "deletion" action if the object doesn't
-		// exist in knownObjects and it doesn't have corresponding item in items.
-		// Note that even if there is a "deletion" action in items, we can ignore it,
-		// because it will be deduped automatically in "queueActionLocked"
-		_, exists, err := f.knownObjects.GetByKey(id)
-		_, itemsExist := f.items[id]
-		if err == nil && !exists && !itemsExist {
-			// Presumably, this was deleted when a relist happened.
-			// Don't provide a second report of the same deletion.
-			return nil
+	if !f.EmitAllDeleteEvents {
+		f.populated = true
+		if f.knownObjects == nil {
+			if _, exists := f.items[id]; !exists {
+				// Presumably, this was deleted when a relist happened.
+				// Don't provide a second report of the same deletion.
+				return nil
+			}
+		} else {
+			// We only want to skip the "deletion" action if the object doesn't
+			// exist in knownObjects and it doesn't have corresponding item in items.
+			// Note that even if there is a "deletion" action in items, we can ignore it,
+			// because it will be deduped automatically in "queueActionLocked"
+			_, exists, err := f.knownObjects.GetByKey(id)
+			_, itemsExist := f.items[id]
+			if err == nil && !exists && !itemsExist {
+				// Presumably, this was deleted when a relist happened.
+				// Don't provide a second report of the same deletion.
+				return nil
+			}
 		}
 	}
-
 	// exist in items and/or KnownObjects
 	return f.queueActionLocked(Deleted, obj)
 }
