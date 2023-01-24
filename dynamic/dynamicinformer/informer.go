@@ -33,8 +33,8 @@ import (
 )
 
 // NewDynamicSharedInformerFactory constructs a new instance of dynamicSharedInformerFactory for all namespaces.
-func NewDynamicSharedInformerFactory(client dynamic.Interface, defaultResync time.Duration, emitAllDeleteEvents bool) DynamicSharedInformerFactory {
-	return NewFilteredDynamicSharedInformerFactory(client, defaultResync, metav1.NamespaceAll, emitAllDeleteEvents, nil)
+func NewDynamicSharedInformerFactory(client dynamic.Interface, defaultResync time.Duration) DynamicSharedInformerFactory {
+	return NewFilteredDynamicSharedInformerFactory(client, defaultResync, metav1.NamespaceAll, nil)
 }
 
 // NewDynamicSharedInformerFactoryWithAllDeleteEvents constructs a new instance of dynamicSharedInformerFactory with all delete events.
@@ -51,15 +51,14 @@ func NewDynamicSharedInformerFactoryWithAllDeleteEvents(client dynamic.Interface
 
 // NewFilteredDynamicSharedInformerFactory constructs a new instance of dynamicSharedInformerFactory.
 // Listers obtained via this factory will be subject to the same filters as specified here.
-func NewFilteredDynamicSharedInformerFactory(client dynamic.Interface, defaultResync time.Duration, namespace string, emitAllDeleteEvents bool, tweakListOptions TweakListOptionsFunc) DynamicSharedInformerFactory {
+func NewFilteredDynamicSharedInformerFactory(client dynamic.Interface, defaultResync time.Duration, namespace string, tweakListOptions TweakListOptionsFunc) DynamicSharedInformerFactory {
 	return &dynamicSharedInformerFactory{
-		client:              client,
-		defaultResync:       defaultResync,
-		namespace:           namespace,
-		informers:           map[schema.GroupVersionResource]informers.GenericInformer{},
-		startedInformers:    make(map[schema.GroupVersionResource]bool),
-		EmitAllDeleteEvents: emitAllDeleteEvents,
-		tweakListOptions:    tweakListOptions,
+		client:           client,
+		defaultResync:    defaultResync,
+		namespace:        namespace,
+		informers:        map[schema.GroupVersionResource]informers.GenericInformer{},
+		startedInformers: make(map[schema.GroupVersionResource]bool),
+		tweakListOptions: tweakListOptions,
 	}
 }
 
