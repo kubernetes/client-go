@@ -473,10 +473,10 @@ honnef.co/go/tools v0.0.0-20190523083050-ea95bdfd59fc/go.mod h1:rf3lG4BRIbNafJWh
 honnef.co/go/tools v0.0.1-2019.2.3/go.mod h1:a3bituU0lyd329TUQxRnasdCoJDkEUEAqEt0JzvZhAg=
 honnef.co/go/tools v0.0.1-2020.1.3/go.mod h1:X/FiERA/W4tHapMX5mGpAtMSVEeEUOyHaw9vFzvIQ3k=
 honnef.co/go/tools v0.0.1-2020.1.4/go.mod h1:X/FiERA/W4tHapMX5mGpAtMSVEeEUOyHaw9vFzvIQ3k=
-k8s.io/api v0.0.0-20230215102316-c02fa6b5ebd9 h1:PGyCM7BGFOKsZbKV+Nfy3w5dw0UrDjHMW+CVQ/l7wfk=
-k8s.io/api v0.0.0-20230215102316-c02fa6b5ebd9/go.mod h1:xHDIgV7hLXSwgsORlFnEBjiX2zcdo49H+uO4AEqBz/E=
-k8s.io/apimachinery v0.0.0-20230215101505-6ecd1c896902 h1:V/vXE6FvO6XkVB20q82d2yp1MA6Zwper/mThB1vCDLc=
-k8s.io/apimachinery v0.0.0-20230215101505-6ecd1c896902/go.mod h1:X4Ff26Y8AJHTAxjPrGbVLY8N3ADYqSjUy2Zn/uTUFyM=
+k8s.io/api v0.0.0-20230216210204-c710db81a13d h1:LC70wXIYygo42ZqZvVQmhc2QhgrOi5+lG9ueUdnGhYw=
+k8s.io/api v0.0.0-20230216210204-c710db81a13d/go.mod h1:Y4swnoZB6W7XZB1AvPG7IixVSHZv7YB3uxyveramlQY=
+k8s.io/apimachinery v0.0.0-20230216205949-e90c788139cd h1:vkr9Hnk9T+9xhtrRXH2+9NndCHR3F1wgplgbQX5xpsk=
+k8s.io/apimachinery v0.0.0-20230216205949-e90c788139cd/go.mod h1:X4Ff26Y8AJHTAxjPrGbVLY8N3ADYqSjUy2Zn/uTUFyM=
 k8s.io/klog/v2 v2.80.1 h1:atnLQ121W371wYYFawwYx1aEY2eUfs4l3J72wtgAwV4=
 k8s.io/klog/v2 v2.80.1/go.mod h1:y1WjHnz7Dj687irZUWR/WLkLc5N1YHtjLdmgWjndZn0=
 k8s.io/kube-openapi v0.0.0-20230123231816-1cb3ae25d79a h1:s6zvHjyDQX1NtVT88pvw2tddqhqY0Bz0Gbnn+yctsFU=
