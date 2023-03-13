@@ -27,58 +27,58 @@ import (
 	v1 "k8s.io/client-go/applyconfigurations/meta/v1"
 )
 
-// PodSchedulingApplyConfiguration represents an declarative configuration of the PodScheduling type for use
+// PodSchedulingContextApplyConfiguration represents an declarative configuration of the PodSchedulingContext type for use
 // with apply.
-type PodSchedulingApplyConfiguration struct {
+type PodSchedulingContextApplyConfiguration struct {
 	v1.TypeMetaApplyConfiguration    `json:",inline"`
 	*v1.ObjectMetaApplyConfiguration `json:"metadata,omitempty"`
-	Spec                             *PodSchedulingSpecApplyConfiguration   `json:"spec,omitempty"`
-	Status                           *PodSchedulingStatusApplyConfiguration `json:"status,omitempty"`
+	Spec                             *PodSchedulingContextSpecApplyConfiguration   `json:"spec,omitempty"`
+	Status                           *PodSchedulingContextStatusApplyConfiguration `json:"status,omitempty"`
 }
 
-// PodScheduling constructs an declarative configuration of the PodScheduling type for use with
+// PodSchedulingContext constructs an declarative configuration of the PodSchedulingContext type for use with
 // apply.
-func PodScheduling(name, namespace string) *PodSchedulingApplyConfiguration {
-	b := &PodSchedulingApplyConfiguration{}
+func PodSchedulingContext(name, namespace string) *PodSchedulingContextApplyConfiguration {
+	b := &PodSchedulingContextApplyConfiguration{}
 	b.WithName(name)
 	b.WithNamespace(namespace)
-	b.WithKind("PodScheduling")
+	b.WithKind("PodSchedulingContext")
 	b.WithAPIVersion("resource.k8s.io/v1alpha2")
 	return b
 }
 
-// ExtractPodScheduling extracts the applied configuration owned by fieldManager from
-// podScheduling. If no managedFields are found in podScheduling for fieldManager, a
-// PodSchedulingApplyConfiguration is returned with only the Name, Namespace (if applicable),
+// ExtractPodSchedulingContext extracts the applied configuration owned by fieldManager from
+// podSchedulingContext. If no managedFields are found in podSchedulingContext for fieldManager, a
+// PodSchedulingContextApplyConfiguration is returned with only the Name, Namespace (if applicable),
 // APIVersion and Kind populated. It is possible that no managed fields were found for because other
 // field managers have taken ownership of all the fields previously owned by fieldManager, or because
 // the fieldManager never owned fields any fields.
-// podScheduling must be a unmodified PodScheduling API object that was retrieved from the Kubernetes API.
-// ExtractPodScheduling provides a way to perform a extract/modify-in-place/apply workflow.
+// podSchedulingContext must be a unmodified PodSchedulingContext API object that was retrieved from the Kubernetes API.
+// ExtractPodSchedulingContext provides a way to perform a extract/modify-in-place/apply workflow.
 // Note that an extracted apply configuration will contain fewer fields than what the fieldManager previously
 // applied if another fieldManager has updated or force applied any of the previously applied fields.
 // Experimental!
-func ExtractPodScheduling(podScheduling *resourcev1alpha2.PodScheduling, fieldManager string) (*PodSchedulingApplyConfiguration, error) {
-	return extractPodScheduling(podScheduling, fieldManager, "")
+func ExtractPodSchedulingContext(podSchedulingContext *resourcev1alpha2.PodSchedulingContext, fieldManager string) (*PodSchedulingContextApplyConfiguration, error) {
+	return extractPodSchedulingContext(podSchedulingContext, fieldManager, "")
 }
 
-// ExtractPodSchedulingStatus is the same as ExtractPodScheduling except
+// ExtractPodSchedulingContextStatus is the same as ExtractPodSchedulingContext except
 // that it extracts the status subresource applied configuration.
 // Experimental!
-func ExtractPodSchedulingStatus(podScheduling *resourcev1alpha2.PodScheduling, fieldManager string) (*PodSchedulingApplyConfiguration, error) {
-	return extractPodScheduling(podScheduling, fieldManager, "status")
+func ExtractPodSchedulingContextStatus(podSchedulingContext *resourcev1alpha2.PodSchedulingContext, fieldManager string) (*PodSchedulingContextApplyConfiguration, error) {
+	return extractPodSchedulingContext(podSchedulingContext, fieldManager, "status")
 }
 
-func extractPodScheduling(podScheduling *resourcev1alpha2.PodScheduling, fieldManager string, subresource string) (*PodSchedulingApplyConfiguration, error) {
-	b := &PodSchedulingApplyConfiguration{}
-	err := managedfields.ExtractInto(podScheduling, internal.Parser().Type("io.k8s.api.resource.v1alpha2.PodScheduling"), fieldManager, b, subresource)
+func extractPodSchedulingContext(podSchedulingContext *resourcev1alpha2.PodSchedulingContext, fieldManager string, subresource string) (*PodSchedulingContextApplyConfiguration, error) {
+	b := &PodSchedulingContextApplyConfiguration{}
+	err := managedfields.ExtractInto(podSchedulingContext, internal.Parser().Type("io.k8s.api.resource.v1alpha2.PodSchedulingContext"), fieldManager, b, subresource)
 	if err != nil {
 		return nil, err
 	}
-	b.WithName(podScheduling.Name)
-	b.WithNamespace(podScheduling.Namespace)
+	b.WithName(podSchedulingContext.Name)
+	b.WithNamespace(podSchedulingContext.Namespace)
 
-	b.WithKind("PodScheduling")
+	b.WithKind("PodSchedulingContext")
 	b.WithAPIVersion("resource.k8s.io/v1alpha2")
 	return b, nil
 }
@@ -86,7 +86,7 @@ func extractPodScheduling(podScheduling *resourcev1alpha2.PodScheduling, fieldMa
 // WithKind sets the Kind field in the declarative configuration to the given value
 // and returns the receiver, so that objects can be built by chaining "With" function invocations.
 // If called multiple times, the Kind field is set to the value of the last call.
-func (b *PodSchedulingApplyConfiguration) WithKind(value string) *PodSchedulingApplyConfiguration {
+func (b *PodSchedulingContextApplyConfiguration) WithKind(value string) *PodSchedulingContextApplyConfiguration {
 	b.Kind = &value
 	return b
 }
@@ -94,7 +94,7 @@ func (b *PodSchedulingApplyConfiguration) WithKind(value string) *PodSchedulingA
 // WithAPIVersion sets the APIVersion field in the declarative configuration to the given value
 // and returns the receiver, so that objects can be built by chaining "With" function invocations.
 // If called multiple times, the APIVersion field is set to the value of the last call.
-func (b *PodSchedulingApplyConfiguration) WithAPIVersion(value string) *PodSchedulingApplyConfiguration {
+func (b *PodSchedulingContextApplyConfiguration) WithAPIVersion(value string) *PodSchedulingContextApplyConfiguration {
 	b.APIVersion = &value
 	return b
 }
@@ -102,7 +102,7 @@ func (b *PodSchedulingApplyConfiguration) WithAPIVersion(value string) *PodSched
 // WithName sets the Name field in the declarative configuration to the given value
 // and returns the receiver, so that objects can be built by chaining "With" function invocations.
 // If called multiple times, the Name field is set to the value of the last call.
-func (b *PodSchedulingApplyConfiguration) WithName(value string) *PodSchedulingApplyConfiguration {
+func (b *PodSchedulingContextApplyConfiguration) WithName(value string) *PodSchedulingContextApplyConfiguration {
 	b.ensureObjectMetaApplyConfigurationExists()
 	b.Name = &value
 	return b
@@ -111,7 +111,7 @@ func (b *PodSchedulingApplyConfiguration) WithName(value string) *PodSchedulingA
 // WithGenerateName sets the GenerateName field in the declarative configuration to the given value
 // and returns the receiver, so that objects can be built by chaining "With" function invocations.
 // If called multiple times, the GenerateName field is set to the value of the last call.
-func (b *PodSchedulingApplyConfiguration) WithGenerateName(value string) *PodSchedulingApplyConfiguration {
+func (b *PodSchedulingContextApplyConfiguration) WithGenerateName(value string) *PodSchedulingContextApplyConfiguration {
 	b.ensureObjectMetaApplyConfigurationExists()
 	b.GenerateName = &value
 	return b
@@ -120,7 +120,7 @@ func (b *PodSchedulingApplyConfiguration) WithGenerateName(value string) *PodSch
 // WithNamespace sets the Namespace field in the declarative configuration to the given value
 // and returns the receiver, so that objects can be built by chaining "With" function invocations.
 // If called multiple times, the Namespace field is set to the value of the last call.
-func (b *PodSchedulingApplyConfiguration) WithNamespace(value string) *PodSchedulingApplyConfiguration {
+func (b *PodSchedulingContextApplyConfiguration) WithNamespace(value string) *PodSchedulingContextApplyConfiguration {
 	b.ensureObjectMetaApplyConfigurationExists()
 	b.Namespace = &value
 	return b
@@ -129,7 +129,7 @@ func (b *PodSchedulingApplyConfiguration) WithNamespace(value string) *PodSchedu
 // WithUID sets the UID field in the declarative configuration to the given value
 // and returns the receiver, so that objects can be built by chaining "With" function invocations.
 // If called multiple times, the UID field is set to the value of the last call.
-func (b *PodSchedulingApplyConfiguration) WithUID(value types.UID) *PodSchedulingApplyConfiguration {
+func (b *PodSchedulingContextApplyConfiguration) WithUID(value types.UID) *PodSchedulingContextApplyConfiguration {
 	b.ensureObjectMetaApplyConfigurationExists()
 	b.UID = &value
 	return b
@@ -138,7 +138,7 @@ func (b *PodSchedulingApplyConfiguration) WithUID(value types.UID) *PodSchedulin
 // WithResourceVersion sets the ResourceVersion field in the declarative configuration to the given value
 // and returns the receiver, so that objects can be built by chaining "With" function invocations.
 // If called multiple times, the ResourceVersion field is set to the value of the last call.
-func (b *PodSchedulingApplyConfiguration) WithResourceVersion(value string) *PodSchedulingApplyConfiguration {
+func (b *PodSchedulingContextApplyConfiguration) WithResourceVersion(value string) *PodSchedulingContextApplyConfiguration {
 	b.ensureObjectMetaApplyConfigurationExists()
 	b.ResourceVersion = &value
 	return b
@@ -147,7 +147,7 @@ func (b *PodSchedulingApplyConfiguration) WithResourceVersion(value string) *Pod
 // WithGeneration sets the Generation field in the declarative configuration to the given value
 // and returns the receiver, so that objects can be built by chaining "With" function invocations.
 // If called multiple times, the Generation field is set to the value of the last call.
-func (b *PodSchedulingApplyConfiguration) WithGeneration(value int64) *PodSchedulingApplyConfiguration {
+func (b *PodSchedulingContextApplyConfiguration) WithGeneration(value int64) *PodSchedulingContextApplyConfiguration {
 	b.ensureObjectMetaApplyConfigurationExists()
 	b.Generation = &value
 	return b
@@ -156,7 +156,7 @@ func (b *PodSchedulingApplyConfiguration) WithGeneration(value int64) *PodSchedu
 // WithCreationTimestamp sets the CreationTimestamp field in the declarative configuration to the given value
 // and returns the receiver, so that objects can be built by chaining "With" function invocations.
 // If called multiple times, the CreationTimestamp field is set to the value of the last call.
-func (b *PodSchedulingApplyConfiguration) WithCreationTimestamp(value metav1.Time) *PodSchedulingApplyConfiguration {
+func (b *PodSchedulingContextApplyConfiguration) WithCreationTimestamp(value metav1.Time) *PodSchedulingContextApplyConfiguration {
 	b.ensureObjectMetaApplyConfigurationExists()
 	b.CreationTimestamp = &value
 	return b
@@ -165,7 +165,7 @@ func (b *PodSchedulingApplyConfiguration) WithCreationTimestamp(value metav1.Tim
 // WithDeletionTimestamp sets the DeletionTimestamp field in the declarative configuration to the given value
 // and returns the receiver, so that objects can be built by chaining "With" function invocations.
 // If called multiple times, the DeletionTimestamp field is set to the value of the last call.
-func (b *PodSchedulingApplyConfiguration) WithDeletionTimestamp(value metav1.Time) *PodSchedulingApplyConfiguration {
+func (b *PodSchedulingContextApplyConfiguration) WithDeletionTimestamp(value metav1.Time) *PodSchedulingContextApplyConfiguration {
 	b.ensureObjectMetaApplyConfigurationExists()
 	b.DeletionTimestamp = &value
 	return b
@@ -174,7 +174,7 @@ func (b *PodSchedulingApplyConfiguration) WithDeletionTimestamp(value metav1.Tim
 // WithDeletionGracePeriodSeconds sets the DeletionGracePeriodSeconds field in the declarative configuration to the given value
 // and returns the receiver, so that objects can be built by chaining "With" function invocations.
 // If called multiple times, the DeletionGracePeriodSeconds field is set to the value of the last call.
-func (b *PodSchedulingApplyConfiguration) WithDeletionGracePeriodSeconds(value int64) *PodSchedulingApplyConfiguration {
+func (b *PodSchedulingContextApplyConfiguration) WithDeletionGracePeriodSeconds(value int64) *PodSchedulingContextApplyConfiguration {
 	b.ensureObjectMetaApplyConfigurationExists()
 	b.DeletionGracePeriodSeconds = &value
 	return b
@@ -184,7 +184,7 @@ func (b *PodSchedulingApplyConfiguration) WithDeletionGracePeriodSeconds(value i
 // and returns the receiver, so that objects can be build by chaining "With" function invocations.
 // If called multiple times, the entries provided by each call will be put on the Labels field,
 // overwriting an existing map entries in Labels field with the same key.
-func (b *PodSchedulingApplyConfiguration) WithLabels(entries map[string]string) *PodSchedulingApplyConfiguration {
+func (b *PodSchedulingContextApplyConfiguration) WithLabels(entries map[string]string) *PodSchedulingContextApplyConfiguration {
 	b.ensureObjectMetaApplyConfigurationExists()
 	if b.Labels == nil && len(entries) > 0 {
 		b.Labels = make(map[string]string, len(entries))
@@ -199,7 +199,7 @@ func (b *PodSchedulingApplyConfiguration) WithLabels(entries map[string]string) 
 // and returns the receiver, so that objects can be build by chaining "With" function invocations.
 // If called multiple times, the entries provided by each call will be put on the Annotations field,
 // overwriting an existing map entries in Annotations field with the same key.
-func (b *PodSchedulingApplyConfiguration) WithAnnotations(entries map[string]string) *PodSchedulingApplyConfiguration {
+func (b *PodSchedulingContextApplyConfiguration) WithAnnotations(entries map[string]string) *PodSchedulingContextApplyConfiguration {
 	b.ensureObjectMetaApplyConfigurationExists()
 	if b.Annotations == nil && len(entries) > 0 {
 		b.Annotations = make(map[string]string, len(entries))
@@ -213,7 +213,7 @@ func (b *PodSchedulingApplyConfiguration) WithAnnotations(entries map[string]str
 // WithOwnerReferences adds the given value to the OwnerReferences field in the declarative configuration
 // and returns the receiver, so that objects can be build by chaining "With" function invocations.
 // If called multiple times, values provided by each call will be appended to the OwnerReferences field.
-func (b *PodSchedulingApplyConfiguration) WithOwnerReferences(values ...*v1.OwnerReferenceApplyConfiguration) *PodSchedulingApplyConfiguration {
+func (b *PodSchedulingContextApplyConfiguration) WithOwnerReferences(values ...*v1.OwnerReferenceApplyConfiguration) *PodSchedulingContextApplyConfiguration {
 	b.ensureObjectMetaApplyConfigurationExists()
 	for i := range values {
 		if values[i] == nil {
@@ -227,7 +227,7 @@ func (b *PodSchedulingApplyConfiguration) WithOwnerReferences(values ...*v1.Owne
 // WithFinalizers adds the given value to the Finalizers field in the declarative configuration
 // and returns the receiver, so that objects can be build by chaining "With" function invocations.
 // If called multiple times, values provided by each call will be appended to the Finalizers field.
-func (b *PodSchedulingApplyConfiguration) WithFinalizers(values ...string) *PodSchedulingApplyConfiguration {
+func (b *PodSchedulingContextApplyConfiguration) WithFinalizers(values ...string) *PodSchedulingContextApplyConfiguration {
 	b.ensureObjectMetaApplyConfigurationExists()
 	for i := range values {
 		b.Finalizers = append(b.Finalizers, values[i])
@@ -235,7 +235,7 @@ func (b *PodSchedulingApplyConfiguration) WithFinalizers(values ...string) *PodS
 	return b
 }
 
-func (b *PodSchedulingApplyConfiguration) ensureObjectMetaApplyConfigurationExists() {
+func (b *PodSchedulingContextApplyConfiguration) ensureObjectMetaApplyConfigurationExists() {
 	if b.ObjectMetaApplyConfiguration == nil {
 		b.ObjectMetaApplyConfiguration = &v1.ObjectMetaApplyConfiguration{}
 	}
@@ -244,7 +244,7 @@ func (b *PodSchedulingApplyConfiguration) ensureObjectMetaApplyConfigurationExis
 // WithSpec sets the Spec field in the declarative configuration to the given value
 // and returns the receiver, so that objects can be built by chaining "With" function invocations.
 // If called multiple times, the Spec field is set to the value of the last call.
-func (b *PodSchedulingApplyConfiguration) WithSpec(value *PodSchedulingSpecApplyConfiguration) *PodSchedulingApplyConfiguration {
+func (b *PodSchedulingContextApplyConfiguration) WithSpec(value *PodSchedulingContextSpecApplyConfiguration) *PodSchedulingContextApplyConfiguration {
 	b.Spec = value
 	return b
 }
@@ -252,7 +252,7 @@ func (b *PodSchedulingApplyConfiguration) WithSpec(value *PodSchedulingSpecApply
 // WithStatus sets the Status field in the declarative configuration to the given value
 // and returns the receiver, so that objects can be built by chaining "With" function invocations.
 // If called multiple times, the Status field is set to the value of the last call.
-func (b *PodSchedulingApplyConfiguration) WithStatus(value *PodSchedulingStatusApplyConfiguration) *PodSchedulingApplyConfiguration {
+func (b *PodSchedulingContextApplyConfiguration) WithStatus(value *PodSchedulingContextStatusApplyConfiguration) *PodSchedulingContextApplyConfiguration {
 	b.Status = value
 	return b
 }
