@@ -2,7 +2,7 @@
 
 module k8s.io/client-go
 
-go 1.19
+go 1.20
 
 require (
 	github.com/davecgh/go-spew v1.1.1
@@ -24,8 +24,8 @@ require (
 	golang.org/x/term v0.5.0
 	golang.org/x/time v0.0.0-20220210224613-90d013bbcef8
 	google.golang.org/protobuf v1.28.1
-	k8s.io/api v0.0.0-20230313011535-19ee583d5657
-	k8s.io/apimachinery v0.0.0-20230313210748-725ba3fe5ffa
+	k8s.io/api v0.0.0
+	k8s.io/apimachinery v0.0.0
 	k8s.io/klog/v2 v2.90.1
 	k8s.io/kube-openapi v0.0.0-20230308215209-15aac26d736a
 	k8s.io/utils v0.0.0-20230209194617-a36077c30491
@@ -59,6 +59,7 @@ require (
 )
 
 replace (
-	k8s.io/api => k8s.io/api v0.0.0-20230313011535-19ee583d5657
-	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20230313210748-725ba3fe5ffa
+	k8s.io/api => ../api
+	k8s.io/apimachinery => ../apimachinery
+	k8s.io/client-go => ../client-go
 )
