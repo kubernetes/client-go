@@ -32,59 +32,59 @@ import (
 	cache "k8s.io/client-go/tools/cache"
 )
 
-// PodSchedulingInformer provides access to a shared informer and lister for
-// PodSchedulings.
-type PodSchedulingInformer interface {
+// PodSchedulingContextInformer provides access to a shared informer and lister for
+// PodSchedulingContexts.
+type PodSchedulingContextInformer interface {
 	Informer() cache.SharedIndexInformer
-	Lister() v1alpha2.PodSchedulingLister
+	Lister() v1alpha2.PodSchedulingContextLister
 }
 
-type podSchedulingInformer struct {
+type podSchedulingContextInformer struct {
 	factory          internalinterfaces.SharedInformerFactory
 	tweakListOptions internalinterfaces.TweakListOptionsFunc
 	namespace        string
 }
 
-// NewPodSchedulingInformer constructs a new informer for PodScheduling type.
+// NewPodSchedulingContextInformer constructs a new informer for PodSchedulingContext type.
 // Always prefer using an informer factory to get a shared informer instead of getting an independent
 // one. This reduces memory footprint and number of connections to the server.
-func NewPodSchedulingInformer(client kubernetes.Interface, namespace string, resyncPeriod time.Duration, indexers cache.Indexers) cache.SharedIndexInformer {
-	return NewFilteredPodSchedulingInformer(client, namespace, resyncPeriod, indexers, nil)
+func NewPodSchedulingContextInformer(client kubernetes.Interface, namespace string, resyncPeriod time.Duration, indexers cache.Indexers) cache.SharedIndexInformer {
+	return NewFilteredPodSchedulingContextInformer(client, namespace, resyncPeriod, indexers, nil)
 }
 
-// NewFilteredPodSchedulingInformer constructs a new informer for PodScheduling type.
+// NewFilteredPodSchedulingContextInformer constructs a new informer for PodSchedulingContext type.
 // Always prefer using an informer factory to get a shared informer instead of getting an independent
 // one. This reduces memory footprint and number of connections to the server.
-func NewFilteredPodSchedulingInformer(client kubernetes.Interface, namespace string, resyncPeriod time.Duration, indexers cache.Indexers, tweakListOptions internalinterfaces.TweakListOptionsFunc) cache.SharedIndexInformer {
+func NewFilteredPodSchedulingContextInformer(client kubernetes.Interface, namespace string, resyncPeriod time.Duration, indexers cache.Indexers, tweakListOptions internalinterfaces.TweakListOptionsFunc) cache.SharedIndexInformer {
 	return cache.NewSharedIndexInformer(
 		&cache.ListWatch{
 			ListFunc: func(options v1.ListOptions) (runtime.Object, error) {
 				if tweakListOptions != nil {
 					tweakListOptions(&options)
 				}
-				return client.ResourceV1alpha2().PodSchedulings(namespace).List(context.TODO(), options)
+				return client.ResourceV1alpha2().PodSchedulingContexts(namespace).List(context.TODO(), options)
 			},
 			WatchFunc: func(options v1.ListOptions) (watch.Interface, error) {
 				if tweakListOptions != nil {
 					tweakListOptions(&options)
 				}
-				return client.ResourceV1alpha2().PodSchedulings(namespace).Watch(context.TODO(), options)
+				return client.ResourceV1alpha2().PodSchedulingContexts(namespace).Watch(context.TODO(), options)
 			},
 		},
-		&resourcev1alpha2.PodScheduling{},
+		&resourcev1alpha2.PodSchedulingContext{},
 		resyncPeriod,
 		indexers,
 	)
 }
 
-func (f *podSchedulingInformer) defaultInformer(client kubernetes.Interface, resyncPeriod time.Duration) cache.SharedIndexInformer {
-	return NewFilteredPodSchedulingInformer(client, f.namespace, resyncPeriod, cache.Indexers{cache.NamespaceIndex: cache.MetaNamespaceIndexFunc}, f.tweakListOptions)
+func (f *podSchedulingContextInformer) defaultInformer(client kubernetes.Interface, resyncPeriod time.Duration) cache.SharedIndexInformer {
+	return NewFilteredPodSchedulingContextInformer(client, f.namespace, resyncPeriod, cache.Indexers{cache.NamespaceIndex: cache.MetaNamespaceIndexFunc}, f.tweakListOptions)
 }
 
-func (f *podSchedulingInformer) Informer() cache.SharedIndexInformer {
-	return f.factory.InformerFor(&resourcev1alpha2.PodScheduling{}, f.defaultInformer)
+func (f *podSchedulingContextInformer) Informer() cache.SharedIndexInformer {
+	return f.factory.InformerFor(&resourcev1alpha2.PodSchedulingContext{}, f.defaultInformer)
 }
 
-func (f *podSchedulingInformer) Lister() v1alpha2.PodSchedulingLister {
-	return v1alpha2.NewPodSchedulingLister(f.Informer().GetIndexer())
+func (f *podSchedulingContextInformer) Lister() v1alpha2.PodSchedulingContextLister {
+	return v1alpha2.NewPodSchedulingContextLister(f.Informer().GetIndexer())
 }
