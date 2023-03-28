@@ -40,16 +40,22 @@ import (
 )
 
 func main() {
-	var kubeconfig *string
-	if home := homedir.HomeDir(); home != "" {
-		kubeconfig = flag.String("kubeconfig", filepath.Join(home, ".kube", "config"), "(optional) absolute path to the kubeconfig file")
-	} else {
-		kubeconfig = flag.String("kubeconfig", "", "absolute path to the kubeconfig file")
+	var kubeconfig string
+
+	if flag.Lookup("kubeconfig") == nil {
+
+		if home := homedir.HomeDir(); home != "" {
+			flag.StringVar(&kubeconfig, "kubeconfig", filepath.Join(home, ".kube", "config"), "(optional) absolute path to the kubeconfig file")
+		} else {
+			flag.StringVar(&kubeconfig, "kubeconfig", "", "absolute path to the kubeconfig file")
+		}
 	}
+	kubeconfig = flag.Lookup("kubeconfig").Value.(flag.Getter).Get().(string)
+
 	flag.Parse()
 
 	// use the current context in kubeconfig
-	config, err := clientcmd.BuildConfigFromFlags("", *kubeconfig)
+	config, err := clientcmd.BuildConfigFromFlags("", kubeconfig)
 	if err != nil {
 		panic(err.Error())
 	}
