@@ -30,6 +30,7 @@ import (
 
 	"golang.org/x/oauth2"
 	"k8s.io/apimachinery/pkg/util/net"
+	_ "k8s.io/client-go/plugin/pkg/client/auth/oidc"
 	restclient "k8s.io/client-go/rest"
 	"k8s.io/klog/v2"
 )
