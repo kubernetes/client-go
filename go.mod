@@ -23,8 +23,8 @@ require (
 	golang.org/x/term v0.7.0
 	golang.org/x/time v0.3.0
 	google.golang.org/protobuf v1.28.1
-	k8s.io/api v0.0.0-20230420094736-8360d82aecbc
-	k8s.io/apimachinery v0.0.0-20230420093948-61b874e0403b
+	k8s.io/api v0.0.0-20230424214209-9dec43fa7a26
+	k8s.io/apimachinery v0.0.0-20230424213653-150a158d04ab
 	k8s.io/klog/v2 v2.90.1
 	k8s.io/kube-openapi v0.0.0-20230308215209-15aac26d736a
 	k8s.io/utils v0.0.0-20230209194617-a36077c30491
@@ -36,7 +36,7 @@ require (
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/emicklei/go-restful/v3 v3.9.0 // indirect
-	github.com/go-logr/logr v1.2.3 // indirect
+	github.com/go-logr/logr v1.2.4 // indirect
 	github.com/go-openapi/jsonpointer v0.19.6 // indirect
 	github.com/go-openapi/jsonreference v0.20.1 // indirect
 	github.com/go-openapi/swag v0.22.3 // indirect
@@ -59,6 +59,6 @@ require (
 )
 
 replace (
-	k8s.io/api => k8s.io/api v0.0.0-20230420094736-8360d82aecbc
-	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20230420093948-61b874e0403b
+	k8s.io/api => k8s.io/api v0.0.0-20230424214209-9dec43fa7a26
+	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20230424213653-150a158d04ab
 )
