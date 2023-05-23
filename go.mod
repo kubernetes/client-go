@@ -15,7 +15,7 @@ require (
 	github.com/google/gnostic v0.5.7-v3refs
 	github.com/google/go-cmp v0.5.5
 	github.com/google/gofuzz v1.1.0
-	github.com/google/uuid v1.1.2
+	github.com/google/uuid v1.3.0
 	github.com/gregjones/httpcache v0.0.0-20180305231024-9cad4c3443a7
 	github.com/imdario/mergo v0.3.5
 	github.com/peterbourgon/diskv v2.0.1+incompatible
@@ -27,7 +27,7 @@ require (
 	golang.org/x/time v0.0.0-20220210224613-90d013bbcef8
 	google.golang.org/protobuf v1.27.1
 	k8s.io/api v0.0.0-20230513010431-273129d3df41
-	k8s.io/apimachinery v0.0.0-20230513005956-6b8613c85238
+	k8s.io/apimachinery v0.0.0-20230523181811-c2a4808f5a24
 	k8s.io/klog/v2 v2.60.1
 	k8s.io/kube-openapi v0.0.0-20220328201542-3ee0da9b0b42
 	k8s.io/utils v0.0.0-20220210201930-3a6ce19ff2f9
@@ -73,5 +73,5 @@ require (
 
 replace (
 	k8s.io/api => k8s.io/api v0.0.0-20230513010431-273129d3df41
-	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20230513005956-6b8613c85238
+	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20230523181811-c2a4808f5a24
 )
