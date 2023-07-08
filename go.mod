@@ -23,7 +23,7 @@ require (
 	golang.org/x/term v0.7.0
 	golang.org/x/time v0.3.0
 	google.golang.org/protobuf v1.30.0
-	k8s.io/api v0.0.0-20230706062605-a69cc64b8aea
+	k8s.io/api v0.0.0-20230708003903-6e2bd330bb34
 	k8s.io/apimachinery v0.0.0-20230628220152-83d6d372b1a4
 	k8s.io/klog/v2 v2.100.1
 	k8s.io/kube-openapi v0.0.0-20230601164746-7562a1006961
@@ -60,6 +60,6 @@ require (
 )
 
 replace (
-	k8s.io/api => k8s.io/api v0.0.0-20230706062605-a69cc64b8aea
+	k8s.io/api => k8s.io/api v0.0.0-20230708003903-6e2bd330bb34
 	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20230628220152-83d6d372b1a4
 )
