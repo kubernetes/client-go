@@ -24,8 +24,8 @@ require (
 	golang.org/x/term v0.13.0
 	golang.org/x/time v0.3.0
 	google.golang.org/protobuf v1.31.0
-	k8s.io/api v0.0.0-20231218211704-fa9b0f032aab
-	k8s.io/apimachinery v0.0.0-20231214011457-e2f405af78de
+	k8s.io/api v0.0.0
+	k8s.io/apimachinery v0.0.0
 	k8s.io/klog/v2 v2.110.1
 	k8s.io/kube-openapi v0.0.0-20231113174909-778a5567bc1e
 	k8s.io/utils v0.0.0-20230726121419-3b25d923346b
@@ -52,7 +52,7 @@ require (
 	github.com/mxk/go-flowrate v0.0.0-20140419014527-cca7078d478f // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
-	golang.org/x/sys v0.13.0 // indirect
+	golang.org/x/sys v0.14.0 // indirect
 	golang.org/x/text v0.13.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
@@ -61,6 +61,7 @@ require (
 )
 
 replace (
-	k8s.io/api => k8s.io/api v0.0.0-20231218211704-fa9b0f032aab
-	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20231214011457-e2f405af78de
+	k8s.io/api => ../api
+	k8s.io/apimachinery => ../apimachinery
+	k8s.io/client-go => ../client-go
 )
