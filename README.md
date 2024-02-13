@@ -75,14 +75,14 @@ We will backport bugfixes--but not new features--into older versions of
 
 #### Compatibility matrix
 
-|                               | Kubernetes 1.15 | Kubernetes 1.16 | Kubernetes 1.17 | Kubernetes 1.18 | Kubernetes 1.19 | Kubernetes 1.20 |
-|-------------------------------|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|
-| `kubernetes-1.15.0`           | ✓               | +-              | +-              | +-              | +-              | +-              |
-| `kubernetes-1.16.0`           | +-              | ✓               | +-              | +-              | +-              | +-              |
-| `kubernetes-1.17.0`/`v0.17.0` | +-              | +-              | ✓               | +-              | +-              | +-              |
-| `kubernetes-1.18.0`/`v0.18.0` | +-              | +-              | +-              | ✓               | +-              | +-              |
-| `kubernetes-1.19.0`/`v0.19.0` | +-              | +-              | +-              | +-              | ✓               | +-              |
-| `kubernetes-1.20.0`/`v0.20.0` | +-              | +-              | +-              | +-              | +-              | ✓               |
+|                               | Kubernetes 1.23 | Kubernetes 1.24 | Kubernetes 1.25 | Kubernetes 1.26 | Kubernetes 1.27 | Kubernetes 1.28 |
+| ----------------------------- | --------------- | --------------- | --------------- | --------------- | --------------- | --------------- |
+| `kubernetes-1.23.0`/`v0.23.0` | ✓               | +-              | +-              | +-              | +-              | +-              |
+| `kubernetes-1.24.0`/`v0.24.0` | +-              | ✓               | +-              | +-              | +-              | +-              |
+| `kubernetes-1.25.0`/`v0.25.0` | +-              | +-              | ✓               | +-              | +-              | +-              |
+| `kubernetes-1.26.0`/`v0.26.0` | +-              | +-              | +-              | ✓               | +-              | +-              |
+| `kubernetes-1.27.0`/`v0.27.0` | +-              | +-              | +-              | +-              | ✓               | +-              |
+| `kubernetes-1.28.0`/`v0.28.0` | +-              | +-              | +-              | +-              | +-              | ✓               |
 | `HEAD`                        | +-              | +-              | +-              | +-              | +-              | +-              |
 
 Key:
@@ -102,27 +102,19 @@ Key:
 See the [CHANGELOG](./CHANGELOG.md) for a detailed description of changes
 between client-go versions.
 
-| Branch         | Canonical source code location       | Maintenance status            |
-|----------------|--------------------------------------|-------------------------------|
-| `release-1.4`  | Kubernetes main repo, 1.4 branch     | = -                           |
-| `release-1.5`  | Kubernetes main repo, 1.5 branch     | = -                           |
-| `release-2.0`  | Kubernetes main repo, 1.5 branch     | = -                           |
-| `release-3.0`  | Kubernetes main repo, 1.6 branch     | = -                           |
-| `release-4.0`  | Kubernetes main repo, 1.7 branch     | = -                           |
-| `release-5.0`  | Kubernetes main repo, 1.8 branch     | = -                           |
-| `release-6.0`  | Kubernetes main repo, 1.9 branch     | = -                           |
-| `release-7.0`  | Kubernetes main repo, 1.10 branch    | = -                           |
-| `release-8.0`  | Kubernetes main repo, 1.11 branch    | =-                            |
-| `release-9.0`  | Kubernetes main repo, 1.12 branch    | =-                            |
-| `release-10.0` | Kubernetes main repo, 1.13 branch    | =-                            |
-| `release-11.0` | Kubernetes main repo, 1.14 branch    | =-                            |
-| `release-12.0` | Kubernetes main repo, 1.15 branch    | =-                            |
-| `release-13.0` | Kubernetes main repo, 1.16 branch    | =-                            |
-| `release-14.0` | Kubernetes main repo, 1.17 branch    | ✓                             |
-| `release-1.18` | Kubernetes main repo, 1.18 branch    | ✓                             |
-| `release-1.19` | Kubernetes main repo, 1.19 branch    | ✓                             |
-| `release-1.20` | Kubernetes main repo, 1.20 branch    | ✓                             |
-| client-go HEAD | Kubernetes main repo, master branch  | ✓                             |
+| Branch         | Canonical source code location      | Maintenance status |
+| -------------- | ----------------------------------- | ------------------ |
+| `release-1.19` | Kubernetes main repo, 1.19 branch   | =-                 |
+| `release-1.20` | Kubernetes main repo, 1.20 branch   | =-                 |
+| `release-1.21` | Kubernetes main repo, 1.21 branch   | =-                 |
+| `release-1.22` | Kubernetes main repo, 1.22 branch   | =-                 |
+| `release-1.23` | Kubernetes main repo, 1.23 branch   | =-                 |
+| `release-1.24` | Kubernetes main repo, 1.24 branch   | =-                 |
+| `release-1.25` | Kubernetes main repo, 1.25 branch   | ✓                  |
+| `release-1.26` | Kubernetes main repo, 1.26 branch   | ✓                  |
+| `release-1.27` | Kubernetes main repo, 1.27 branch   | ✓                  |
+| `release-1.28` | Kubernetes main repo, 1.28 branch   | ✓                  |
+| client-go HEAD | Kubernetes main repo, master branch | ✓                  |
 
 Key:
 
