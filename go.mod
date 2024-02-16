@@ -21,11 +21,11 @@ require (
 	github.com/stretchr/testify v1.8.4
 	golang.org/x/net v0.19.0
 	golang.org/x/oauth2 v0.10.0
-	golang.org/x/term v0.15.0
+	golang.org/x/term v0.17.0
 	golang.org/x/time v0.3.0
 	google.golang.org/protobuf v1.31.0
-	k8s.io/api v0.0.0-20240221122400-4efc15a7a4b4
-	k8s.io/apimachinery v0.0.0-20240221122145-856aea55acea
+	k8s.io/api v0.0.0
+	k8s.io/apimachinery v0.0.0
 	k8s.io/klog/v2 v2.120.1
 	k8s.io/kube-openapi v0.0.0-20231113174909-778a5567bc1e
 	k8s.io/utils v0.0.0-20230726121419-3b25d923346b
@@ -52,7 +52,7 @@ require (
 	github.com/mxk/go-flowrate v0.0.0-20140419014527-cca7078d478f // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
-	golang.org/x/sys v0.15.0 // indirect
+	golang.org/x/sys v0.17.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
@@ -61,6 +61,7 @@ require (
 )
 
 replace (
-	k8s.io/api => k8s.io/api v0.0.0-20240221122400-4efc15a7a4b4
-	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20240221122145-856aea55acea
+	k8s.io/api => ../api
+	k8s.io/apimachinery => ../apimachinery
+	k8s.io/client-go => ../client-go
 )
