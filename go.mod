@@ -2,7 +2,7 @@
 
 module k8s.io/client-go
 
-go 1.21
+go 1.22.0
 
 require (
 	github.com/evanphx/json-patch v4.12.0+incompatible
@@ -19,15 +19,15 @@ require (
 	github.com/peterbourgon/diskv v2.0.1+incompatible
 	github.com/spf13/pflag v1.0.5
 	github.com/stretchr/testify v1.8.4
-	golang.org/x/net v0.19.0
+	golang.org/x/net v0.21.0
 	golang.org/x/oauth2 v0.10.0
 	golang.org/x/term v0.17.0
 	golang.org/x/time v0.3.0
 	google.golang.org/protobuf v1.31.0
-	k8s.io/api v0.0.0-20240228104440-d6ea7e8f9bfc
-	k8s.io/apimachinery v0.0.0-20240229214048-6362b69e393e
+	k8s.io/api v0.0.0-20240301204737-cd36300dc819
+	k8s.io/apimachinery v0.0.0-20240301204447-c9969982b5df
 	k8s.io/klog/v2 v2.120.1
-	k8s.io/kube-openapi v0.0.0-20231113174909-778a5567bc1e
+	k8s.io/kube-openapi v0.0.0-20240228011516-70dd3763d340
 	k8s.io/utils v0.0.0-20230726121419-3b25d923346b
 	sigs.k8s.io/json v0.0.0-20221116044647-bc3834ca7abd
 	sigs.k8s.io/structured-merge-diff/v4 v4.4.1
@@ -61,6 +61,6 @@ require (
 )
 
 replace (
-	k8s.io/api => k8s.io/api v0.0.0-20240228104440-d6ea7e8f9bfc
-	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20240229214048-6362b69e393e
+	k8s.io/api => k8s.io/api v0.0.0-20240301204737-cd36300dc819
+	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20240301204447-c9969982b5df
 )
