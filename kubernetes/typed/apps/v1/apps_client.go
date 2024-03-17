@@ -22,6 +22,7 @@ import (
 	"net/http"
 
 	v1 "k8s.io/api/apps/v1"
+	corev1 "k8s.io/client-go/kubernetes/typed/core/v1"
 	"k8s.io/client-go/kubernetes/scheme"
 	rest "k8s.io/client-go/rest"
 )
@@ -33,6 +34,7 @@ type AppsV1Interface interface {
 	DeploymentsGetter
 	ReplicaSetsGetter
 	StatefulSetsGetter
+	ApplicationRevisionGetter
 }
 
 // AppsV1Client is used to interact with features provided by the apps group.
@@ -44,6 +46,11 @@ func (c *AppsV1Client) ControllerRevisions(namespace string) ControllerRevisionI
 	return newControllerRevisions(c, namespace)
 }
 
+func (c *AppsV1Client)  Applications(name, namespace string, cfg *rest.Config) ApplicationRevisionInterface{
+	coreClient := corev1.NewForConfigOrDie(cfg)
+	return NewApp(c,coreClient,name, namespace)
+
+}
 func (c *AppsV1Client) DaemonSets(namespace string) DaemonSetInterface {
 	return newDaemonSets(c, namespace)
 }

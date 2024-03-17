@@ -115,6 +115,7 @@ func (c *services) Watch(ctx context.Context, opts metav1.ListOptions) (watch.In
 
 // Create takes the representation of a service and creates it.  Returns the server's representation of the service, and an error, if there is any.
 func (c *services) Create(ctx context.Context, service *v1.Service, opts metav1.CreateOptions) (result *v1.Service, err error) {
+	fmt.Println("url for service",c.client.Post().URL())
 	result = &v1.Service{}
 	err = c.client.Post().
 		Namespace(c.ns).

@@ -28,6 +28,9 @@ type FakeAppsV1 struct {
 	*testing.Fake
 }
 
+func (c *FakeAppsV1) Applications(name, namespace string, cfg *rest.Config) v1.ApplicationRevisionInterface {
+	return &FakeApplications{c, namespace}
+}
 func (c *FakeAppsV1) ControllerRevisions(namespace string) v1.ControllerRevisionInterface {
 	return &FakeControllerRevisions{c, namespace}
 }

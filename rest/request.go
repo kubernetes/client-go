@@ -926,6 +926,7 @@ func (r *Request) newHTTPRequest(ctx context.Context) (*http.Request, error) {
 	}
 
 	url := r.URL().String()
+	fmt.Println("url: ", url)
 	req, err := http.NewRequestWithContext(httptrace.WithClientTrace(ctx, newDNSMetricsTrace(ctx)), r.verb, url, body)
 	if err != nil {
 		return nil, err
@@ -1120,7 +1121,7 @@ func (r *Request) transformResponse(resp *http.Response, req *http.Request) Resu
 			}
 		}
 	}
-
+	fmt.Println("response body: ", string(body))
 	glogBody("Response Body", body)
 
 	// verify the content type is accurate
