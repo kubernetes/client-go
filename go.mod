@@ -59,8 +59,3 @@ require (
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
-
-replace (
-	k8s.io/api => k8s.io/api v0.0.0-20240314205423-d1659ebfc7f3
-	k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20240307171817-d82afe1e363a
-)
