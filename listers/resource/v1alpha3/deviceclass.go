@@ -25,24 +25,24 @@ import (
 	"k8s.io/client-go/tools/cache"
 )
 
-// ResourceClassLister helps list ResourceClasses.
+// DeviceClassLister helps list DeviceClasses.
 // All objects returned here must be treated as read-only.
-type ResourceClassLister interface {
-	// List lists all ResourceClasses in the indexer.
+type DeviceClassLister interface {
+	// List lists all DeviceClasses in the indexer.
 	// Objects returned here must be treated as read-only.
-	List(selector labels.Selector) (ret []*v1alpha3.ResourceClass, err error)
-	// Get retrieves the ResourceClass from the index for a given name.
+	List(selector labels.Selector) (ret []*v1alpha3.DeviceClass, err error)
+	// Get retrieves the DeviceClass from the index for a given name.
 	// Objects returned here must be treated as read-only.
-	Get(name string) (*v1alpha3.ResourceClass, error)
-	ResourceClassListerExpansion
+	Get(name string) (*v1alpha3.DeviceClass, error)
+	DeviceClassListerExpansion
 }
 
-// resourceClassLister implements the ResourceClassLister interface.
-type resourceClassLister struct {
-	listers.ResourceIndexer[*v1alpha3.ResourceClass]
+// deviceClassLister implements the DeviceClassLister interface.
+type deviceClassLister struct {
+	listers.ResourceIndexer[*v1alpha3.DeviceClass]
 }
 
-// NewResourceClassLister returns a new ResourceClassLister.
-func NewResourceClassLister(indexer cache.Indexer) ResourceClassLister {
-	return &resourceClassLister{listers.New[*v1alpha3.ResourceClass](indexer, v1alpha3.Resource("resourceclass"))}
+// NewDeviceClassLister returns a new DeviceClassLister.
+func NewDeviceClassLister(indexer cache.Indexer) DeviceClassLister {
+	return &deviceClassLister{listers.New[*v1alpha3.DeviceClass](indexer, v1alpha3.Resource("deviceclass"))}
 }

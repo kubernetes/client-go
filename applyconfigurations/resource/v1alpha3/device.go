@@ -18,22 +18,31 @@ limitations under the License.
 
 package v1alpha3
 
-// NamedResourcesAllocationResultApplyConfiguration represents a declarative configuration of the NamedResourcesAllocationResult type for use
+// DeviceApplyConfiguration represents a declarative configuration of the Device type for use
 // with apply.
-type NamedResourcesAllocationResultApplyConfiguration struct {
-	Name *string `json:"name,omitempty"`
+type DeviceApplyConfiguration struct {
+	Name  *string                        `json:"name,omitempty"`
+	Basic *BasicDeviceApplyConfiguration `json:"basic,omitempty"`
 }
 
-// NamedResourcesAllocationResultApplyConfiguration constructs a declarative configuration of the NamedResourcesAllocationResult type for use with
+// DeviceApplyConfiguration constructs a declarative configuration of the Device type for use with
 // apply.
-func NamedResourcesAllocationResult() *NamedResourcesAllocationResultApplyConfiguration {
-	return &NamedResourcesAllocationResultApplyConfiguration{}
+func Device() *DeviceApplyConfiguration {
+	return &DeviceApplyConfiguration{}
 }
 
 // WithName sets the Name field in the declarative configuration to the given value
 // and returns the receiver, so that objects can be built by chaining "With" function invocations.
 // If called multiple times, the Name field is set to the value of the last call.
-func (b *NamedResourcesAllocationResultApplyConfiguration) WithName(value string) *NamedResourcesAllocationResultApplyConfiguration {
+func (b *DeviceApplyConfiguration) WithName(value string) *DeviceApplyConfiguration {
 	b.Name = &value
+	return b
+}
+
+// WithBasic sets the Basic field in the declarative configuration to the given value
+// and returns the receiver, so that objects can be built by chaining "With" function invocations.
+// If called multiple times, the Basic field is set to the value of the last call.
+func (b *DeviceApplyConfiguration) WithBasic(value *BasicDeviceApplyConfiguration) *DeviceApplyConfiguration {
+	b.Basic = value
 	return b
 }

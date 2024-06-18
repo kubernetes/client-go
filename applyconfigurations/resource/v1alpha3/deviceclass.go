@@ -27,59 +27,55 @@ import (
 	v1 "k8s.io/client-go/applyconfigurations/meta/v1"
 )
 
-// ResourceClassParametersApplyConfiguration represents a declarative configuration of the ResourceClassParameters type for use
+// DeviceClassApplyConfiguration represents a declarative configuration of the DeviceClass type for use
 // with apply.
-type ResourceClassParametersApplyConfiguration struct {
+type DeviceClassApplyConfiguration struct {
 	v1.TypeMetaApplyConfiguration    `json:",inline"`
 	*v1.ObjectMetaApplyConfiguration `json:"metadata,omitempty"`
-	GeneratedFrom                    *ResourceClassParametersReferenceApplyConfiguration `json:"generatedFrom,omitempty"`
-	VendorParameters                 []VendorParametersApplyConfiguration                `json:"vendorParameters,omitempty"`
-	Filters                          []ResourceFilterApplyConfiguration                  `json:"filters,omitempty"`
+	Spec                             *DeviceClassSpecApplyConfiguration `json:"spec,omitempty"`
 }
 
-// ResourceClassParameters constructs a declarative configuration of the ResourceClassParameters type for use with
+// DeviceClass constructs a declarative configuration of the DeviceClass type for use with
 // apply.
-func ResourceClassParameters(name, namespace string) *ResourceClassParametersApplyConfiguration {
-	b := &ResourceClassParametersApplyConfiguration{}
+func DeviceClass(name string) *DeviceClassApplyConfiguration {
+	b := &DeviceClassApplyConfiguration{}
 	b.WithName(name)
-	b.WithNamespace(namespace)
-	b.WithKind("ResourceClassParameters")
+	b.WithKind("DeviceClass")
 	b.WithAPIVersion("resource.k8s.io/v1alpha3")
 	return b
 }
 
-// ExtractResourceClassParameters extracts the applied configuration owned by fieldManager from
-// resourceClassParameters. If no managedFields are found in resourceClassParameters for fieldManager, a
-// ResourceClassParametersApplyConfiguration is returned with only the Name, Namespace (if applicable),
+// ExtractDeviceClass extracts the applied configuration owned by fieldManager from
+// deviceClass. If no managedFields are found in deviceClass for fieldManager, a
+// DeviceClassApplyConfiguration is returned with only the Name, Namespace (if applicable),
 // APIVersion and Kind populated. It is possible that no managed fields were found for because other
 // field managers have taken ownership of all the fields previously owned by fieldManager, or because
 // the fieldManager never owned fields any fields.
-// resourceClassParameters must be a unmodified ResourceClassParameters API object that was retrieved from the Kubernetes API.
-// ExtractResourceClassParameters provides a way to perform a extract/modify-in-place/apply workflow.
+// deviceClass must be a unmodified DeviceClass API object that was retrieved from the Kubernetes API.
+// ExtractDeviceClass provides a way to perform a extract/modify-in-place/apply workflow.
 // Note that an extracted apply configuration will contain fewer fields than what the fieldManager previously
 // applied if another fieldManager has updated or force applied any of the previously applied fields.
 // Experimental!
-func ExtractResourceClassParameters(resourceClassParameters *resourcev1alpha3.ResourceClassParameters, fieldManager string) (*ResourceClassParametersApplyConfiguration, error) {
-	return extractResourceClassParameters(resourceClassParameters, fieldManager, "")
+func ExtractDeviceClass(deviceClass *resourcev1alpha3.DeviceClass, fieldManager string) (*DeviceClassApplyConfiguration, error) {
+	return extractDeviceClass(deviceClass, fieldManager, "")
 }
 
-// ExtractResourceClassParametersStatus is the same as ExtractResourceClassParameters except
+// ExtractDeviceClassStatus is the same as ExtractDeviceClass except
 // that it extracts the status subresource applied configuration.
 // Experimental!
-func ExtractResourceClassParametersStatus(resourceClassParameters *resourcev1alpha3.ResourceClassParameters, fieldManager string) (*ResourceClassParametersApplyConfiguration, error) {
-	return extractResourceClassParameters(resourceClassParameters, fieldManager, "status")
+func ExtractDeviceClassStatus(deviceClass *resourcev1alpha3.DeviceClass, fieldManager string) (*DeviceClassApplyConfiguration, error) {
+	return extractDeviceClass(deviceClass, fieldManager, "status")
 }
 
-func extractResourceClassParameters(resourceClassParameters *resourcev1alpha3.ResourceClassParameters, fieldManager string, subresource string) (*ResourceClassParametersApplyConfiguration, error) {
-	b := &ResourceClassParametersApplyConfiguration{}
-	err := managedfields.ExtractInto(resourceClassParameters, internal.Parser().Type("io.k8s.api.resource.v1alpha3.ResourceClassParameters"), fieldManager, b, subresource)
+func extractDeviceClass(deviceClass *resourcev1alpha3.DeviceClass, fieldManager string, subresource string) (*DeviceClassApplyConfiguration, error) {
+	b := &DeviceClassApplyConfiguration{}
+	err := managedfields.ExtractInto(deviceClass, internal.Parser().Type("io.k8s.api.resource.v1alpha3.DeviceClass"), fieldManager, b, subresource)
 	if err != nil {
 		return nil, err
 	}
-	b.WithName(resourceClassParameters.Name)
-	b.WithNamespace(resourceClassParameters.Namespace)
+	b.WithName(deviceClass.Name)
 
-	b.WithKind("ResourceClassParameters")
+	b.WithKind("DeviceClass")
 	b.WithAPIVersion("resource.k8s.io/v1alpha3")
 	return b, nil
 }
@@ -87,7 +83,7 @@ func extractResourceClassParameters(resourceClassParameters *resourcev1alpha3.Re
 // WithKind sets the Kind field in the declarative configuration to the given value
 // and returns the receiver, so that objects can be built by chaining "With" function invocations.
 // If called multiple times, the Kind field is set to the value of the last call.
-func (b *ResourceClassParametersApplyConfiguration) WithKind(value string) *ResourceClassParametersApplyConfiguration {
+func (b *DeviceClassApplyConfiguration) WithKind(value string) *DeviceClassApplyConfiguration {
 	b.Kind = &value
 	return b
 }
@@ -95,7 +91,7 @@ func (b *ResourceClassParametersApplyConfiguration) WithKind(value string) *Reso
 // WithAPIVersion sets the APIVersion field in the declarative configuration to the given value
 // and returns the receiver, so that objects can be built by chaining "With" function invocations.
 // If called multiple times, the APIVersion field is set to the value of the last call.
-func (b *ResourceClassParametersApplyConfiguration) WithAPIVersion(value string) *ResourceClassParametersApplyConfiguration {
+func (b *DeviceClassApplyConfiguration) WithAPIVersion(value string) *DeviceClassApplyConfiguration {
 	b.APIVersion = &value
 	return b
 }
@@ -103,7 +99,7 @@ func (b *ResourceClassParametersApplyConfiguration) WithAPIVersion(value string)
 // WithName sets the Name field in the declarative configuration to the given value
 // and returns the receiver, so that objects can be built by chaining "With" function invocations.
 // If called multiple times, the Name field is set to the value of the last call.
-func (b *ResourceClassParametersApplyConfiguration) WithName(value string) *ResourceClassParametersApplyConfiguration {
+func (b *DeviceClassApplyConfiguration) WithName(value string) *DeviceClassApplyConfiguration {
 	b.ensureObjectMetaApplyConfigurationExists()
 	b.Name = &value
 	return b
@@ -112,7 +108,7 @@ func (b *ResourceClassParametersApplyConfiguration) WithName(value string) *Reso
 // WithGenerateName sets the GenerateName field in the declarative configuration to the given value
 // and returns the receiver, so that objects can be built by chaining "With" function invocations.
 // If called multiple times, the GenerateName field is set to the value of the last call.
-func (b *ResourceClassParametersApplyConfiguration) WithGenerateName(value string) *ResourceClassParametersApplyConfiguration {
+func (b *DeviceClassApplyConfiguration) WithGenerateName(value string) *DeviceClassApplyConfiguration {
 	b.ensureObjectMetaApplyConfigurationExists()
 	b.GenerateName = &value
 	return b
@@ -121,7 +117,7 @@ func (b *ResourceClassParametersApplyConfiguration) WithGenerateName(value strin
 // WithNamespace sets the Namespace field in the declarative configuration to the given value
 // and returns the receiver, so that objects can be built by chaining "With" function invocations.
 // If called multiple times, the Namespace field is set to the value of the last call.
-func (b *ResourceClassParametersApplyConfiguration) WithNamespace(value string) *ResourceClassParametersApplyConfiguration {
+func (b *DeviceClassApplyConfiguration) WithNamespace(value string) *DeviceClassApplyConfiguration {
 	b.ensureObjectMetaApplyConfigurationExists()
 	b.Namespace = &value
 	return b
@@ -130,7 +126,7 @@ func (b *ResourceClassParametersApplyConfiguration) WithNamespace(value string) 
 // WithUID sets the UID field in the declarative configuration to the given value
 // and returns the receiver, so that objects can be built by chaining "With" function invocations.
 // If called multiple times, the UID field is set to the value of the last call.
-func (b *ResourceClassParametersApplyConfiguration) WithUID(value types.UID) *ResourceClassParametersApplyConfiguration {
+func (b *DeviceClassApplyConfiguration) WithUID(value types.UID) *DeviceClassApplyConfiguration {
 	b.ensureObjectMetaApplyConfigurationExists()
 	b.UID = &value
 	return b
@@ -139,7 +135,7 @@ func (b *ResourceClassParametersApplyConfiguration) WithUID(value types.UID) *Re
 // WithResourceVersion sets the ResourceVersion field in the declarative configuration to the given value
 // and returns the receiver, so that objects can be built by chaining "With" function invocations.
 // If called multiple times, the ResourceVersion field is set to the value of the last call.
-func (b *ResourceClassParametersApplyConfiguration) WithResourceVersion(value string) *ResourceClassParametersApplyConfiguration {
+func (b *DeviceClassApplyConfiguration) WithResourceVersion(value string) *DeviceClassApplyConfiguration {
 	b.ensureObjectMetaApplyConfigurationExists()
 	b.ResourceVersion = &value
 	return b
@@ -148,7 +144,7 @@ func (b *ResourceClassParametersApplyConfiguration) WithResourceVersion(value st
 // WithGeneration sets the Generation field in the declarative configuration to the given value
 // and returns the receiver, so that objects can be built by chaining "With" function invocations.
 // If called multiple times, the Generation field is set to the value of the last call.
-func (b *ResourceClassParametersApplyConfiguration) WithGeneration(value int64) *ResourceClassParametersApplyConfiguration {
+func (b *DeviceClassApplyConfiguration) WithGeneration(value int64) *DeviceClassApplyConfiguration {
 	b.ensureObjectMetaApplyConfigurationExists()
 	b.Generation = &value
 	return b
@@ -157,7 +153,7 @@ func (b *ResourceClassParametersApplyConfiguration) WithGeneration(value int64) 
 // WithCreationTimestamp sets the CreationTimestamp field in the declarative configuration to the given value
 // and returns the receiver, so that objects can be built by chaining "With" function invocations.
 // If called multiple times, the CreationTimestamp field is set to the value of the last call.
-func (b *ResourceClassParametersApplyConfiguration) WithCreationTimestamp(value metav1.Time) *ResourceClassParametersApplyConfiguration {
+func (b *DeviceClassApplyConfiguration) WithCreationTimestamp(value metav1.Time) *DeviceClassApplyConfiguration {
 	b.ensureObjectMetaApplyConfigurationExists()
 	b.CreationTimestamp = &value
 	return b
@@ -166,7 +162,7 @@ func (b *ResourceClassParametersApplyConfiguration) WithCreationTimestamp(value 
 // WithDeletionTimestamp sets the DeletionTimestamp field in the declarative configuration to the given value
 // and returns the receiver, so that objects can be built by chaining "With" function invocations.
 // If called multiple times, the DeletionTimestamp field is set to the value of the last call.
-func (b *ResourceClassParametersApplyConfiguration) WithDeletionTimestamp(value metav1.Time) *ResourceClassParametersApplyConfiguration {
+func (b *DeviceClassApplyConfiguration) WithDeletionTimestamp(value metav1.Time) *DeviceClassApplyConfiguration {
 	b.ensureObjectMetaApplyConfigurationExists()
 	b.DeletionTimestamp = &value
 	return b
@@ -175,7 +171,7 @@ func (b *ResourceClassParametersApplyConfiguration) WithDeletionTimestamp(value 
 // WithDeletionGracePeriodSeconds sets the DeletionGracePeriodSeconds field in the declarative configuration to the given value
 // and returns the receiver, so that objects can be built by chaining "With" function invocations.
 // If called multiple times, the DeletionGracePeriodSeconds field is set to the value of the last call.
-func (b *ResourceClassParametersApplyConfiguration) WithDeletionGracePeriodSeconds(value int64) *ResourceClassParametersApplyConfiguration {
+func (b *DeviceClassApplyConfiguration) WithDeletionGracePeriodSeconds(value int64) *DeviceClassApplyConfiguration {
 	b.ensureObjectMetaApplyConfigurationExists()
 	b.DeletionGracePeriodSeconds = &value
 	return b
@@ -185,7 +181,7 @@ func (b *ResourceClassParametersApplyConfiguration) WithDeletionGracePeriodSecon
 // and returns the receiver, so that objects can be build by chaining "With" function invocations.
 // If called multiple times, the entries provided by each call will be put on the Labels field,
 // overwriting an existing map entries in Labels field with the same key.
-func (b *ResourceClassParametersApplyConfiguration) WithLabels(entries map[string]string) *ResourceClassParametersApplyConfiguration {
+func (b *DeviceClassApplyConfiguration) WithLabels(entries map[string]string) *DeviceClassApplyConfiguration {
 	b.ensureObjectMetaApplyConfigurationExists()
 	if b.Labels == nil && len(entries) > 0 {
 		b.Labels = make(map[string]string, len(entries))
@@ -200,7 +196,7 @@ func (b *ResourceClassParametersApplyConfiguration) WithLabels(entries map[strin
 // and returns the receiver, so that objects can be build by chaining "With" function invocations.
 // If called multiple times, the entries provided by each call will be put on the Annotations field,
 // overwriting an existing map entries in Annotations field with the same key.
-func (b *ResourceClassParametersApplyConfiguration) WithAnnotations(entries map[string]string) *ResourceClassParametersApplyConfiguration {
+func (b *DeviceClassApplyConfiguration) WithAnnotations(entries map[string]string) *DeviceClassApplyConfiguration {
 	b.ensureObjectMetaApplyConfigurationExists()
 	if b.Annotations == nil && len(entries) > 0 {
 		b.Annotations = make(map[string]string, len(entries))
@@ -214,7 +210,7 @@ func (b *ResourceClassParametersApplyConfiguration) WithAnnotations(entries map[
 // WithOwnerReferences adds the given value to the OwnerReferences field in the declarative configuration
 // and returns the receiver, so that objects can be build by chaining "With" function invocations.
 // If called multiple times, values provided by each call will be appended to the OwnerReferences field.
-func (b *ResourceClassParametersApplyConfiguration) WithOwnerReferences(values ...*v1.OwnerReferenceApplyConfiguration) *ResourceClassParametersApplyConfiguration {
+func (b *DeviceClassApplyConfiguration) WithOwnerReferences(values ...*v1.OwnerReferenceApplyConfiguration) *DeviceClassApplyConfiguration {
 	b.ensureObjectMetaApplyConfigurationExists()
 	for i := range values {
 		if values[i] == nil {
@@ -228,7 +224,7 @@ func (b *ResourceClassParametersApplyConfiguration) WithOwnerReferences(values .
 // WithFinalizers adds the given value to the Finalizers field in the declarative configuration
 // and returns the receiver, so that objects can be build by chaining "With" function invocations.
 // If called multiple times, values provided by each call will be appended to the Finalizers field.
-func (b *ResourceClassParametersApplyConfiguration) WithFinalizers(values ...string) *ResourceClassParametersApplyConfiguration {
+func (b *DeviceClassApplyConfiguration) WithFinalizers(values ...string) *DeviceClassApplyConfiguration {
 	b.ensureObjectMetaApplyConfigurationExists()
 	for i := range values {
 		b.Finalizers = append(b.Finalizers, values[i])
@@ -236,48 +232,22 @@ func (b *ResourceClassParametersApplyConfiguration) WithFinalizers(values ...str
 	return b
 }
 
-func (b *ResourceClassParametersApplyConfiguration) ensureObjectMetaApplyConfigurationExists() {
+func (b *DeviceClassApplyConfiguration) ensureObjectMetaApplyConfigurationExists() {
 	if b.ObjectMetaApplyConfiguration == nil {
 		b.ObjectMetaApplyConfiguration = &v1.ObjectMetaApplyConfiguration{}
 	}
 }
 
-// WithGeneratedFrom sets the GeneratedFrom field in the declarative configuration to the given value
+// WithSpec sets the Spec field in the declarative configuration to the given value
 // and returns the receiver, so that objects can be built by chaining "With" function invocations.
-// If called multiple times, the GeneratedFrom field is set to the value of the last call.
-func (b *ResourceClassParametersApplyConfiguration) WithGeneratedFrom(value *ResourceClassParametersReferenceApplyConfiguration) *ResourceClassParametersApplyConfiguration {
-	b.GeneratedFrom = value
-	return b
-}
-
-// WithVendorParameters adds the given value to the VendorParameters field in the declarative configuration
-// and returns the receiver, so that objects can be build by chaining "With" function invocations.
-// If called multiple times, values provided by each call will be appended to the VendorParameters field.
-func (b *ResourceClassParametersApplyConfiguration) WithVendorParameters(values ...*VendorParametersApplyConfiguration) *ResourceClassParametersApplyConfiguration {
-	for i := range values {
-		if values[i] == nil {
-			panic("nil value passed to WithVendorParameters")
-		}
-		b.VendorParameters = append(b.VendorParameters, *values[i])
-	}
-	return b
-}
-
-// WithFilters adds the given value to the Filters field in the declarative configuration
-// and returns the receiver, so that objects can be build by chaining "With" function invocations.
-// If called multiple times, values provided by each call will be appended to the Filters field.
-func (b *ResourceClassParametersApplyConfiguration) WithFilters(values ...*ResourceFilterApplyConfiguration) *ResourceClassParametersApplyConfiguration {
-	for i := range values {
-		if values[i] == nil {
-			panic("nil value passed to WithFilters")
-		}
-		b.Filters = append(b.Filters, *values[i])
-	}
+// If called multiple times, the Spec field is set to the value of the last call.
+func (b *DeviceClassApplyConfiguration) WithSpec(value *DeviceClassSpecApplyConfiguration) *DeviceClassApplyConfiguration {
+	b.Spec = value
 	return b
 }
 
 // GetName retrieves the value of the Name field in the declarative configuration.
-func (b *ResourceClassParametersApplyConfiguration) GetName() *string {
+func (b *DeviceClassApplyConfiguration) GetName() *string {
 	b.ensureObjectMetaApplyConfigurationExists()
 	return b.Name
 }

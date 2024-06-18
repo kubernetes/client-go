@@ -32,59 +32,58 @@ import (
 	cache "k8s.io/client-go/tools/cache"
 )
 
-// ResourceClaimParametersInformer provides access to a shared informer and lister for
-// ResourceClaimParameters.
-type ResourceClaimParametersInformer interface {
+// DeviceClassInformer provides access to a shared informer and lister for
+// DeviceClasses.
+type DeviceClassInformer interface {
 	Informer() cache.SharedIndexInformer
-	Lister() v1alpha3.ResourceClaimParametersLister
+	Lister() v1alpha3.DeviceClassLister
 }
 
-type resourceClaimParametersInformer struct {
+type deviceClassInformer struct {
 	factory          internalinterfaces.SharedInformerFactory
 	tweakListOptions internalinterfaces.TweakListOptionsFunc
-	namespace        string
 }
 
-// NewResourceClaimParametersInformer constructs a new informer for ResourceClaimParameters type.
+// NewDeviceClassInformer constructs a new informer for DeviceClass type.
 // Always prefer using an informer factory to get a shared informer instead of getting an independent
 // one. This reduces memory footprint and number of connections to the server.
-func NewResourceClaimParametersInformer(client kubernetes.Interface, namespace string, resyncPeriod time.Duration, indexers cache.Indexers) cache.SharedIndexInformer {
-	return NewFilteredResourceClaimParametersInformer(client, namespace, resyncPeriod, indexers, nil)
+func NewDeviceClassInformer(client kubernetes.Interface, resyncPeriod time.Duration, indexers cache.Indexers) cache.SharedIndexInformer {
+	return NewFilteredDeviceClassInformer(client, resyncPeriod, indexers, nil)
 }
 
-// NewFilteredResourceClaimParametersInformer constructs a new informer for ResourceClaimParameters type.
+// NewFilteredDeviceClassInformer constructs a new informer for DeviceClass type.
 // Always prefer using an informer factory to get a shared informer instead of getting an independent
 // one. This reduces memory footprint and number of connections to the server.
-func NewFilteredResourceClaimParametersInformer(client kubernetes.Interface, namespace string, resyncPeriod time.Duration, indexers cache.Indexers, tweakListOptions internalinterfaces.TweakListOptionsFunc) cache.SharedIndexInformer {
+func NewFilteredDeviceClassInformer(client kubernetes.Interface, resyncPeriod time.Duration, indexers cache.Indexers, tweakListOptions internalinterfaces.TweakListOptionsFunc) cache.SharedIndexInformer {
 	return cache.NewSharedIndexInformer(
 		&cache.ListWatch{
 			ListFunc: func(options v1.ListOptions) (runtime.Object, error) {
 				if tweakListOptions != nil {
 					tweakListOptions(&options)
 				}
-				return client.ResourceV1alpha3().ResourceClaimParameters(namespace).List(context.TODO(), options)
+				return client.ResourceV1alpha3().DeviceClasses().List(context.TODO(), options)
 			},
 			WatchFunc: func(options v1.ListOptions) (watch.Interface, error) {
 				if tweakListOptions != nil {
 					tweakListOptions(&options)
 				}
-				return client.ResourceV1alpha3().ResourceClaimParameters(namespace).Watch(context.TODO(), options)
+				return client.ResourceV1alpha3().DeviceClasses().Watch(context.TODO(), options)
 			},
 		},
-		&resourcev1alpha3.ResourceClaimParameters{},
+		&resourcev1alpha3.DeviceClass{},
 		resyncPeriod,
 		indexers,
 	)
 }
 
-func (f *resourceClaimParametersInformer) defaultInformer(client kubernetes.Interface, resyncPeriod time.Duration) cache.SharedIndexInformer {
-	return NewFilteredResourceClaimParametersInformer(client, f.namespace, resyncPeriod, cache.Indexers{cache.NamespaceIndex: cache.MetaNamespaceIndexFunc}, f.tweakListOptions)
+func (f *deviceClassInformer) defaultInformer(client kubernetes.Interface, resyncPeriod time.Duration) cache.SharedIndexInformer {
+	return NewFilteredDeviceClassInformer(client, resyncPeriod, cache.Indexers{cache.NamespaceIndex: cache.MetaNamespaceIndexFunc}, f.tweakListOptions)
 }
 
-func (f *resourceClaimParametersInformer) Informer() cache.SharedIndexInformer {
-	return f.factory.InformerFor(&resourcev1alpha3.ResourceClaimParameters{}, f.defaultInformer)
+func (f *deviceClassInformer) Informer() cache.SharedIndexInformer {
+	return f.factory.InformerFor(&resourcev1alpha3.DeviceClass{}, f.defaultInformer)
 }
 
-func (f *resourceClaimParametersInformer) Lister() v1alpha3.ResourceClaimParametersLister {
-	return v1alpha3.NewResourceClaimParametersLister(f.Informer().GetIndexer())
+func (f *deviceClassInformer) Lister() v1alpha3.DeviceClassLister {
+	return v1alpha3.NewDeviceClassLister(f.Informer().GetIndexer())
 }

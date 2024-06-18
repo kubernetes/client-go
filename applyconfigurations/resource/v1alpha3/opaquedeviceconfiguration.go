@@ -22,31 +22,31 @@ import (
 	runtime "k8s.io/apimachinery/pkg/runtime"
 )
 
-// VendorParametersApplyConfiguration represents a declarative configuration of the VendorParameters type for use
+// OpaqueDeviceConfigurationApplyConfiguration represents a declarative configuration of the OpaqueDeviceConfiguration type for use
 // with apply.
-type VendorParametersApplyConfiguration struct {
-	DriverName *string               `json:"driverName,omitempty"`
+type OpaqueDeviceConfigurationApplyConfiguration struct {
+	Driver     *string               `json:"driver,omitempty"`
 	Parameters *runtime.RawExtension `json:"parameters,omitempty"`
 }
 
-// VendorParametersApplyConfiguration constructs a declarative configuration of the VendorParameters type for use with
+// OpaqueDeviceConfigurationApplyConfiguration constructs a declarative configuration of the OpaqueDeviceConfiguration type for use with
 // apply.
-func VendorParameters() *VendorParametersApplyConfiguration {
-	return &VendorParametersApplyConfiguration{}
+func OpaqueDeviceConfiguration() *OpaqueDeviceConfigurationApplyConfiguration {
+	return &OpaqueDeviceConfigurationApplyConfiguration{}
 }
 
-// WithDriverName sets the DriverName field in the declarative configuration to the given value
+// WithDriver sets the Driver field in the declarative configuration to the given value
 // and returns the receiver, so that objects can be built by chaining "With" function invocations.
-// If called multiple times, the DriverName field is set to the value of the last call.
-func (b *VendorParametersApplyConfiguration) WithDriverName(value string) *VendorParametersApplyConfiguration {
-	b.DriverName = &value
+// If called multiple times, the Driver field is set to the value of the last call.
+func (b *OpaqueDeviceConfigurationApplyConfiguration) WithDriver(value string) *OpaqueDeviceConfigurationApplyConfiguration {
+	b.Driver = &value
 	return b
 }
 
 // WithParameters sets the Parameters field in the declarative configuration to the given value
 // and returns the receiver, so that objects can be built by chaining "With" function invocations.
 // If called multiple times, the Parameters field is set to the value of the last call.
-func (b *VendorParametersApplyConfiguration) WithParameters(value runtime.RawExtension) *VendorParametersApplyConfiguration {
+func (b *OpaqueDeviceConfigurationApplyConfiguration) WithParameters(value runtime.RawExtension) *OpaqueDeviceConfigurationApplyConfiguration {
 	b.Parameters = &value
 	return b
 }

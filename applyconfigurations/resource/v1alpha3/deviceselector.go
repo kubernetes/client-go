@@ -18,22 +18,22 @@ limitations under the License.
 
 package v1alpha3
 
-// NamedResourcesFilterApplyConfiguration represents a declarative configuration of the NamedResourcesFilter type for use
+// DeviceSelectorApplyConfiguration represents a declarative configuration of the DeviceSelector type for use
 // with apply.
-type NamedResourcesFilterApplyConfiguration struct {
-	Selector *string `json:"selector,omitempty"`
+type DeviceSelectorApplyConfiguration struct {
+	CEL *CELDeviceSelectorApplyConfiguration `json:"cel,omitempty"`
 }
 
-// NamedResourcesFilterApplyConfiguration constructs a declarative configuration of the NamedResourcesFilter type for use with
+// DeviceSelectorApplyConfiguration constructs a declarative configuration of the DeviceSelector type for use with
 // apply.
-func NamedResourcesFilter() *NamedResourcesFilterApplyConfiguration {
-	return &NamedResourcesFilterApplyConfiguration{}
+func DeviceSelector() *DeviceSelectorApplyConfiguration {
+	return &DeviceSelectorApplyConfiguration{}
 }
 
-// WithSelector sets the Selector field in the declarative configuration to the given value
+// WithCEL sets the CEL field in the declarative configuration to the given value
 // and returns the receiver, so that objects can be built by chaining "With" function invocations.
-// If called multiple times, the Selector field is set to the value of the last call.
-func (b *NamedResourcesFilterApplyConfiguration) WithSelector(value string) *NamedResourcesFilterApplyConfiguration {
-	b.Selector = &value
+// If called multiple times, the CEL field is set to the value of the last call.
+func (b *DeviceSelectorApplyConfiguration) WithCEL(value *CELDeviceSelectorApplyConfiguration) *DeviceSelectorApplyConfiguration {
+	b.CEL = value
 	return b
 }
