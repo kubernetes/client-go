@@ -229,25 +229,41 @@ type threadSafeMap struct {
 	index *storeIndex
 }
 
+// checkNoNilInvariant checks that no nil values are present in the map
+// If it finds a nil value, it prints a stack trace and panics
+func (c *threadSafeMap) checkNoNilInvariant() {
+	for key, value := range c.items {
+		if value == nil {
+			panic(fmt.Sprintf("nil value found at key %q", key))
+		}
+	}
+}
+
 func (c *threadSafeMap) Add(key string, obj interface{}) {
+	c.checkNoNilInvariant()
 	c.Update(key, obj)
+	c.checkNoNilInvariant()
 }
 
 func (c *threadSafeMap) Update(key string, obj interface{}) {
 	c.lock.Lock()
 	defer c.lock.Unlock()
+	c.checkNoNilInvariant()
 	oldObject := c.items[key]
 	c.items[key] = obj
 	c.index.updateIndices(oldObject, obj, key)
+	c.checkNoNilInvariant()
 }
 
 func (c *threadSafeMap) Delete(key string) {
 	c.lock.Lock()
 	defer c.lock.Unlock()
+	c.checkNoNilInvariant()
 	if obj, exists := c.items[key]; exists {
 		c.index.updateIndices(obj, nil, key)
 		delete(c.items, key)
 	}
+	c.checkNoNilInvariant()
 }
 
 func (c *threadSafeMap) Get(key string) (item interface{}, exists bool) {
@@ -282,6 +298,7 @@ func (c *threadSafeMap) ListKeys() []string {
 func (c *threadSafeMap) Replace(items map[string]interface{}, resourceVersion string) {
 	c.lock.Lock()
 	defer c.lock.Unlock()
+	c.checkNoNilInvariant()
 	c.items = items
 
 	// rebuild any index
@@ -289,6 +306,7 @@ func (c *threadSafeMap) Replace(items map[string]interface{}, resourceVersion st
 	for key, item := range c.items {
 		c.index.updateIndices(nil, item, key)
 	}
+	c.checkNoNilInvariant()
 }
 
 // Index returns a list of items that match the given object on the index function.
@@ -304,7 +322,11 @@ func (c *threadSafeMap) Index(indexName string, obj interface{}) ([]interface{},
 
 	list := make([]interface{}, 0, storeKeySet.Len())
 	for storeKey := range storeKeySet {
-		list = append(list, c.items[storeKey])
+		v := c.items[storeKey]
+		if v == nil {
+			panic(fmt.Sprintf("nil value found at key %q", storeKey))
+		}
+		list = append(list, v)
 	}
 	return list, nil
 }
@@ -313,6 +335,7 @@ func (c *threadSafeMap) Index(indexName string, obj interface{}) ([]interface{},
 func (c *threadSafeMap) ByIndex(indexName, indexedValue string) ([]interface{}, error) {
 	c.lock.RLock()
 	defer c.lock.RUnlock()
+	c.checkNoNilInvariant()
 
 	set, err := c.index.getKeysByIndex(indexName, indexedValue)
 	if err != nil {
@@ -320,9 +343,14 @@ func (c *threadSafeMap) ByIndex(indexName, indexedValue string) ([]interface{}, 
 	}
 	list := make([]interface{}, 0, set.Len())
 	for key := range set {
-		list = append(list, c.items[key])
+		v := c.items[key]
+		if v == nil {
+			panic(fmt.Sprintf("nil value found at key %q", key))
+		}
+		list = append(list, v)
 	}
 
+	c.checkNoNilInvariant()
 	return list, nil
 }
 
