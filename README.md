@@ -2,8 +2,8 @@
 
 Go clients for talking to a [kubernetes](http://kubernetes.io/) cluster.
 
-We recommend using the `v0.x.y` tags for Kubernetes releases >= `v1.17.0` and
-`kubernetes-1.x.y` tags for Kubernetes releases < `v1.17.0`.
+We recommend using the `v0.x.y` tags for Kubernetes releases < `v1.17.0` and
+`kubernetes-1.x.y` tags for Kubernetes releases >= `v1.17.0`.
 
 The fastest way to add this library to a project is to run `go get k8s.io/client-go@latest` with go1.16+.
 See [INSTALL.md](/INSTALL.md) for detailed installation instructions and troubleshooting.
