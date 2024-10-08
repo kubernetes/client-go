@@ -27,7 +27,7 @@ require (
 	google.golang.org/protobuf v1.34.2
 	gopkg.in/evanphx/json-patch.v4 v4.12.0
 	k8s.io/api v0.0.0-20241007141734-f2b3dfac9f9a
-	k8s.io/apimachinery v0.0.0-20241004115029-c463db196543
+	k8s.io/apimachinery v0.0.0-20241008174842-acfda137309f
 	k8s.io/klog/v2 v2.130.1
 	k8s.io/kube-openapi v0.0.0-20240827152857-f7e401e7b4c2
 	k8s.io/utils v0.0.0-20240711033017-18e509b52bc8
