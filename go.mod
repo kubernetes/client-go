@@ -15,7 +15,7 @@ require (
 	github.com/google/gofuzz v1.2.0
 	github.com/google/uuid v1.6.0
 	github.com/gorilla/websocket v1.5.0
-	github.com/gregjones/httpcache v0.0.0-20180305231024-9cad4c3443a7
+	github.com/gregjones/httpcache v0.0.0-20190611155906-901d90724c79
 	github.com/peterbourgon/diskv v2.0.1+incompatible
 	github.com/spf13/pflag v1.0.5
 	github.com/stretchr/testify v1.9.0
@@ -27,7 +27,7 @@ require (
 	google.golang.org/protobuf v1.34.2
 	gopkg.in/evanphx/json-patch.v4 v4.12.0
 	k8s.io/api v0.0.0-20241011135352-a432ebea6002
-	k8s.io/apimachinery v0.0.0-20241012054809-2b29434a8c7f
+	k8s.io/apimachinery v0.0.0-20241015204703-8a237eeb80a5
 	k8s.io/klog/v2 v2.130.1
 	k8s.io/kube-openapi v0.0.0-20240827152857-f7e401e7b4c2
 	k8s.io/utils v0.0.0-20240711033017-18e509b52bc8
