@@ -52,7 +52,7 @@ pods in the cluster every 10 seconds.
 To stop this example and clean up the pod, press <kbd>Ctrl</kbd>+<kbd>C</kbd> on
 the `kubectl run` command and then run:
 
-    kubectl delete deployment demo
+    kubectl delete pod demo
 
 [sa]: https://kubernetes.io/docs/reference/access-authn-authz/authentication/#service-account-tokens
 [mk]: https://kubernetes.io/docs/getting-started-guides/minikube/
