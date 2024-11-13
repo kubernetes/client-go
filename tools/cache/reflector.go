@@ -856,6 +856,10 @@ loop:
 			default:
 				utilruntime.HandleError(fmt.Errorf("%s: unable to understand watch event %#v", name, event))
 			}
+			if err != nil {
+				klog.Warningf("%s: handler watch event %#v error %v", name, event, err)
+				return false, err
+			}
 			setLastSyncResourceVersion(resourceVersion)
 			if rvu, ok := store.(ResourceVersionUpdater); ok {
 				rvu.UpdateResourceVersion(resourceVersion)
