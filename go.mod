@@ -2,9 +2,9 @@
 
 module k8s.io/client-go
 
-go 1.23.0
+go 1.24.0
 
-godebug default=go1.23
+godebug default=go1.24
 
 require (
 	github.com/go-logr/logr v1.4.2
@@ -26,8 +26,8 @@ require (
 	golang.org/x/time v0.7.0
 	google.golang.org/protobuf v1.35.1
 	gopkg.in/evanphx/json-patch.v4 v4.12.0
-	k8s.io/api v0.0.0-20250222234703-315eef3bab2a
-	k8s.io/apimachinery v0.0.0-20250222234438-a78353204564
+	k8s.io/api v0.0.0
+	k8s.io/apimachinery v0.0.0
 	k8s.io/klog/v2 v2.130.1
 	k8s.io/kube-openapi v0.0.0-20241212222426-2c72e554b1e7
 	k8s.io/utils v0.0.0-20241104100929-3ea5e8cea738
@@ -61,4 +61,9 @@ require (
 	golang.org/x/tools v0.26.0 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
+)
+
+replace (
+	k8s.io/api => ../api
+	k8s.io/apimachinery => ../apimachinery
 )
