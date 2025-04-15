@@ -1,3 +1,4 @@
+test
 # client-go
 
 Go clients for talking to a [kubernetes](http://kubernetes.io/) cluster.
@@ -15,17 +16,21 @@ See [INSTALL.md](/INSTALL.md) for detailed installation instructions and trouble
 
 ## Table of Contents
 
-- [What's included](#whats-included)
-- [Versioning](#versioning)
-  - [Compatibility: your code <-> client-go](#compatibility-your-code---client-go)
-  - [Compatibility: client-go <-> Kubernetes clusters](#compatibility-client-go---kubernetes-clusters)
-  - [Compatibility matrix](#compatibility-matrix)
-  - [Why do the 1.4 and 1.5 branch contain top-level folder named after the version?](#why-do-the-14-and-15-branch-contain-top-level-folder-named-after-the-version)
-- [Kubernetes tags](#kubernetes-tags)
-- [How to get it](#how-to-get-it)
-- [How to use it](#how-to-use-it)
-- [Dependency management](#dependency-management)
-- [Contributing code](#contributing-code)
+- [client-go](#client-go)
+  - [Table of Contents](#table-of-contents)
+    - [What's included](#whats-included)
+    - [Versioning](#versioning)
+      - [Branches and tags.](#branches-and-tags)
+      - [Compatibility: your code \<-\> client-go](#compatibility-your-code---client-go)
+      - [Compatibility: client-go \<-\> Kubernetes clusters](#compatibility-client-go---kubernetes-clusters)
+      - [Compatibility matrix](#compatibility-matrix)
+      - [Deprecation policy](#deprecation-policy)
+      - [Why do the 1.4 and 1.5 branch contain top-level folder named after the version?](#why-do-the-14-and-15-branch-contain-top-level-folder-named-after-the-version)
+    - [Kubernetes tags](#kubernetes-tags)
+    - [How to get it](#how-to-get-it)
+    - [How to use it](#how-to-use-it)
+    - [Dependency management](#dependency-management)
+    - [Contributing code](#contributing-code)
 
 ### What's included
 
