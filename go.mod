@@ -24,9 +24,9 @@ require (
 	golang.org/x/term v0.32.0
 	golang.org/x/time v0.9.0
 	google.golang.org/protobuf v1.36.6
-	gopkg.in/evanphx/json-patch.v4 v4.12.0
-	k8s.io/api v0.0.0-20250828203631-658c42fece85
-	k8s.io/apimachinery v0.0.0-20250829003346-d74026bbe3be
+	gopkg.in/evanphx/json-patch.v4 v4.13.0
+	k8s.io/api v0.0.0-20250830163657-b903cd06836a
+	k8s.io/apimachinery v0.0.0-20250830163350-eb2c6e0d1ec4
 	k8s.io/klog/v2 v2.130.1
 	k8s.io/kube-openapi v0.0.0-20250710124328-f3f2b991d03b
 	k8s.io/utils v0.0.0-20250604170112-4c0f3b243397
@@ -52,7 +52,6 @@ require (
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.3-0.20250322232337-35a7c28c31ee // indirect
 	github.com/mxk/go-flowrate v0.0.0-20140419014527-cca7078d478f // indirect
-	github.com/pkg/errors v0.9.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/stretchr/objx v0.5.2 // indirect
 	github.com/x448/float16 v0.8.4 // indirect
