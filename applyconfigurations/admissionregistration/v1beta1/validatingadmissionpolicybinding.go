@@ -30,7 +30,7 @@ import (
 // ValidatingAdmissionPolicyBindingApplyConfiguration represents a declarative configuration of the ValidatingAdmissionPolicyBinding type for use
 // with apply.
 //
-// ValidatingAdmissionPolicyBinding binds the ValidatingAdmissionPolicy with paramerized resources.
+// ValidatingAdmissionPolicyBinding binds the ValidatingAdmissionPolicy with parameterized resources.
 // ValidatingAdmissionPolicyBinding and parameter CRDs together define how cluster administrators configure policies for clusters.
 //
 // For a given admission request, each binding will cause its policy to be

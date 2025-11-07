@@ -37,7 +37,7 @@ type PersistentVolumeStatusApplyConfiguration struct {
 	// for machine parsing and tidy display in the CLI.
 	Reason *string `json:"reason,omitempty"`
 	// lastPhaseTransitionTime is the time the phase transitioned from one to another
-	// and automatically resets to current time everytime a volume phase transitions.
+	// and automatically resets to current time every time a volume phase transitions.
 	LastPhaseTransitionTime *metav1.Time `json:"lastPhaseTransitionTime,omitempty"`
 }
 

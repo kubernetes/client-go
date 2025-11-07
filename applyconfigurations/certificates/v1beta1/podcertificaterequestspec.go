@@ -78,7 +78,7 @@ type PodCertificateRequestSpecApplyConfiguration struct {
 	// proofOfPossession proves that the requesting kubelet holds the private
 	// key corresponding to pkixPublicKey.
 	//
-	// It is contructed by signing the ASCII bytes of the pod's UID using
+	// It is constructed by signing the ASCII bytes of the pod's UID using
 	// `pkixPublicKey`.
 	//
 	// kube-apiserver validates the proof of possession during creation of the
