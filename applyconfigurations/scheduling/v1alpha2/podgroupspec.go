@@ -35,6 +35,17 @@ type PodGroupSpecApplyConfiguration struct {
 	// This field is immutable.
 	// This field is only available when the TopologyAwareWorkloadScheduling feature gate is enabled.
 	SchedulingConstraints *PodGroupSchedulingConstraintsApplyConfiguration `json:"schedulingConstraints,omitempty"`
+	// ResourceClaims defines which ResourceClaims may be shared among Pods in
+	// the group. Pods consume the devices allocated to a PodGroup's claim by
+	// defining a claim in its own Spec.ResourceClaims that matches the
+	// PodGroup's claim exactly. The claim must have the same name and refer to
+	// the same ResourceClaim or ResourceClaimTemplate.
+	//
+	// This is an alpha-level field and requires that the
+	// DRAWorkloadResourceClaims feature gate is enabled.
+	//
+	// This field is immutable.
+	ResourceClaims []PodGroupResourceClaimApplyConfiguration `json:"resourceClaims,omitempty"`
 }
 
 // PodGroupSpecApplyConfiguration constructs a declarative configuration of the PodGroupSpec type for use with
@@ -64,5 +75,18 @@ func (b *PodGroupSpecApplyConfiguration) WithSchedulingPolicy(value *PodGroupSch
 // If called multiple times, the SchedulingConstraints field is set to the value of the last call.
 func (b *PodGroupSpecApplyConfiguration) WithSchedulingConstraints(value *PodGroupSchedulingConstraintsApplyConfiguration) *PodGroupSpecApplyConfiguration {
 	b.SchedulingConstraints = value
+	return b
+}
+
+// WithResourceClaims adds the given value to the ResourceClaims field in the declarative configuration
+// and returns the receiver, so that objects can be build by chaining "With" function invocations.
+// If called multiple times, values provided by each call will be appended to the ResourceClaims field.
+func (b *PodGroupSpecApplyConfiguration) WithResourceClaims(values ...*PodGroupResourceClaimApplyConfiguration) *PodGroupSpecApplyConfiguration {
+	for i := range values {
+		if values[i] == nil {
+			panic("nil value passed to WithResourceClaims")
+		}
+		b.ResourceClaims = append(b.ResourceClaims, *values[i])
+	}
 	return b
 }
