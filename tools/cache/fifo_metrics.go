@@ -44,11 +44,19 @@ type FIFOMetricsProvider interface {
 	// For DeltaFIFO: Represents len(f.items) - the number of unique keys with pending deltas
 	// For RealFIFO: Represents len(f.items) - the total number of individual delta events queued
 	NewQueuedItemMetric(id InformerNameAndResource) GaugeMetric
+
+	// NewProcessingLatencyMetric returns a histogram metric for tracking the time taken
+	// to process events (execute handlers) after they are popped from the queue.
+	// The latency is measured in seconds.
+	// The returned metric should check id.Reserved() before updating to support
+	// dynamic informers that may shut down while the process is still running.
+	NewProcessingLatencyMetric(id InformerNameAndResource) HistogramMetric
 }
 
 // fifoMetrics holds all metrics for a FIFO.
 type fifoMetrics struct {
 	numberOfQueuedItem GaugeMetric
+	processingLatency  HistogramMetric
 }
 
 // SetFIFOMetricsProvider sets the metrics provider for all subsequently created
@@ -65,15 +73,21 @@ func newFIFOMetrics(id InformerNameAndResource, metricsProvider FIFOMetricsProvi
 	}
 	metrics := &fifoMetrics{
 		numberOfQueuedItem: noopMetric{},
+		processingLatency:  noopMetric{},
 	}
 
 	if id.Reserved() {
 		metrics.numberOfQueuedItem = metricsProvider.NewQueuedItemMetric(id)
+		metrics.processingLatency = metricsProvider.NewProcessingLatencyMetric(id)
 	}
 
 	return metrics
 }
 
 func (noopFIFOMetricsProvider) NewQueuedItemMetric(InformerNameAndResource) GaugeMetric {
+	return noopMetric{}
+}
+
+func (noopFIFOMetricsProvider) NewProcessingLatencyMetric(InformerNameAndResource) HistogramMetric {
 	return noopMetric{}
 }
