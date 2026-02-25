@@ -1830,6 +1830,8 @@ func ForKind(kind schema.GroupVersionKind) interface{} {
 		return &applyconfigurationsschedulingv1alpha2.GangSchedulingPolicyApplyConfiguration{}
 	case schedulingv1alpha2.SchemeGroupVersion.WithKind("PodGroup"):
 		return &applyconfigurationsschedulingv1alpha2.PodGroupApplyConfiguration{}
+	case schedulingv1alpha2.SchemeGroupVersion.WithKind("PodGroupSchedulingConstraints"):
+		return &applyconfigurationsschedulingv1alpha2.PodGroupSchedulingConstraintsApplyConfiguration{}
 	case schedulingv1alpha2.SchemeGroupVersion.WithKind("PodGroupSchedulingPolicy"):
 		return &applyconfigurationsschedulingv1alpha2.PodGroupSchedulingPolicyApplyConfiguration{}
 	case schedulingv1alpha2.SchemeGroupVersion.WithKind("PodGroupSpec"):
@@ -1840,6 +1842,8 @@ func ForKind(kind schema.GroupVersionKind) interface{} {
 		return &applyconfigurationsschedulingv1alpha2.PodGroupTemplateApplyConfiguration{}
 	case schedulingv1alpha2.SchemeGroupVersion.WithKind("PodGroupTemplateReference"):
 		return &applyconfigurationsschedulingv1alpha2.PodGroupTemplateReferenceApplyConfiguration{}
+	case schedulingv1alpha2.SchemeGroupVersion.WithKind("TopologyConstraint"):
+		return &applyconfigurationsschedulingv1alpha2.TopologyConstraintApplyConfiguration{}
 	case schedulingv1alpha2.SchemeGroupVersion.WithKind("TypedLocalObjectReference"):
 		return &applyconfigurationsschedulingv1alpha2.TypedLocalObjectReferenceApplyConfiguration{}
 	case schedulingv1alpha2.SchemeGroupVersion.WithKind("Workload"):
