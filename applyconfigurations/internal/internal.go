@@ -15043,9 +15043,6 @@ var schemaYAML = typed.YAMLObject(`types:
 - name: io.k8s.api.storage.v1beta1.CSIDriverSpec
   map:
     fields:
-    - name: PreventPodSchedulingIfMissing
-      type:
-        scalar: boolean
     - name: attachRequired
       type:
         scalar: boolean
@@ -15056,6 +15053,9 @@ var schemaYAML = typed.YAMLObject(`types:
       type:
         scalar: numeric
     - name: podInfoOnMount
+      type:
+        scalar: boolean
+    - name: preventPodSchedulingIfMissing
       type:
         scalar: boolean
     - name: requiresRepublish
