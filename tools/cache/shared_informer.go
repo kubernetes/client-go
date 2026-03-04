@@ -323,7 +323,7 @@ func NewSharedIndexInformerWithOptions(lw ListerWatcher, exampleObject runtime.O
 	processor.listenersRCond = sync.NewCond(processor.listenersLock.RLocker())
 
 	return &sharedIndexInformer{
-		indexer:                         NewIndexer(DeletionHandlingMetaNamespaceKeyFunc, options.Indexers),
+		indexer:                         NewIndexer(DeletionHandlingMetaNamespaceKeyFunc, options.Indexers, WithStoreMetrics(options.Identifier, options.InformerMetricsProvider)),
 		processor:                       processor,
 		synced:                          make(chan struct{}),
 		listerWatcher:                   lw,
@@ -334,7 +334,7 @@ func NewSharedIndexInformerWithOptions(lw ListerWatcher, exampleObject runtime.O
 		clock:                           realClock,
 		cacheMutationDetector:           NewCacheMutationDetector(fmt.Sprintf("%T", exampleObject)),
 		identifier:                      options.Identifier,
-		fifoMetricsProvider:             options.FIFOMetricsProvider,
+		informerMetricsProvider:         options.InformerMetricsProvider,
 		keyFunc:                         DeletionHandlingMetaNamespaceKeyFunc,
 	}
 }
@@ -356,9 +356,9 @@ type SharedIndexInformerOptions struct {
 	// If not set, metrics will not be published.
 	Identifier InformerNameAndResource
 
-	// FIFOMetricsProvider is the metrics provider for the FIFO queue.
+	// InformerMetricsProvider is the metrics provider for the FIFO queue.
 	// If not set, metrics will be no-ops.
-	FIFOMetricsProvider FIFOMetricsProvider
+	InformerMetricsProvider InformerMetricsProvider
 }
 
 // InformerSynced is a function that can be used to determine if an informer has synced.  This is useful for determining if caches have synced.
@@ -630,8 +630,8 @@ type sharedIndexInformer struct {
 	// identifier is used to identify this informer for metrics and logging purposes.
 	identifier InformerNameAndResource
 
-	// fifoMetricsProvider is the metrics provider for the FIFO queue.
-	fifoMetricsProvider FIFOMetricsProvider
+	// informerMetricsProvider is the metrics provider for the FIFO queue.
+	informerMetricsProvider InformerMetricsProvider
 
 	// keyFunc is called when processing deltas by the underlying process function.
 	keyFunc KeyFunc
@@ -729,7 +729,7 @@ func (s *sharedIndexInformer) RunWithContext(ctx context.Context) {
 		s.startedLock.Lock()
 		defer s.startedLock.Unlock()
 
-		logger, fifo := newQueueFIFO(logger, s.objectType, s.indexer, s.transform, s.identifier, s.fifoMetricsProvider)
+		logger, fifo := newQueueFIFO(logger, s.objectType, s.indexer, s.transform, s.identifier, s.informerMetricsProvider)
 
 		cfg := &Config{
 			Queue:             fifo,
