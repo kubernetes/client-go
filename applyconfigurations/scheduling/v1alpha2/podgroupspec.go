@@ -18,6 +18,10 @@ limitations under the License.
 
 package v1alpha2
 
+import (
+	schedulingv1alpha2 "k8s.io/api/scheduling/v1alpha2"
+)
+
 // PodGroupSpecApplyConfiguration represents a declarative configuration of the PodGroupSpec type for use
 // with apply.
 //
@@ -46,6 +50,31 @@ type PodGroupSpecApplyConfiguration struct {
 	//
 	// This field is immutable.
 	ResourceClaims []PodGroupResourceClaimApplyConfiguration `json:"resourceClaims,omitempty"`
+	// DisruptionMode defines the mode in which a given PodGroup can be disrupted.
+	// Controllers are expected to fill this field by copying it from a PodGroupTemplate.
+	// One of Pod, PodGroup. Defaults to Pod if unset.
+	// This field is immutable.
+	// This field is available only when the WorkloadAwarePreemption feature gate
+	// is enabled.
+	DisruptionMode *schedulingv1alpha2.DisruptionMode `json:"disruptionMode,omitempty"`
+	// PriorityClassName defines the priority that should be considered when scheduling this pod group.
+	// Controllers are expected to fill this field by copying it from a PodGroupTemplate.
+	// Otherwise, it is validated and resolved similarly to the PriorityClassName on PodGroupTemplate
+	// (i.e. if no priority class is specified, admission control can set this to the global default
+	// priority class if it exists. Otherwise, the pod group's priority will be zero).
+	// This field is immutable.
+	// This field is available only when the WorkloadAwarePreemption feature gate
+	// is enabled.
+	PriorityClassName *string `json:"priorityClassName,omitempty"`
+	// Priority is the value of priority of this pod group. Various system components
+	// use this field to find the priority of the pod group. When Priority Admission
+	// Controller is enabled, it prevents users from setting this field. The admission
+	// controller populates this field from PriorityClassName.
+	// The higher the value, the higher the priority.
+	// This field is immutable.
+	// This field is available only when the WorkloadAwarePreemption feature gate
+	// is enabled.
+	Priority *int32 `json:"priority,omitempty"`
 }
 
 // PodGroupSpecApplyConfiguration constructs a declarative configuration of the PodGroupSpec type for use with
@@ -88,5 +117,29 @@ func (b *PodGroupSpecApplyConfiguration) WithResourceClaims(values ...*PodGroupR
 		}
 		b.ResourceClaims = append(b.ResourceClaims, *values[i])
 	}
+	return b
+}
+
+// WithDisruptionMode sets the DisruptionMode field in the declarative configuration to the given value
+// and returns the receiver, so that objects can be built by chaining "With" function invocations.
+// If called multiple times, the DisruptionMode field is set to the value of the last call.
+func (b *PodGroupSpecApplyConfiguration) WithDisruptionMode(value schedulingv1alpha2.DisruptionMode) *PodGroupSpecApplyConfiguration {
+	b.DisruptionMode = &value
+	return b
+}
+
+// WithPriorityClassName sets the PriorityClassName field in the declarative configuration to the given value
+// and returns the receiver, so that objects can be built by chaining "With" function invocations.
+// If called multiple times, the PriorityClassName field is set to the value of the last call.
+func (b *PodGroupSpecApplyConfiguration) WithPriorityClassName(value string) *PodGroupSpecApplyConfiguration {
+	b.PriorityClassName = &value
+	return b
+}
+
+// WithPriority sets the Priority field in the declarative configuration to the given value
+// and returns the receiver, so that objects can be built by chaining "With" function invocations.
+// If called multiple times, the Priority field is set to the value of the last call.
+func (b *PodGroupSpecApplyConfiguration) WithPriority(value int32) *PodGroupSpecApplyConfiguration {
+	b.Priority = &value
 	return b
 }

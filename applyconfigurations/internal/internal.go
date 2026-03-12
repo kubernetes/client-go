@@ -14801,9 +14801,19 @@ var schemaYAML = typed.YAMLObject(`types:
 - name: io.k8s.api.scheduling.v1alpha2.PodGroupSpec
   map:
     fields:
+    - name: disruptionMode
+      type:
+        scalar: string
+      default: Pod
     - name: podGroupTemplateRef
       type:
         namedType: io.k8s.api.scheduling.v1alpha2.PodGroupTemplateReference
+    - name: priority
+      type:
+        scalar: numeric
+    - name: priorityClassName
+      type:
+        scalar: string
     - name: resourceClaims
       type:
         list:
@@ -14841,10 +14851,19 @@ var schemaYAML = typed.YAMLObject(`types:
 - name: io.k8s.api.scheduling.v1alpha2.PodGroupTemplate
   map:
     fields:
+    - name: disruptionMode
+      type:
+        scalar: string
     - name: name
       type:
         scalar: string
       default: ""
+    - name: priority
+      type:
+        scalar: numeric
+    - name: priorityClassName
+      type:
+        scalar: string
     - name: resourceClaims
       type:
         list:
