@@ -18,6 +18,10 @@ limitations under the License.
 
 package v1alpha2
 
+import (
+	schedulingv1alpha2 "k8s.io/api/scheduling/v1alpha2"
+)
+
 // PodGroupTemplateApplyConfiguration represents a declarative configuration of the PodGroupTemplate type for use
 // with apply.
 //
@@ -42,6 +46,26 @@ type PodGroupTemplateApplyConfiguration struct {
 	//
 	// This field is immutable.
 	ResourceClaims []PodGroupResourceClaimApplyConfiguration `json:"resourceClaims,omitempty"`
+	// DisruptionMode defines the mode in which a given PodGroup can be disrupted.
+	// One of Pod, PodGroup.
+	// This field is available only when the WorkloadAwarePreemption feature gate
+	// is enabled.
+	DisruptionMode *schedulingv1alpha2.DisruptionMode `json:"disruptionMode,omitempty"`
+	// PriorityClassName indicates the priority that should be considered when scheduling
+	// a pod group created from this template. If no priority class is specified, admission
+	// control can set this to the global default priority class if it exists. Otherwise,
+	// pod groups created from this template will have the priority set to zero.
+	// This field is available only when the WorkloadAwarePreemption feature gate
+	// is enabled.
+	PriorityClassName *string `json:"priorityClassName,omitempty"`
+	// Priority is the value of priority of pod groups created from this template. Various
+	// system components use this field to find the priority of the pod group. When
+	// Priority Admission Controller is enabled, it prevents users from setting this field.
+	// The admission controller populates this field from PriorityClassName.
+	// The higher the value, the higher the priority.
+	// This field is available only when the WorkloadAwarePreemption feature gate
+	// is enabled.
+	Priority *int32 `json:"priority,omitempty"`
 }
 
 // PodGroupTemplateApplyConfiguration constructs a declarative configuration of the PodGroupTemplate type for use with
@@ -84,5 +108,29 @@ func (b *PodGroupTemplateApplyConfiguration) WithResourceClaims(values ...*PodGr
 		}
 		b.ResourceClaims = append(b.ResourceClaims, *values[i])
 	}
+	return b
+}
+
+// WithDisruptionMode sets the DisruptionMode field in the declarative configuration to the given value
+// and returns the receiver, so that objects can be built by chaining "With" function invocations.
+// If called multiple times, the DisruptionMode field is set to the value of the last call.
+func (b *PodGroupTemplateApplyConfiguration) WithDisruptionMode(value schedulingv1alpha2.DisruptionMode) *PodGroupTemplateApplyConfiguration {
+	b.DisruptionMode = &value
+	return b
+}
+
+// WithPriorityClassName sets the PriorityClassName field in the declarative configuration to the given value
+// and returns the receiver, so that objects can be built by chaining "With" function invocations.
+// If called multiple times, the PriorityClassName field is set to the value of the last call.
+func (b *PodGroupTemplateApplyConfiguration) WithPriorityClassName(value string) *PodGroupTemplateApplyConfiguration {
+	b.PriorityClassName = &value
+	return b
+}
+
+// WithPriority sets the Priority field in the declarative configuration to the given value
+// and returns the receiver, so that objects can be built by chaining "With" function invocations.
+// If called multiple times, the Priority field is set to the value of the last call.
+func (b *PodGroupTemplateApplyConfiguration) WithPriority(value int32) *PodGroupTemplateApplyConfiguration {
+	b.Priority = &value
 	return b
 }
