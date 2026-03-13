@@ -671,7 +671,7 @@ func (r *Request) tryThrottleWithInfo(ctx context.Context, retryInfo string) err
 	now := time.Now()
 
 	err := r.rateLimiter.Wait(ctx)
-	if err != nil {
+	if err != nil && ctx.Err() == nil {
 		err = fmt.Errorf("client rate limiter Wait returned an error: %w", err)
 	}
 	latency := time.Since(now)
