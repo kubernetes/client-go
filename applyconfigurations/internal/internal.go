@@ -8423,7 +8423,6 @@ var schemaYAML = typed.YAMLObject(`types:
     - name: volumeStatus
       type:
         namedType: io.k8s.api.core.v1.VolumeStatus
-      default: {}
 - name: io.k8s.api.core.v1.VolumeNodeAffinity
   map:
     fields:
