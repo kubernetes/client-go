@@ -78,7 +78,7 @@ type BasicDeviceApplyConfiguration struct {
 	// If set to true, the scheduler will set the ResourceClaim.Status.Allocation.NodeSelector
 	// to match the node where the allocation was made.
 	//
-	// This is an alpha field and requires enabling the DRADeviceBindingConditions and DRAResourceClaimDeviceStatus
+	// This is a beta field and requires enabling the DRADeviceBindingConditions and DRAResourceClaimDeviceStatus
 	// feature gates.
 	BindsToNode *bool `json:"bindsToNode,omitempty"`
 	// BindingConditions defines the conditions for proceeding with binding.
@@ -90,7 +90,7 @@ type BasicDeviceApplyConfiguration struct {
 	//
 	// The conditions must be a valid condition type string.
 	//
-	// This is an alpha field and requires enabling the DRADeviceBindingConditions and DRAResourceClaimDeviceStatus
+	// This is a beta field and requires enabling the DRADeviceBindingConditions and DRAResourceClaimDeviceStatus
 	// feature gates.
 	BindingConditions []string `json:"bindingConditions,omitempty"`
 	// BindingFailureConditions defines the conditions for binding failure.
@@ -101,7 +101,7 @@ type BasicDeviceApplyConfiguration struct {
 	//
 	// The conditions must be a valid condition type string.
 	//
-	// This is an alpha field and requires enabling the DRADeviceBindingConditions and DRAResourceClaimDeviceStatus
+	// This is a beta field and requires enabling the DRADeviceBindingConditions and DRAResourceClaimDeviceStatus
 	// feature gates.
 	BindingFailureConditions []string `json:"bindingFailureConditions,omitempty"`
 	// AllowMultipleAllocations marks whether the device is allowed to be allocated to multiple DeviceRequests.
