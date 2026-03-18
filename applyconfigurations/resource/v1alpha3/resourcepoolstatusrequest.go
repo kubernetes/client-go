@@ -31,11 +31,8 @@ import (
 // with apply.
 //
 // ResourcePoolStatusRequest triggers a one-time calculation of resource pool status
-// based on the provided filters. The request follows a request/response pattern similar
-// to CertificateSigningRequest - create a request, and the controller populates the status.
-//
-// Once status is set, the request is considered complete and will not
-// be reprocessed. Users should delete and recreate requests to get updated information.
+// based on the provided filters. Once status is set, the request is considered complete and will not be reprocessed.
+// Users should delete and recreate requests to get updated information.
 type ResourcePoolStatusRequestApplyConfiguration struct {
 	v1.TypeMetaApplyConfiguration `json:",inline"`
 	// Standard object metadata
