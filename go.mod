@@ -23,8 +23,8 @@ require (
 	golang.org/x/time v0.14.0
 	google.golang.org/protobuf v1.36.12-0.20260120151049-f2248ac996af
 	gopkg.in/evanphx/json-patch.v4 v4.13.0
-	k8s.io/api v0.0.0-20260424110828-103005c29633
-	k8s.io/apimachinery v0.0.0-20260424110436-5138150d0bbc
+	k8s.io/api v0.0.0-20260424110830-aca5bee66d09
+	k8s.io/apimachinery v0.0.0-20260424110437-f75bcf7bc970
 	k8s.io/klog/v2 v2.140.0
 	k8s.io/kube-openapi v0.0.0-20260317180543-43fb72c5454a
 	k8s.io/streaming v0.0.0-20260424110149-99242c80ea4f
@@ -38,7 +38,7 @@ require (
 require (
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/emicklei/go-restful/v3 v3.13.0 // indirect
-	github.com/fxamacker/cbor/v2 v2.9.0 // indirect
+	github.com/fxamacker/cbor/v2 v2.9.1 // indirect
 	github.com/go-openapi/jsonpointer v0.21.0 // indirect
 	github.com/go-openapi/jsonreference v0.20.2 // indirect
 	github.com/go-openapi/swag v0.23.0 // indirect
