@@ -18,6 +18,7 @@ package leaderelection
 
 import (
 	"context"
+	"fmt"
 	"reflect"
 	"sync"
 	"time"
@@ -67,10 +68,32 @@ type LeaseCandidate struct {
 	strategy                        v1.CoordinatedLeaseStrategy
 }
 
-// CandidateConfig specifies optional configuration for NewCandidateWithConfig.
+// CandidateConfig specifies the configuration for NewCandidateWithConfig.
 type CandidateConfig struct {
 	// Logger is used for contextual logging. If unset, klog.Background() is used.
 	Logger *klog.Logger
+
+	// Clientset is used to interact with the LeaseCandidate API. Required.
+	Clientset kubernetes.Interface
+
+	// CandidateNamespace is the namespace to create the LeaseCandidate object in. Required.
+	CandidateNamespace string
+
+	// CandidateName is the name of the LeaseCandidate object. Required.
+	CandidateName string
+
+	// TargetLease is the name of the lease that this candidate is competing for. Required.
+	TargetLease string
+
+	// BinaryVersion is the binary version of the candidate. Required.
+	BinaryVersion string
+
+	// EmulationVersion is the emulation version of the candidate. Required when
+	// Strategy is v1.OldestEmulationVersion.
+	EmulationVersion string
+
+	// Strategy is the coordinated leader election strategy supported by the candidate. Required.
+	Strategy v1.CoordinatedLeaseStrategy
 }
 
 // NewCandidate creates new LeaseCandidate controller that creates a
@@ -89,15 +112,15 @@ func NewCandidate(
 	strategy v1.CoordinatedLeaseStrategy,
 ) (*LeaseCandidate, CacheSyncWaiter, error) {
 	//nolint:logcheck // Cannot provide Logger here, use NewCandidateWithConfig.
-	return NewCandidateWithConfig(
-		clientset,
-		candidateNamespace,
-		candidateName,
-		targetLease,
-		binaryVersion, emulationVersion,
-		strategy,
-		CandidateConfig{},
-	)
+	return NewCandidateWithConfig(CandidateConfig{
+		Clientset:          clientset,
+		CandidateNamespace: candidateNamespace,
+		CandidateName:      candidateName,
+		TargetLease:        targetLease,
+		BinaryVersion:      binaryVersion,
+		EmulationVersion:   emulationVersion,
+		Strategy:           strategy,
+	})
 }
 
 // NewCandidateWithConfig creates new LeaseCandidate controller that creates a
@@ -105,19 +128,36 @@ func NewCandidate(
 // to the corresponding object and renews if PingTime is set.
 // WARNING: This is an ALPHA feature. Ensure that the CoordinatedLeaderElection
 // feature gate is on.
-func NewCandidateWithConfig(
-	clientset kubernetes.Interface,
-	candidateNamespace string,
-	candidateName string,
-	targetLease string,
-	binaryVersion, emulationVersion string,
-	strategy v1.CoordinatedLeaseStrategy,
-	config CandidateConfig,
-) (*LeaseCandidate, CacheSyncWaiter, error) {
+func NewCandidateWithConfig(config CandidateConfig) (*LeaseCandidate, CacheSyncWaiter, error) {
+	if config.Clientset == nil {
+		return nil, nil, fmt.Errorf("required Clientset config parameter is unset")
+	}
+	if config.CandidateNamespace == "" {
+		return nil, nil, fmt.Errorf("required CandidateNamespace config parameter is unset")
+	}
+	if config.CandidateName == "" {
+		return nil, nil, fmt.Errorf("required CandidateName config parameter is unset")
+	}
+	if config.TargetLease == "" {
+		return nil, nil, fmt.Errorf("required TargetLease config parameter is unset")
+	}
+	if config.BinaryVersion == "" {
+		return nil, nil, fmt.Errorf("required BinaryVersion config parameter is unset")
+	}
+	if config.EmulationVersion == "" && config.Strategy == v1.OldestEmulationVersion {
+		return nil, nil, fmt.Errorf("required EmulationVersion config parameter is unset")
+	}
+	if config.Strategy == "" {
+		return nil, nil, fmt.Errorf("required Strategy config parameter is unset")
+	}
+
 	logger := klog.Background()
 	if config.Logger != nil {
 		logger = *config.Logger
 	}
+	clientset := config.Clientset
+	candidateNamespace := config.CandidateNamespace
+	candidateName := config.CandidateName
 	fieldSelector := fields.OneTermEqualSelector("metadata.name", candidateName).String()
 	// A separate informer factory is required because this must start before informerFactories
 	// are started for leader elected components
@@ -138,11 +178,11 @@ func NewCandidateWithConfig(
 		informerFactory:        informerFactory,
 		name:                   candidateName,
 		namespace:              candidateNamespace,
-		leaseName:              targetLease,
+		leaseName:              config.TargetLease,
 		clock:                  clock.RealClock{},
-		binaryVersion:          binaryVersion,
-		emulationVersion:       emulationVersion,
-		strategy:               strategy,
+		binaryVersion:          config.BinaryVersion,
+		emulationVersion:       config.EmulationVersion,
+		strategy:               config.Strategy,
 	}
 	lc.queue = workqueue.NewTypedRateLimitingQueueWithConfig(workqueue.DefaultTypedControllerRateLimiter[int](), workqueue.TypedRateLimitingQueueConfig[int]{
 		Logger: &logger,
