@@ -5555,6 +5555,7 @@ var schemaYAML = typed.YAMLObject(`types:
     - name: lastObservedTime
       type:
         namedType: io.k8s.apimachinery.pkg.apis.meta.v1.MicroTime
+    elementRelationship: atomic
 - name: io.k8s.api.core.v1.EventSource
   map:
     fields:
@@ -9147,6 +9148,7 @@ var schemaYAML = typed.YAMLObject(`types:
     - name: lastObservedTime
       type:
         namedType: io.k8s.apimachinery.pkg.apis.meta.v1.MicroTime
+    elementRelationship: atomic
 - name: io.k8s.api.events.v1beta1.Event
   map:
     fields:
@@ -9214,6 +9216,7 @@ var schemaYAML = typed.YAMLObject(`types:
     - name: lastObservedTime
       type:
         namedType: io.k8s.apimachinery.pkg.apis.meta.v1.MicroTime
+    elementRelationship: atomic
 - name: io.k8s.api.extensions.v1beta1.DaemonSet
   map:
     fields:
