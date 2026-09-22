@@ -92,10 +92,10 @@ gopkg.in/evanphx/json-patch.v4 v4.13.0 h1:czT3CmqEaQ1aanPc5SdlgQrrEIb8w/wwCvWWnf
 gopkg.in/evanphx/json-patch.v4 v4.13.0/go.mod h1:p8EYWUEYMpynmqDbY58zCKCFZw8pRWMG4EsWvDvM72M=
 gopkg.in/inf.v0 v0.9.1 h1:73M5CoZyi3ZLMOyDlQh031Cx6N9NDJ2Vvfl76EDAgDc=
 gopkg.in/inf.v0 v0.9.1/go.mod h1:cWUDdTG/fYaXco+Dcufb5Vnc6Gp2YChqWtbxRZE0mXw=
-k8s.io/api v0.0.0-20260918144955-756f73143d0a h1:4SeY5Vr1QCzAiwSP34GsUjSgWSO/dqJ4+IrmGK/qIKA=
-k8s.io/api v0.0.0-20260918144955-756f73143d0a/go.mod h1:VHA101mYhYNCImuqlo2dH4ycByZzpikePTd1YX3M7FU=
-k8s.io/apimachinery v0.0.0-20260916201323-e198c8900a45 h1:vhtwErC/eEBlQAZJkUh8RWNA9S9xsjWauCftAdBPmQM=
-k8s.io/apimachinery v0.0.0-20260916201323-e198c8900a45/go.mod h1:wEJ84lCcBZbJw1JW9fHsKuCBaJ4tLXW6LNnuek2iMkk=
+k8s.io/api v0.0.0-20260922151056-90417717a073 h1:knh/RQKouL/n6CRwnYdMwxhU61HPKYsfkBrdNzFCRbU=
+k8s.io/api v0.0.0-20260922151056-90417717a073/go.mod h1:MUqr4ySFi0hJpvGJ5EvVJpCKWTRP/IDk5yh2ielMlRc=
+k8s.io/apimachinery v0.0.0-20260922110631-4fea334131ea h1:eJs5XbMDIUxeOqf2B9vUw5nz/tPv5Rgus7pnaZeAc2I=
+k8s.io/apimachinery v0.0.0-20260922110631-4fea334131ea/go.mod h1:wEJ84lCcBZbJw1JW9fHsKuCBaJ4tLXW6LNnuek2iMkk=
 k8s.io/klog/v2 v2.140.0 h1:Tf+J3AH7xnUzZyVVXhTgGhEKnFqye14aadWv7bzXdzc=
 k8s.io/klog/v2 v2.140.0/go.mod h1:o+/RWfJ6PwpnFn7OyAG3QnO47BFsymfEfrz6XyYSSp0=
 k8s.io/kube-openapi v0.0.0-20260908163437-c4db2bdfbfe6 h1:V+PvDIOGInpdzdyOIlPU3NhLWHOKPXE8DDIfCVWIgiw=
