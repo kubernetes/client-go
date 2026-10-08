@@ -24,12 +24,12 @@ require (
 	golang.org/x/time v0.16.0
 	google.golang.org/protobuf v1.36.12
 	gopkg.in/evanphx/json-patch.v4 v4.13.0
-	k8s.io/api v0.0.0-20261009022247-ea04b01abb95
-	k8s.io/apimachinery v0.0.0-20261008180943-4bf141d8652d
+	k8s.io/api v0.0.0
+	k8s.io/apimachinery v0.0.0
 	k8s.io/klog/v2 v2.140.0
-	k8s.io/ktesting v0.0.0-20261007175625-7d1207ee288d
-	k8s.io/kube-openapi v0.0.0-20261001230523-97fa35140926
-	k8s.io/streaming v0.0.0-20260925214949-a5093f4e9dc5
+	k8s.io/ktesting v0.0.0
+	k8s.io/kube-openapi v0.0.0-20261007072838-e2e80c32a35f
+	k8s.io/streaming v0.0.0
 	k8s.io/utils v0.0.0-20260626114624-be93311217bd
 	sigs.k8s.io/json v0.0.0-20250730193827-2d320260d730
 	sigs.k8s.io/randfill v1.0.0
@@ -39,7 +39,6 @@ require (
 
 require (
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
-	github.com/emicklei/go-restful/v3 v3.13.0 // indirect
 	github.com/fxamacker/cbor/v2 v2.9.4 // indirect
 	github.com/go-openapi/jsonpointer v1.0.2 // indirect
 	github.com/go-openapi/jsonreference v1.0.2 // indirect
@@ -57,4 +56,11 @@ require (
 	golang.org/x/sys v0.48.0 // indirect
 	golang.org/x/text v0.42.0 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
+)
+
+replace (
+	k8s.io/api => ../api
+	k8s.io/apimachinery => ../apimachinery
+	k8s.io/ktesting => ../ktesting
+	k8s.io/streaming => ../streaming
 )
