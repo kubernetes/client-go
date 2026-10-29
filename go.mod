@@ -24,7 +24,7 @@ require (
 	golang.org/x/time v0.16.0
 	google.golang.org/protobuf v1.36.12
 	gopkg.in/evanphx/json-patch.v4 v4.13.0
-	k8s.io/api v0.0.0-20261029185253-6f5ee883050e
+	k8s.io/api v0.0.0-20261029185254-a44a025f6087
 	k8s.io/apimachinery v0.0.0-20261029183838-a669714d5f6b
 	k8s.io/klog/v2 v2.140.0
 	k8s.io/ktesting v0.0.0-20261023231146-6b3f929e93b0
