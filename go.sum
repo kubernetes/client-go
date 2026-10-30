@@ -77,10 +77,10 @@ gopkg.in/evanphx/json-patch.v4 v4.13.0 h1:czT3CmqEaQ1aanPc5SdlgQrrEIb8w/wwCvWWnf
 gopkg.in/evanphx/json-patch.v4 v4.13.0/go.mod h1:p8EYWUEYMpynmqDbY58zCKCFZw8pRWMG4EsWvDvM72M=
 gopkg.in/inf.v0 v0.9.1 h1:73M5CoZyi3ZLMOyDlQh031Cx6N9NDJ2Vvfl76EDAgDc=
 gopkg.in/inf.v0 v0.9.1/go.mod h1:cWUDdTG/fYaXco+Dcufb5Vnc6Gp2YChqWtbxRZE0mXw=
-k8s.io/api v0.0.0-20261029185254-a44a025f6087 h1:lql5w1rrdCMlN2P7xoTWiH7vdWQC+LA39hD73ty1dI4=
-k8s.io/api v0.0.0-20261029185254-a44a025f6087/go.mod h1:3QS4bv2tW2SLiEvS1Squ8QMHJJIzYbUaeTpnBNOLDkU=
-k8s.io/apimachinery v0.0.0-20261029183838-a669714d5f6b h1:PCkV2SEtZXTlxyUkw3I0TU5eF6S2cWt0oXaucQWhywA=
-k8s.io/apimachinery v0.0.0-20261029183838-a669714d5f6b/go.mod h1:wOnsNGHXYzrqcz/O8Ak3fzqgPpkmDYGqDX3A44gqeZE=
+k8s.io/api v0.0.0-20261030022931-5ac274846118 h1:cD4EFTMood7lgEhv1+L8jnNLn7sCP33w8Bo33hPaHuc=
+k8s.io/api v0.0.0-20261030022931-5ac274846118/go.mod h1:C7aSzj9fAE03Gl82nVc2VshqjbSSHju9D1l64TsYEOI=
+k8s.io/apimachinery v0.0.0-20261030040554-c0d5737608f6 h1:9Knm/sNuEGOGWOYQdXMeleIlAjBU0W36tUeU0N4M3ek=
+k8s.io/apimachinery v0.0.0-20261030040554-c0d5737608f6/go.mod h1:wOnsNGHXYzrqcz/O8Ak3fzqgPpkmDYGqDX3A44gqeZE=
 k8s.io/klog/v2 v2.140.0 h1:Tf+J3AH7xnUzZyVVXhTgGhEKnFqye14aadWv7bzXdzc=
 k8s.io/klog/v2 v2.140.0/go.mod h1:o+/RWfJ6PwpnFn7OyAG3QnO47BFsymfEfrz6XyYSSp0=
 k8s.io/ktesting v0.0.0-20261023231146-6b3f929e93b0 h1:ujEt8eQQJSJ5MNdY7LEyYAcldG9QkuQ5Hz2lnTzFthI=
