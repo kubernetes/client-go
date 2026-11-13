@@ -27,9 +27,9 @@ require (
 	k8s.io/api v0.0.0-20261113004937-f4db9c1f58d4
 	k8s.io/apimachinery v0.0.0-20261111054554-99ecaa0b26e4
 	k8s.io/klog/v2 v2.140.0
-	k8s.io/ktesting v0.0.0-20261102163952-bc538521d450
+	k8s.io/ktesting v0.0.0-20261113004029-269fd0a2d021
 	k8s.io/kube-openapi v0.0.0-20261014044854-ca3452a79603
-	k8s.io/streaming v0.0.0-20261108044107-0e656739c287
+	k8s.io/streaming v0.0.0-20261113004134-5b6e1bfdb319
 	k8s.io/utils v0.0.0-20260626114624-be93311217bd
 	sigs.k8s.io/json v0.0.0-20250730193827-2d320260d730
 	sigs.k8s.io/randfill v1.0.0
